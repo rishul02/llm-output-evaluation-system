@@ -1,0 +1,39 @@
+{
+  "preconditions": {
+    "agreed": [],
+    "groq_only": [
+      "Input must be a list"
+    ],
+    "hf_only": [
+      "Input lst must be a list",
+      "Input lst must contain hashable elements"
+    ],
+    "agreement_score": 0.0
+  },
+  "postconditions": {
+    "agreed": [],
+    "groq_only": [
+      "Order of elements in the output list may be different from the input list",
+      "Output will be a list",
+      "Output list will not contain duplicate elements"
+    ],
+    "hf_only": [
+      "Output will be a list with no duplicates",
+      "Output will be a list with the same length as the input list or less"
+    ],
+    "agreement_score": 0.0
+  },
+  "edge_cases": {
+    "agreed": [],
+    "groq_only": [
+      "If input list is empty, output will be an empty list",
+      "If input list contains unhashable elements, a TypeError will be raised"
+    ],
+    "hf_only": [
+      "If the input list contains only unique elements, the output will be the same as the input list",
+      "If the input list is empty, the output will be an empty list"
+    ],
+    "agreement_score": 0.0
+  },
+  "overall_agreement": 0.0
+}
