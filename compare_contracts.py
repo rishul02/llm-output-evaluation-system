@@ -2,6 +2,10 @@ import json
 import re
 import os
 
+from sentence_transformers import SentenceTransformer, util
+
+SIMILARITY_MODEL = SentenceTransformer('all-MiniLM-L6-v2')
+SIMILARITY_THRESHOLD = 0.82
 
 def parse_contract(llm_output: str) -> dict:
     """
@@ -52,26 +56,52 @@ def build_normalized_map(items):
 
 def compare_lists(list_a, list_b):
     """
-    Compare two lists of contract statements.
-    Returns structured comparison.
+    Compare two lists using semantic similarity.
+    Two statements are considered agreed if cosine similarity > threshold.
     """
-    map_a = build_normalized_map(list_a)
-    map_b = build_normalized_map(list_b)
+    if not list_a and not list_b:
+        return {"agreed": [], "groq_only": [], "hf_only": [],
+                "agreement_score": 1.0}
+    if not list_a:
+        return {"agreed": [], "groq_only": [], "hf_only": list_b,
+                "agreement_score": 0.0}
+    if not list_b:
+        return {"agreed": [], "groq_only": list_a, "hf_only": [],
+                "agreement_score": 0.0}
 
-    keys_a = set(map_a.keys())
-    keys_b = set(map_b.keys())
+    # Encode all statements at once — efficient
+    embeddings_a = SIMILARITY_MODEL.encode(list_a, convert_to_tensor=True)
+    embeddings_b = SIMILARITY_MODEL.encode(list_b, convert_to_tensor=True)
 
-    agreed_keys = keys_a & keys_b
-    only_a_keys = keys_a - keys_b
-    only_b_keys = keys_b - keys_a
+    matched_a = set()
+    matched_b = set()
+    agreed = []
 
-    total_unique = len(keys_a | keys_b)
-    agreement_score = len(agreed_keys) / total_unique if total_unique > 0 else 1.0
+    # For each statement in A, find best match in B
+    for i, emb_a in enumerate(embeddings_a):
+        similarities = util.cos_sim(emb_a, embeddings_b)[0]
+        best_j = similarities.argmax().item()
+        best_score = similarities[best_j].item()
+
+        if best_score >= SIMILARITY_THRESHOLD and best_j not in matched_b:
+            agreed.append({
+                "groq": list_a[i],
+                "hf": list_b[best_j],
+                "similarity": round(best_score, 3)
+            })
+            matched_a.add(i)
+            matched_b.add(best_j)
+
+    groq_only = [list_a[i] for i in range(len(list_a)) if i not in matched_a]
+    hf_only = [list_b[j] for j in range(len(list_b)) if j not in matched_b]
+
+    total_unique = len(list_a) + len(list_b) - len(agreed)
+    agreement_score = len(agreed) / total_unique if total_unique > 0 else 1.0
 
     return {
-        "agreed": [map_a[k] for k in agreed_keys],
-        "groq_only": [map_a[k] for k in only_a_keys],
-        "hf_only": [map_b[k] for k in only_b_keys],
+        "agreed": agreed,
+        "groq_only": groq_only,
+        "hf_only": hf_only,
         "agreement_score": round(agreement_score, 2)
     }
 
@@ -125,7 +155,11 @@ def print_report(function_name: str, report: dict):
         if data["agreed"]:
             print("  ✓ BOTH AGREE:")
             for item in data["agreed"]:
-                print(f"     - {item}")
+                if isinstance(item, dict):
+                    print(f"     - {item['groq']}")
+                    print(f"       ≈ {item['hf']} (similarity: {item['similarity']})")
+                else:
+                    print(f"     - {item}")
 
         if data["groq_only"]:
             print("  △ GROQ ONLY:")

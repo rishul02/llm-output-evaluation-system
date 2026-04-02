@@ -11,29 +11,37 @@
     "agreement_score": 0.0
   },
   "postconditions": {
-    "agreed": [],
+    "agreed": [
+      {
+        "groq": "Output list will not contain duplicate elements",
+        "hf": "Output will be a list with no duplicates",
+        "similarity": 0.915
+      }
+    ],
     "groq_only": [
-      "Order of elements in the output list may be different from the input list",
       "Output will be a list",
-      "Output list will not contain duplicate elements"
+      "Order of elements in the output list may be different from the input list"
     ],
     "hf_only": [
-      "Output will be a list with no duplicates",
       "Output will be a list with the same length as the input list or less"
     ],
-    "agreement_score": 0.0
+    "agreement_score": 0.25
   },
   "edge_cases": {
-    "agreed": [],
+    "agreed": [
+      {
+        "groq": "If input list is empty, output will be an empty list",
+        "hf": "If the input list is empty, the output will be an empty list",
+        "similarity": 0.99
+      }
+    ],
     "groq_only": [
-      "If input list is empty, output will be an empty list",
       "If input list contains unhashable elements, a TypeError will be raised"
     ],
     "hf_only": [
-      "If the input list contains only unique elements, the output will be the same as the input list",
-      "If the input list is empty, the output will be an empty list"
+      "If the input list contains only unique elements, the output will be the same as the input list"
     ],
-    "agreement_score": 0.0
+    "agreement_score": 0.33
   },
-  "overall_agreement": 0.0
+  "overall_agreement": 0.19
 }
