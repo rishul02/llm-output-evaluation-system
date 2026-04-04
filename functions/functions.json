@@ -1,0 +1,470 @@
+[
+  {
+    "name": "abs",
+    "module": "builtins",
+    "signature": "(x, /)",
+    "doc": "Return the absolute value of the argument.",
+    "source": null,
+    "input_text": "Return the absolute value of the argument.",
+    "full_name": "builtins.abs"
+  },
+  {
+    "name": "all",
+    "module": "builtins",
+    "signature": "(iterable, /)",
+    "doc": "Return True if bool(x) is True for all values x in the iterable.",
+    "source": null,
+    "input_text": "Return True if bool(x) is True for all values x in the iterable.",
+    "full_name": "builtins.all"
+  },
+  {
+    "name": "any",
+    "module": "builtins",
+    "signature": "(iterable, /)",
+    "doc": "Return True if bool(x) is True for any x in the iterable.",
+    "source": null,
+    "input_text": "Return True if bool(x) is True for any x in the iterable.",
+    "full_name": "builtins.any"
+  },
+  {
+    "name": "ascii",
+    "module": "builtins",
+    "signature": "(obj, /)",
+    "doc": "Return an ASCII-only representation of an object.",
+    "source": null,
+    "input_text": "Return an ASCII-only representation of an object.",
+    "full_name": "builtins.ascii"
+  },
+  {
+    "name": "bin",
+    "module": "builtins",
+    "signature": "(number, /)",
+    "doc": "Return the binary representation of an integer.",
+    "source": null,
+    "input_text": "Return the binary representation of an integer.",
+    "full_name": "builtins.bin"
+  },
+  {
+    "name": "callable",
+    "module": "builtins",
+    "signature": "(obj, /)",
+    "doc": "Return whether the object is callable (i.e., some kind of function).",
+    "source": null,
+    "input_text": "Return whether the object is callable (i.e., some kind of function).",
+    "full_name": "builtins.callable"
+  },
+  {
+    "name": "chr",
+    "module": "builtins",
+    "signature": "(i, /)",
+    "doc": "Return a Unicode string of one character with ordinal i; 0 <= i <= 0x10ffff.",
+    "source": null,
+    "input_text": "Return a Unicode string of one character with ordinal i; 0 <= i <= 0x10ffff.",
+    "full_name": "builtins.chr"
+  },
+  {
+    "name": "compile",
+    "module": "builtins",
+    "signature": "(source, filename, mode, flags=0, dont_inherit=False, optimize=-1, *, _feature_version=-1)",
+    "doc": "Compile source into a code object that can be executed by exec() or eval().",
+    "source": null,
+    "input_text": "Compile source into a code object that can be executed by exec() or eval().",
+    "full_name": "builtins.compile"
+  },
+  {
+    "name": "delattr",
+    "module": "builtins",
+    "signature": "(obj, name, /)",
+    "doc": "Deletes the named attribute from the given object.",
+    "source": null,
+    "input_text": "Deletes the named attribute from the given object.",
+    "full_name": "builtins.delattr"
+  },
+  {
+    "name": "dir",
+    "module": "builtins",
+    "signature": "()",
+    "doc": "dir([object]) -> list of strings",
+    "source": null,
+    "input_text": "dir([object]) -> list of strings",
+    "full_name": "builtins.dir"
+  },
+  {
+    "name": "acos",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the arc cosine (measured in radians) of x.",
+    "source": null,
+    "input_text": "Return the arc cosine (measured in radians) of x.",
+    "full_name": "math.acos"
+  },
+  {
+    "name": "acosh",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the inverse hyperbolic cosine of x.",
+    "source": null,
+    "input_text": "Return the inverse hyperbolic cosine of x.",
+    "full_name": "math.acosh"
+  },
+  {
+    "name": "asin",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the arc sine (measured in radians) of x.",
+    "source": null,
+    "input_text": "Return the arc sine (measured in radians) of x.",
+    "full_name": "math.asin"
+  },
+  {
+    "name": "asinh",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the inverse hyperbolic sine of x.",
+    "source": null,
+    "input_text": "Return the inverse hyperbolic sine of x.",
+    "full_name": "math.asinh"
+  },
+  {
+    "name": "atan",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the arc tangent (measured in radians) of x.",
+    "source": null,
+    "input_text": "Return the arc tangent (measured in radians) of x.",
+    "full_name": "math.atan"
+  },
+  {
+    "name": "atan2",
+    "module": "math",
+    "signature": "(y, x, /)",
+    "doc": "Return the arc tangent (measured in radians) of y/x.",
+    "source": null,
+    "input_text": "Return the arc tangent (measured in radians) of y/x.",
+    "full_name": "math.atan2"
+  },
+  {
+    "name": "atanh",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the inverse hyperbolic tangent of x.",
+    "source": null,
+    "input_text": "Return the inverse hyperbolic tangent of x.",
+    "full_name": "math.atanh"
+  },
+  {
+    "name": "cbrt",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the cube root of x.",
+    "source": null,
+    "input_text": "Return the cube root of x.",
+    "full_name": "math.cbrt"
+  },
+  {
+    "name": "ceil",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the ceiling of x as an Integral.",
+    "source": null,
+    "input_text": "Return the ceiling of x as an Integral.",
+    "full_name": "math.ceil"
+  },
+  {
+    "name": "comb",
+    "module": "math",
+    "signature": "(n, k, /)",
+    "doc": "Number of ways to choose k items from n items without repetition and without order.",
+    "source": null,
+    "input_text": "Number of ways to choose k items from n items without repetition and without order.",
+    "full_name": "math.comb"
+  },
+  {
+    "name": "acos",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return the arc cosine (measured in radians) of x.",
+    "source": null,
+    "input_text": "Return the arc cosine (measured in radians) of x.",
+    "full_name": "statistics.acos"
+  },
+  {
+    "name": "asin",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return the arc sine (measured in radians) of x.",
+    "source": null,
+    "input_text": "Return the arc sine (measured in radians) of x.",
+    "full_name": "statistics.asin"
+  },
+  {
+    "name": "atan",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return the arc tangent (measured in radians) of x.",
+    "source": null,
+    "input_text": "Return the arc tangent (measured in radians) of x.",
+    "full_name": "statistics.atan"
+  },
+  {
+    "name": "bisect_left",
+    "module": "statistics",
+    "signature": "(a, x, lo=0, hi=None, *, key=None)",
+    "doc": "Return the index where to insert item x in list a, assuming a is sorted.",
+    "source": null,
+    "input_text": "Return the index where to insert item x in list a, assuming a is sorted.",
+    "full_name": "statistics.bisect_left"
+  },
+  {
+    "name": "bisect_right",
+    "module": "statistics",
+    "signature": "(a, x, lo=0, hi=None, *, key=None)",
+    "doc": "Return the index where to insert item x in list a, assuming a is sorted.",
+    "source": null,
+    "input_text": "Return the index where to insert item x in list a, assuming a is sorted.",
+    "full_name": "statistics.bisect_right"
+  },
+  {
+    "name": "correlation",
+    "module": "statistics",
+    "signature": "(x, y, /, *, method='linear')",
+    "doc": "Pearson's correlation coefficient",
+    "source": "def correlation(x, y, /, *, method='linear'):\n    \"\"\"Pearson's correlation coefficient\n\n    Return the Pearson's correlation coefficient for two inputs. Pearson's\n    correlation coefficient *r* takes values between -1 and +1. It measures\n    the strength and direction of a linear relationship.\n\n    >>> x = [1, 2, 3, 4, 5, 6, 7, 8, 9]\n    >>> y = [9, 8, 7, 6, 5, 4, 3, 2, 1]\n    >>> correlation(x, x)\n    1.0\n    >>> correlation(x, y)\n    -1.0\n\n    If *method* is \"ranked\", computes Spearman's rank correlation coefficient\n    for two inputs.  The data is replaced by ranks.  Ties are averaged\n    so that equal values receive the same rank.  The resulting coefficient\n    measures the strength of a monotonic relationship.\n\n    Spearman's rank correlation coefficient is appropriate for ordinal\n    data or for continuous data that doesn't meet the linear proportion\n    requirement for Pearson's correlation coefficient.\n    \"\"\"\n    n = len(x)\n    if len(y) != n:\n        raise StatisticsError('correlation requires that both inputs have same number of data points')\n    if n < 2:\n        raise StatisticsError('correlation requires at least two data points')\n    if method not in {'linear', 'ranked'}:\n        raise ValueError(f'Unknown method: {method!r}')\n    if method == 'ranked':\n        start = (n - 1) / -2            # Center rankings around zero\n        x = _rank(x, start=start)\n        y = _rank(y, start=start)\n    else:\n        xbar = fsum(x) / n\n        ybar = fsum(y) / n\n        x = [xi - xbar for xi in x]\n        y = [yi - ybar for yi in y]\n    sxy = sumprod(x, y)\n    sxx = sumprod(x, x)\n    syy = sumprod(y, y)\n    try:\n        return sxy / _sqrtprod(sxx, syy)\n    except ZeroDivisionError:\n        raise StatisticsError('at least one of the inputs is constant')\n",
+    "input_text": "def correlation(x, y, /, *, method='linear'):\n    \"\"\"Pearson's correlation coefficient\n\n    Return the Pearson's correlation coefficient for two inputs. Pearson's\n    correlation coefficient *r* takes values between -1 and +1. It measures\n    the strength and direction of a linear relationship.\n\n    >>> x = [1, 2, 3, 4, 5, 6, 7, 8, 9]\n    >>> y = [9, 8, 7, 6, 5, 4, 3, 2, 1]\n    >>> correlation(x, x)\n    1.0\n    >>> correlation(x, y)\n    -1.0\n\n    If *method* is \"ranked\", computes Spearman's rank correlation coefficient\n    for two inputs.  The data is replaced by ranks.  Ties are averaged\n    so that equal values receive the same rank.  The resulting coefficient\n    measures the strength of a monotonic relationship.\n\n    Spearman's rank correlation coefficient is appropriate for ordinal\n    data or for continuous data that doesn't meet the linear proportion\n    requirement for Pearson's correlation coefficient.\n    \"\"\"\n    n = len(x)\n    if len(y) != n:\n        raise StatisticsError('correlation requires that both inputs have same number of data points')\n    if n < 2:\n        raise StatisticsError('correlation requires at least two data points')\n    if method not in {'linear', 'ranked'}:\n        raise ValueError(f'Unknown method: {method!r}')\n    if method == 'ranked':\n        start = (n - 1) / -2            # Center rankings around zero\n        x = _rank(x, start=start)\n        y = _rank(y, start=start)\n    else:\n        xbar = fsum(x) / n\n        ybar = fsum(y) / n\n        x = [xi - xbar for xi in x]\n        y = [yi - ybar for yi in y]\n    sxy = sumprod(x, y)\n    sxx = sumprod(x, x)\n    syy = sumprod(y, y)\n    try:\n        return sxy / _sqrtprod(sxx, syy)\n    except ZeroDivisionError:\n        raise StatisticsError('at least one of the inputs is constant')\n",
+    "full_name": "statistics.correlation"
+  },
+  {
+    "name": "cos",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return the cosine of x (measured in radians).",
+    "source": null,
+    "input_text": "Return the cosine of x (measured in radians).",
+    "full_name": "statistics.cos"
+  },
+  {
+    "name": "cosh",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return the hyperbolic cosine of x.",
+    "source": null,
+    "input_text": "Return the hyperbolic cosine of x.",
+    "full_name": "statistics.cosh"
+  },
+  {
+    "name": "covariance",
+    "module": "statistics",
+    "signature": "(x, y, /)",
+    "doc": "Covariance",
+    "source": "def covariance(x, y, /):\n    \"\"\"Covariance\n\n    Return the sample covariance of two inputs *x* and *y*. Covariance\n    is a measure of the joint variability of two inputs.\n\n    >>> x = [1, 2, 3, 4, 5, 6, 7, 8, 9]\n    >>> y = [1, 2, 3, 1, 2, 3, 1, 2, 3]\n    >>> covariance(x, y)\n    0.75\n    >>> z = [9, 8, 7, 6, 5, 4, 3, 2, 1]\n    >>> covariance(x, z)\n    -7.5\n    >>> covariance(z, x)\n    -7.5\n\n    \"\"\"\n    n = len(x)\n    if len(y) != n:\n        raise StatisticsError('covariance requires that both inputs have same number of data points')\n    if n < 2:\n        raise StatisticsError('covariance requires at least two data points')\n    xbar = fsum(x) / n\n    ybar = fsum(y) / n\n    sxy = sumprod((xi - xbar for xi in x), (yi - ybar for yi in y))\n    return sxy / (n - 1)\n",
+    "input_text": "def covariance(x, y, /):\n    \"\"\"Covariance\n\n    Return the sample covariance of two inputs *x* and *y*. Covariance\n    is a measure of the joint variability of two inputs.\n\n    >>> x = [1, 2, 3, 4, 5, 6, 7, 8, 9]\n    >>> y = [1, 2, 3, 1, 2, 3, 1, 2, 3]\n    >>> covariance(x, y)\n    0.75\n    >>> z = [9, 8, 7, 6, 5, 4, 3, 2, 1]\n    >>> covariance(x, z)\n    -7.5\n    >>> covariance(z, x)\n    -7.5\n\n    \"\"\"\n    n = len(x)\n    if len(y) != n:\n        raise StatisticsError('covariance requires that both inputs have same number of data points')\n    if n < 2:\n        raise StatisticsError('covariance requires at least two data points')\n    xbar = fsum(x) / n\n    ybar = fsum(y) / n\n    sxy = sumprod((xi - xbar for xi in x), (yi - ybar for yi in y))\n    return sxy / (n - 1)\n",
+    "full_name": "statistics.covariance"
+  },
+  {
+    "name": "erf",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Error function at x.",
+    "source": null,
+    "input_text": "Error function at x.",
+    "full_name": "statistics.erf"
+  },
+  {
+    "name": "cache",
+    "module": "functools",
+    "signature": "(user_function, /)",
+    "doc": "Simple lightweight unbounded cache.  Sometimes called \"memoize\".",
+    "source": "def cache(user_function, /):\n    'Simple lightweight unbounded cache.  Sometimes called \"memoize\".'\n    return lru_cache(maxsize=None)(user_function)\n",
+    "input_text": "def cache(user_function, /):\n    'Simple lightweight unbounded cache.  Sometimes called \"memoize\".'\n    return lru_cache(maxsize=None)(user_function)\n",
+    "full_name": "functools.cache"
+  },
+  {
+    "name": "cmp_to_key",
+    "module": "functools",
+    "signature": "(mycmp)",
+    "doc": "Convert a cmp= function into a key= function.",
+    "source": null,
+    "input_text": "Convert a cmp= function into a key= function.",
+    "full_name": "functools.cmp_to_key"
+  },
+  {
+    "name": "get_cache_token",
+    "module": "functools",
+    "signature": "()",
+    "doc": "Returns the current ABC cache token.",
+    "source": null,
+    "input_text": "Returns the current ABC cache token.",
+    "full_name": "functools.get_cache_token"
+  },
+  {
+    "name": "lru_cache",
+    "module": "functools",
+    "signature": "(maxsize=128, typed=False)",
+    "doc": "Least-recently-used cache decorator.",
+    "source": "def lru_cache(maxsize=128, typed=False):\n    \"\"\"Least-recently-used cache decorator.\n\n    If *maxsize* is set to None, the LRU features are disabled and the cache\n    can grow without bound.\n\n    If *typed* is True, arguments of different types will be cached separately.\n    For example, f(decimal.Decimal(\"3.0\")) and f(3.0) will be treated as\n    distinct calls with distinct results. Some types such as str and int may\n    be cached separately even when typed is false.\n\n    Arguments to the cached function must be hashable.\n\n    View the cache statistics named tuple (hits, misses, maxsize, currsize)\n    with f.cache_info().  Clear the cache and statistics with f.cache_clear().\n    Access the underlying function with f.__wrapped__.\n\n    See:  https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)\n\n    \"\"\"\n\n    # Users should only access the lru_cache through its public API:\n    #       cache_info, cache_clear, and f.__wrapped__\n    # The internals of the lru_cache are encapsulated for thread safety and\n    # to allow the implementation to change (including a possible C version).\n\n    if isinstance(maxsize, int):\n        # Negative maxsize is treated as 0\n        if maxsize < 0:\n            maxsize = 0\n    elif callable(maxsize) and isinstance(typed, bool):\n        # The user_function was passed in directly via the maxsize argument\n        user_function, maxsize = maxsize, 128\n        wrapper = _lru_cache_wrapper(user_function, maxsize, typed, _CacheInfo)\n        wrapper.cache_parameters = lambda : {'maxsize': maxsize, 'typed': typed}\n        return update_wrapper(wrapper, user_function)\n    elif maxsize is not None:\n        raise TypeError(\n            'Expected first argument to be an integer, a callable, or None')\n\n    def decorating_function(user_function):\n        wrapper = _lru_cache_wrapper(user_function, maxsize, typed, _CacheInfo)\n        wrapper.cache_parameters = lambda : {'maxsize': maxsize, 'typed': typed}\n        return update_wrapper(wrapper, user_function)\n\n    return decorating_function\n",
+    "input_text": "def lru_cache(maxsize=128, typed=False):\n    \"\"\"Least-recently-used cache decorator.\n\n    If *maxsize* is set to None, the LRU features are disabled and the cache\n    can grow without bound.\n\n    If *typed* is True, arguments of different types will be cached separately.\n    For example, f(decimal.Decimal(\"3.0\")) and f(3.0) will be treated as\n    distinct calls with distinct results. Some types such as str and int may\n    be cached separately even when typed is false.\n\n    Arguments to the cached function must be hashable.\n\n    View the cache statistics named tuple (hits, misses, maxsize, currsize)\n    with f.cache_info().  Clear the cache and statistics with f.cache_clear().\n    Access the underlying function with f.__wrapped__.\n\n    See:  https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)\n\n    \"\"\"\n\n    # Users should only access the lru_cache through its public API:\n    #       cache_info, cache_clear, and f.__wrapped__\n    # The internals of the lru_cache are encapsulated for thread safety and\n    # to allow the implementation to change (including a possible C version).\n\n    if isinstance(maxsize, int):\n        # Negative maxsize is treated as 0\n        if maxsize < 0:\n            maxsize = 0\n    elif callable(maxsize) and isinstance(typed, bool):\n        # The user_function was passed in directly via the maxsize argument\n        user_function, maxsize = maxsize, 128\n        wrapper = _lru_cache_wrapper(user_function, maxsize, typed, _CacheInfo)\n        wrapper.cache_parameters = lambda : {'maxsize': maxsize, 'typed': typed}\n        return update_wrapper(wrapper, user_function)\n    elif maxsize is not None:\n        raise TypeError(\n            'Expected first argument to be an integer, a callable, or None')\n\n    def decorating_function(user_function):\n        wrapper = _lru_cache_wrapper(user_function, maxsize, typed, _CacheInfo)\n        wrapper.cache_parameters = lambda : {'maxsize': maxsize, 'typed': typed}\n        return update_wrapper(wrapper, user_function)\n\n    return decorating_function\n",
+    "full_name": "functools.lru_cache"
+  },
+  {
+    "name": "namedtuple",
+    "module": "functools",
+    "signature": "(typename, field_names, *, rename=False, defaults=None, module=None)",
+    "doc": "Returns a new subclass of tuple with named fields.",
+    "source": "def namedtuple(typename, field_names, *, rename=False, defaults=None, module=None):\n    \"\"\"Returns a new subclass of tuple with named fields.\n\n    >>> Point = namedtuple('Point', ['x', 'y'])\n    >>> Point.__doc__                   # docstring for the new class\n    'Point(x, y)'\n    >>> p = Point(11, y=22)             # instantiate with positional args or keywords\n    >>> p[0] + p[1]                     # indexable like a plain tuple\n    33\n    >>> x, y = p                        # unpack like a regular tuple\n    >>> x, y\n    (11, 22)\n    >>> p.x + p.y                       # fields also accessible by name\n    33\n    >>> d = p._asdict()                 # convert to a dictionary\n    >>> d['x']\n    11\n    >>> Point(**d)                      # convert from a dictionary\n    Point(x=11, y=22)\n    >>> p._replace(x=100)               # _replace() is like str.replace() but targets named fields\n    Point(x=100, y=22)\n\n    \"\"\"\n\n    # Validate the field names.  At the user's option, either generate an error\n    # message or automatically replace the field name with a valid name.\n    if isinstance(field_names, str):\n        field_names = field_names.replace(',', ' ').split()\n    field_names = list(map(str, field_names))\n    typename = _sys.intern(str(typename))\n\n    if rename:\n        seen = set()\n        for index, name in enumerate(field_names):\n            if (not name.isidentifier()\n                or _iskeyword(name)\n                or name.startswith('_')\n                or name in seen):\n                field_names[index] = f'_{index}'\n            seen.add(name)\n\n    for name in [typename] + field_names:\n        if type(name) is not str:\n            raise TypeError('Type names and field names must be strings')\n        if not name.isidentifier():\n            raise ValueError('Type names and field names must be valid '\n                             f'identifiers: {name!r}')\n        if _iskeyword(name):\n            raise ValueError('Type names and field names cannot be a '\n                             f'keyword: {name!r}')\n\n    seen = set()\n    for name in field_names:\n        if name.startswith('_') and not rename:\n            raise ValueError('Field names cannot start with an underscore: '\n                             f'{name!r}')\n        if name in seen:\n            raise ValueError(f'Encountered duplicate field name: {name!r}')\n        seen.add(name)\n\n    field_defaults = {}\n    if defaults is not None:\n        defaults = tuple(defaults)\n        if len(defaults) > len(field_names):\n            raise TypeError('Got more default values than field names')\n        field_defaults = dict(reversed(list(zip(reversed(field_names),\n                                                reversed(defaults)))))\n\n    # Variables used in the methods and docstrings\n    field_names = tuple(map(_sys.intern, field_names))\n    num_fields = len(field_names)\n    arg_list = ', '.join(field_names)\n    if num_fields == 1:\n        arg_list += ','\n    repr_fmt = '(' + ', '.join(f'{name}=%r' for name in field_names) + ')'\n    tuple_new = tuple.__new__\n    _dict, _tuple, _len, _map, _zip = dict, tuple, len, map, zip\n\n    # Create all the named tuple methods to be added to the class namespace\n\n    namespace = {\n        '_tuple_new': tuple_new,\n        '__builtins__': {},\n        '__name__': f'namedtuple_{typename}',\n    }\n    code = f'lambda _cls, {arg_list}: _tuple_new(_cls, ({arg_list}))'\n    __new__ = eval(code, namespace)\n    __new__.__name__ = '__new__'\n    __new__.__doc__ = f'Create new instance of {typename}({arg_list})'\n    if defaults is not None:\n        __new__.__defaults__ = defaults\n\n    @classmethod\n    def _make(cls, iterable):\n        result = tuple_new(cls, iterable)\n        if _len(result) != num_fields:\n            raise TypeError(f'Expected {num_fields} arguments, got {len(result)}')\n        return result\n\n    _make.__func__.__doc__ = (f'Make a new {typename} object from a sequence '\n                              'or iterable')\n\n    def _replace(self, /, **kwds):\n        result = self._make(_map(kwds.pop, field_names, self))\n        if kwds:\n            raise TypeError(f'Got unexpected field names: {list(kwds)!r}')\n        return result\n\n    _replace.__doc__ = (f'Return a new {typename} object replacing specified '\n                        'fields with new values')\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + repr_fmt % self\n\n    def _asdict(self):\n        'Return a new dict which maps field names to their values.'\n        return _dict(_zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return _tuple(self)\n\n    # Modify function metadata to help with introspection and debugging\n    for method in (\n        __new__,\n        _make.__func__,\n        _replace,\n        __repr__,\n        _asdict,\n        __getnewargs__,\n    ):\n        method.__qualname__ = f'{typename}.{method.__name__}'\n\n    # Build-up the class namespace dictionary\n    # and use type() to build the result class\n    class_namespace = {\n        '__doc__': f'{typename}({arg_list})',\n        '__slots__': (),\n        '_fields': field_names,\n        '_field_defaults': field_defaults,\n        '__new__': __new__,\n        '_make': _make,\n        '__replace__': _replace,\n        '_replace': _replace,\n        '__repr__': __repr__,\n        '_asdict': _asdict,\n        '__getnewargs__': __getnewargs__,\n        '__match_args__': field_names,\n    }\n    for index, name in enumerate(field_names):\n        doc = _sys.intern(f'Alias for field number {index}')\n        class_namespace[name] = _tuplegetter(index, doc)\n\n    result = type(typename, (tuple,), class_namespace)\n\n    # For pickling to work, the __module__ variable needs to be set to the frame\n    # where the named tuple is created.  Bypass this step in environments where\n    # sys._getframe is not defined (Jython for example) or sys._getframe is not\n    # defined for arguments greater than 0 (IronPython), or where the user has\n    # specified a particular module.\n    if module is None:\n        try:\n            module = _sys._getframemodulename(1) or '__main__'\n        except AttributeError:\n            try:\n                module = _sys._getframe(1).f_globals.get('__name__', '__main__')\n            except (AttributeError, ValueError):\n                pass\n    if module is not None:\n        result.__module__ = module\n\n    return result\n",
+    "input_text": "def namedtuple(typename, field_names, *, rename=False, defaults=None, module=None):\n    \"\"\"Returns a new subclass of tuple with named fields.\n\n    >>> Point = namedtuple('Point', ['x', 'y'])\n    >>> Point.__doc__                   # docstring for the new class\n    'Point(x, y)'\n    >>> p = Point(11, y=22)             # instantiate with positional args or keywords\n    >>> p[0] + p[1]                     # indexable like a plain tuple\n    33\n    >>> x, y = p                        # unpack like a regular tuple\n    >>> x, y\n    (11, 22)\n    >>> p.x + p.y                       # fields also accessible by name\n    33\n    >>> d = p._asdict()                 # convert to a dictionary\n    >>> d['x']\n    11\n    >>> Point(**d)                      # convert from a dictionary\n    Point(x=11, y=22)\n    >>> p._replace(x=100)               # _replace() is like str.replace() but targets named fields\n    Point(x=100, y=22)\n\n    \"\"\"\n\n    # Validate the field names.  At the user's option, either generate an error\n    # message or automatically replace the field name with a valid name.\n    if isinstance(field_names, str):\n        field_names = field_names.replace(',', ' ').split()\n    field_names = list(map(str, field_names))\n    typename = _sys.intern(str(typename))\n\n    if rename:\n        seen = set()\n        for index, name in enumerate(field_names):\n            if (not name.isidentifier()\n                or _iskeyword(name)\n                or name.startswith('_')\n                or name in seen):\n                field_names[index] = f'_{index}'\n            seen.add(name)\n\n    for name in [typename] + field_names:\n        if type(name) is not str:\n            raise TypeError('Type names and field names must be strings')\n        if not name.isidentifier():\n            raise ValueError('Type names and field names must be valid '\n                             f'identifiers: {name!r}')\n        if _iskeyword(name):\n            raise ValueError('Type names and field names cannot be a '\n                             f'keyword: {name!r}')\n\n    seen = set()\n    for name in field_names:\n        if name.startswith('_') and not rename:\n            raise ValueError('Field names cannot start with an underscore: '\n                             f'{name!r}')\n        if name in seen:\n            raise ValueError(f'Encountered duplicate field name: {name!r}')\n        seen.add(name)\n\n    field_defaults = {}\n    if defaults is not None:\n        defaults = tuple(defaults)\n        if len(defaults) > len(field_names):\n            raise TypeError('Got more default values than field names')\n        field_defaults = dict(reversed(list(zip(reversed(field_names),\n                                                reversed(defaults)))))\n\n    # Variables used in the methods and docstrings\n    field_names = tuple(map(_sys.intern, field_names))\n    num_fields = len(field_names)\n    arg_list = ', '.join(field_names)\n    if num_fields == 1:\n        arg_list += ','\n    repr_fmt = '(' + ', '.join(f'{name}=%r' for name in field_names) + ')'\n    tuple_new = tuple.__new__\n    _dict, _tuple, _len, _map, _zip = dict, tuple, len, map, zip\n\n    # Create all the named tuple methods to be added to the class namespace\n\n    namespace = {\n        '_tuple_new': tuple_new,\n        '__builtins__': {},\n        '__name__': f'namedtuple_{typename}',\n    }\n    code = f'lambda _cls, {arg_list}: _tuple_new(_cls, ({arg_list}))'\n    __new__ = eval(code, namespace)\n    __new__.__name__ = '__new__'\n    __new__.__doc__ = f'Create new instance of {typename}({arg_list})'\n    if defaults is not None:\n        __new__.__defaults__ = defaults\n\n    @classmethod\n    def _make(cls, iterable):\n        result = tuple_new(cls, iterable)\n        if _len(result) != num_fields:\n            raise TypeError(f'Expected {num_fields} arguments, got {len(result)}')\n        return result\n\n    _make.__func__.__doc__ = (f'Make a new {typename} object from a sequence '\n                              'or iterable')\n\n    def _replace(self, /, **kwds):\n        result = self._make(_map(kwds.pop, field_names, self))\n        if kwds:\n            raise TypeError(f'Got unexpected field names: {list(kwds)!r}')\n        return result\n\n    _replace.__doc__ = (f'Return a new {typename} object replacing specified '\n                        'fields with new values')\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + repr_fmt % self\n\n    def _asdict(self):\n        'Return a new dict which maps field names to their values.'\n        return _dict(_zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return _tuple(self)\n\n    # Modify function metadata to help with introspection and debugging\n    for method in (\n        __new__,\n        _make.__func__,\n        _replace,\n        __repr__,\n        _asdict,\n        __getnewargs__,\n    ):\n        method.__qualname__ = f'{typename}.{method.__name__}'\n\n    # Build-up the class namespace dictionary\n    # and use type() to build the result class\n    class_namespace = {\n        '__doc__': f'{typename}({arg_list})',\n        '__slots__': (),\n        '_fields': field_names,\n        '_field_defaults': field_defaults,\n        '__new__': __new__,\n        '_make': _make,\n        '__replace__': _replace,\n        '_replace': _replace,\n        '__repr__': __repr__,\n        '_asdict': _asdict,\n        '__getnewargs__': __getnewargs__,\n        '__match_args__': field_names,\n    }\n    for index, name in enumerate(field_names):\n        doc = _sys.intern(f'Alias for field number {index}')\n        class_namespace[name] = _tuplegetter(index, doc)\n\n    result = type(typename, (tuple,), class_namespace)\n\n    # For pickling to work, the __module__ variable needs to be set to the frame\n    # where the named tuple is created.  Bypass this step in environments where\n    # sys._getframe is not defined (Jython for example) or sys._getframe is not\n    # defined for arguments greater than 0 (IronPython), or where the user has\n    # specified a particular module.\n    if module is None:\n        try:\n            module = _sys._getframemodulename(1) or '__main__'\n        except AttributeError:\n            try:\n                module = _sys._getframe(1).f_globals.get('__name__', '__main__')\n            except (AttributeError, ValueError):\n                pass\n    if module is not None:\n        result.__module__ = module\n\n    return result\n",
+    "full_name": "functools.namedtuple"
+  },
+  {
+    "name": "recursive_repr",
+    "module": "functools",
+    "signature": "(fillvalue='...')",
+    "doc": "Decorator to make a repr function return fillvalue for a recursive call",
+    "source": "def recursive_repr(fillvalue='...'):\n    'Decorator to make a repr function return fillvalue for a recursive call'\n\n    def decorating_function(user_function):\n        repr_running = set()\n\n        def wrapper(self):\n            key = id(self), get_ident()\n            if key in repr_running:\n                return fillvalue\n            repr_running.add(key)\n            try:\n                result = user_function(self)\n            finally:\n                repr_running.discard(key)\n            return result\n\n        # Can't use functools.wraps() here because of bootstrap issues\n        wrapper.__module__ = getattr(user_function, '__module__')\n        wrapper.__doc__ = getattr(user_function, '__doc__')\n        wrapper.__name__ = getattr(user_function, '__name__')\n        wrapper.__qualname__ = getattr(user_function, '__qualname__')\n        wrapper.__annotations__ = getattr(user_function, '__annotations__', {})\n        wrapper.__type_params__ = getattr(user_function, '__type_params__', ())\n        wrapper.__wrapped__ = user_function\n        return wrapper\n\n    return decorating_function\n",
+    "input_text": "def recursive_repr(fillvalue='...'):\n    'Decorator to make a repr function return fillvalue for a recursive call'\n\n    def decorating_function(user_function):\n        repr_running = set()\n\n        def wrapper(self):\n            key = id(self), get_ident()\n            if key in repr_running:\n                return fillvalue\n            repr_running.add(key)\n            try:\n                result = user_function(self)\n            finally:\n                repr_running.discard(key)\n            return result\n\n        # Can't use functools.wraps() here because of bootstrap issues\n        wrapper.__module__ = getattr(user_function, '__module__')\n        wrapper.__doc__ = getattr(user_function, '__doc__')\n        wrapper.__name__ = getattr(user_function, '__name__')\n        wrapper.__qualname__ = getattr(user_function, '__qualname__')\n        wrapper.__annotations__ = getattr(user_function, '__annotations__', {})\n        wrapper.__type_params__ = getattr(user_function, '__type_params__', ())\n        wrapper.__wrapped__ = user_function\n        return wrapper\n\n    return decorating_function\n",
+    "full_name": "functools.recursive_repr"
+  },
+  {
+    "name": "reduce",
+    "module": "functools",
+    "signature": "()",
+    "doc": "reduce(function, iterable[, initial], /) -> value",
+    "source": null,
+    "input_text": "reduce(function, iterable[, initial], /) -> value",
+    "full_name": "functools.reduce"
+  },
+  {
+    "name": "singledispatch",
+    "module": "functools",
+    "signature": "(func)",
+    "doc": "Single-dispatch generic function decorator.",
+    "source": "def singledispatch(func):\n    \"\"\"Single-dispatch generic function decorator.\n\n    Transforms a function into a generic function, which can have different\n    behaviours depending upon the type of its first argument. The decorated\n    function acts as the default implementation, and additional\n    implementations can be registered using the register() attribute of the\n    generic function.\n    \"\"\"\n    # There are many programs that use functools without singledispatch, so we\n    # trade-off making singledispatch marginally slower for the benefit of\n    # making start-up of such applications slightly faster.\n    import types, weakref\n\n    registry = {}\n    dispatch_cache = weakref.WeakKeyDictionary()\n    cache_token = None\n\n    def dispatch(cls):\n        \"\"\"generic_func.dispatch(cls) -> <function implementation>\n\n        Runs the dispatch algorithm to return the best available implementation\n        for the given *cls* registered on *generic_func*.\n\n        \"\"\"\n        nonlocal cache_token\n        if cache_token is not None:\n            current_token = get_cache_token()\n            if cache_token != current_token:\n                dispatch_cache.clear()\n                cache_token = current_token\n        try:\n            impl = dispatch_cache[cls]\n        except KeyError:\n            try:\n                impl = registry[cls]\n            except KeyError:\n                impl = _find_impl(cls, registry)\n            dispatch_cache[cls] = impl\n        return impl\n\n    def _is_union_type(cls):\n        from typing import get_origin, Union\n        return get_origin(cls) in {Union, types.UnionType}\n\n    def _is_valid_dispatch_type(cls):\n        if isinstance(cls, type):\n            return True\n        from typing import get_args\n        return (_is_union_type(cls) and\n                all(isinstance(arg, type) for arg in get_args(cls)))\n\n    def register(cls, func=None):\n        \"\"\"generic_func.register(cls, func) -> func\n\n        Registers a new implementation for the given *cls* on a *generic_func*.\n\n        \"\"\"\n        nonlocal cache_token\n        if _is_valid_dispatch_type(cls):\n            if func is None:\n                return lambda f: register(cls, f)\n        else:\n            if func is not None:\n                raise TypeError(\n                    f\"Invalid first argument to `register()`. \"\n                    f\"{cls!r} is not a class or union type.\"\n                )\n            ann = getattr(cls, '__annotations__', {})\n            if not ann:\n                raise TypeError(\n                    f\"Invalid first argument to `register()`: {cls!r}. \"\n                    f\"Use either `@register(some_class)` or plain `@register` \"\n                    f\"on an annotated function.\"\n                )\n            func = cls\n\n            # only import typing if annotation parsing is necessary\n            from typing import get_type_hints\n            argname, cls = next(iter(get_type_hints(func).items()))\n            if not _is_valid_dispatch_type(cls):\n                if _is_union_type(cls):\n                    raise TypeError(\n                        f\"Invalid annotation for {argname!r}. \"\n                        f\"{cls!r} not all arguments are classes.\"\n                    )\n                else:\n                    raise TypeError(\n                        f\"Invalid annotation for {argname!r}. \"\n                        f\"{cls!r} is not a class.\"\n                    )\n\n        if _is_union_type(cls):\n            from typing import get_args\n\n            for arg in get_args(cls):\n                registry[arg] = func\n        else:\n            registry[cls] = func\n        if cache_token is None and hasattr(cls, '__abstractmethods__'):\n            cache_token = get_cache_token()\n        dispatch_cache.clear()\n        return func\n\n    def wrapper(*args, **kw):\n        if not args:\n            raise TypeError(f'{funcname} requires at least '\n                            '1 positional argument')\n        return dispatch(args[0].__class__)(*args, **kw)\n\n    funcname = getattr(func, '__name__', 'singledispatch function')\n    registry[object] = func\n    wrapper.register = register\n    wrapper.dispatch = dispatch\n    wrapper.registry = types.MappingProxyType(registry)\n    wrapper._clear_cache = dispatch_cache.clear\n    update_wrapper(wrapper, func)\n    return wrapper\n",
+    "input_text": "def singledispatch(func):\n    \"\"\"Single-dispatch generic function decorator.\n\n    Transforms a function into a generic function, which can have different\n    behaviours depending upon the type of its first argument. The decorated\n    function acts as the default implementation, and additional\n    implementations can be registered using the register() attribute of the\n    generic function.\n    \"\"\"\n    # There are many programs that use functools without singledispatch, so we\n    # trade-off making singledispatch marginally slower for the benefit of\n    # making start-up of such applications slightly faster.\n    import types, weakref\n\n    registry = {}\n    dispatch_cache = weakref.WeakKeyDictionary()\n    cache_token = None\n\n    def dispatch(cls):\n        \"\"\"generic_func.dispatch(cls) -> <function implementation>\n\n        Runs the dispatch algorithm to return the best available implementation\n        for the given *cls* registered on *generic_func*.\n\n        \"\"\"\n        nonlocal cache_token\n        if cache_token is not None:\n            current_token = get_cache_token()\n            if cache_token != current_token:\n                dispatch_cache.clear()\n                cache_token = current_token\n        try:\n            impl = dispatch_cache[cls]\n        except KeyError:\n            try:\n                impl = registry[cls]\n            except KeyError:\n                impl = _find_impl(cls, registry)\n            dispatch_cache[cls] = impl\n        return impl\n\n    def _is_union_type(cls):\n        from typing import get_origin, Union\n        return get_origin(cls) in {Union, types.UnionType}\n\n    def _is_valid_dispatch_type(cls):\n        if isinstance(cls, type):\n            return True\n        from typing import get_args\n        return (_is_union_type(cls) and\n                all(isinstance(arg, type) for arg in get_args(cls)))\n\n    def register(cls, func=None):\n        \"\"\"generic_func.register(cls, func) -> func\n\n        Registers a new implementation for the given *cls* on a *generic_func*.\n\n        \"\"\"\n        nonlocal cache_token\n        if _is_valid_dispatch_type(cls):\n            if func is None:\n                return lambda f: register(cls, f)\n        else:\n            if func is not None:\n                raise TypeError(\n                    f\"Invalid first argument to `register()`. \"\n                    f\"{cls!r} is not a class or union type.\"\n                )\n            ann = getattr(cls, '__annotations__', {})\n            if not ann:\n                raise TypeError(\n                    f\"Invalid first argument to `register()`: {cls!r}. \"\n                    f\"Use either `@register(some_class)` or plain `@register` \"\n                    f\"on an annotated function.\"\n                )\n            func = cls\n\n            # only import typing if annotation parsing is necessary\n            from typing import get_type_hints\n            argname, cls = next(iter(get_type_hints(func).items()))\n            if not _is_valid_dispatch_type(cls):\n                if _is_union_type(cls):\n                    raise TypeError(\n                        f\"Invalid annotation for {argname!r}. \"\n                        f\"{cls!r} not all arguments are classes.\"\n                    )\n                else:\n                    raise TypeError(\n                        f\"Invalid annotation for {argname!r}. \"\n                        f\"{cls!r} is not a class.\"\n                    )\n\n        if _is_union_type(cls):\n            from typing import get_args\n\n            for arg in get_args(cls):\n                registry[arg] = func\n        else:\n            registry[cls] = func\n        if cache_token is None and hasattr(cls, '__abstractmethods__'):\n            cache_token = get_cache_token()\n        dispatch_cache.clear()\n        return func\n\n    def wrapper(*args, **kw):\n        if not args:\n            raise TypeError(f'{funcname} requires at least '\n                            '1 positional argument')\n        return dispatch(args[0].__class__)(*args, **kw)\n\n    funcname = getattr(func, '__name__', 'singledispatch function')\n    registry[object] = func\n    wrapper.register = register\n    wrapper.dispatch = dispatch\n    wrapper.registry = types.MappingProxyType(registry)\n    wrapper._clear_cache = dispatch_cache.clear\n    update_wrapper(wrapper, func)\n    return wrapper\n",
+    "full_name": "functools.singledispatch"
+  },
+  {
+    "name": "total_ordering",
+    "module": "functools",
+    "signature": "(cls)",
+    "doc": "Class decorator that fills in missing ordering methods",
+    "source": "def total_ordering(cls):\n    \"\"\"Class decorator that fills in missing ordering methods\"\"\"\n    # Find user-defined comparisons (not those inherited from object).\n    roots = {op for op in _convert if getattr(cls, op, None) is not getattr(object, op, None)}\n    if not roots:\n        raise ValueError('must define at least one ordering operation: < > <= >=')\n    root = max(roots)       # prefer __lt__ to __le__ to __gt__ to __ge__\n    for opname, opfunc in _convert[root]:\n        if opname not in roots:\n            opfunc.__name__ = opname\n            setattr(cls, opname, opfunc)\n    return cls\n",
+    "input_text": "def total_ordering(cls):\n    \"\"\"Class decorator that fills in missing ordering methods\"\"\"\n    # Find user-defined comparisons (not those inherited from object).\n    roots = {op for op in _convert if getattr(cls, op, None) is not getattr(object, op, None)}\n    if not roots:\n        raise ValueError('must define at least one ordering operation: < > <= >=')\n    root = max(roots)       # prefer __lt__ to __le__ to __gt__ to __ge__\n    for opname, opfunc in _convert[root]:\n        if opname not in roots:\n            opfunc.__name__ = opname\n            setattr(cls, opname, opfunc)\n    return cls\n",
+    "full_name": "functools.total_ordering"
+  },
+  {
+    "name": "update_wrapper",
+    "module": "functools",
+    "signature": "(wrapper, wrapped, assigned=('__module__', '__name__', '__qualname__', '__doc__', '__annotations__', '__type_params__'), updated=('__dict__',))",
+    "doc": "Update a wrapper function to look like the wrapped function",
+    "source": "def update_wrapper(wrapper,\n                   wrapped,\n                   assigned = WRAPPER_ASSIGNMENTS,\n                   updated = WRAPPER_UPDATES):\n    \"\"\"Update a wrapper function to look like the wrapped function\n\n       wrapper is the function to be updated\n       wrapped is the original function\n       assigned is a tuple naming the attributes assigned directly\n       from the wrapped function to the wrapper function (defaults to\n       functools.WRAPPER_ASSIGNMENTS)\n       updated is a tuple naming the attributes of the wrapper that\n       are updated with the corresponding attribute from the wrapped\n       function (defaults to functools.WRAPPER_UPDATES)\n    \"\"\"\n    for attr in assigned:\n        try:\n            value = getattr(wrapped, attr)\n        except AttributeError:\n            pass\n        else:\n            setattr(wrapper, attr, value)\n    for attr in updated:\n        getattr(wrapper, attr).update(getattr(wrapped, attr, {}))\n    # Issue #17482: set __wrapped__ last so we don't inadvertently copy it\n    # from the wrapped function when updating __dict__\n    wrapper.__wrapped__ = wrapped\n    # Return the wrapper so this can be used as a decorator via partial()\n    return wrapper\n",
+    "input_text": "def update_wrapper(wrapper,\n                   wrapped,\n                   assigned = WRAPPER_ASSIGNMENTS,\n                   updated = WRAPPER_UPDATES):\n    \"\"\"Update a wrapper function to look like the wrapped function\n\n       wrapper is the function to be updated\n       wrapped is the original function\n       assigned is a tuple naming the attributes assigned directly\n       from the wrapped function to the wrapper function (defaults to\n       functools.WRAPPER_ASSIGNMENTS)\n       updated is a tuple naming the attributes of the wrapper that\n       are updated with the corresponding attribute from the wrapped\n       function (defaults to functools.WRAPPER_UPDATES)\n    \"\"\"\n    for attr in assigned:\n        try:\n            value = getattr(wrapped, attr)\n        except AttributeError:\n            pass\n        else:\n            setattr(wrapper, attr, value)\n    for attr in updated:\n        getattr(wrapper, attr).update(getattr(wrapped, attr, {}))\n    # Issue #17482: set __wrapped__ last so we don't inadvertently copy it\n    # from the wrapped function when updating __dict__\n    wrapper.__wrapped__ = wrapped\n    # Return the wrapper so this can be used as a decorator via partial()\n    return wrapper\n",
+    "full_name": "functools.update_wrapper"
+  },
+  {
+    "name": "abs",
+    "module": "operator",
+    "signature": "(a, /)",
+    "doc": "Same as abs(a).",
+    "source": null,
+    "input_text": "Same as abs(a).",
+    "full_name": "operator.abs"
+  },
+  {
+    "name": "add",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a + b.",
+    "source": null,
+    "input_text": "Same as a + b.",
+    "full_name": "operator.add"
+  },
+  {
+    "name": "and_",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a & b.",
+    "source": null,
+    "input_text": "Same as a & b.",
+    "full_name": "operator.and_"
+  },
+  {
+    "name": "call",
+    "module": "operator",
+    "signature": "(obj, /, *args, **kwargs)",
+    "doc": "Same as obj(*args, **kwargs).",
+    "source": null,
+    "input_text": "Same as obj(*args, **kwargs).",
+    "full_name": "operator.call"
+  },
+  {
+    "name": "concat",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a + b, for a and b sequences.",
+    "source": null,
+    "input_text": "Same as a + b, for a and b sequences.",
+    "full_name": "operator.concat"
+  },
+  {
+    "name": "contains",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as b in a (note reversed operands).",
+    "source": null,
+    "input_text": "Same as b in a (note reversed operands).",
+    "full_name": "operator.contains"
+  },
+  {
+    "name": "countOf",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Return the number of items in a which are, or which equal, b.",
+    "source": null,
+    "input_text": "Return the number of items in a which are, or which equal, b.",
+    "full_name": "operator.countOf"
+  },
+  {
+    "name": "delitem",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as del a[b].",
+    "source": null,
+    "input_text": "Same as del a[b].",
+    "full_name": "operator.delitem"
+  },
+  {
+    "name": "eq",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a == b.",
+    "source": null,
+    "input_text": "Same as a == b.",
+    "full_name": "operator.eq"
+  },
+  {
+    "name": "floordiv",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a // b.",
+    "source": null,
+    "input_text": "Same as a // b.",
+    "full_name": "operator.floordiv"
+  },
+  {
+    "name": "getrandbits",
+    "module": "random",
+    "signature": "(k, /)",
+    "doc": "getrandbits(k) -> x.  Generates an int with k random bits.",
+    "source": null,
+    "input_text": "getrandbits(k) -> x.  Generates an int with k random bits.",
+    "full_name": "random.getrandbits"
+  },
+  {
+    "name": "random",
+    "module": "random",
+    "signature": "()",
+    "doc": "random() -> x in the interval [0, 1).",
+    "source": null,
+    "input_text": "random() -> x in the interval [0, 1).",
+    "full_name": "random.random"
+  }
+]
