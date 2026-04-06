@@ -1,0 +1,77 @@
+{
+  "function": "statistics.erf",
+  "groq": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "return value is between -1 and 1",
+      "return value is the error function at x"
+    ],
+    "edge_cases": [
+      "x is infinity",
+      "x is negative infinity",
+      "x is NaN",
+      "x is very large"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite"
+    ],
+    "postconditions": [
+      "erf(x) is a real number in the interval [-1, 1]",
+      "erf(x) is a number such that -1 <= erf(x) <= 1"
+    ],
+    "edge_cases": [
+      "erf(0) is 0",
+      "erf(infinity) is 1",
+      "erf(-infinity) is -1"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "x must be finite"
+      ],
+      "agreement_score": 0.5
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is between -1 and 1",
+        "return value is the error function at x"
+      ],
+      "hf_only": [
+        "erf(x) is a real number in the interval [-1, 1]",
+        "erf(x) is a number such that -1 <= erf(x) <= 1"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x is infinity",
+        "x is negative infinity",
+        "x is NaN",
+        "x is very large"
+      ],
+      "hf_only": [
+        "erf(0) is 0",
+        "erf(infinity) is 1",
+        "erf(-infinity) is -1"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.17
+  }
+}

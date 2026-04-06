@@ -1,0 +1,81 @@
+{
+  "function": "builtins.ascii",
+  "groq": {
+    "preconditions": [
+      "obj must be an object"
+    ],
+    "postconditions": [
+      "return value is a string",
+      "return value contains only ASCII characters"
+    ],
+    "edge_cases": [
+      "obj is None",
+      "obj is an empty string",
+      "obj contains non-ASCII characters"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "obj must be an object",
+      "obj must be hashable"
+    ],
+    "postconditions": [
+      "returns a string",
+      "the returned string is an ASCII-only representation of obj"
+    ],
+    "edge_cases": [
+      "if obj is a string, returns the string itself",
+      "if obj is a bytes object, returns the ASCII-encoded bytes as a string",
+      "if obj is a Unicode string, returns the ASCII-encoded Unicode string as a string",
+      "if obj is a non-string, non-bytes object, returns a string representation of the object"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "obj must be an object",
+          "hf": "obj must be an object",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "obj must be hashable"
+      ],
+      "agreement_score": 0.5
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "return value is a string",
+          "hf": "returns a string",
+          "similarity": 0.889
+        }
+      ],
+      "groq_only": [
+        "return value contains only ASCII characters"
+      ],
+      "hf_only": [
+        "the returned string is an ASCII-only representation of obj"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "obj is None",
+        "obj is an empty string",
+        "obj contains non-ASCII characters"
+      ],
+      "hf_only": [
+        "if obj is a string, returns the string itself",
+        "if obj is a bytes object, returns the ASCII-encoded bytes as a string",
+        "if obj is a Unicode string, returns the ASCII-encoded Unicode string as a string",
+        "if obj is a non-string, non-bytes object, returns a string representation of the object"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.28
+  }
+}

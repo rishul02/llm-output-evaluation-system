@@ -1,0 +1,88 @@
+{
+  "function": "builtins.abs",
+  "groq": {
+    "preconditions": [
+      "x must be a number"
+    ],
+    "postconditions": [
+      "result is non-negative",
+      "result is the absolute value of x"
+    ],
+    "edge_cases": [
+      "x is zero",
+      "x is negative",
+      "x is positive",
+      "x is a complex number",
+      "x is infinity",
+      "x is NaN"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a number"
+    ],
+    "postconditions": [
+      "the result is the absolute value of x"
+    ],
+    "edge_cases": [
+      "x is 0",
+      "x is a negative number",
+      "x is a positive number"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a number",
+          "hf": "x must be a number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "result is the absolute value of x",
+          "hf": "the result is the absolute value of x",
+          "similarity": 0.986
+        }
+      ],
+      "groq_only": [
+        "result is non-negative"
+      ],
+      "hf_only": [],
+      "agreement_score": 0.5
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is zero",
+          "hf": "x is 0",
+          "similarity": 0.959
+        },
+        {
+          "groq": "x is negative",
+          "hf": "x is a negative number",
+          "similarity": 0.929
+        },
+        {
+          "groq": "x is positive",
+          "hf": "x is a positive number",
+          "similarity": 0.908
+        }
+      ],
+      "groq_only": [
+        "x is a complex number",
+        "x is infinity",
+        "x is NaN"
+      ],
+      "hf_only": [],
+      "agreement_score": 0.5
+    },
+    "overall_agreement": 0.67
+  }
+}

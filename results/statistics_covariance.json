@@ -1,0 +1,83 @@
+{
+  "function": "statistics.covariance",
+  "groq": {
+    "preconditions": [
+      "x and y must be lists of numbers",
+      "x and y must have the same length",
+      "x and y must not be empty"
+    ],
+    "postconditions": [
+      "return value is the covariance between x and y",
+      "return value is a float"
+    ],
+    "edge_cases": [
+      "x and y have only one element",
+      "x and y have identical elements",
+      "x and y have elements with extreme values"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x and y must be lists of strings",
+      "x and y must have the same length",
+      "x and y must not be empty"
+    ],
+    "postconditions": [
+      "returns a float representing the covariance of x and y",
+      "the result is a valid covariance value"
+    ],
+    "edge_cases": [
+      "if x or y is empty, raises ValueError",
+      "if x and y have different lengths, raises ValueError"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x and y must have the same length",
+          "hf": "x and y must have the same length",
+          "similarity": 1.0
+        },
+        {
+          "groq": "x and y must not be empty",
+          "hf": "x and y must not be empty",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "x and y must be lists of numbers"
+      ],
+      "hf_only": [
+        "x and y must be lists of strings"
+      ],
+      "agreement_score": 0.5
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is the covariance between x and y",
+        "return value is a float"
+      ],
+      "hf_only": [
+        "returns a float representing the covariance of x and y",
+        "the result is a valid covariance value"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x and y have only one element",
+        "x and y have identical elements",
+        "x and y have elements with extreme values"
+      ],
+      "hf_only": [
+        "if x or y is empty, raises ValueError",
+        "if x and y have different lengths, raises ValueError"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.17
+  }
+}

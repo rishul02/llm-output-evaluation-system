@@ -1,0 +1,88 @@
+{
+  "function": "statistics.correlation",
+  "groq": {
+    "preconditions": [
+      "x and y must be lists of numbers",
+      "x and y must have the same length",
+      "method must be 'linear' or another supported correlation method"
+    ],
+    "postconditions": [
+      "returns a float between -1 and 1 inclusive",
+      "returns NaN if the correlation cannot be calculated"
+    ],
+    "edge_cases": [
+      "x or y is empty",
+      "x or y contains non-numeric values",
+      "method is not a supported correlation method",
+      "x and y have a length of 1",
+      "x and y are constant"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a list of numbers",
+      "y must be a list of numbers",
+      "method must be a string",
+      "method must be one of 'linear', 'kendall', 'spearman'"
+    ],
+    "postconditions": [
+      "returns a float between -1 and 1",
+      "returns None if input lists are empty"
+    ],
+    "edge_cases": [
+      "returns NaN if input lists have different lengths"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x and y must be lists of numbers",
+          "hf": "y must be a list of numbers",
+          "similarity": 0.848
+        }
+      ],
+      "groq_only": [
+        "x and y must have the same length",
+        "method must be 'linear' or another supported correlation method"
+      ],
+      "hf_only": [
+        "x must be a list of numbers",
+        "method must be a string",
+        "method must be one of 'linear', 'kendall', 'spearman'"
+      ],
+      "agreement_score": 0.17
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns a float between -1 and 1 inclusive",
+          "hf": "returns a float between -1 and 1",
+          "similarity": 0.975
+        }
+      ],
+      "groq_only": [
+        "returns NaN if the correlation cannot be calculated"
+      ],
+      "hf_only": [
+        "returns None if input lists are empty"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x or y is empty",
+        "x or y contains non-numeric values",
+        "method is not a supported correlation method",
+        "x and y have a length of 1",
+        "x and y are constant"
+      ],
+      "hf_only": [
+        "returns NaN if input lists have different lengths"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.17
+  }
+}

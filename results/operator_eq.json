@@ -1,0 +1,79 @@
+{
+  "function": "operator.eq",
+  "groq": {
+    "preconditions": [
+      "a and b must be comparable",
+      "a and b must support equality operation"
+    ],
+    "postconditions": [
+      "returns True if a is equal to b",
+      "returns False if a is not equal to b"
+    ],
+    "edge_cases": [
+      "a and b are of different types",
+      "a and b are NaN (Not a Number) values",
+      "a and b are infinity values"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a must be comparable to b",
+      "a and b must be of the same type"
+    ],
+    "postconditions": [
+      "eq(a, b) returns True if a is equal to b, False otherwise"
+    ],
+    "edge_cases": [
+      "eq(a, a) returns True",
+      "eq(a, b) returns False if a is not equal to b",
+      "eq(a, None) raises TypeError if a is not comparable to None"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "a and b must be comparable",
+          "hf": "a must be comparable to b",
+          "similarity": 0.916
+        }
+      ],
+      "groq_only": [
+        "a and b must support equality operation"
+      ],
+      "hf_only": [
+        "a and b must be of the same type"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns True if a is equal to b",
+          "hf": "eq(a, b) returns True if a is equal to b, False otherwise",
+          "similarity": 0.825
+        }
+      ],
+      "groq_only": [
+        "returns False if a is not equal to b"
+      ],
+      "hf_only": [],
+      "agreement_score": 0.5
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "a and b are of different types",
+        "a and b are NaN (Not a Number) values",
+        "a and b are infinity values"
+      ],
+      "hf_only": [
+        "eq(a, a) returns True",
+        "eq(a, b) returns False if a is not equal to b",
+        "eq(a, None) raises TypeError if a is not comparable to None"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.28
+  }
+}

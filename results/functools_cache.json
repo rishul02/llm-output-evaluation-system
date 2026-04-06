@@ -1,0 +1,82 @@
+{
+  "function": "functools.cache",
+  "groq": {
+    "preconditions": [
+      "user_function must be a callable",
+      "user_function must not have keyword-only arguments without default values"
+    ],
+    "postconditions": [
+      "returns a callable with the same behavior as user_function",
+      "subsequent calls with the same arguments will return the cached result"
+    ],
+    "edge_cases": [
+      "if user_function has side effects, they will only occur on the first call",
+      "if user_function raises an exception, it will not be cached",
+      "cache will grow without bound as more unique arguments are passed to user_function"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "user_function must be a callable",
+      "user_function must not be None"
+    ],
+    "postconditions": [
+      "cache returns a callable",
+      "cache returns a callable that wraps user_function",
+      "cache returns a callable that caches results of user_function"
+    ],
+    "edge_cases": [
+      "cache raises TypeError if user_function is not a callable",
+      "cache raises TypeError if user_function is None"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "user_function must be a callable",
+          "hf": "user_function must be a callable",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "user_function must not have keyword-only arguments without default values"
+      ],
+      "hf_only": [
+        "user_function must not be None"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "returns a callable with the same behavior as user_function",
+        "subsequent calls with the same arguments will return the cached result"
+      ],
+      "hf_only": [
+        "cache returns a callable",
+        "cache returns a callable that wraps user_function",
+        "cache returns a callable that caches results of user_function"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "if user_function raises an exception, it will not be cached",
+          "hf": "cache raises TypeError if user_function is None",
+          "similarity": 0.835
+        }
+      ],
+      "groq_only": [
+        "if user_function has side effects, they will only occur on the first call",
+        "cache will grow without bound as more unique arguments are passed to user_function"
+      ],
+      "hf_only": [
+        "cache raises TypeError if user_function is not a callable"
+      ],
+      "agreement_score": 0.25
+    },
+    "overall_agreement": 0.19
+  }
+}

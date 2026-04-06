@@ -1,0 +1,99 @@
+{
+  "function": "functools.cmp_to_key",
+  "groq": {
+    "preconditions": [
+      "mycmp must be a callable function",
+      "mycmp must take two arguments",
+      "mycmp must return a negative value if the first argument is less than the second",
+      "mycmp must return zero if the first argument is equal to the second",
+      "mycmp must return a positive value if the first argument is greater than the second"
+    ],
+    "postconditions": [
+      "a key function is returned",
+      "the returned key function takes one argument",
+      "the returned key function returns a value that can be used for sorting"
+    ],
+    "edge_cases": [
+      "mycmp is not a callable function",
+      "mycmp takes less or more than two arguments",
+      "mycmp does not return an integer or a float",
+      "mycmp returns inconsistent results for the same input"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "mycmp must be a callable function",
+      "mycmp must take two arguments",
+      "mycmp must return a value that can be compared using the < operator"
+    ],
+    "postconditions": [
+      "Returns a callable function that takes one argument",
+      "The returned function takes one argument and returns a value that can be compared using the < operator"
+    ],
+    "edge_cases": [
+      "If mycmp is None, raises TypeError",
+      "If mycmp is not a callable function, raises TypeError",
+      "If mycmp takes more than two arguments, raises TypeError",
+      "If mycmp returns a value that cannot be compared using the < operator, raises TypeError"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "mycmp must be a callable function",
+          "hf": "mycmp must be a callable function",
+          "similarity": 1.0
+        },
+        {
+          "groq": "mycmp must take two arguments",
+          "hf": "mycmp must take two arguments",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "mycmp must return a negative value if the first argument is less than the second",
+        "mycmp must return zero if the first argument is equal to the second",
+        "mycmp must return a positive value if the first argument is greater than the second"
+      ],
+      "hf_only": [
+        "mycmp must return a value that can be compared using the < operator"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "a key function is returned",
+        "the returned key function takes one argument",
+        "the returned key function returns a value that can be used for sorting"
+      ],
+      "hf_only": [
+        "Returns a callable function that takes one argument",
+        "The returned function takes one argument and returns a value that can be compared using the < operator"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "mycmp is not a callable function",
+          "hf": "If mycmp is not a callable function, raises TypeError",
+          "similarity": 0.862
+        }
+      ],
+      "groq_only": [
+        "mycmp takes less or more than two arguments",
+        "mycmp does not return an integer or a float",
+        "mycmp returns inconsistent results for the same input"
+      ],
+      "hf_only": [
+        "If mycmp is None, raises TypeError",
+        "If mycmp takes more than two arguments, raises TypeError",
+        "If mycmp returns a value that cannot be compared using the < operator, raises TypeError"
+      ],
+      "agreement_score": 0.14
+    },
+    "overall_agreement": 0.16
+  }
+}

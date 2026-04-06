@@ -1,0 +1,76 @@
+{
+  "function": "operator.abs",
+  "groq": {
+    "preconditions": [
+      "a must be a numeric type"
+    ],
+    "postconditions": [
+      "return value is the absolute value of a",
+      "return value is non-negative"
+    ],
+    "edge_cases": [
+      "a is zero",
+      "a is negative",
+      "a is a complex number",
+      "a is a float",
+      "a is a very large number"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a must be a number"
+    ],
+    "postconditions": [
+      "the result is the absolute value of a"
+    ],
+    "edge_cases": [
+      "if a is 0, the result is 0",
+      "if a is negative, the result is positive",
+      "if a is positive, the result is positive"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "a must be a numeric type"
+      ],
+      "hf_only": [
+        "a must be a number"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is the absolute value of a",
+        "return value is non-negative"
+      ],
+      "hf_only": [
+        "the result is the absolute value of a"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "a is zero",
+          "hf": "if a is 0, the result is 0",
+          "similarity": 0.844
+        }
+      ],
+      "groq_only": [
+        "a is negative",
+        "a is a complex number",
+        "a is a float",
+        "a is a very large number"
+      ],
+      "hf_only": [
+        "if a is negative, the result is positive",
+        "if a is positive, the result is positive"
+      ],
+      "agreement_score": 0.14
+    },
+    "overall_agreement": 0.05
+  }
+}

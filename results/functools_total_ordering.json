@@ -1,0 +1,74 @@
+{
+  "function": "functools.total_ordering",
+  "groq": {
+    "preconditions": [
+      "cls must be a class",
+      "cls must have at least one of the ordering methods (__lt__, __le__, __gt__, __ge__, __eq__)"
+    ],
+    "postconditions": [
+      "cls has all six ordering methods (__lt__, __le__, __gt__, __ge__, __eq__, __ne__)",
+      "the ordering methods are consistent with each other"
+    ],
+    "edge_cases": [
+      "cls has no ordering methods",
+      "cls has inconsistent ordering methods",
+      "cls is not a class"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "cls must be a class",
+      "cls must be a subclass of object",
+      "cls must not have __lt__, __le__, __gt__, __ge__ methods"
+    ],
+    "postconditions": [
+      "cls will have __lt__, __le__, __gt__, __ge__ methods"
+    ],
+    "edge_cases": [
+      "if cls has __eq__ method, it will be used to implement __lt__, __le__, __gt__, __ge__ methods"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "cls must be a class",
+          "hf": "cls must be a class",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "cls must have at least one of the ordering methods (__lt__, __le__, __gt__, __ge__, __eq__)"
+      ],
+      "hf_only": [
+        "cls must be a subclass of object",
+        "cls must not have __lt__, __le__, __gt__, __ge__ methods"
+      ],
+      "agreement_score": 0.25
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "cls has all six ordering methods (__lt__, __le__, __gt__, __ge__, __eq__, __ne__)",
+        "the ordering methods are consistent with each other"
+      ],
+      "hf_only": [
+        "cls will have __lt__, __le__, __gt__, __ge__ methods"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "cls has no ordering methods",
+        "cls has inconsistent ordering methods",
+        "cls is not a class"
+      ],
+      "hf_only": [
+        "if cls has __eq__ method, it will be used to implement __lt__, __le__, __gt__, __ge__ methods"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.08
+  }
+}

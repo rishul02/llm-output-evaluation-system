@@ -1,0 +1,76 @@
+{
+  "function": "operator.delitem",
+  "groq": {
+    "preconditions": [
+      "a must be a mutable object",
+      "b must be a valid key for a"
+    ],
+    "postconditions": [
+      "the item at key b in a has been deleted",
+      "no return value"
+    ],
+    "edge_cases": [
+      "a is not a mutable object",
+      "b is not a valid key for a",
+      "a is None",
+      "b is None"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a must be a list",
+      "b must be an integer",
+      "a must contain at least one element",
+      "b must be a valid index for a"
+    ],
+    "postconditions": [
+      "a will have one less element",
+      "a[b] will be removed from a"
+    ],
+    "edge_cases": [
+      "if b is out of range, a[b] will not be removed"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "a must be a mutable object",
+        "b must be a valid key for a"
+      ],
+      "hf_only": [
+        "a must be a list",
+        "b must be an integer",
+        "a must contain at least one element",
+        "b must be a valid index for a"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "the item at key b in a has been deleted",
+        "no return value"
+      ],
+      "hf_only": [
+        "a will have one less element",
+        "a[b] will be removed from a"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "a is not a mutable object",
+        "b is not a valid key for a",
+        "a is None",
+        "b is None"
+      ],
+      "hf_only": [
+        "if b is out of range, a[b] will not be removed"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.0
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "function": "functools.recursive_repr",
+  "groq": {
+    "preconditions": [
+      "the input must be a function",
+      "the function must return a string"
+    ],
+    "postconditions": [
+      "the decorated function returns a string representation of the object",
+      "recursive calls are replaced with the fillvalue"
+    ],
+    "edge_cases": [
+      "the function is called with an object that has a recursive structure",
+      "the fillvalue is an empty string",
+      "the fillvalue is not a string"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "obj must be an object",
+      "fillvalue must be a value or a string"
+    ],
+    "postconditions": [
+      "returns a function that returns fillvalue for a recursive call"
+    ],
+    "edge_cases": [
+      "if obj is a primitive type, returns obj",
+      "if fillvalue is a string, returns fillvalue"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "the input must be a function",
+        "the function must return a string"
+      ],
+      "hf_only": [
+        "obj must be an object",
+        "fillvalue must be a value or a string"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "recursive calls are replaced with the fillvalue",
+          "hf": "returns a function that returns fillvalue for a recursive call",
+          "similarity": 0.823
+        }
+      ],
+      "groq_only": [
+        "the decorated function returns a string representation of the object"
+      ],
+      "hf_only": [],
+      "agreement_score": 0.5
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "the fillvalue is an empty string",
+          "hf": "if fillvalue is a string, returns fillvalue",
+          "similarity": 0.829
+        }
+      ],
+      "groq_only": [
+        "the function is called with an object that has a recursive structure",
+        "the fillvalue is not a string"
+      ],
+      "hf_only": [
+        "if obj is a primitive type, returns obj"
+      ],
+      "agreement_score": 0.25
+    },
+    "overall_agreement": 0.25
+  }
+}

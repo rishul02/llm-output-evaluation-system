@@ -1,0 +1,80 @@
+{
+  "function": "builtins.dir",
+  "groq": {
+    "preconditions": [
+      "object must be a valid Python object or None"
+    ],
+    "postconditions": [
+      "returns a list of strings",
+      "list contains valid attribute names of the object",
+      "list may not be exhaustive if object uses __dir__ method"
+    ],
+    "edge_cases": [
+      "object is None",
+      "object is a built-in type",
+      "object is a custom class instance",
+      "object uses __dir__ method to customize attribute list"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "object must be None or an instance of object",
+      "object must be an instance of type"
+    ],
+    "postconditions": [
+      "returns a list of strings",
+      "each string in the list is a valid attribute name of the object"
+    ],
+    "edge_cases": [
+      "if object is None, returns a list of built-in attribute names",
+      "if object is an instance of type, returns a list of all attribute names"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "object must be a valid Python object or None"
+      ],
+      "hf_only": [
+        "object must be None or an instance of object",
+        "object must be an instance of type"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns a list of strings",
+          "hf": "returns a list of strings",
+          "similarity": 1.0
+        },
+        {
+          "groq": "list contains valid attribute names of the object",
+          "hf": "each string in the list is a valid attribute name of the object",
+          "similarity": 0.887
+        }
+      ],
+      "groq_only": [
+        "list may not be exhaustive if object uses __dir__ method"
+      ],
+      "hf_only": [],
+      "agreement_score": 0.67
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "object is None",
+        "object is a built-in type",
+        "object is a custom class instance",
+        "object uses __dir__ method to customize attribute list"
+      ],
+      "hf_only": [
+        "if object is None, returns a list of built-in attribute names",
+        "if object is an instance of type, returns a list of all attribute names"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.22
+  }
+}

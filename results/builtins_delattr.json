@@ -1,0 +1,94 @@
+{
+  "function": "builtins.delattr",
+  "groq": {
+    "preconditions": [
+      "obj must be an object",
+      "name must be a string",
+      "the attribute name must exist in the object"
+    ],
+    "postconditions": [
+      "the named attribute is deleted from the object",
+      "AttributeError is raised if the attribute does not exist",
+      "the object is modified in-place"
+    ],
+    "edge_cases": [
+      "deleting a built-in attribute may raise a TypeError",
+      "deleting an attribute that does not exist raises an AttributeError",
+      "deleting an attribute from an object that does not support attribute deletion raises a TypeError"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "obj must be an object",
+      "name must be a string",
+      "name must be a valid attribute name"
+    ],
+    "postconditions": [
+      "the named attribute is deleted from the object",
+      "the object's __dict__ attribute is updated"
+    ],
+    "edge_cases": [
+      "if the object is None, raise AttributeError",
+      "if the name is None, raise TypeError",
+      "if the name is not a string, raise TypeError",
+      "if the object does not have the attribute, raise AttributeError"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "obj must be an object",
+          "hf": "obj must be an object",
+          "similarity": 1.0
+        },
+        {
+          "groq": "name must be a string",
+          "hf": "name must be a string",
+          "similarity": 1.0
+        },
+        {
+          "groq": "the attribute name must exist in the object",
+          "hf": "name must be a valid attribute name",
+          "similarity": 0.84
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "the named attribute is deleted from the object",
+          "hf": "the named attribute is deleted from the object",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "AttributeError is raised if the attribute does not exist",
+        "the object is modified in-place"
+      ],
+      "hf_only": [
+        "the object's __dict__ attribute is updated"
+      ],
+      "agreement_score": 0.25
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "deleting a built-in attribute may raise a TypeError",
+        "deleting an attribute that does not exist raises an AttributeError",
+        "deleting an attribute from an object that does not support attribute deletion raises a TypeError"
+      ],
+      "hf_only": [
+        "if the object is None, raise AttributeError",
+        "if the name is None, raise TypeError",
+        "if the name is not a string, raise TypeError",
+        "if the object does not have the attribute, raise AttributeError"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.42
+  }
+}

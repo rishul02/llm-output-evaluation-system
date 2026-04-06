@@ -1,0 +1,88 @@
+{
+  "function": "statistics.acos",
+  "groq": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the range [-1, 1]"
+    ],
+    "postconditions": [
+      "the result is a real number",
+      "the result is in the range [0, pi]"
+    ],
+    "edge_cases": [
+      "x is -1",
+      "x is 1",
+      "x is NaN",
+      "x is infinity"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the range [-1, 1]",
+      "x must not be NaN (Not a Number)"
+    ],
+    "postconditions": [
+      "The function returns the arc cosine (measured in radians) of x",
+      "The result is a real number in the range [0, pi]"
+    ],
+    "edge_cases": [
+      "x = -1: returns pi",
+      "x = 1: returns 0",
+      "x = 0: returns pi/2"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        },
+        {
+          "groq": "x must be in the range [-1, 1]",
+          "hf": "x must be in the range [-1, 1]",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "x must not be NaN (Not a Number)"
+      ],
+      "agreement_score": 0.67
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "the result is in the range [0, pi]",
+          "hf": "The result is a real number in the range [0, pi]",
+          "similarity": 0.929
+        }
+      ],
+      "groq_only": [
+        "the result is a real number"
+      ],
+      "hf_only": [
+        "The function returns the arc cosine (measured in radians) of x"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x is -1",
+        "x is 1",
+        "x is NaN",
+        "x is infinity"
+      ],
+      "hf_only": [
+        "x = -1: returns pi",
+        "x = 1: returns 0",
+        "x = 0: returns pi/2"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.33
+  }
+}

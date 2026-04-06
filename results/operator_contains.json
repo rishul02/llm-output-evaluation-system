@@ -1,0 +1,86 @@
+{
+  "function": "operator.contains",
+  "groq": {
+    "preconditions": [
+      "a must be a container",
+      "b must be a value that can be contained in a"
+    ],
+    "postconditions": [
+      "returns True if b is in a",
+      "returns False if b is not in a"
+    ],
+    "edge_cases": [
+      "a is an empty container",
+      "b is None",
+      "a and b are of different types",
+      "a contains duplicate values"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a must be a sequence",
+      "b must be a sequence",
+      "all items in a must be plain strings",
+      "all items in b must be plain strings"
+    ],
+    "postconditions": [
+      "returns True if b is a subset of a",
+      "returns False otherwise"
+    ],
+    "edge_cases": [
+      "a is an empty sequence",
+      "b is an empty sequence",
+      "a is a single-element sequence",
+      "b is a single-element sequence"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "a must be a container",
+        "b must be a value that can be contained in a"
+      ],
+      "hf_only": [
+        "a must be a sequence",
+        "b must be a sequence",
+        "all items in a must be plain strings",
+        "all items in b must be plain strings"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns True if b is in a",
+          "hf": "returns True if b is a subset of a",
+          "similarity": 0.841
+        }
+      ],
+      "groq_only": [
+        "returns False if b is not in a"
+      ],
+      "hf_only": [
+        "returns False otherwise"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "a is an empty container",
+        "b is None",
+        "a and b are of different types",
+        "a contains duplicate values"
+      ],
+      "hf_only": [
+        "a is an empty sequence",
+        "b is an empty sequence",
+        "a is a single-element sequence",
+        "b is a single-element sequence"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.11
+  }
+}

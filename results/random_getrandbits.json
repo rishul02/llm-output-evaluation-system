@@ -1,0 +1,86 @@
+{
+  "function": "random.getrandbits",
+  "groq": {
+    "preconditions": [
+      "k must be a non-negative integer",
+      "k must be less than or equal to the number of bits necessary to represent the maximum limit of an integer"
+    ],
+    "postconditions": [
+      "returns an integer with k random bits",
+      "the returned integer is in the range [0, 2^k)",
+      "the returned integer is randomly and uniformly distributed"
+    ],
+    "edge_cases": [
+      "k is 0",
+      "k is 1",
+      "k is equal to the number of bits necessary to represent the maximum limit of an integer"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "k must be a non-negative integer",
+      "k must be less than or equal to 32"
+    ],
+    "postconditions": [
+      "x is an integer",
+      "x has k random bits",
+      "x is between 0 and 2^k - 1"
+    ],
+    "edge_cases": [
+      "k = 0: returns 0",
+      "k = 1: returns a random bit",
+      "k = 32: returns a random 32-bit integer"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "k must be a non-negative integer",
+          "hf": "k must be a non-negative integer",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "k must be less than or equal to the number of bits necessary to represent the maximum limit of an integer"
+      ],
+      "hf_only": [
+        "k must be less than or equal to 32"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "returns an integer with k random bits",
+        "the returned integer is in the range [0, 2^k)",
+        "the returned integer is randomly and uniformly distributed"
+      ],
+      "hf_only": [
+        "x is an integer",
+        "x has k random bits",
+        "x is between 0 and 2^k - 1"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "k is 0",
+          "hf": "k = 0: returns 0",
+          "similarity": 0.883
+        }
+      ],
+      "groq_only": [
+        "k is 1",
+        "k is equal to the number of bits necessary to represent the maximum limit of an integer"
+      ],
+      "hf_only": [
+        "k = 1: returns a random bit",
+        "k = 32: returns a random 32-bit integer"
+      ],
+      "agreement_score": 0.2
+    },
+    "overall_agreement": 0.18
+  }
+}

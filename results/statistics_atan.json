@@ -1,0 +1,79 @@
+{
+  "function": "statistics.atan",
+  "groq": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "return value is the arc tangent of x in radians",
+      "return value is between -π/2 and π/2"
+    ],
+    "edge_cases": [
+      "x is infinity",
+      "x is negative infinity",
+      "x is NaN",
+      "x is zero"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite",
+      "x must not be NaN"
+    ],
+    "postconditions": [
+      "atan(x) is the arc tangent of x measured in radians",
+      "atan(x) is a real number"
+    ],
+    "edge_cases": [
+      "atan(0) is 0",
+      "atan(infinity) is pi/2",
+      "atan(-infinity) is -pi/2"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "x must be finite",
+        "x must not be NaN"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is the arc tangent of x in radians",
+        "return value is between -π/2 and π/2"
+      ],
+      "hf_only": [
+        "atan(x) is the arc tangent of x measured in radians",
+        "atan(x) is a real number"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x is infinity",
+        "x is negative infinity",
+        "x is NaN",
+        "x is zero"
+      ],
+      "hf_only": [
+        "atan(0) is 0",
+        "atan(infinity) is pi/2",
+        "atan(-infinity) is -pi/2"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.11
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "function": "statistics.bisect_left",
+  "groq": {
+    "preconditions": [
+      "a must be a sorted list",
+      "x must be a comparable item",
+      "lo must be an integer",
+      "hi must be an integer or None",
+      "key must be a callable or None"
+    ],
+    "postconditions": [
+      "the returned index is the insertion point for x in a to maintain sorted order",
+      "the returned index is within the range [lo, hi) if hi is not None",
+      "the returned index is within the range [lo, len(a)) if hi is None"
+    ],
+    "edge_cases": [
+      "a is an empty list",
+      "lo is greater than hi",
+      "x is already present in a",
+      "x is less than the smallest item in a",
+      "x is greater than the largest item in a",
+      "hi is None and lo is equal to len(a)"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a must be a list of strings",
+      "x must be a string",
+      "lo must be an integer",
+      "hi must be an integer or None",
+      "key must be a function or None"
+    ],
+    "postconditions": [
+      "the index where to insert item x in list a is returned",
+      "the index is an integer",
+      "the index is within the bounds of list a"
+    ],
+    "edge_cases": [
+      "if hi is None, the function will search the entire list a",
+      "if key is not None, the function will use the key function to determine the sort order"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "lo must be an integer",
+          "hf": "lo must be an integer",
+          "similarity": 1.0
+        },
+        {
+          "groq": "hi must be an integer or None",
+          "hf": "hi must be an integer or None",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "a must be a sorted list",
+        "x must be a comparable item",
+        "key must be a callable or None"
+      ],
+      "hf_only": [
+        "a must be a list of strings",
+        "x must be a string",
+        "key must be a function or None"
+      ],
+      "agreement_score": 0.25
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "the returned index is the insertion point for x in a to maintain sorted order",
+        "the returned index is within the range [lo, hi) if hi is not None",
+        "the returned index is within the range [lo, len(a)) if hi is None"
+      ],
+      "hf_only": [
+        "the index where to insert item x in list a is returned",
+        "the index is an integer",
+        "the index is within the bounds of list a"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "a is an empty list",
+        "lo is greater than hi",
+        "x is already present in a",
+        "x is less than the smallest item in a",
+        "x is greater than the largest item in a",
+        "hi is None and lo is equal to len(a)"
+      ],
+      "hf_only": [
+        "if hi is None, the function will search the entire list a",
+        "if key is not None, the function will use the key function to determine the sort order"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.08
+  }
+}

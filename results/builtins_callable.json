@@ -1,0 +1,81 @@
+{
+  "function": "builtins.callable",
+  "groq": {
+    "preconditions": [
+      "obj must be an object"
+    ],
+    "postconditions": [
+      "returns True if obj is callable",
+      "returns False if obj is not callable"
+    ],
+    "edge_cases": [
+      "obj is None",
+      "obj is a built-in function",
+      "obj is a lambda function",
+      "obj is a class",
+      "obj is an instance of a class with a __call__ method"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "obj must be an object",
+      "obj must not be None"
+    ],
+    "postconditions": [
+      "returns a boolean value indicating whether obj is callable",
+      "returns False if obj is not callable"
+    ],
+    "edge_cases": [
+      "returns False for None",
+      "returns False for non-callable objects"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "obj must be an object",
+          "hf": "obj must be an object",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "obj must not be None"
+      ],
+      "agreement_score": 0.5
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns True if obj is callable",
+          "hf": "returns False if obj is not callable",
+          "similarity": 0.961
+        }
+      ],
+      "groq_only": [
+        "returns False if obj is not callable"
+      ],
+      "hf_only": [
+        "returns a boolean value indicating whether obj is callable"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "obj is None",
+        "obj is a built-in function",
+        "obj is a lambda function",
+        "obj is a class",
+        "obj is an instance of a class with a __call__ method"
+      ],
+      "hf_only": [
+        "returns False for None",
+        "returns False for non-callable objects"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.28
+  }
+}

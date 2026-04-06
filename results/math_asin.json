@@ -1,0 +1,91 @@
+{
+  "function": "math.asin",
+  "groq": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the range [-1, 1]"
+    ],
+    "postconditions": [
+      "result is a real number",
+      "result is in the range [-π/2, π/2]"
+    ],
+    "edge_cases": [
+      "x is -1",
+      "x is 1",
+      "x is 0",
+      "x is NaN",
+      "x is infinity"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the interval [-1, 1]"
+    ],
+    "postconditions": [
+      "the result is the arc sine of x, measured in radians",
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "x = -1: the result is -π/2",
+      "x = 1: the result is π/2",
+      "x = 0: the result is 0"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        },
+        {
+          "groq": "x must be in the range [-1, 1]",
+          "hf": "x must be in the interval [-1, 1]",
+          "similarity": 0.921
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "result is a real number",
+          "hf": "the result is a real number",
+          "similarity": 0.962
+        }
+      ],
+      "groq_only": [
+        "result is in the range [-π/2, π/2]"
+      ],
+      "hf_only": [
+        "the result is the arc sine of x, measured in radians"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is 0",
+          "hf": "x = 0: the result is 0",
+          "similarity": 0.895
+        }
+      ],
+      "groq_only": [
+        "x is -1",
+        "x is 1",
+        "x is NaN",
+        "x is infinity"
+      ],
+      "hf_only": [
+        "x = -1: the result is -π/2",
+        "x = 1: the result is π/2"
+      ],
+      "agreement_score": 0.14
+    },
+    "overall_agreement": 0.49
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "function": "math.acos",
+  "groq": {
+    "preconditions": [
+      "x must be a number",
+      "-1 <= x <= 1"
+    ],
+    "postconditions": [
+      "result is a float",
+      "result is in radians",
+      "0 <= result <= pi"
+    ],
+    "edge_cases": [
+      "x is NaN",
+      "x is infinity",
+      "x < -1",
+      "x > 1"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the range [-1, 1]",
+      "x must not be NaN (Not a Number)"
+    ],
+    "postconditions": [
+      "The return value is the arc cosine of x in radians",
+      "The return value is a real number in the range [0, pi]"
+    ],
+    "edge_cases": [
+      "x = -1: returns pi",
+      "x = 0: returns 0",
+      "x = 1: returns 0",
+      "x = NaN: raises ValueError"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a number",
+          "hf": "x must be a real number",
+          "similarity": 0.847
+        }
+      ],
+      "groq_only": [
+        "-1 <= x <= 1"
+      ],
+      "hf_only": [
+        "x must be in the range [-1, 1]",
+        "x must not be NaN (Not a Number)"
+      ],
+      "agreement_score": 0.25
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "result is a float",
+        "result is in radians",
+        "0 <= result <= pi"
+      ],
+      "hf_only": [
+        "The return value is the arc cosine of x in radians",
+        "The return value is a real number in the range [0, pi]"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x is NaN",
+        "x is infinity",
+        "x < -1",
+        "x > 1"
+      ],
+      "hf_only": [
+        "x = -1: returns pi",
+        "x = 0: returns 0",
+        "x = 1: returns 0",
+        "x = NaN: raises ValueError"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.08
+  }
+}

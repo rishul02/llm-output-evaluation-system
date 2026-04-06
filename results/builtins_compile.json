@@ -1,0 +1,147 @@
+{
+  "function": "builtins.compile",
+  "groq": {
+    "preconditions": [
+      "source must be a string or bytes-like object",
+      "filename must be a string",
+      "mode must be one of 'exec', 'eval', or 'single'",
+      "flags must be an integer",
+      "dont_inherit must be a boolean",
+      "optimize must be an integer",
+      "_feature_version must be an integer"
+    ],
+    "postconditions": [
+      "returns a code object",
+      "the code object can be executed by exec() or eval()",
+      "the code object is compiled according to the given mode and flags"
+    ],
+    "edge_cases": [
+      "source is empty",
+      "filename is empty",
+      "mode is not one of 'exec', 'eval', or 'single'",
+      "flags is negative",
+      "dont_inherit is not a boolean",
+      "optimize is out of range",
+      "_feature_version is not supported"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "source must be a string",
+      "filename must be a string",
+      "mode must be an integer",
+      "flags must be an integer",
+      "dont_inherit must be a boolean",
+      "optimize must be an integer",
+      "_feature_version must be an integer"
+    ],
+    "postconditions": [
+      "returns a code object",
+      "code object can be executed by exec() or eval()"
+    ],
+    "edge_cases": [
+      "mode = 0: compile source to bytecode",
+      "mode = 1: compile source to bytecode with source encoding",
+      "mode = 2: compile source to bytecode with source encoding and debug",
+      "flags = 0: default compilation flags",
+      "flags = 1: add source encoding to compilation flags",
+      "flags = 2: add source encoding and debug to compilation flags",
+      "dont_inherit = True: do not inherit from parent module",
+      "optimize = -1: default optimization level",
+      "optimize = 0: disable optimization",
+      "optimize = 1: enable optimization",
+      "optimize = 2: enable full optimization",
+      "_feature_version = -1: default feature version"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "source must be a string or bytes-like object",
+          "hf": "source must be a string",
+          "similarity": 0.866
+        },
+        {
+          "groq": "filename must be a string",
+          "hf": "filename must be a string",
+          "similarity": 1.0
+        },
+        {
+          "groq": "flags must be an integer",
+          "hf": "flags must be an integer",
+          "similarity": 1.0
+        },
+        {
+          "groq": "dont_inherit must be a boolean",
+          "hf": "dont_inherit must be a boolean",
+          "similarity": 1.0
+        },
+        {
+          "groq": "optimize must be an integer",
+          "hf": "optimize must be an integer",
+          "similarity": 1.0
+        },
+        {
+          "groq": "_feature_version must be an integer",
+          "hf": "_feature_version must be an integer",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "mode must be one of 'exec', 'eval', or 'single'"
+      ],
+      "hf_only": [
+        "mode must be an integer"
+      ],
+      "agreement_score": 0.75
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns a code object",
+          "hf": "returns a code object",
+          "similarity": 1.0
+        },
+        {
+          "groq": "the code object can be executed by exec() or eval()",
+          "hf": "code object can be executed by exec() or eval()",
+          "similarity": 0.976
+        }
+      ],
+      "groq_only": [
+        "the code object is compiled according to the given mode and flags"
+      ],
+      "hf_only": [],
+      "agreement_score": 0.67
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "source is empty",
+        "filename is empty",
+        "mode is not one of 'exec', 'eval', or 'single'",
+        "flags is negative",
+        "dont_inherit is not a boolean",
+        "optimize is out of range",
+        "_feature_version is not supported"
+      ],
+      "hf_only": [
+        "mode = 0: compile source to bytecode",
+        "mode = 1: compile source to bytecode with source encoding",
+        "mode = 2: compile source to bytecode with source encoding and debug",
+        "flags = 0: default compilation flags",
+        "flags = 1: add source encoding to compilation flags",
+        "flags = 2: add source encoding and debug to compilation flags",
+        "dont_inherit = True: do not inherit from parent module",
+        "optimize = -1: default optimization level",
+        "optimize = 0: disable optimization",
+        "optimize = 1: enable optimization",
+        "optimize = 2: enable full optimization",
+        "_feature_version = -1: default feature version"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.47
+  }
+}

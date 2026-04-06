@@ -1,0 +1,86 @@
+{
+  "function": "operator.countOf",
+  "groq": {
+    "preconditions": [
+      "a must be a sequence",
+      "b must be a hashable object"
+    ],
+    "postconditions": [
+      "return value is a non-negative integer",
+      "return value is the number of items in a which are, or which equal, b"
+    ],
+    "edge_cases": [
+      "a is an empty sequence",
+      "b is not found in a",
+      "a contains duplicate items",
+      "a contains items that are not comparable to b"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a must be a list of strings",
+      "b must be a string",
+      "a and b must be hashable"
+    ],
+    "postconditions": [
+      "The function returns an integer",
+      "The returned integer represents the count of items in a that are equal to b"
+    ],
+    "edge_cases": [
+      "If a is an empty list, the function returns 0",
+      "If b is not in a, the function returns 0",
+      "If a contains duplicate items equal to b, the function counts each occurrence"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "b must be a hashable object",
+          "hf": "a and b must be hashable",
+          "similarity": 0.856
+        }
+      ],
+      "groq_only": [
+        "a must be a sequence"
+      ],
+      "hf_only": [
+        "a must be a list of strings",
+        "b must be a string"
+      ],
+      "agreement_score": 0.25
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "return value is the number of items in a which are, or which equal, b",
+          "hf": "The returned integer represents the count of items in a that are equal to b",
+          "similarity": 0.869
+        }
+      ],
+      "groq_only": [
+        "return value is a non-negative integer"
+      ],
+      "hf_only": [
+        "The function returns an integer"
+      ],
+      "agreement_score": 0.33
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "a is an empty sequence",
+        "b is not found in a",
+        "a contains duplicate items",
+        "a contains items that are not comparable to b"
+      ],
+      "hf_only": [
+        "If a is an empty list, the function returns 0",
+        "If b is not in a, the function returns 0",
+        "If a contains duplicate items equal to b, the function counts each occurrence"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.19
+  }
+}

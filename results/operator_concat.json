@@ -1,0 +1,80 @@
+{
+  "function": "operator.concat",
+  "groq": {
+    "preconditions": [
+      "a must be a sequence",
+      "b must be a sequence"
+    ],
+    "postconditions": [
+      "return value is the concatenation of a and b",
+      "return value is a sequence of the same type as a"
+    ],
+    "edge_cases": [
+      "a is an empty sequence",
+      "b is an empty sequence",
+      "a and b are of different sequence types"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "a and b must be sequences",
+      "all items in a and b must be plain strings"
+    ],
+    "postconditions": [
+      "the result is a sequence of strings",
+      "the result is the concatenation of a and b"
+    ],
+    "edge_cases": [
+      "if a or b is an empty sequence, the result is a copy of the non-empty sequence",
+      "if a and b are both empty sequences, the result is an empty sequence"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "b must be a sequence",
+          "hf": "a and b must be sequences",
+          "similarity": 0.912
+        }
+      ],
+      "groq_only": [
+        "a must be a sequence"
+      ],
+      "hf_only": [
+        "all items in a and b must be plain strings"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is the concatenation of a and b",
+        "return value is a sequence of the same type as a"
+      ],
+      "hf_only": [
+        "the result is a sequence of strings",
+        "the result is the concatenation of a and b"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "b is an empty sequence",
+          "hf": "if a and b are both empty sequences, the result is an empty sequence",
+          "similarity": 0.856
+        }
+      ],
+      "groq_only": [
+        "a is an empty sequence",
+        "a and b are of different sequence types"
+      ],
+      "hf_only": [
+        "if a or b is an empty sequence, the result is a copy of the non-empty sequence"
+      ],
+      "agreement_score": 0.25
+    },
+    "overall_agreement": 0.19
+  }
+}

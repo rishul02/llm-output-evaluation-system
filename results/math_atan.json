@@ -1,0 +1,77 @@
+{
+  "function": "math.atan",
+  "groq": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "return value is a real number",
+      "return value is in the range (-π/2, π/2)"
+    ],
+    "edge_cases": [
+      "x is infinity",
+      "x is negative infinity",
+      "x is NaN"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "atan(x) returns the arc tangent of x in radians"
+    ],
+    "edge_cases": [
+      "x is 0",
+      "x is infinity",
+      "x is negative infinity"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is a real number",
+        "return value is in the range (-π/2, π/2)"
+      ],
+      "hf_only": [
+        "atan(x) returns the arc tangent of x in radians"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is infinity",
+          "hf": "x is infinity",
+          "similarity": 1.0
+        },
+        {
+          "groq": "x is negative infinity",
+          "hf": "x is negative infinity",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "x is NaN"
+      ],
+      "hf_only": [
+        "x is 0"
+      ],
+      "agreement_score": 0.5
+    },
+    "overall_agreement": 0.5
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "function": "math.atan2",
+  "groq": {
+    "preconditions": [
+      "y and x must be numbers",
+      "x cannot be zero when y is zero"
+    ],
+    "postconditions": [
+      "result is the arc tangent of y/x in radians",
+      "result is in the range (-pi, pi]",
+      "result has the correct sign based on the signs of y and x"
+    ],
+    "edge_cases": [
+      "y is zero and x is positive",
+      "y is zero and x is negative",
+      "y is positive and x is zero",
+      "y is negative and x is zero",
+      "y and x are both zero"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "y must be a number",
+      "x must be a number",
+      "x must not be zero"
+    ],
+    "postconditions": [
+      "the result is the arc tangent of y/x in radians",
+      "the result is a number"
+    ],
+    "edge_cases": [
+      "if x is zero, the function raises a ValueError",
+      "if y is zero, the function returns pi/2 if x is positive, and -pi/2 if x is negative"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "y and x must be numbers",
+        "x cannot be zero when y is zero"
+      ],
+      "hf_only": [
+        "y must be a number",
+        "x must be a number",
+        "x must not be zero"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "result is the arc tangent of y/x in radians",
+          "hf": "the result is the arc tangent of y/x in radians",
+          "similarity": 0.984
+        }
+      ],
+      "groq_only": [
+        "result is in the range (-pi, pi]",
+        "result has the correct sign based on the signs of y and x"
+      ],
+      "hf_only": [
+        "the result is a number"
+      ],
+      "agreement_score": 0.25
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "y is zero and x is positive",
+        "y is zero and x is negative",
+        "y is positive and x is zero",
+        "y is negative and x is zero",
+        "y and x are both zero"
+      ],
+      "hf_only": [
+        "if x is zero, the function raises a ValueError",
+        "if y is zero, the function returns pi/2 if x is positive, and -pi/2 if x is negative"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.08
+  }
+}

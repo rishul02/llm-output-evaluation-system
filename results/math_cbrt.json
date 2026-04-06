@@ -1,0 +1,90 @@
+{
+  "function": "math.cbrt",
+  "groq": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "the result is the cube root of x",
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "x is zero",
+      "x is negative",
+      "x is positive infinity",
+      "x is negative infinity",
+      "x is NaN"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must not be NaN (Not a Number)",
+      "x must not be infinity"
+    ],
+    "postconditions": [
+      "the result is the cube root of x",
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "if x is 0, the result is 0",
+      "if x is 1, the result is 1",
+      "if x is -1, the result is -1"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "x must not be NaN (Not a Number)",
+        "x must not be infinity"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "the result is the cube root of x",
+          "hf": "the result is the cube root of x",
+          "similarity": 1.0
+        },
+        {
+          "groq": "the result is a real number",
+          "hf": "the result is a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is zero",
+          "hf": "if x is 0, the result is 0",
+          "similarity": 0.868
+        }
+      ],
+      "groq_only": [
+        "x is negative",
+        "x is positive infinity",
+        "x is negative infinity",
+        "x is NaN"
+      ],
+      "hf_only": [
+        "if x is 1, the result is 1",
+        "if x is -1, the result is -1"
+      ],
+      "agreement_score": 0.14
+    },
+    "overall_agreement": 0.49
+  }
+}

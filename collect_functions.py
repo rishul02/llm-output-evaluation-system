@@ -23,9 +23,9 @@ MAX_FUNCTIONS_PER_MODULE = 10
 
 # skip low-value / weird functions
 SKIP_FUNCTIONS = {
-    "aiter", "anext", "breakpoint", "help", "exit", "quit"
+    "aiter", "anext", "breakpoint", "help",
+    "exit", "quit", "compile", "exec", "eval"
 }
-
 
 # extract function info
 def get_function_info(obj, module_name):
@@ -148,6 +148,12 @@ STRICT RULES:
 - Preconditions = input requirements
 - Postconditions = guarantees after execution
 - Edge cases = unusual or boundary inputs
+
+IMPORTANT:
+- Each item in the lists must be a plain string, NOT an object
+
+BAD:  "preconditions": [{{"name": "x", "type": "int"}}]
+GOOD: "preconditions": ["x must be an integer"]
 
 Return JSON:
 {{

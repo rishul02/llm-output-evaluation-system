@@ -1,0 +1,74 @@
+{
+  "function": "builtins.bin",
+  "groq": {
+    "preconditions": [
+      "number must be an integer"
+    ],
+    "postconditions": [
+      "output is a string",
+      "output starts with '0b'",
+      "output represents the binary value of the input integer"
+    ],
+    "edge_cases": [
+      "input is zero",
+      "input is a negative integer",
+      "input is a non-integer"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be an integer",
+      "x must be an integer or a long integer"
+    ],
+    "postconditions": [
+      "The result is a string representing the binary representation of x",
+      "The result is a string of length at least 1 and at most 64"
+    ],
+    "edge_cases": [
+      "If x is 0, the result is '0'",
+      "If x is 1, the result is '1'",
+      "If x is -1, the result is '-1'"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "number must be an integer"
+      ],
+      "hf_only": [
+        "x must be an integer",
+        "x must be an integer or a long integer"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "output is a string",
+        "output starts with '0b'",
+        "output represents the binary value of the input integer"
+      ],
+      "hf_only": [
+        "The result is a string representing the binary representation of x",
+        "The result is a string of length at least 1 and at most 64"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "input is zero",
+        "input is a negative integer",
+        "input is a non-integer"
+      ],
+      "hf_only": [
+        "If x is 0, the result is '0'",
+        "If x is 1, the result is '1'",
+        "If x is -1, the result is '-1'"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.0
+  }
+}

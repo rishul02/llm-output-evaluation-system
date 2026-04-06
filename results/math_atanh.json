@@ -1,0 +1,86 @@
+{
+  "function": "math.atanh",
+  "groq": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the range (-1, 1)"
+    ],
+    "postconditions": [
+      "the result is the inverse hyperbolic tangent of x",
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "x is -1",
+      "x is 1",
+      "x is NaN",
+      "x is infinity"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be in the interval (-1, 1)"
+    ],
+    "postconditions": [
+      "the result is the inverse hyperbolic tangent of x",
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "x = -1: the result is -inf",
+      "x = 1: the result is inf",
+      "x = 0: the result is 0"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        },
+        {
+          "groq": "x must be in the range (-1, 1)",
+          "hf": "x must be in the interval (-1, 1)",
+          "similarity": 0.913
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "the result is the inverse hyperbolic tangent of x",
+          "hf": "the result is the inverse hyperbolic tangent of x",
+          "similarity": 1.0
+        },
+        {
+          "groq": "the result is a real number",
+          "hf": "the result is a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "x is -1",
+        "x is 1",
+        "x is NaN",
+        "x is infinity"
+      ],
+      "hf_only": [
+        "x = -1: the result is -inf",
+        "x = 1: the result is inf",
+        "x = 0: the result is 0"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.67
+  }
+}

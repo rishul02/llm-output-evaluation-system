@@ -7,26 +7,53 @@ from sentence_transformers import SentenceTransformer, util
 SIMILARITY_MODEL = SentenceTransformer('all-MiniLM-L6-v2')
 SIMILARITY_THRESHOLD = 0.82
 
+import json
+import re
+
 def parse_contract(llm_output: str) -> dict:
     """
-    Safely parse LLM output into a contract dict.
-    Handles markdown fences, whitespace, and malformed JSON.
+    Robust parser for LLM JSON output.
+    Handles malformed JSON + normalizes structure.
     """
+
+    # remove markdown
     cleaned = re.sub(r"```(?:json)?", "", llm_output).strip()
+
+    # fix hex numbers (0x...) → int
+    cleaned = re.sub(r'0x[0-9a-fA-F]+', lambda m: str(int(m.group(0), 16)), cleaned)
+
+    # remove trailing commas
+    cleaned = re.sub(r",\s*}", "}", cleaned)
+    cleaned = re.sub(r",\s*]", "]", cleaned)
 
     try:
         contract = json.loads(cleaned)
-    except json.JSONDecodeError as e:
-        raise ValueError(f"Failed to parse contract JSON:\n{e}\nRaw:\n{cleaned}")
+    except json.JSONDecodeError:
+        raise ValueError(f"Failed to parse contract JSON:\n{cleaned}")
 
-    required_keys = {"preconditions", "postconditions", "edge_cases"}
-    missing = required_keys - set(contract.keys())
+    # ensure required keys
+    for key in ["preconditions", "postconditions", "edge_cases"]:
+        if key not in contract:
+            contract[key] = []
 
-    if missing:
-        raise ValueError(f"Contract missing keys: {missing}")
+    # to flatten and validate the contract
+    for key in ["preconditions", "postconditions", "edge_cases"]:
+        if not isinstance(contract[key], list):
+            raise ValueError(f"'{key}' must be a list")
+
+        flat = []
+        for item in contract[key]:
+            if isinstance(item, str):
+                flat.append(item)
+            elif isinstance(item, dict):
+                desc = item.get("description") or item.get("name") or str(item)
+                flat.append(desc)
+            else:
+                flat.append(str(item))
+
+        contract[key] = flat
 
     return contract
-
 
 def normalize(text: str) -> str:
     text = text.lower().strip()

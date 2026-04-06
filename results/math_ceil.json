@@ -1,0 +1,89 @@
+{
+  "function": "math.ceil",
+  "groq": {
+    "preconditions": [
+      "x must be a number"
+    ],
+    "postconditions": [
+      "the result is the smallest integer not less than x",
+      "the result is an integer"
+    ],
+    "edge_cases": [
+      "x is negative infinity",
+      "x is positive infinity",
+      "x is NaN",
+      "x is zero"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite"
+    ],
+    "postconditions": [
+      "the result is an integer",
+      "the result is the smallest integer not less than x"
+    ],
+    "edge_cases": [
+      "if x is an integer, the result is x",
+      "if x is infinity, the result is infinity",
+      "if x is negative infinity, the result is negative infinity"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a number",
+          "hf": "x must be a real number",
+          "similarity": 0.847
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "x must be finite"
+      ],
+      "agreement_score": 0.5
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "the result is the smallest integer not less than x",
+          "hf": "the result is the smallest integer not less than x",
+          "similarity": 1.0
+        },
+        {
+          "groq": "the result is an integer",
+          "hf": "the result is an integer",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is negative infinity",
+          "hf": "if x is negative infinity, the result is negative infinity",
+          "similarity": 0.931
+        },
+        {
+          "groq": "x is positive infinity",
+          "hf": "if x is infinity, the result is infinity",
+          "similarity": 0.884
+        }
+      ],
+      "groq_only": [
+        "x is NaN",
+        "x is zero"
+      ],
+      "hf_only": [
+        "if x is an integer, the result is x"
+      ],
+      "agreement_score": 0.4
+    },
+    "overall_agreement": 0.63
+  }
+}

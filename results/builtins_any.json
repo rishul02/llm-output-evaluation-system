@@ -1,0 +1,78 @@
+{
+  "function": "builtins.any",
+  "groq": {
+    "preconditions": [
+      "input must be an iterable"
+    ],
+    "postconditions": [
+      "returns True if at least one element in the iterable is truthy",
+      "returns False if all elements in the iterable are falsy",
+      "returns a boolean value"
+    ],
+    "edge_cases": [
+      "input is an empty iterable",
+      "input contains only falsy values",
+      "input contains at least one truthy value"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "iterable must be an iterable",
+      "iterable must not be empty"
+    ],
+    "postconditions": [
+      "returns True if bool(x) is True for any x in the iterable",
+      "returns False if bool(x) is False for all x in the iterable"
+    ],
+    "edge_cases": [
+      "iterable with no elements: returns False",
+      "iterable with all falsy elements: returns False",
+      "iterable with at least one truthy element: returns True"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [],
+      "groq_only": [
+        "input must be an iterable"
+      ],
+      "hf_only": [
+        "iterable must be an iterable",
+        "iterable must not be empty"
+      ],
+      "agreement_score": 0.0
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "returns True if at least one element in the iterable is truthy",
+          "hf": "returns True if bool(x) is True for any x in the iterable",
+          "similarity": 0.838
+        }
+      ],
+      "groq_only": [
+        "returns False if all elements in the iterable are falsy",
+        "returns a boolean value"
+      ],
+      "hf_only": [
+        "returns False if bool(x) is False for all x in the iterable"
+      ],
+      "agreement_score": 0.25
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "input is an empty iterable",
+        "input contains only falsy values",
+        "input contains at least one truthy value"
+      ],
+      "hf_only": [
+        "iterable with no elements: returns False",
+        "iterable with all falsy elements: returns False",
+        "iterable with at least one truthy element: returns True"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.08
+  }
+}

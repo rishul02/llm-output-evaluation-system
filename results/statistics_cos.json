@@ -1,0 +1,86 @@
+{
+  "function": "statistics.cos",
+  "groq": {
+    "preconditions": [
+      "x must be a number",
+      "x must be measured in radians"
+    ],
+    "postconditions": [
+      "return value is the cosine of x",
+      "return value is a float"
+    ],
+    "edge_cases": [
+      "x is NaN",
+      "x is infinity",
+      "x is very large"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be a number that can be converted to radians"
+    ],
+    "postconditions": [
+      "The function returns the cosine of x (measured in radians)",
+      "The return value is a real number between -1 and 1"
+    ],
+    "edge_cases": [
+      "x is NaN (Not a Number)",
+      "x is infinity",
+      "x is a very large number (may cause numerical instability)"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a number",
+          "hf": "x must be a real number",
+          "similarity": 0.847
+        },
+        {
+          "groq": "x must be measured in radians",
+          "hf": "x must be a number that can be converted to radians",
+          "similarity": 0.91
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "return value is the cosine of x",
+        "return value is a float"
+      ],
+      "hf_only": [
+        "The function returns the cosine of x (measured in radians)",
+        "The return value is a real number between -1 and 1"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is NaN",
+          "hf": "x is NaN (Not a Number)",
+          "similarity": 0.931
+        },
+        {
+          "groq": "x is infinity",
+          "hf": "x is infinity",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [
+        "x is very large"
+      ],
+      "hf_only": [
+        "x is a very large number (may cause numerical instability)"
+      ],
+      "agreement_score": 0.5
+    },
+    "overall_agreement": 0.5
+  }
+}

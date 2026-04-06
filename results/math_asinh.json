@@ -1,0 +1,86 @@
+{
+  "function": "math.asinh",
+  "groq": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "result is the inverse hyperbolic sine of x",
+      "result is a real number"
+    ],
+    "edge_cases": [
+      "x is NaN",
+      "x is infinity",
+      "x is zero"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite",
+      "x must not be NaN"
+    ],
+    "postconditions": [
+      "the result is the inverse hyperbolic sine of x",
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "if x is 0, the result is 0",
+      "if x is positive infinity, the result is positive infinity",
+      "if x is negative infinity, the result is negative infinity"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "x must be a real number",
+          "hf": "x must be a real number",
+          "similarity": 1.0
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [
+        "x must be finite",
+        "x must not be NaN"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [
+        {
+          "groq": "result is the inverse hyperbolic sine of x",
+          "hf": "the result is the inverse hyperbolic sine of x",
+          "similarity": 0.992
+        },
+        {
+          "groq": "result is a real number",
+          "hf": "the result is a real number",
+          "similarity": 0.962
+        }
+      ],
+      "groq_only": [],
+      "hf_only": [],
+      "agreement_score": 1.0
+    },
+    "edge_cases": {
+      "agreed": [
+        {
+          "groq": "x is zero",
+          "hf": "if x is 0, the result is 0",
+          "similarity": 0.868
+        }
+      ],
+      "groq_only": [
+        "x is NaN",
+        "x is infinity"
+      ],
+      "hf_only": [
+        "if x is positive infinity, the result is positive infinity",
+        "if x is negative infinity, the result is negative infinity"
+      ],
+      "agreement_score": 0.2
+    },
+    "overall_agreement": 0.51
+  }
+}

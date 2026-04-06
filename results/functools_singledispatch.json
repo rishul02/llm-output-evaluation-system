@@ -1,0 +1,78 @@
+{
+  "function": "functools.singledispatch",
+  "groq": {
+    "preconditions": [
+      "func must be a callable",
+      "func must not already be a singledispatch function"
+    ],
+    "postconditions": [
+      "returns a singledispatch function",
+      "the returned function has the same name and docstring as the input function"
+    ],
+    "edge_cases": [
+      "input function has no arguments",
+      "input function has a variable number of arguments",
+      "input function has keyword-only arguments",
+      "input function is already decorated with singledispatch"
+    ]
+  },
+  "hf": {
+    "preconditions": [
+      "func must be a function",
+      "func must be callable"
+    ],
+    "postconditions": [
+      "func will be decorated with singledispatch",
+      "func will be a singledispatch generic function"
+    ],
+    "edge_cases": [
+      "func is None",
+      "func is not callable"
+    ]
+  },
+  "comparison": {
+    "preconditions": {
+      "agreed": [
+        {
+          "groq": "func must be a callable",
+          "hf": "func must be callable",
+          "similarity": 0.991
+        }
+      ],
+      "groq_only": [
+        "func must not already be a singledispatch function"
+      ],
+      "hf_only": [
+        "func must be a function"
+      ],
+      "agreement_score": 0.33
+    },
+    "postconditions": {
+      "agreed": [],
+      "groq_only": [
+        "returns a singledispatch function",
+        "the returned function has the same name and docstring as the input function"
+      ],
+      "hf_only": [
+        "func will be decorated with singledispatch",
+        "func will be a singledispatch generic function"
+      ],
+      "agreement_score": 0.0
+    },
+    "edge_cases": {
+      "agreed": [],
+      "groq_only": [
+        "input function has no arguments",
+        "input function has a variable number of arguments",
+        "input function has keyword-only arguments",
+        "input function is already decorated with singledispatch"
+      ],
+      "hf_only": [
+        "func is None",
+        "func is not callable"
+      ],
+      "agreement_score": 0.0
+    },
+    "overall_agreement": 0.11
+  }
+}
