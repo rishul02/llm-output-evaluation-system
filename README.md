@@ -104,16 +104,16 @@ The evaluation relies on semantic similarity at the sentence level, which may no
 ## Project Structure
 
 LLMContractBench/
-├── main.py                  # API calls (Groq, HuggingFace)
-├── collect_functions.py     # function extraction and prompt generation
-├── compare_contracts.py     # semantic comparison logic
-├── run_pipeline.py          # full pipeline execution
-├── analyze_results.py       # analysis and visualization
-├── functions/
-│   └── functions.json
-├── results/
-│   ├── *.json
-│   ├── summary.json
-│   ├── results.csv
-│   └── figures/
-└── README.md
+  ├── main.py                  # API calls (Groq, HuggingFace)
+  ├── collect_functions.py     # function extraction and prompt generation
+  ├── compare_contracts.py     # semantic comparison logic
+  ├── run_pipeline.py          # full pipeline execution
+  ├── analyze_results.py       # analysis and visualization
+  ├── functions/
+  │   └── functions.json
+  ├── results/
+  │   ├── *.json
+  │   ├── summary.json
+  │   ├── results.csv
+  │   └── figures/
+  └── README.md
