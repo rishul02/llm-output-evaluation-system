@@ -1,3 +1,4 @@
+105:1
 # LLMContractBench
 
 This project studies how consistently large language models infer code contracts for Python standard library functions.
@@ -103,6 +104,7 @@ The evaluation relies on semantic similarity at the sentence level, which may no
 
 ## Project Structure
 
+```
 LLMContractBench/
   ├── main.py                  # API calls (Groq, HuggingFace)
   ├── collect_functions.py     # function extraction and prompt generation
@@ -117,3 +119,5 @@ LLMContractBench/
   │   ├── results.csv
   │   └── figures/
   └── README.md
+
+```
