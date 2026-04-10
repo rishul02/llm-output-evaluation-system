@@ -124,6 +124,22 @@ def find_disagreements(results, threshold=0.5):
 
 # visualization
 
+def plot_bargraph(avg_scores):
+    names = list(avg_scores.keys())
+    values = list(avg_scores.values())
+
+    plt.figure(figsize=(8, 5))
+    plt.bar(names, values, color="skyblue")
+
+    plt.title("Average Agreement Across Model Pairs")
+    plt.xlabel("Model Pairs")
+    plt.ylabel("Agreement Score")
+
+    plt.ylim(0, 1)
+
+    plt.savefig(os.path.join(FIGURES_DIR, "bargraph.png"))
+    plt.close()
+
 def plot_heatmap(section_scores):
     pairs = ["groq_vs_hf", "groq_vs_groq2", "hf_vs_groq2"]
     sections = ["preconditions", "postconditions", "edge_cases"]
@@ -216,6 +232,7 @@ def main():
     # plots
     plot_heatmap(section_scores)
     plot_boxplot(scores)
+    plot_bargraph(avg_scores)
 
     print("\nPlots saved in results/figures/")
 
