@@ -19,7 +19,7 @@ MODULES = {
     "random": random,
 }
 
-MAX_FUNCTIONS_PER_MODULE = 10
+MAX_FUNCTIONS_PER_MODULE = 20
 
 # skip low-value / weird functions
 SKIP_FUNCTIONS = {

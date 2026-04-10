@@ -1,0 +1,34 @@
+function,model,preconditions_correct,postconditions_correct,overall_label,notes
+
+builtins.abs,Groq,0,1,Partial,Misses support for objects implementing __abs__
+builtins.abs,HuggingFace,0,1,Partial,Misses support for objects implementing __abs__
+
+math.comb,Groq,0,1,Partial,Incorrectly restricts k ≤ n and misses non-negative integer requirement
+math.comb,HuggingFace,0,1,Partial,Incorrectly restricts k ≤ n and misses non-negative integer requirement
+
+math.ceil,Groq,1,1,Correct,Accurate specification
+math.ceil,HuggingFace,0,1,Partial,Incorrectly restricts input to finite values
+
+builtins.any,Groq,1,1,Correct,Accurate specification
+builtins.any,HuggingFace,0,1,Partial,Incorrectly requires non-empty iterable
+
+statistics.cosh,Groq,0,0,Wrong,Invalid function (does not exist in Python standard library)
+statistics.cosh,HuggingFace,0,0,Wrong,Invalid function (does not exist in Python standard library)
+
+math.atanh,Groq,1,1,Correct,Accurate specification
+math.atanh,HuggingFace,0,1,Partial,Incorrectly defines boundary outputs instead of raising error
+
+math.cbrt,Groq,1,1,Correct,Accurate specification
+math.cbrt,HuggingFace,0,1,Partial,Incorrectly restricts valid inputs (NaN and infinity)
+
+math.asinh,Groq,1,1,Correct,Accurate specification
+math.asinh,HuggingFace,0,1,Partial,Incorrectly restricts valid inputs (NaN and infinity)
+
+builtins.bin,Groq,1,1,Correct,Accurate specification (minor edge-case misclassification)
+builtins.bin,HuggingFace,0,0,Wrong,Incorrect binary representation and constraints
+
+operator.delitem,Groq,1,1,Correct,Accurate general behavior
+operator.delitem,HuggingFace,0,0,Wrong,Incorrectly restricts to lists and misrepresents behavior
+
+functools.singledispatch,Groq,0,1,Partial,Adds unnecessary restriction on already decorated functions
+functools.singledispatch,HuggingFace,0,1,Partial,Incorrectly restricts to functions instead of general callables
