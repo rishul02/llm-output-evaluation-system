@@ -1,34 +1,53 @@
 function,model,preconditions_correct,postconditions_correct,overall_label,notes
 
-builtins.abs,Groq,0,1,Partial,Misses support for objects implementing __abs__
-builtins.abs,HuggingFace,0,1,Partial,Misses support for objects implementing __abs__
+math.ceil,Groq,0.5,0.5,Partial,Includes inferred but noisy edge cases and misses integer input behavior
+math.ceil,Groq2,0.5,0.5,Partial,Edge cases are generic and not meaningful
+math.ceil,HuggingFace,1,1,Correct,Minimal but precise and aligned with Python documentation
 
-math.comb,Groq,0,1,Partial,Incorrectly restricts k ≤ n and misses non-negative integer requirement
-math.comb,HuggingFace,0,1,Partial,Incorrectly restricts k ≤ n and misses non-negative integer requirement
+math.cosh,Groq,1,1,Correct,Accurate contract with valid edge cases
+math.cosh,Groq2,0.5,0.5,Partial,Correct but missing important behavior cases
+math.cosh,HuggingFace,0,0,Wrong,Incorrectly restricts input to finite values despite valid behavior for infinity
 
-math.ceil,Groq,1,1,Correct,Accurate specification
-math.ceil,HuggingFace,0,1,Partial,Incorrectly restricts input to finite values
+math.atan,Groq,0.5,0.5,Partial,Captures output range but lacks explicit behavior for important edge cases like infinity
+math.atan,Groq2,0,0,Wrong,Incorrectly restricts input to finite values while allowing infinity in edge cases
+math.atan,HuggingFace,0,0,Wrong,Logical inconsistency between preconditions and edge case handling
 
-builtins.any,Groq,1,1,Correct,Accurate specification
-builtins.any,HuggingFace,0,1,Partial,Incorrectly requires non-empty iterable
+builtins.abs,Groq,0.5,0.5,Partial,Misses support for complex numbers and includes irrelevant edge cases
+builtins.abs,Groq2,0.5,0.5,Partial,Correct but shallow and ignores complex number behavior
+builtins.abs,HuggingFace,1,1,Correct,Correctly handles complex numbers and magnitude behavior
 
-statistics.cosh,Groq,0,0,Wrong,Invalid function (does not exist in Python standard library)
-statistics.cosh,HuggingFace,0,0,Wrong,Invalid function (does not exist in Python standard library)
+builtins.divmod,Groq,1,1,Correct,Correctly captures numeric types and invariant relation, though integer division phrasing is slightly imprecise for floats
+builtins.divmod,Groq2,0,0,Wrong,Incorrectly restricts input to integer types instead of general numeric types
+builtins.divmod,HuggingFace,0,0,Wrong,Incorrectly restricts input to integer types instead of general numeric types
 
-math.atanh,Groq,1,1,Correct,Accurate specification
-math.atanh,HuggingFace,0,1,Partial,Incorrectly defines boundary outputs instead of raising error
+builtins.bin,Groq,1,1,Correct,Correct format and behavior
+builtins.bin,Groq2,0,0,Wrong,Contradictory preconditions allowing non-integer input
+builtins.bin,HuggingFace,0,0,Wrong,Incorrect binary output format
 
-math.cbrt,Groq,1,1,Correct,Accurate specification
-math.cbrt,HuggingFace,0,1,Partial,Incorrectly restricts valid inputs (NaN and infinity)
+functools.reduce,Groq,0.5,0.5,Partial,Understands accumulation but misses precise error handling for empty input
+functools.reduce,Groq2,1,1,Correct,Correct edge-case handling and behavior
+functools.reduce,HuggingFace,1,1,Correct,Complete and accurate contract
 
-math.asinh,Groq,1,1,Correct,Accurate specification
-math.asinh,HuggingFace,0,1,Partial,Incorrectly restricts valid inputs (NaN and infinity)
+functools.singledispatch,Groq,0,0,Wrong,Adds incorrect restriction on already decorated functions
+functools.singledispatch,Groq2,0,0,Wrong,Incorrectly restricts to functions instead of general callables
+functools.singledispatch,HuggingFace,0.5,0.5,Partial,Captures register behavior but adds unnecessary type restriction
 
-builtins.bin,Groq,1,1,Correct,Accurate specification (minor edge-case misclassification)
-builtins.bin,HuggingFace,0,0,Wrong,Incorrect binary representation and constraints
+operator.add,Groq,1,1,Correct,Correctly captures polymorphic behavior of addition across types
+operator.add,Groq2,0,0,Wrong,Incorrectly restricts addition to numeric types only
+operator.add,HuggingFace,0,0,Wrong,Fails to capture polymorphic nature of addition
 
-operator.delitem,Groq,1,1,Correct,Accurate general behavior
-operator.delitem,HuggingFace,0,0,Wrong,Incorrectly restricts to lists and misrepresents behavior
+operator.getitem,Groq,1,1,Correct,Correctly captures generic indexing behavior across types
+operator.getitem,Groq2,0,0,Wrong,Incorrectly restricts to sequences and strings only
+operator.getitem,HuggingFace,0,0,Wrong,Hallucinates string-only behavior and incorrect constraints
 
-functools.singledispatch,Groq,0,1,Partial,Adds unnecessary restriction on already decorated functions
-functools.singledispatch,HuggingFace,0,1,Partial,Incorrectly restricts to functions instead of general callables
+operator.eq,Groq,1,1,Correct,Correctly captures general equality semantics without unnecessary constraints
+operator.eq,Groq2,0,0,Wrong,Incorrectly requires hashable types
+operator.eq,HuggingFace,0,0,Wrong,Incorrectly restricts operands to same type
+
+random.random,Groq,1,1,Correct,Complete and accurate specification
+random.random,Groq2,1,1,Correct,Concise and correct specification
+random.random,HuggingFace,1,1,Correct,Concise and correct specification
+
+statistics.fmean,Groq,1,1,Correct,Correctly models iterable input and weighted mean behavior
+statistics.fmean,Groq2,0,0,Wrong,Incorrectly restricts data to strings and lists
+statistics.fmean,HuggingFace,0.5,0.5,Partial,Correct logic but incorrectly restricts input to lists instead of general iterables
