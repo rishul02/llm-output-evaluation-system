@@ -1,0 +1,264 @@
+{
+  "function": "statistics.harmonic_mean",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"all numbers in data must be positive\",\n    \"if weights is provided, it must be a list of numbers\",\n    \"if weights is provided, its length must match the length of data\",\n    \"if weights is provided, all numbers in weights must be positive\"\n  ],\n  \"postconditions\": [\n    \"the return value is the harmonic mean of data\",\n    \"the return value is a number\"\n  ],\n  \"edge_cases\": [\n    \"data contains a single element\",\n    \"data contains duplicate elements\",\n    \"data is an empty list\",\n    \"weights contains duplicate elements\",\n    \"weights is not provided\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"weights must be a list of numbers or None\",\n    \"data and weights must have the same length\",\n    \"all numbers in data and weights must be non-negative\"\n  ],\n  \"postconditions\": [\n    \"the result is the harmonic mean of data\",\n    \"the result is a number\"\n  ],\n  \"edge_cases\": [\n    \"if data is empty, the function raises a StatisticsError\",\n    \"if weights is not None and has a zero weight, the function raises a StatisticsError\",\n    \"if weights is not None and has a negative weight, the function raises a StatisticsError\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"data must not be empty\",\n    \"weights must be a list of numbers or None\",\n    \"if weights is not None, it must be the same length as data\"\n  ],\n  \"postconditions\": [\n    \"the result is a number\",\n    \"the result is the harmonic mean of data\"\n  ],\n  \"edge_cases\": [\n    \"if data contains zero, the result is undefined\",\n    \"if data contains negative numbers, the result is undefined\",\n    \"if weights contains negative numbers, the result is undefined\",\n    \"if weights contains zero, the result is undefined\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "all numbers in data must be positive",
+        "if weights is provided, it must be a list of numbers",
+        "if weights is provided, its length must match the length of data",
+        "if weights is provided, all numbers in weights must be positive"
+      ],
+      "postconditions": [
+        "the return value is the harmonic mean of data",
+        "the return value is a number"
+      ],
+      "edge_cases": [
+        "data contains a single element",
+        "data contains duplicate elements",
+        "data is an empty list",
+        "weights contains duplicate elements",
+        "weights is not provided"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "weights must be a list of numbers or None",
+        "data and weights must have the same length",
+        "all numbers in data and weights must be non-negative"
+      ],
+      "postconditions": [
+        "the result is the harmonic mean of data",
+        "the result is a number"
+      ],
+      "edge_cases": [
+        "if data is empty, the function raises a StatisticsError",
+        "if weights is not None and has a zero weight, the function raises a StatisticsError",
+        "if weights is not None and has a negative weight, the function raises a StatisticsError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "data must not be empty",
+        "weights must be a list of numbers or None",
+        "if weights is not None, it must be the same length as data"
+      ],
+      "postconditions": [
+        "the result is a number",
+        "the result is the harmonic mean of data"
+      ],
+      "edge_cases": [
+        "if data contains zero, the result is undefined",
+        "if data contains negative numbers, the result is undefined",
+        "if weights contains negative numbers, the result is undefined",
+        "if weights contains zero, the result is undefined"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list of numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if weights is provided, it must be a list of numbers",
+            "hf": "weights must be a list of numbers or None",
+            "similarity": 0.933
+          },
+          {
+            "groq": "if weights is provided, its length must match the length of data",
+            "hf": "if weights is not None, it must be the same length as data",
+            "similarity": 0.889
+          }
+        ],
+        "groq_only": [
+          "all numbers in data must be positive",
+          "if weights is provided, all numbers in weights must be positive"
+        ],
+        "hf_only": [
+          "data must not be empty"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the return value is the harmonic mean of data",
+            "hf": "the result is the harmonic mean of data",
+            "similarity": 0.839
+          }
+        ],
+        "groq_only": [
+          "the return value is a number"
+        ],
+        "hf_only": [
+          "the result is a number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "data contains a single element",
+          "data contains duplicate elements",
+          "data is an empty list",
+          "weights contains duplicate elements",
+          "weights is not provided"
+        ],
+        "hf_only": [
+          "if data contains zero, the result is undefined",
+          "if data contains negative numbers, the result is undefined",
+          "if weights contains negative numbers, the result is undefined",
+          "if weights contains zero, the result is undefined"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list of numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if weights is provided, it must be a list of numbers",
+            "hf": "weights must be a list of numbers or None",
+            "similarity": 0.933
+          },
+          {
+            "groq": "if weights is provided, its length must match the length of data",
+            "hf": "data and weights must have the same length",
+            "similarity": 0.911
+          }
+        ],
+        "groq_only": [
+          "all numbers in data must be positive",
+          "if weights is provided, all numbers in weights must be positive"
+        ],
+        "hf_only": [
+          "all numbers in data and weights must be non-negative"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the return value is the harmonic mean of data",
+            "hf": "the result is the harmonic mean of data",
+            "similarity": 0.839
+          }
+        ],
+        "groq_only": [
+          "the return value is a number"
+        ],
+        "hf_only": [
+          "the result is a number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "data contains a single element",
+          "data contains duplicate elements",
+          "data is an empty list",
+          "weights contains duplicate elements",
+          "weights is not provided"
+        ],
+        "hf_only": [
+          "if data is empty, the function raises a StatisticsError",
+          "if weights is not None and has a zero weight, the function raises a StatisticsError",
+          "if weights is not None and has a negative weight, the function raises a StatisticsError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list of numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "weights must be a list of numbers or None",
+            "hf": "weights must be a list of numbers or None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if weights is not None, it must be the same length as data",
+            "hf": "data and weights must have the same length",
+            "similarity": 0.916
+          }
+        ],
+        "groq_only": [
+          "data must not be empty"
+        ],
+        "hf_only": [
+          "all numbers in data and weights must be non-negative"
+        ],
+        "agreement_score": 0.6
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is a number",
+            "hf": "the result is a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the result is the harmonic mean of data",
+            "hf": "the result is the harmonic mean of data",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if data contains zero, the result is undefined",
+          "if data contains negative numbers, the result is undefined",
+          "if weights contains negative numbers, the result is undefined",
+          "if weights contains zero, the result is undefined"
+        ],
+        "hf_only": [
+          "if data is empty, the function raises a StatisticsError",
+          "if weights is not None and has a zero weight, the function raises a StatisticsError",
+          "if weights is not None and has a negative weight, the function raises a StatisticsError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.53
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "data must be a list of numbers",
+      "weights must be a list of numbers or none"
+    ],
+    "postconditions": [
+      "the result is the harmonic mean of data",
+      "the result is a number"
+    ],
+    "edge_cases": []
+  }
+}

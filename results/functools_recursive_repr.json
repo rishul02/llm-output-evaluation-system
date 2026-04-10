@@ -1,77 +1,190 @@
 {
   "function": "functools.recursive_repr",
-  "groq": {
-    "preconditions": [
-      "the input must be a function",
-      "the function must return a string"
-    ],
-    "postconditions": [
-      "the decorated function returns a string representation of the object",
-      "recursive calls are replaced with the fillvalue"
-    ],
-    "edge_cases": [
-      "the function is called with an object that has a recursive structure",
-      "the fillvalue is an empty string",
-      "the fillvalue is not a string"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"the input must be a function\",\n    \"the input function must return a string\"\n  ],\n  \"postconditions\": [\n    \"the decorated function returns a string representation of the object\",\n    \"recursive calls are replaced with the fillvalue\"\n  ],\n  \"edge_cases\": [\n    \"the input function is not a function\",\n    \"the input function does not return a string\",\n    \"the fillvalue is not a string\",\n    \"the recursive call exceeds the maximum recursion depth\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a callable\",\n    \"fillvalue must be a string or None\"\n  ],\n  \"postconditions\": [\n    \"returns a decorator function\",\n    \"decorated function's repr returns fillvalue for recursive calls\"\n  ],\n  \"edge_cases\": [\n    \"if x is None, returns a decorator function that returns fillvalue for all recursive calls\",\n    \"if fillvalue is None, returns a decorator function that returns the default repr for recursive calls\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"fillvalue must be a value or a string\"\n  ],\n  \"postconditions\": [\n    \"returns a function that returns fillvalue for a recursive call\"\n  ],\n  \"edge_cases\": [\n    \"if obj is a primitive type, returns obj\",\n    \"if fillvalue is a string, returns fillvalue\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "obj must be an object",
-      "fillvalue must be a value or a string"
-    ],
-    "postconditions": [
-      "returns a function that returns fillvalue for a recursive call"
-    ],
-    "edge_cases": [
-      "if obj is a primitive type, returns obj",
-      "if fillvalue is a string, returns fillvalue"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
         "the input must be a function",
-        "the function must return a string"
+        "the input function must return a string"
       ],
-      "hf_only": [
+      "postconditions": [
+        "the decorated function returns a string representation of the object",
+        "recursive calls are replaced with the fillvalue"
+      ],
+      "edge_cases": [
+        "the input function is not a function",
+        "the input function does not return a string",
+        "the fillvalue is not a string",
+        "the recursive call exceeds the maximum recursion depth"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a callable",
+        "fillvalue must be a string or None"
+      ],
+      "postconditions": [
+        "returns a decorator function",
+        "decorated function's repr returns fillvalue for recursive calls"
+      ],
+      "edge_cases": [
+        "if x is None, returns a decorator function that returns fillvalue for all recursive calls",
+        "if fillvalue is None, returns a decorator function that returns the default repr for recursive calls"
+      ]
+    },
+    "hf": {
+      "preconditions": [
         "obj must be an object",
         "fillvalue must be a value or a string"
       ],
-      "agreement_score": 0.0
+      "postconditions": [
+        "returns a function that returns fillvalue for a recursive call"
+      ],
+      "edge_cases": [
+        "if obj is a primitive type, returns obj",
+        "if fillvalue is a string, returns fillvalue"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the input must be a function",
+          "the input function must return a string"
+        ],
+        "hf_only": [
+          "obj must be an object",
+          "fillvalue must be a value or a string"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "recursive calls are replaced with the fillvalue",
+            "hf": "returns a function that returns fillvalue for a recursive call",
+            "similarity": 0.823
+          }
+        ],
+        "groq_only": [
+          "the decorated function returns a string representation of the object"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "the fillvalue is not a string",
+            "hf": "if fillvalue is a string, returns fillvalue",
+            "similarity": 0.832
+          }
+        ],
+        "groq_only": [
+          "the input function is not a function",
+          "the input function does not return a string",
+          "the recursive call exceeds the maximum recursion depth"
+        ],
+        "hf_only": [
+          "if obj is a primitive type, returns obj"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.23
     },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "recursive calls are replaced with the fillvalue",
-          "hf": "returns a function that returns fillvalue for a recursive call",
-          "similarity": 0.823
-        }
-      ],
-      "groq_only": [
-        "the decorated function returns a string representation of the object"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the input must be a function",
+          "the input function must return a string"
+        ],
+        "hf_only": [
+          "x must be a callable",
+          "fillvalue must be a string or None"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the decorated function returns a string representation of the object",
+          "recursive calls are replaced with the fillvalue"
+        ],
+        "hf_only": [
+          "returns a decorator function",
+          "decorated function's repr returns fillvalue for recursive calls"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "the input function is not a function",
+          "the input function does not return a string",
+          "the fillvalue is not a string",
+          "the recursive call exceeds the maximum recursion depth"
+        ],
+        "hf_only": [
+          "if x is None, returns a decorator function that returns fillvalue for all recursive calls",
+          "if fillvalue is None, returns a decorator function that returns the default repr for recursive calls"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
     },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "the fillvalue is an empty string",
-          "hf": "if fillvalue is a string, returns fillvalue",
-          "similarity": 0.829
-        }
-      ],
-      "groq_only": [
-        "the function is called with an object that has a recursive structure",
-        "the fillvalue is not a string"
-      ],
-      "hf_only": [
-        "if obj is a primitive type, returns obj"
-      ],
-      "agreement_score": 0.25
-    },
-    "overall_agreement": 0.25
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "fillvalue must be a value or a string",
+            "hf": "fillvalue must be a string or None",
+            "similarity": 0.972
+          }
+        ],
+        "groq_only": [
+          "obj must be an object"
+        ],
+        "hf_only": [
+          "x must be a callable"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a function that returns fillvalue for a recursive call"
+        ],
+        "hf_only": [
+          "returns a decorator function",
+          "decorated function's repr returns fillvalue for recursive calls"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if obj is a primitive type, returns obj",
+          "if fillvalue is a string, returns fillvalue"
+        ],
+        "hf_only": [
+          "if x is None, returns a decorator function that returns fillvalue for all recursive calls",
+          "if fillvalue is None, returns a decorator function that returns the default repr for recursive calls"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

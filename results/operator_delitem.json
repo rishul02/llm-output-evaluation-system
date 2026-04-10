@@ -1,76 +1,218 @@
 {
   "function": "operator.delitem",
-  "groq": {
-    "preconditions": [
-      "a must be a mutable object",
-      "b must be a valid key for a"
-    ],
-    "postconditions": [
-      "the item at key b in a has been deleted",
-      "no return value"
-    ],
-    "edge_cases": [
-      "a is not a mutable object",
-      "b is not a valid key for a",
-      "a is None",
-      "b is None"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a mutable object\",\n    \"b must be a valid key for a\"\n  ],\n  \"postconditions\": [\n    \"the item at key b in a is deleted\",\n    \"no return value\"\n  ],\n  \"edge_cases\": [\n    \"a is not a mutable object\",\n    \"b is not a valid key for a\",\n    \"a is None\",\n    \"b is None\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be a list\",\n    \"b must be an integer\",\n    \"a must contain at least one element\",\n    \"b must be a valid index for a\"\n  ],\n  \"postconditions\": [\n    \"a will contain one less element\",\n    \"a[b] will be removed from a\"\n  ],\n  \"edge_cases\": [\n    \"if b is out of range, a will not change\",\n    \"if b is negative, a will not change\",\n    \"if b is greater than or equal to the length of a, a will not change\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"a must be a list\",\n    \"b must be an integer\",\n    \"a must contain at least one element\",\n    \"b must be a valid index for a\"\n  ],\n  \"postconditions\": [\n    \"a will have one less element\",\n    \"b will be removed from a\"\n  ],\n  \"edge_cases\": [\n    \"If a is empty, a ValueError will be raised\",\n    \"If b is out of range, a ValueError will be raised\"\n  ]\n}\n```"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a mutable object",
+        "b must be a valid key for a"
+      ],
+      "postconditions": [
+        "the item at key b in a is deleted",
+        "no return value"
+      ],
+      "edge_cases": [
+        "a is not a mutable object",
+        "b is not a valid key for a",
+        "a is None",
+        "b is None"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a list",
+        "b must be an integer",
+        "a must contain at least one element",
+        "b must be a valid index for a"
+      ],
+      "postconditions": [
+        "a will contain one less element",
+        "a[b] will be removed from a"
+      ],
+      "edge_cases": [
+        "if b is out of range, a will not change",
+        "if b is negative, a will not change",
+        "if b is greater than or equal to the length of a, a will not change"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a list",
+        "b must be an integer",
+        "a must contain at least one element",
+        "b must be a valid index for a"
+      ],
+      "postconditions": [
+        "a will have one less element",
+        "b will be removed from a"
+      ],
+      "edge_cases": [
+        "If a is empty, a ValueError will be raised",
+        "If b is out of range, a ValueError will be raised"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object",
+          "b must be a valid key for a"
+        ],
+        "hf_only": [
+          "a must be a list",
+          "b must be an integer",
+          "a must contain at least one element",
+          "b must be a valid index for a"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the item at key b in a is deleted",
+          "no return value"
+        ],
+        "hf_only": [
+          "a will have one less element",
+          "b will be removed from a"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is not a mutable object",
+          "b is not a valid key for a",
+          "a is None",
+          "b is None"
+        ],
+        "hf_only": [
+          "If a is empty, a ValueError will be raised",
+          "If b is out of range, a ValueError will be raised"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object",
+          "b must be a valid key for a"
+        ],
+        "hf_only": [
+          "a must be a list",
+          "b must be an integer",
+          "a must contain at least one element",
+          "b must be a valid index for a"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the item at key b in a is deleted",
+          "no return value"
+        ],
+        "hf_only": [
+          "a will contain one less element",
+          "a[b] will be removed from a"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is not a mutable object",
+          "b is not a valid key for a",
+          "a is None",
+          "b is None"
+        ],
+        "hf_only": [
+          "if b is out of range, a will not change",
+          "if b is negative, a will not change",
+          "if b is greater than or equal to the length of a, a will not change"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a list",
+            "hf": "a must be a list",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "a must contain at least one element",
+            "hf": "a must contain at least one element",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a valid index for a",
+            "hf": "b must be a valid index for a",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a will have one less element",
+            "hf": "a will contain one less element",
+            "similarity": 0.968
+          },
+          {
+            "groq": "b will be removed from a",
+            "hf": "a[b] will be removed from a",
+            "similarity": 0.856
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "If a is empty, a ValueError will be raised",
+          "If b is out of range, a ValueError will be raised"
+        ],
+        "hf_only": [
+          "if b is out of range, a will not change",
+          "if b is negative, a will not change",
+          "if b is greater than or equal to the length of a, a will not change"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "a must be a list",
       "b must be an integer",
       "a must contain at least one element",
       "b must be a valid index for a"
     ],
-    "postconditions": [
-      "a will have one less element",
-      "a[b] will be removed from a"
-    ],
-    "edge_cases": [
-      "if b is out of range, a[b] will not be removed"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
-        "a must be a mutable object",
-        "b must be a valid key for a"
-      ],
-      "hf_only": [
-        "a must be a list",
-        "b must be an integer",
-        "a must contain at least one element",
-        "b must be a valid index for a"
-      ],
-      "agreement_score": 0.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "the item at key b in a has been deleted",
-        "no return value"
-      ],
-      "hf_only": [
-        "a will have one less element",
-        "a[b] will be removed from a"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "a is not a mutable object",
-        "b is not a valid key for a",
-        "a is None",
-        "b is None"
-      ],
-      "hf_only": [
-        "if b is out of range, a[b] will not be removed"
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.0
+    "postconditions": [],
+    "edge_cases": []
   }
 }

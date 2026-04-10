@@ -1,86 +1,227 @@
 {
   "function": "operator.countOf",
-  "groq": {
-    "preconditions": [
-      "a must be a sequence",
-      "b must be a hashable object"
-    ],
-    "postconditions": [
-      "return value is a non-negative integer",
-      "return value is the number of items in a which are, or which equal, b"
-    ],
-    "edge_cases": [
-      "a is an empty sequence",
-      "b is not found in a",
-      "a contains duplicate items",
-      "a contains items that are not comparable to b"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a hashable object\"\n  ],\n  \"postconditions\": [\n    \"return value is a non-negative integer\",\n    \"return value is the number of items in a which are, or which equal, b\"\n  ],\n  \"edge_cases\": [\n    \"a is an empty sequence\",\n    \"b is not found in a\",\n    \"a contains duplicate items\",\n    \"a and b are the same object\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be a list of strings\",\n    \"b must be a string\",\n    \"a and b must not be None\"\n  ],\n  \"postconditions\": [\n    \"the result is an integer\",\n    \"the result is the number of items in a which are, or which equal, b\"\n  ],\n  \"edge_cases\": [\n    \"if a is an empty list, the result is 0\",\n    \"if b is an empty string, the result is 0\",\n    \"if a contains only one item and it equals b, the result is 1\",\n    \"if a contains no items that equal b, the result is 0\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a list of strings\",\n    \"b must be a string\",\n    \"a and b must be hashable\"\n  ],\n  \"postconditions\": [\n    \"The function returns an integer\",\n    \"The returned integer is the count of items in a that are equal to b\"\n  ],\n  \"edge_cases\": [\n    \"If a is an empty list, the function returns 0\",\n    \"If b is not in a, the function returns 0\",\n    \"If a contains duplicate items equal to b, the function counts them all\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "a must be a list of strings",
-      "b must be a string",
-      "a and b must be hashable"
-    ],
-    "postconditions": [
-      "The function returns an integer",
-      "The returned integer represents the count of items in a that are equal to b"
-    ],
-    "edge_cases": [
-      "If a is an empty list, the function returns 0",
-      "If b is not in a, the function returns 0",
-      "If a contains duplicate items equal to b, the function counts each occurrence"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "b must be a hashable object",
-          "hf": "a and b must be hashable",
-          "similarity": 0.856
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a hashable object"
       ],
-      "groq_only": [
-        "a must be a sequence"
+      "postconditions": [
+        "return value is a non-negative integer",
+        "return value is the number of items in a which are, or which equal, b"
       ],
-      "hf_only": [
-        "a must be a list of strings",
-        "b must be a string"
-      ],
-      "agreement_score": 0.25
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "return value is the number of items in a which are, or which equal, b",
-          "hf": "The returned integer represents the count of items in a that are equal to b",
-          "similarity": 0.869
-        }
-      ],
-      "groq_only": [
-        "return value is a non-negative integer"
-      ],
-      "hf_only": [
-        "The function returns an integer"
-      ],
-      "agreement_score": 0.33
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "a is an empty sequence",
         "b is not found in a",
         "a contains duplicate items",
-        "a contains items that are not comparable to b"
+        "a and b are the same object"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a list of strings",
+        "b must be a string",
+        "a and b must not be None"
       ],
-      "hf_only": [
+      "postconditions": [
+        "the result is an integer",
+        "the result is the number of items in a which are, or which equal, b"
+      ],
+      "edge_cases": [
+        "if a is an empty list, the result is 0",
+        "if b is an empty string, the result is 0",
+        "if a contains only one item and it equals b, the result is 1",
+        "if a contains no items that equal b, the result is 0"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a list of strings",
+        "b must be a string",
+        "a and b must be hashable"
+      ],
+      "postconditions": [
+        "The function returns an integer",
+        "The returned integer is the count of items in a that are equal to b"
+      ],
+      "edge_cases": [
         "If a is an empty list, the function returns 0",
         "If b is not in a, the function returns 0",
-        "If a contains duplicate items equal to b, the function counts each occurrence"
-      ],
-      "agreement_score": 0.0
+        "If a contains duplicate items equal to b, the function counts them all"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be a hashable object",
+            "hf": "a and b must be hashable",
+            "similarity": 0.856
+          }
+        ],
+        "groq_only": [
+          "a must be a sequence"
+        ],
+        "hf_only": [
+          "a must be a list of strings",
+          "b must be a string"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is the number of items in a which are, or which equal, b",
+            "hf": "The returned integer is the count of items in a that are equal to b",
+            "similarity": 0.875
+          }
+        ],
+        "groq_only": [
+          "return value is a non-negative integer"
+        ],
+        "hf_only": [
+          "The function returns an integer"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty sequence",
+          "b is not found in a",
+          "a contains duplicate items",
+          "a and b are the same object"
+        ],
+        "hf_only": [
+          "If a is an empty list, the function returns 0",
+          "If b is not in a, the function returns 0",
+          "If a contains duplicate items equal to b, the function counts them all"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.19
     },
-    "overall_agreement": 0.19
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a sequence",
+          "b must be a hashable object"
+        ],
+        "hf_only": [
+          "a must be a list of strings",
+          "b must be a string",
+          "a and b must not be None"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is the number of items in a which are, or which equal, b",
+            "hf": "the result is the number of items in a which are, or which equal, b",
+            "similarity": 0.848
+          }
+        ],
+        "groq_only": [
+          "return value is a non-negative integer"
+        ],
+        "hf_only": [
+          "the result is an integer"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty sequence",
+          "b is not found in a",
+          "a contains duplicate items",
+          "a and b are the same object"
+        ],
+        "hf_only": [
+          "if a is an empty list, the result is 0",
+          "if b is an empty string, the result is 0",
+          "if a contains only one item and it equals b, the result is 1",
+          "if a contains no items that equal b, the result is 0"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a list of strings",
+            "hf": "a must be a list of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a string",
+            "hf": "b must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a and b must be hashable"
+        ],
+        "hf_only": [
+          "a and b must not be None"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The returned integer is the count of items in a that are equal to b",
+            "hf": "the result is the number of items in a which are, or which equal, b",
+            "similarity": 0.837
+          }
+        ],
+        "groq_only": [
+          "The function returns an integer"
+        ],
+        "hf_only": [
+          "the result is an integer"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If a is an empty list, the function returns 0",
+            "hf": "if a is an empty list, the result is 0",
+            "similarity": 0.91
+          }
+        ],
+        "groq_only": [
+          "If b is not in a, the function returns 0",
+          "If a contains duplicate items equal to b, the function counts them all"
+        ],
+        "hf_only": [
+          "if b is an empty string, the result is 0",
+          "if a contains only one item and it equals b, the result is 1",
+          "if a contains no items that equal b, the result is 0"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be a list of strings",
+      "b must be a string"
+    ],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

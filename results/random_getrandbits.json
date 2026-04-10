@@ -1,86 +1,218 @@
 {
   "function": "random.getrandbits",
-  "groq": {
-    "preconditions": [
-      "k must be a non-negative integer",
-      "k must be less than or equal to the number of bits necessary to represent the maximum limit of an integer"
-    ],
-    "postconditions": [
-      "returns an integer with k random bits",
-      "the returned integer is in the range [0, 2^k)",
-      "the returned integer is randomly and uniformly distributed"
-    ],
-    "edge_cases": [
-      "k is 0",
-      "k is 1",
-      "k is equal to the number of bits necessary to represent the maximum limit of an integer"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"k must be a non-negative integer\",\n    \"k must be a finite integer\"\n  ],\n  \"postconditions\": [\n    \"return value is an integer\",\n    \"return value has k random bits\",\n    \"0 <= return value < 2^k\"\n  ],\n  \"edge_cases\": [\n    \"k is 0\",\n    \"k is very large\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"k must be a non-negative integer\",\n    \"k must be less than or equal to 256\"\n  ],\n  \"postconditions\": [\n    \"x is an integer\",\n    \"x is greater than or equal to 0\",\n    \"x is less than 2^k\"\n  ],\n  \"edge_cases\": [\n    \"k = 0: x = 0\",\n    \"k = 1: x is an integer in the range [0, 1)\",\n    \"k = 256: x is an integer in the range [0, 2^256)\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"k must be a non-negative integer\",\n    \"k must be less than or equal to 256\"\n  ],\n  \"postconditions\": [\n    \"The function returns an integer with k random bits\",\n    \"The returned integer is non-negative\"\n  ],\n  \"edge_cases\": [\n    \"k = 0: The function returns 0\",\n    \"k = 1: The function returns a random integer with 1 bit\",\n    \"k = 256: The function returns a random integer with 256 bits\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "k must be a non-negative integer",
-      "k must be less than or equal to 32"
-    ],
-    "postconditions": [
-      "x is an integer",
-      "x has k random bits",
-      "x is between 0 and 2^k - 1"
-    ],
-    "edge_cases": [
-      "k = 0: returns 0",
-      "k = 1: returns a random bit",
-      "k = 32: returns a random 32-bit integer"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "k must be a non-negative integer",
-          "hf": "k must be a non-negative integer",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "k must be a non-negative integer",
+        "k must be a finite integer"
       ],
-      "groq_only": [
-        "k must be less than or equal to the number of bits necessary to represent the maximum limit of an integer"
+      "postconditions": [
+        "return value is an integer",
+        "return value has k random bits",
+        "0 <= return value < 2^k"
       ],
-      "hf_only": [
-        "k must be less than or equal to 32"
-      ],
-      "agreement_score": 0.33
+      "edge_cases": [
+        "k is 0",
+        "k is very large"
+      ]
     },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "returns an integer with k random bits",
-        "the returned integer is in the range [0, 2^k)",
-        "the returned integer is randomly and uniformly distributed"
+    "groq2": {
+      "preconditions": [
+        "k must be a non-negative integer",
+        "k must be less than or equal to 256"
       ],
-      "hf_only": [
+      "postconditions": [
         "x is an integer",
-        "x has k random bits",
-        "x is between 0 and 2^k - 1"
+        "x is greater than or equal to 0",
+        "x is less than 2^k"
       ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "k = 0: x = 0",
+        "k = 1: x is an integer in the range [0, 1)",
+        "k = 256: x is an integer in the range [0, 2^256)"
+      ]
     },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "k is 0",
-          "hf": "k = 0: returns 0",
-          "similarity": 0.883
-        }
+    "hf": {
+      "preconditions": [
+        "k must be a non-negative integer",
+        "k must be less than or equal to 256"
       ],
-      "groq_only": [
-        "k is 1",
-        "k is equal to the number of bits necessary to represent the maximum limit of an integer"
+      "postconditions": [
+        "The function returns an integer with k random bits",
+        "The returned integer is non-negative"
       ],
-      "hf_only": [
-        "k = 1: returns a random bit",
-        "k = 32: returns a random 32-bit integer"
-      ],
-      "agreement_score": 0.2
+      "edge_cases": [
+        "k = 0: The function returns 0",
+        "k = 1: The function returns a random integer with 1 bit",
+        "k = 256: The function returns a random integer with 256 bits"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "k must be a non-negative integer",
+            "hf": "k must be a non-negative integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "k must be a finite integer"
+        ],
+        "hf_only": [
+          "k must be less than or equal to 256"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is an integer",
+            "hf": "The returned integer is non-negative",
+            "similarity": 0.821
+          },
+          {
+            "groq": "return value has k random bits",
+            "hf": "The function returns an integer with k random bits",
+            "similarity": 0.851
+          }
+        ],
+        "groq_only": [
+          "0 <= return value < 2^k"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "k is 0",
+          "k is very large"
+        ],
+        "hf_only": [
+          "k = 0: The function returns 0",
+          "k = 1: The function returns a random integer with 1 bit",
+          "k = 256: The function returns a random integer with 256 bits"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
     },
-    "overall_agreement": 0.18
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "k must be a non-negative integer",
+            "hf": "k must be a non-negative integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "k must be a finite integer"
+        ],
+        "hf_only": [
+          "k must be less than or equal to 256"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is an integer",
+          "return value has k random bits",
+          "0 <= return value < 2^k"
+        ],
+        "hf_only": [
+          "x is an integer",
+          "x is greater than or equal to 0",
+          "x is less than 2^k"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "k is 0",
+            "hf": "k = 0: x = 0",
+            "similarity": 0.845
+          }
+        ],
+        "groq_only": [
+          "k is very large"
+        ],
+        "hf_only": [
+          "k = 1: x is an integer in the range [0, 1)",
+          "k = 256: x is an integer in the range [0, 2^256)"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.19
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "k must be a non-negative integer",
+            "hf": "k must be a non-negative integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "k must be less than or equal to 256",
+            "hf": "k must be less than or equal to 256",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "The function returns an integer with k random bits",
+          "The returned integer is non-negative"
+        ],
+        "hf_only": [
+          "x is an integer",
+          "x is greater than or equal to 0",
+          "x is less than 2^k"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "k = 0: The function returns 0",
+            "hf": "k = 0: x = 0",
+            "similarity": 0.831
+          }
+        ],
+        "groq_only": [
+          "k = 1: The function returns a random integer with 1 bit",
+          "k = 256: The function returns a random integer with 256 bits"
+        ],
+        "hf_only": [
+          "k = 1: x is an integer in the range [0, 1)",
+          "k = 256: x is an integer in the range [0, 2^256)"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.4
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "k must be a non-negative integer",
+      "k must be less than or equal to 256"
+    ],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

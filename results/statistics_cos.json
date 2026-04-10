@@ -1,86 +1,217 @@
 {
   "function": "statistics.cos",
-  "groq": {
-    "preconditions": [
-      "x must be a number",
-      "x must be measured in radians"
-    ],
-    "postconditions": [
-      "return value is the cosine of x",
-      "return value is a float"
-    ],
-    "edge_cases": [
-      "x is NaN",
-      "x is infinity",
-      "x is very large"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"x must be measured in radians\"\n  ],\n  \"postconditions\": [\n    \"return value is the cosine of x\",\n    \"return value is a float\"\n  ],\n  \"edge_cases\": [\n    \"x is NaN\",\n    \"x is infinity\",\n    \"x is very large\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"the result is a real number between -1 and 1\"],\n  \"edge_cases\": [\"x is NaN (Not a Number)\", \"x is infinity\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be a number that can be converted to radians\"\n  ],\n  \"postconditions\": [\n    \"The function returns a real number between -1 and 1\",\n    \"The function returns the cosine of x (measured in radians)\"\n  ],\n  \"edge_cases\": [\n    \"x is NaN (Not a Number)\",\n    \"x is infinity\",\n    \"x is -0.0\",\n    \"x is 0.0\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be a real number",
-      "x must be a number that can be converted to radians"
-    ],
-    "postconditions": [
-      "The function returns the cosine of x (measured in radians)",
-      "The return value is a real number between -1 and 1"
-    ],
-    "edge_cases": [
-      "x is NaN (Not a Number)",
-      "x is infinity",
-      "x is a very large number (may cause numerical instability)"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a number",
-          "hf": "x must be a real number",
-          "similarity": 0.847
-        },
-        {
-          "groq": "x must be measured in radians",
-          "hf": "x must be a number that can be converted to radians",
-          "similarity": 0.91
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number",
+        "x must be measured in radians"
       ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
+      "postconditions": [
         "return value is the cosine of x",
         "return value is a float"
       ],
-      "hf_only": [
-        "The function returns the cosine of x (measured in radians)",
-        "The return value is a real number between -1 and 1"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is NaN",
-          "hf": "x is NaN (Not a Number)",
-          "similarity": 0.931
-        },
-        {
-          "groq": "x is infinity",
-          "hf": "x is infinity",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
+      "edge_cases": [
+        "x is NaN",
+        "x is infinity",
         "x is very large"
-      ],
-      "hf_only": [
-        "x is a very large number (may cause numerical instability)"
-      ],
-      "agreement_score": 0.5
+      ]
     },
-    "overall_agreement": 0.5
+    "groq2": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "the result is a real number between -1 and 1"
+      ],
+      "edge_cases": [
+        "x is NaN (Not a Number)",
+        "x is infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be a number that can be converted to radians"
+      ],
+      "postconditions": [
+        "The function returns a real number between -1 and 1",
+        "The function returns the cosine of x (measured in radians)"
+      ],
+      "edge_cases": [
+        "x is NaN (Not a Number)",
+        "x is infinity",
+        "x is -0.0",
+        "x is 0.0"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          },
+          {
+            "groq": "x must be measured in radians",
+            "hf": "x must be a number that can be converted to radians",
+            "similarity": 0.91
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the cosine of x",
+          "return value is a float"
+        ],
+        "hf_only": [
+          "The function returns a real number between -1 and 1",
+          "The function returns the cosine of x (measured in radians)"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN (Not a Number)",
+            "similarity": 0.931
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is very large"
+        ],
+        "hf_only": [
+          "x is -0.0",
+          "x is 0.0"
+        ],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.47
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [
+          "x must be measured in radians"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the cosine of x",
+          "return value is a float"
+        ],
+        "hf_only": [
+          "the result is a real number between -1 and 1"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN (Not a Number)",
+            "similarity": 0.931
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is very large"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.39
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be a number that can be converted to radians"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a real number between -1 and 1",
+            "hf": "the result is a real number between -1 and 1",
+            "similarity": 0.874
+          }
+        ],
+        "groq_only": [
+          "The function returns the cosine of x (measured in radians)"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN (Not a Number)",
+            "hf": "x is NaN (Not a Number)",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is -0.0",
+          "x is 0.0"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.5
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "x is infinity",
+      "x is nan (not a number)"
+    ]
   }
 }

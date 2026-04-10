@@ -1,0 +1,238 @@
+{
+  "function": "builtins.isinstance",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"class_or_tuple must be a class or a tuple of classes\"\n  ],\n  \"postconditions\": [\n    \"returns True if obj is an instance of class_or_tuple\",\n    \"returns False if obj is not an instance of class_or_tuple\"\n  ],\n  \"edge_cases\": [\n    \"class_or_tuple is an empty tuple\",\n    \"class_or_tuple is a tuple containing a single class\",\n    \"obj is None\",\n    \"class_or_tuple is a primitive type\",\n    \"class_or_tuple is a built-in type\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"class_or_tuple must be a class or a tuple of classes\"\n  ],\n  \"postconditions\": [\n    \"returns True if obj is an instance of class_or_tuple or a subclass thereof, False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"returns False if class_or_tuple is not a class or a tuple of classes\",\n    \"returns False if obj is None\",\n    \"returns False if class_or_tuple is None\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"class_or_tuple must be a class or a tuple of classes\"\n  ],\n  \"postconditions\": [\n    \"returns True if obj is an instance of class_or_tuple or a subclass thereof\",\n    \"returns False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"class_or_tuple is None\",\n    \"class_or_tuple is not a class or a tuple of classes\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be an object",
+        "class_or_tuple must be a class or a tuple of classes"
+      ],
+      "postconditions": [
+        "returns True if obj is an instance of class_or_tuple",
+        "returns False if obj is not an instance of class_or_tuple"
+      ],
+      "edge_cases": [
+        "class_or_tuple is an empty tuple",
+        "class_or_tuple is a tuple containing a single class",
+        "obj is None",
+        "class_or_tuple is a primitive type",
+        "class_or_tuple is a built-in type"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "obj must be an object",
+        "class_or_tuple must be a class or a tuple of classes"
+      ],
+      "postconditions": [
+        "returns True if obj is an instance of class_or_tuple or a subclass thereof, False otherwise"
+      ],
+      "edge_cases": [
+        "returns False if class_or_tuple is not a class or a tuple of classes",
+        "returns False if obj is None",
+        "returns False if class_or_tuple is None"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "obj must be an object",
+        "class_or_tuple must be a class or a tuple of classes"
+      ],
+      "postconditions": [
+        "returns True if obj is an instance of class_or_tuple or a subclass thereof",
+        "returns False otherwise"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "class_or_tuple is None",
+        "class_or_tuple is not a class or a tuple of classes"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "class_or_tuple must be a class or a tuple of classes",
+            "hf": "class_or_tuple must be a class or a tuple of classes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if obj is an instance of class_or_tuple",
+            "hf": "returns True if obj is an instance of class_or_tuple or a subclass thereof",
+            "similarity": 0.968
+          }
+        ],
+        "groq_only": [
+          "returns False if obj is not an instance of class_or_tuple"
+        ],
+        "hf_only": [
+          "returns False otherwise"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "class_or_tuple is an empty tuple",
+            "hf": "class_or_tuple is None",
+            "similarity": 0.951
+          },
+          {
+            "groq": "class_or_tuple is a tuple containing a single class",
+            "hf": "class_or_tuple is not a class or a tuple of classes",
+            "similarity": 0.935
+          },
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "class_or_tuple is a primitive type",
+          "class_or_tuple is a built-in type"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.6
+      },
+      "overall_agreement": 0.64
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "class_or_tuple must be a class or a tuple of classes",
+            "hf": "class_or_tuple must be a class or a tuple of classes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if obj is an instance of class_or_tuple",
+            "hf": "returns True if obj is an instance of class_or_tuple or a subclass thereof, False otherwise",
+            "similarity": 0.96
+          }
+        ],
+        "groq_only": [
+          "returns False if obj is not an instance of class_or_tuple"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "class_or_tuple is an empty tuple",
+            "hf": "returns False if class_or_tuple is not a class or a tuple of classes",
+            "similarity": 0.853
+          }
+        ],
+        "groq_only": [
+          "class_or_tuple is a tuple containing a single class",
+          "obj is None",
+          "class_or_tuple is a primitive type",
+          "class_or_tuple is a built-in type"
+        ],
+        "hf_only": [
+          "returns False if obj is None",
+          "returns False if class_or_tuple is None"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.55
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "class_or_tuple must be a class or a tuple of classes",
+            "hf": "class_or_tuple must be a class or a tuple of classes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if obj is an instance of class_or_tuple or a subclass thereof",
+            "hf": "returns True if obj is an instance of class_or_tuple or a subclass thereof, False otherwise",
+            "similarity": 0.992
+          }
+        ],
+        "groq_only": [
+          "returns False otherwise"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "class_or_tuple is None",
+            "hf": "returns False if class_or_tuple is None",
+            "similarity": 0.89
+          },
+          {
+            "groq": "class_or_tuple is not a class or a tuple of classes",
+            "hf": "returns False if class_or_tuple is not a class or a tuple of classes",
+            "similarity": 0.856
+          }
+        ],
+        "groq_only": [
+          "obj is None"
+        ],
+        "hf_only": [
+          "returns False if obj is None"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "obj must be an object",
+      "class_or_tuple must be a class or a tuple of classes"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "obj is none"
+    ]
+  }
+}

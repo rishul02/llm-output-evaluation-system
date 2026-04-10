@@ -1,0 +1,227 @@
+{
+  "function": "statistics.isinf",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"return value is a boolean\",\n    \"return value is True if x is positive or negative infinity\",\n    \"return value is False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"x is positive infinity\",\n    \"x is negative infinity\",\n    \"x is NaN\",\n    \"x is a finite number\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"x must be finite or NaN\"\n  ],\n  \"postconditions\": [\n    \"The function returns True if x is a positive or negative infinity, and False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"x is positive infinity\",\n    \"x is negative infinity\",\n    \"x is NaN\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\"x must be a number\"],\n  \"postconditions\": [\"returns True if x is positive or negative infinity, False otherwise\"],\n  \"edge_cases\": [\"x is NaN\", \"x is infinity\", \"x is -infinity\"]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "return value is a boolean",
+        "return value is True if x is positive or negative infinity",
+        "return value is False otherwise"
+      ],
+      "edge_cases": [
+        "x is positive infinity",
+        "x is negative infinity",
+        "x is NaN",
+        "x is a finite number"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a number",
+        "x must be finite or NaN"
+      ],
+      "postconditions": [
+        "The function returns True if x is a positive or negative infinity, and False otherwise"
+      ],
+      "edge_cases": [
+        "x is positive infinity",
+        "x is negative infinity",
+        "x is NaN"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "returns True if x is positive or negative infinity, False otherwise"
+      ],
+      "edge_cases": [
+        "x is NaN",
+        "x is infinity",
+        "x is -infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is True if x is positive or negative infinity",
+            "hf": "returns True if x is positive or negative infinity, False otherwise",
+            "similarity": 0.931
+          }
+        ],
+        "groq_only": [
+          "return value is a boolean",
+          "return value is False otherwise"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is positive infinity",
+            "hf": "x is infinity",
+            "similarity": 0.899
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is -infinity",
+            "similarity": 0.926
+          },
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is a finite number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.75
+      },
+      "overall_agreement": 0.69
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite or NaN"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is True if x is positive or negative infinity",
+            "hf": "The function returns True if x is a positive or negative infinity, and False otherwise",
+            "similarity": 0.899
+          }
+        ],
+        "groq_only": [
+          "return value is a boolean",
+          "return value is False otherwise"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is positive infinity",
+            "hf": "x is positive infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is a finite number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.75
+      },
+      "overall_agreement": 0.53
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite or NaN"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if x is positive or negative infinity, False otherwise",
+            "hf": "The function returns True if x is a positive or negative infinity, and False otherwise",
+            "similarity": 0.934
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is positive infinity",
+            "similarity": 0.899
+          },
+          {
+            "groq": "x is -infinity",
+            "hf": "x is negative infinity",
+            "similarity": 0.926
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.83
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a number"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "x is positive infinity",
+      "x is negative infinity",
+      "x is nan"
+    ]
+  }
+}

@@ -1,86 +1,220 @@
 {
   "function": "math.asinh",
-  "groq": {
-    "preconditions": [
-      "x must be a real number"
-    ],
-    "postconditions": [
-      "result is the inverse hyperbolic sine of x",
-      "result is a real number"
-    ],
-    "edge_cases": [
-      "x is NaN",
-      "x is infinity",
-      "x is zero"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\"\n  ],\n  \"postconditions\": [\n    \"result is the inverse hyperbolic sine of x\",\n    \"result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x is zero\",\n    \"x is negative infinity\",\n    \"x is positive infinity\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\",\n    \"x must not be NaN\"\n  ],\n  \"postconditions\": [\n    \"the result is the inverse hyperbolic sine of x\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"if x is 0, the result is 0\",\n    \"if x is 1, the result is infinity\",\n    \"if x is -1, the result is -infinity\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"asinh(x) returns the inverse hyperbolic sine of x\"],\n  \"edge_cases\": [\"x = 0\", \"x = infinity\", \"x = -infinity\"]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be a real number",
-      "x must be finite",
-      "x must not be NaN"
-    ],
-    "postconditions": [
-      "the result is the inverse hyperbolic sine of x",
-      "the result is a real number"
-    ],
-    "edge_cases": [
-      "if x is 0, the result is 0",
-      "if x is positive infinity, the result is positive infinity",
-      "if x is negative infinity, the result is negative infinity"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a real number",
-          "hf": "x must be a real number",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number"
       ],
-      "groq_only": [],
-      "hf_only": [
+      "postconditions": [
+        "result is the inverse hyperbolic sine of x",
+        "result is a real number"
+      ],
+      "edge_cases": [
+        "x is zero",
+        "x is negative infinity",
+        "x is positive infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
         "x must be finite",
         "x must not be NaN"
       ],
-      "agreement_score": 0.33
+      "postconditions": [
+        "the result is the inverse hyperbolic sine of x",
+        "the result is a real number"
+      ],
+      "edge_cases": [
+        "if x is 0, the result is 0",
+        "if x is 1, the result is infinity",
+        "if x is -1, the result is -infinity"
+      ]
     },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is the inverse hyperbolic sine of x",
-          "hf": "the result is the inverse hyperbolic sine of x",
-          "similarity": 0.992
-        },
-        {
-          "groq": "result is a real number",
-          "hf": "the result is a real number",
-          "similarity": 0.962
-        }
+    "hf": {
+      "preconditions": [
+        "x must be a real number"
       ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
+      "postconditions": [
+        "asinh(x) returns the inverse hyperbolic sine of x"
+      ],
+      "edge_cases": [
+        "x = 0",
+        "x = infinity",
+        "x = -infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the inverse hyperbolic sine of x",
+            "hf": "asinh(x) returns the inverse hyperbolic sine of x",
+            "similarity": 0.838
+          }
+        ],
+        "groq_only": [
+          "result is a real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "x = 0",
+            "similarity": 0.898
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x = -infinity",
+            "similarity": 0.905
+          },
+          {
+            "groq": "x is positive infinity",
+            "hf": "x = infinity",
+            "similarity": 0.861
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.83
     },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is zero",
-          "hf": "if x is 0, the result is 0",
-          "similarity": 0.868
-        }
-      ],
-      "groq_only": [
-        "x is NaN",
-        "x is infinity"
-      ],
-      "hf_only": [
-        "if x is positive infinity, the result is positive infinity",
-        "if x is negative infinity, the result is negative infinity"
-      ],
-      "agreement_score": 0.2
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite",
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the inverse hyperbolic sine of x",
+            "hf": "the result is the inverse hyperbolic sine of x",
+            "similarity": 0.992
+          },
+          {
+            "groq": "result is a real number",
+            "hf": "the result is a real number",
+            "similarity": 0.962
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "if x is 0, the result is 0",
+            "similarity": 0.868
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "if x is -1, the result is -infinity",
+            "similarity": 0.839
+          }
+        ],
+        "groq_only": [
+          "x is positive infinity"
+        ],
+        "hf_only": [
+          "if x is 1, the result is infinity"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.61
     },
-    "overall_agreement": 0.51
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite",
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "asinh(x) returns the inverse hyperbolic sine of x"
+        ],
+        "hf_only": [
+          "the result is the inverse hyperbolic sine of x",
+          "the result is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x = 0",
+            "hf": "if x is 0, the result is 0",
+            "similarity": 0.855
+          },
+          {
+            "groq": "x = infinity",
+            "hf": "if x is 1, the result is infinity",
+            "similarity": 0.824
+          },
+          {
+            "groq": "x = -infinity",
+            "hf": "if x is -1, the result is -infinity",
+            "similarity": 0.861
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.44
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

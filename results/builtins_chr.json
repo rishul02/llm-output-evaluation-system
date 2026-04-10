@@ -1,83 +1,198 @@
 {
   "function": "builtins.chr",
-  "groq": {
-    "preconditions": [
-      "i must be an integer",
-      "0 <= i <= 1114111"
-    ],
-    "postconditions": [
-      "returns a Unicode string of one character",
-      "the returned character has ordinal i"
-    ],
-    "edge_cases": [
-      "i = 0",
-      "i = 1114111",
-      "i is a non-integer",
-      "i is outside the range 0 <= i <= 1114111"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"i must be an integer\",\n    \"0 <= i <= 0x10ffff\"\n  ],\n  \"postconditions\": [\n    \"returns a Unicode string of one character\",\n    \"the returned character has the ordinal i\"\n  ],\n  \"edge_cases\": [\n    \"i = 0\",\n    \"i = 0x10ffff\",\n    \"i is a non-integer\",\n    \"i is outside the range 0 <= i <= 0x10ffff\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"i must be an integer\",\n    \"0 <= i <= 0x10ffff\"\n  ],\n  \"postconditions\": [\n    \"returns a Unicode string of one character with ordinal i\"\n  ],\n  \"edge_cases\": [\n    \"i = 0\",\n    \"i = 0x10ffff\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\"i must be an integer\"],\n  \"postconditions\": [\"chr(i) returns a Unicode string of one character with ordinal i\"],\n  \"edge_cases\": [\"i must be in the range 0 <= i <= 0x10ffff\"]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "i must be an integer",
+        "0 <= i <= 1114111"
+      ],
+      "postconditions": [
+        "returns a Unicode string of one character",
+        "the returned character has the ordinal i"
+      ],
+      "edge_cases": [
+        "i = 0",
+        "i = 1114111",
+        "i is a non-integer",
+        "i is outside the range 0 <= i <= 1114111"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "i must be an integer",
+        "0 <= i <= 1114111"
+      ],
+      "postconditions": [
+        "returns a Unicode string of one character with ordinal i"
+      ],
+      "edge_cases": [
+        "i = 0",
+        "i = 1114111"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "i must be an integer"
+      ],
+      "postconditions": [
+        "chr(i) returns a Unicode string of one character with ordinal i"
+      ],
+      "edge_cases": [
+        "i must be in the range 0 <= i <= 1114111"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "i must be an integer",
+            "hf": "i must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "0 <= i <= 1114111"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a Unicode string of one character",
+          "the returned character has the ordinal i"
+        ],
+        "hf_only": [
+          "chr(i) returns a Unicode string of one character with ordinal i"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "i is outside the range 0 <= i <= 1114111",
+            "hf": "i must be in the range 0 <= i <= 1114111",
+            "similarity": 0.901
+          }
+        ],
+        "groq_only": [
+          "i = 0",
+          "i = 1114111",
+          "i is a non-integer"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.25
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "i must be an integer",
+            "hf": "i must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "0 <= i <= 1114111",
+            "hf": "0 <= i <= 1114111",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a Unicode string of one character",
+          "the returned character has the ordinal i"
+        ],
+        "hf_only": [
+          "returns a Unicode string of one character with ordinal i"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "i = 0",
+            "hf": "i = 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "i = 1114111",
+            "hf": "i = 1114111",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "i is a non-integer",
+          "i is outside the range 0 <= i <= 1114111"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.5
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "i must be an integer",
+            "hf": "i must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "0 <= i <= 1114111"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "chr(i) returns a Unicode string of one character with ordinal i",
+            "hf": "returns a Unicode string of one character with ordinal i",
+            "similarity": 0.828
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "i must be in the range 0 <= i <= 1114111"
+        ],
+        "hf_only": [
+          "i = 0",
+          "i = 1114111"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.5
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "i must be an integer",
       "0 <= i <= 1114111"
     ],
-    "postconditions": [
-      "the function returns a Unicode string of one character with ordinal i"
-    ],
+    "postconditions": [],
     "edge_cases": [
       "i = 0",
       "i = 1114111"
     ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "i must be an integer",
-          "hf": "i must be an integer",
-          "similarity": 1.0
-        },
-        {
-          "groq": "0 <= i <= 1114111",
-          "hf": "0 <= i <= 1114111",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "returns a Unicode string of one character",
-        "the returned character has ordinal i"
-      ],
-      "hf_only": [
-        "the function returns a Unicode string of one character with ordinal i"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "i = 0",
-          "hf": "i = 0",
-          "similarity": 1.0
-        },
-        {
-          "groq": "i = 1114111",
-          "hf": "i = 1114111",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "i is a non-integer",
-        "i is outside the range 0 <= i <= 1114111"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "overall_agreement": 0.5
   }
 }

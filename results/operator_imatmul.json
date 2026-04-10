@@ -1,0 +1,236 @@
+{
+  "function": "operator.imatmul",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a matrix\",\n    \"b must be a matrix\",\n    \"a and b must be compatible for matrix multiplication\"\n  ],\n  \"postconditions\": [\n    \"the result is the matrix product of a and b\",\n    \"the result is assigned back to a\"\n  ],\n  \"edge_cases\": [\n    \"a or b is not a matrix\",\n    \"a and b are not compatible for matrix multiplication\",\n    \"a or b is empty\",\n    \"a or b contains non-numeric values\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be a matrix\",\n    \"b must be a matrix\",\n    \"a and b must have the same number of rows\",\n    \"b must have one more column than a\"\n  ],\n  \"postconditions\": [\n    \"the result is a matrix with the same number of rows as a and the same number of columns as b\",\n    \"the result is the matrix product of a and b\"\n  ],\n  \"edge_cases\": [\n    \"if a or b is a scalar, it is treated as a column vector\",\n    \"if a or b is a vector, it is treated as a column vector\",\n    \"if a or b is a zero matrix, the result is a zero matrix\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a matrix\",\n    \"b must be a matrix\",\n    \"a and b must have the same number of rows\",\n    \"b must have one more column than a\"\n  ],\n  \"postconditions\": [\n    \"imatmul(a, b) is a matrix with the same number of rows as a and the same number of columns as b\"\n  ],\n  \"edge_cases\": [\n    \"imatmul([], [])\",\n    \"imatmul([], [[]])\",\n    \"imatmul([[]], [])\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a matrix",
+        "b must be a matrix",
+        "a and b must be compatible for matrix multiplication"
+      ],
+      "postconditions": [
+        "the result is the matrix product of a and b",
+        "the result is assigned back to a"
+      ],
+      "edge_cases": [
+        "a or b is not a matrix",
+        "a and b are not compatible for matrix multiplication",
+        "a or b is empty",
+        "a or b contains non-numeric values"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a matrix",
+        "b must be a matrix",
+        "a and b must have the same number of rows",
+        "b must have one more column than a"
+      ],
+      "postconditions": [
+        "the result is a matrix with the same number of rows as a and the same number of columns as b",
+        "the result is the matrix product of a and b"
+      ],
+      "edge_cases": [
+        "if a or b is a scalar, it is treated as a column vector",
+        "if a or b is a vector, it is treated as a column vector",
+        "if a or b is a zero matrix, the result is a zero matrix"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a matrix",
+        "b must be a matrix",
+        "a and b must have the same number of rows",
+        "b must have one more column than a"
+      ],
+      "postconditions": [
+        "imatmul(a, b) is a matrix with the same number of rows as a and the same number of columns as b"
+      ],
+      "edge_cases": [
+        "imatmul([], [])",
+        "imatmul([], [[]])",
+        "imatmul([[]], [])"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a matrix",
+            "hf": "a must be a matrix",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a matrix",
+            "hf": "b must be a matrix",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a and b must be compatible for matrix multiplication"
+        ],
+        "hf_only": [
+          "a and b must have the same number of rows",
+          "b must have one more column than a"
+        ],
+        "agreement_score": 0.4
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is the matrix product of a and b",
+          "the result is assigned back to a"
+        ],
+        "hf_only": [
+          "imatmul(a, b) is a matrix with the same number of rows as a and the same number of columns as b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a or b is not a matrix",
+          "a and b are not compatible for matrix multiplication",
+          "a or b is empty",
+          "a or b contains non-numeric values"
+        ],
+        "hf_only": [
+          "imatmul([], [])",
+          "imatmul([], [[]])",
+          "imatmul([[]], [])"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.13
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a matrix",
+            "hf": "a must be a matrix",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a matrix",
+            "hf": "b must be a matrix",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a and b must be compatible for matrix multiplication"
+        ],
+        "hf_only": [
+          "a and b must have the same number of rows",
+          "b must have one more column than a"
+        ],
+        "agreement_score": 0.4
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the matrix product of a and b",
+            "hf": "the result is the matrix product of a and b",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is assigned back to a"
+        ],
+        "hf_only": [
+          "the result is a matrix with the same number of rows as a and the same number of columns as b"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a or b is not a matrix",
+          "a and b are not compatible for matrix multiplication",
+          "a or b is empty",
+          "a or b contains non-numeric values"
+        ],
+        "hf_only": [
+          "if a or b is a scalar, it is treated as a column vector",
+          "if a or b is a vector, it is treated as a column vector",
+          "if a or b is a zero matrix, the result is a zero matrix"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.24
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a matrix",
+            "hf": "a must be a matrix",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a matrix",
+            "hf": "b must be a matrix",
+            "similarity": 1.0
+          },
+          {
+            "groq": "a and b must have the same number of rows",
+            "hf": "a and b must have the same number of rows",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must have one more column than a",
+            "hf": "b must have one more column than a",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "imatmul(a, b) is a matrix with the same number of rows as a and the same number of columns as b"
+        ],
+        "hf_only": [
+          "the result is a matrix with the same number of rows as a and the same number of columns as b",
+          "the result is the matrix product of a and b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "imatmul([], [])",
+          "imatmul([], [[]])",
+          "imatmul([[]], [])"
+        ],
+        "hf_only": [
+          "if a or b is a scalar, it is treated as a column vector",
+          "if a or b is a vector, it is treated as a column vector",
+          "if a or b is a zero matrix, the result is a zero matrix"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be a matrix",
+      "b must be a matrix",
+      "a and b must have the same number of rows",
+      "b must have one more column than a"
+    ],
+    "postconditions": [
+      "the result is the matrix product of a and b"
+    ],
+    "edge_cases": []
+  }
+}

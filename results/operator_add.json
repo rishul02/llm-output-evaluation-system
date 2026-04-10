@@ -1,95 +1,255 @@
 {
   "function": "operator.add",
-  "groq": {
-    "preconditions": [
-      "a and b must support the addition operation",
-      "a and b must be of compatible types for addition"
-    ],
-    "postconditions": [
-      "the result is the sum of a and b",
-      "the result has the same type as the result of a + b"
-    ],
-    "edge_cases": [
-      "a or b is NaN (Not a Number)",
-      "a or b is infinity",
-      "a and b are of different numeric types (e.g., int and float)",
-      "a or b is a complex number",
-      "a or b is a non-numeric type that supports addition (e.g., string, list)"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a and b must support the addition operation\"\n  ],\n  \"postconditions\": [\n    \"returns the result of a + b\",\n    \"result type is the same as the type of a or b, depending on their types\"\n  ],\n  \"edge_cases\": [\n    \"a or b is NaN (Not a Number)\",\n    \"a or b is infinity\",\n    \"a and b are of different types\",\n    \"a or b is a complex number\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\"\n  ],\n  \"postconditions\": [\n    \"The result is the sum of a and b\",\n    \"The result is a number\"\n  ],\n  \"edge_cases\": [\n    \"If a is infinity, the result is infinity\",\n    \"If b is infinity, the result is infinity\",\n    \"If a is -infinity, the result is -infinity\",\n    \"If b is -infinity, the result is -infinity\",\n    \"If a is NaN, the result is NaN\",\n    \"If b is NaN, the result is NaN\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\"\n  ],\n  \"postconditions\": [\n    \"The result is the sum of a and b\",\n    \"The result is of type number\"\n  ],\n  \"edge_cases\": [\n    \"If a is infinity, the result is infinity\",\n    \"If b is infinity, the result is infinity\",\n    \"If a is -infinity, the result is -infinity\",\n    \"If b is -infinity, the result is -infinity\",\n    \"If a is NaN, the result is NaN\",\n    \"If b is NaN, the result is NaN\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a and b must support the addition operation"
+      ],
+      "postconditions": [
+        "returns the result of a + b",
+        "result type is the same as the type of a or b, depending on their types"
+      ],
+      "edge_cases": [
+        "a or b is NaN (Not a Number)",
+        "a or b is infinity",
+        "a and b are of different types",
+        "a or b is a complex number"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number"
+      ],
+      "postconditions": [
+        "The result is the sum of a and b",
+        "The result is a number"
+      ],
+      "edge_cases": [
+        "If a is infinity, the result is infinity",
+        "If b is infinity, the result is infinity",
+        "If a is -infinity, the result is -infinity",
+        "If b is -infinity, the result is -infinity",
+        "If a is NaN, the result is NaN",
+        "If b is NaN, the result is NaN"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number"
+      ],
+      "postconditions": [
+        "The result is the sum of a and b",
+        "The result is of type number"
+      ],
+      "edge_cases": [
+        "If a is infinity, the result is infinity",
+        "If b is infinity, the result is infinity",
+        "If a is -infinity, the result is -infinity",
+        "If b is -infinity, the result is -infinity",
+        "If a is NaN, the result is NaN",
+        "If b is NaN, the result is NaN"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a and b must support the addition operation"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the result of a + b",
+          "result type is the same as the type of a or b, depending on their types"
+        ],
+        "hf_only": [
+          "The result is the sum of a and b",
+          "The result is of type number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "a or b is NaN (Not a Number)",
+            "hf": "If b is NaN, the result is NaN",
+            "similarity": 0.837
+          },
+          {
+            "groq": "a or b is infinity",
+            "hf": "If b is infinity, the result is infinity",
+            "similarity": 0.839
+          }
+        ],
+        "groq_only": [
+          "a and b are of different types",
+          "a or b is a complex number"
+        ],
+        "hf_only": [
+          "If a is infinity, the result is infinity",
+          "If a is -infinity, the result is -infinity",
+          "If b is -infinity, the result is -infinity",
+          "If a is NaN, the result is NaN"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.08
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a and b must support the addition operation"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the result of a + b",
+          "result type is the same as the type of a or b, depending on their types"
+        ],
+        "hf_only": [
+          "The result is the sum of a and b",
+          "The result is a number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "a or b is NaN (Not a Number)",
+            "hf": "If b is NaN, the result is NaN",
+            "similarity": 0.837
+          },
+          {
+            "groq": "a or b is infinity",
+            "hf": "If b is infinity, the result is infinity",
+            "similarity": 0.839
+          }
+        ],
+        "groq_only": [
+          "a and b are of different types",
+          "a or b is a complex number"
+        ],
+        "hf_only": [
+          "If a is infinity, the result is infinity",
+          "If a is -infinity, the result is -infinity",
+          "If b is -infinity, the result is -infinity",
+          "If a is NaN, the result is NaN"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.08
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a number",
+            "hf": "a must be a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a number",
+            "hf": "b must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is the sum of a and b",
+            "hf": "The result is the sum of a and b",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "The result is of type number"
+        ],
+        "hf_only": [
+          "The result is a number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If a is infinity, the result is infinity",
+            "hf": "If a is infinity, the result is infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If b is infinity, the result is infinity",
+            "hf": "If b is infinity, the result is infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If a is -infinity, the result is -infinity",
+            "hf": "If a is -infinity, the result is -infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If b is -infinity, the result is -infinity",
+            "hf": "If b is -infinity, the result is -infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If a is NaN, the result is NaN",
+            "hf": "If a is NaN, the result is NaN",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If b is NaN, the result is NaN",
+            "hf": "If b is NaN, the result is NaN",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.78
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "a must be a number",
       "b must be a number"
     ],
     "postconditions": [
-      "The result is the sum of a and b",
-      "The result is a number"
+      "the result is the sum of a and b"
     ],
     "edge_cases": [
-      "If a is infinity, the result is infinity",
-      "If b is infinity, the result is infinity",
-      "If a is -infinity, the result is -infinity",
-      "If b is -infinity, the result is -infinity",
-      "If a is NaN, the result is NaN",
-      "If b is NaN, the result is NaN"
+      "if a is infinity, the result is infinity",
+      "if b is infinity, the result is infinity",
+      "if a is -infinity, the result is -infinity",
+      "if b is -infinity, the result is -infinity",
+      "if a is nan, the result is nan",
+      "if b is nan, the result is nan"
     ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
-        "a and b must support the addition operation",
-        "a and b must be of compatible types for addition"
-      ],
-      "hf_only": [
-        "a must be a number",
-        "b must be a number"
-      ],
-      "agreement_score": 0.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "the result is the sum of a and b",
-          "hf": "The result is the sum of a and b",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "the result has the same type as the result of a + b"
-      ],
-      "hf_only": [
-        "The result is a number"
-      ],
-      "agreement_score": 0.33
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "a or b is NaN (Not a Number)",
-          "hf": "If b is NaN, the result is NaN",
-          "similarity": 0.837
-        },
-        {
-          "groq": "a or b is infinity",
-          "hf": "If b is infinity, the result is infinity",
-          "similarity": 0.839
-        }
-      ],
-      "groq_only": [
-        "a and b are of different numeric types (e.g., int and float)",
-        "a or b is a complex number",
-        "a or b is a non-numeric type that supports addition (e.g., string, list)"
-      ],
-      "hf_only": [
-        "If a is infinity, the result is infinity",
-        "If a is -infinity, the result is -infinity",
-        "If b is -infinity, the result is -infinity",
-        "If a is NaN, the result is NaN"
-      ],
-      "agreement_score": 0.22
-    },
-    "overall_agreement": 0.18
   }
 }

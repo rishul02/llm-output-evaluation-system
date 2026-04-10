@@ -1,0 +1,232 @@
+{
+  "function": "builtins.hex",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"number must be an integer\"\n  ],\n  \"postconditions\": [\n    \"output is a string\",\n    \"output is a valid hexadecimal representation\"\n  ],\n  \"edge_cases\": [\n    \"input is zero\",\n    \"input is negative\",\n    \"input is a large integer\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be an integer\",\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"the result is a string\",\n    \"the result is a hexadecimal representation of x\"\n  ],\n  \"edge_cases\": [\n    \"x is 0, returns '0x0'\",\n    \"x is -1, returns '-1'\",\n    \"x is 1, returns '0x1'\",\n    \"x is -256, returns '-100'\",\n    \"x is 256, returns '100'\",\n    \"x is -65536, returns '-10000'\",\n    \"x is 65536, returns '10000'\",\n    \"x is -16777216, returns '-1000000'\",\n    \"x is 16777216, returns '1000000'\",\n    \"x is -4294967296, returns '-100000000'\",\n    \"x is 4294967296, returns '100000000'\",\n    \"x is -2147483648, returns '-800000000'\",\n    \"x is 2147483648, returns '800000000'\",\n    \"x is -9223372036854775808, returns '-460000000000000000'\",\n    \"x is 9223372036854775807, returns '460000000000000000'\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be an integer\",\n    \"x must be a finite number\"\n  ],\n  \"postconditions\": [\n    \"The result is a string representing the hexadecimal representation of x\",\n    \"The result does not contain any whitespace characters\"\n  ],\n  \"edge_cases\": [\n    \"If x is 0, the result is '0'\",\n    \"If x is a negative number, the result is prefixed with a minus sign\",\n    \"If x is a large number, the result is a valid hexadecimal string\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "number must be an integer"
+      ],
+      "postconditions": [
+        "output is a string",
+        "output is a valid hexadecimal representation"
+      ],
+      "edge_cases": [
+        "input is zero",
+        "input is negative",
+        "input is a large integer"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be an integer",
+        "x must be a number"
+      ],
+      "postconditions": [
+        "the result is a string",
+        "the result is a hexadecimal representation of x"
+      ],
+      "edge_cases": [
+        "x is 0, returns '0'",
+        "x is -1, returns '-1'",
+        "x is 1, returns '1'",
+        "x is -256, returns '-100'",
+        "x is 256, returns '100'",
+        "x is -65536, returns '-10000'",
+        "x is 65536, returns '10000'",
+        "x is -16777216, returns '-1000000'",
+        "x is 16777216, returns '1000000'",
+        "x is -4294967296, returns '-100000000'",
+        "x is 4294967296, returns '100000000'",
+        "x is -2147483648, returns '-800000000'",
+        "x is 2147483648, returns '800000000'",
+        "x is -9223372036854775808, returns '-460000000000000000'",
+        "x is 9223372036854775807, returns '460000000000000000'"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be an integer",
+        "x must be a finite number"
+      ],
+      "postconditions": [
+        "The result is a string representing the hexadecimal representation of x",
+        "The result does not contain any whitespace characters"
+      ],
+      "edge_cases": [
+        "If x is 0, the result is '0'",
+        "If x is a negative number, the result is prefixed with a minus sign",
+        "If x is a large number, the result is a valid hexadecimal string"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "number must be an integer"
+        ],
+        "hf_only": [
+          "x must be an integer",
+          "x must be a finite number"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "output is a string",
+          "output is a valid hexadecimal representation"
+        ],
+        "hf_only": [
+          "The result is a string representing the hexadecimal representation of x",
+          "The result does not contain any whitespace characters"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "input is zero",
+          "input is negative",
+          "input is a large integer"
+        ],
+        "hf_only": [
+          "If x is 0, the result is '0'",
+          "If x is a negative number, the result is prefixed with a minus sign",
+          "If x is a large number, the result is a valid hexadecimal string"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "number must be an integer"
+        ],
+        "hf_only": [
+          "x must be an integer",
+          "x must be a number"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "output is a string",
+          "output is a valid hexadecimal representation"
+        ],
+        "hf_only": [
+          "the result is a string",
+          "the result is a hexadecimal representation of x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "input is zero",
+          "input is negative",
+          "input is a large integer"
+        ],
+        "hf_only": [
+          "x is 0, returns '0'",
+          "x is -1, returns '-1'",
+          "x is 1, returns '1'",
+          "x is -256, returns '-100'",
+          "x is 256, returns '100'",
+          "x is -65536, returns '-10000'",
+          "x is 65536, returns '10000'",
+          "x is -16777216, returns '-1000000'",
+          "x is 16777216, returns '1000000'",
+          "x is -4294967296, returns '-100000000'",
+          "x is 4294967296, returns '100000000'",
+          "x is -2147483648, returns '-800000000'",
+          "x is 2147483648, returns '800000000'",
+          "x is -9223372036854775808, returns '-460000000000000000'",
+          "x is 9223372036854775807, returns '460000000000000000'"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be an integer",
+            "hf": "x must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be a finite number"
+        ],
+        "hf_only": [
+          "x must be a number"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is a string representing the hexadecimal representation of x",
+            "hf": "the result is a hexadecimal representation of x",
+            "similarity": 0.885
+          }
+        ],
+        "groq_only": [
+          "The result does not contain any whitespace characters"
+        ],
+        "hf_only": [
+          "the result is a string"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If x is 0, the result is '0'",
+            "hf": "x is 0, returns '0'",
+            "similarity": 0.928
+          }
+        ],
+        "groq_only": [
+          "If x is a negative number, the result is prefixed with a minus sign",
+          "If x is a large number, the result is a valid hexadecimal string"
+        ],
+        "hf_only": [
+          "x is -1, returns '-1'",
+          "x is 1, returns '1'",
+          "x is -256, returns '-100'",
+          "x is 256, returns '100'",
+          "x is -65536, returns '-10000'",
+          "x is 65536, returns '10000'",
+          "x is -16777216, returns '-1000000'",
+          "x is 16777216, returns '1000000'",
+          "x is -4294967296, returns '-100000000'",
+          "x is 4294967296, returns '100000000'",
+          "x is -2147483648, returns '-800000000'",
+          "x is 2147483648, returns '800000000'",
+          "x is -9223372036854775808, returns '-460000000000000000'",
+          "x is 9223372036854775807, returns '460000000000000000'"
+        ],
+        "agreement_score": 0.06
+      },
+      "overall_agreement": 0.24
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be an integer"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

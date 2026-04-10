@@ -1,0 +1,201 @@
+{
+  "function": "math.erfc",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\"\n  ],\n  \"postconditions\": [\n    \"return value is a real number between 0 and 2\",\n    \"return value is the complementary error function of x\"\n  ],\n  \"edge_cases\": [\n    \"x is infinity\",\n    \"x is negative infinity\",\n    \"x is NaN\",\n    \"x is very large\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must not be NaN (Not a Number)\",\n    \"x must not be infinity\"\n  ],\n  \"postconditions\": [\n    \"erfc(x) returns the complementary error function at x\",\n    \"erfc(x) is a real number\"\n  ],\n  \"edge_cases\": [\n    \"erfc(-inf) is undefined\",\n    \"erfc(+inf) is undefined\",\n    \"erfc(NaN) is undefined\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"erfc(x) is the complementary error function at x\"],\n  \"edge_cases\": [\"x is infinity\", \"x is negative infinity\"]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "return value is a real number between 0 and 2",
+        "return value is the complementary error function of x"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity",
+        "x is NaN",
+        "x is very large"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must not be NaN (Not a Number)",
+        "x must not be infinity"
+      ],
+      "postconditions": [
+        "erfc(x) returns the complementary error function at x",
+        "erfc(x) is a real number"
+      ],
+      "edge_cases": [
+        "erfc(-inf) is undefined",
+        "erfc(+inf) is undefined",
+        "erfc(NaN) is undefined"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "erfc(x) is the complementary error function at x"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a real number between 0 and 2",
+          "return value is the complementary error function of x"
+        ],
+        "hf_only": [
+          "erfc(x) is the complementary error function at x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is NaN",
+          "x is very large"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.5
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must not be NaN (Not a Number)",
+          "x must not be infinity"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a real number between 0 and 2",
+          "return value is the complementary error function of x"
+        ],
+        "hf_only": [
+          "erfc(x) returns the complementary error function at x",
+          "erfc(x) is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity",
+          "x is NaN",
+          "x is very large"
+        ],
+        "hf_only": [
+          "erfc(-inf) is undefined",
+          "erfc(+inf) is undefined",
+          "erfc(NaN) is undefined"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must not be NaN (Not a Number)",
+          "x must not be infinity"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "erfc(x) is the complementary error function at x",
+            "hf": "erfc(x) returns the complementary error function at x",
+            "similarity": 0.953
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "erfc(x) is a real number"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity"
+        ],
+        "hf_only": [
+          "erfc(-inf) is undefined",
+          "erfc(+inf) is undefined",
+          "erfc(NaN) is undefined"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "x is infinity",
+      "x is negative infinity"
+    ]
+  }
+}

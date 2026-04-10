@@ -1,0 +1,287 @@
+{
+  "function": "builtins.divmod",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a numeric type\",\n    \"y must be a non-zero numeric type\"\n  ],\n  \"postconditions\": [\n    \"return value is a tuple\",\n    \"first element of return value is the integer division of x by y\",\n    \"second element of return value is the remainder of x divided by y\",\n    \"first element of return value times y plus second element of return value equals x\"\n  ],\n  \"edge_cases\": [\n    \"y is zero\",\n    \"x is zero\",\n    \"x and y are negative\",\n    \"x and y are floating point numbers\",\n    \"x is very large\",\n    \"y is very large\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be an integer\",\n    \"y must be a non-zero integer\",\n    \"y must not be zero\"\n  ],\n  \"postconditions\": [\n    \"The function returns a tuple of two integers\",\n    \"The first element of the tuple is the quotient of x divided by y\",\n    \"The second element of the tuple is the remainder of x divided by y\",\n    \"div*y + mod == x\"\n  ],\n  \"edge_cases\": [\n    \"If y is zero, the function raises a ZeroDivisionError\",\n    \"If x is zero and y is a positive integer, the function returns (0, 0)\",\n    \"If x is zero and y is a negative integer, the function returns (0, 0)\",\n    \"If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder\",\n    \"If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"x must be an integer\",\n    \"y must be a non-zero integer\",\n    \"x must be an integer\",\n    \"y must be an integer\"\n  ],\n  \"postconditions\": [\n    \"The function returns a tuple of two integers\",\n    \"The first element of the tuple is the quotient of x divided by y\",\n    \"The second element of the tuple is the remainder of x divided by y\",\n    \"div*y + mod == x\"\n  ],\n  \"edge_cases\": [\n    \"If y is zero, the function raises a ZeroDivisionError\",\n    \"If x is zero and y is a positive integer, the function returns (0, 0)\",\n    \"If x is zero and y is a negative integer, the function returns (0, 0)\",\n    \"If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder\",\n    \"If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a numeric type",
+        "y must be a non-zero numeric type"
+      ],
+      "postconditions": [
+        "return value is a tuple",
+        "first element of return value is the integer division of x by y",
+        "second element of return value is the remainder of x divided by y",
+        "first element of return value times y plus second element of return value equals x"
+      ],
+      "edge_cases": [
+        "y is zero",
+        "x is zero",
+        "x and y are negative",
+        "x and y are floating point numbers",
+        "x is very large",
+        "y is very large"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be an integer",
+        "y must be a non-zero integer",
+        "y must not be zero"
+      ],
+      "postconditions": [
+        "The function returns a tuple of two integers",
+        "The first element of the tuple is the quotient of x divided by y",
+        "The second element of the tuple is the remainder of x divided by y",
+        "div*y + mod == x"
+      ],
+      "edge_cases": [
+        "If y is zero, the function raises a ZeroDivisionError",
+        "If x is zero and y is a positive integer, the function returns (0, 0)",
+        "If x is zero and y is a negative integer, the function returns (0, 0)",
+        "If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+        "If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be an integer",
+        "y must be a non-zero integer",
+        "x must be an integer",
+        "y must be an integer"
+      ],
+      "postconditions": [
+        "The function returns a tuple of two integers",
+        "The first element of the tuple is the quotient of x divided by y",
+        "The second element of the tuple is the remainder of x divided by y",
+        "div*y + mod == x"
+      ],
+      "edge_cases": [
+        "If y is zero, the function raises a ZeroDivisionError",
+        "If x is zero and y is a positive integer, the function returns (0, 0)",
+        "If x is zero and y is a negative integer, the function returns (0, 0)",
+        "If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+        "If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "y must be a non-zero numeric type",
+            "hf": "y must be a non-zero integer",
+            "similarity": 0.842
+          }
+        ],
+        "groq_only": [
+          "x must be a numeric type"
+        ],
+        "hf_only": [
+          "x must be an integer",
+          "x must be an integer",
+          "y must be an integer"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a tuple",
+          "first element of return value is the integer division of x by y",
+          "second element of return value is the remainder of x divided by y",
+          "first element of return value times y plus second element of return value equals x"
+        ],
+        "hf_only": [
+          "The function returns a tuple of two integers",
+          "The first element of the tuple is the quotient of x divided by y",
+          "The second element of the tuple is the remainder of x divided by y",
+          "div*y + mod == x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "y is zero",
+          "x is zero",
+          "x and y are negative",
+          "x and y are floating point numbers",
+          "x is very large",
+          "y is very large"
+        ],
+        "hf_only": [
+          "If y is zero, the function raises a ZeroDivisionError",
+          "If x is zero and y is a positive integer, the function returns (0, 0)",
+          "If x is zero and y is a negative integer, the function returns (0, 0)",
+          "If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+          "If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.07
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "y must be a non-zero numeric type",
+            "hf": "y must be a non-zero integer",
+            "similarity": 0.842
+          }
+        ],
+        "groq_only": [
+          "x must be a numeric type"
+        ],
+        "hf_only": [
+          "x must be an integer",
+          "y must not be zero"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a tuple",
+          "first element of return value is the integer division of x by y",
+          "second element of return value is the remainder of x divided by y",
+          "first element of return value times y plus second element of return value equals x"
+        ],
+        "hf_only": [
+          "The function returns a tuple of two integers",
+          "The first element of the tuple is the quotient of x divided by y",
+          "The second element of the tuple is the remainder of x divided by y",
+          "div*y + mod == x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "y is zero",
+          "x is zero",
+          "x and y are negative",
+          "x and y are floating point numbers",
+          "x is very large",
+          "y is very large"
+        ],
+        "hf_only": [
+          "If y is zero, the function raises a ZeroDivisionError",
+          "If x is zero and y is a positive integer, the function returns (0, 0)",
+          "If x is zero and y is a negative integer, the function returns (0, 0)",
+          "If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+          "If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.08
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be an integer",
+            "hf": "x must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "y must be a non-zero integer",
+            "hf": "y must be a non-zero integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be an integer",
+          "y must be an integer"
+        ],
+        "hf_only": [
+          "y must not be zero"
+        ],
+        "agreement_score": 0.4
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a tuple of two integers",
+            "hf": "The function returns a tuple of two integers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The first element of the tuple is the quotient of x divided by y",
+            "hf": "The first element of the tuple is the quotient of x divided by y",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The second element of the tuple is the remainder of x divided by y",
+            "hf": "The second element of the tuple is the remainder of x divided by y",
+            "similarity": 1.0
+          },
+          {
+            "groq": "div*y + mod == x",
+            "hf": "div*y + mod == x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If y is zero, the function raises a ZeroDivisionError",
+            "hf": "If y is zero, the function raises a ZeroDivisionError",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If x is zero and y is a positive integer, the function returns (0, 0)",
+            "hf": "If x is zero and y is a positive integer, the function returns (0, 0)",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If x is zero and y is a negative integer, the function returns (0, 0)",
+            "hf": "If x is zero and y is a negative integer, the function returns (0, 0)",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+            "hf": "If x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder",
+            "hf": "If x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.8
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be an integer",
+      "y must be a non-zero integer"
+    ],
+    "postconditions": [
+      "the function returns a tuple of two integers",
+      "the first element of the tuple is the quotient of x divided by y",
+      "the second element of the tuple is the remainder of x divided by y",
+      "div*y + mod == x"
+    ],
+    "edge_cases": [
+      "if y is zero, the function raises a zerodivisionerror",
+      "if x is zero and y is a positive integer, the function returns (0, 0)",
+      "if x is zero and y is a negative integer, the function returns (0, 0)",
+      "if x is a negative integer and y is a positive integer, the function returns the correct quotient and remainder",
+      "if x is a negative integer and y is a negative integer, the function returns the correct quotient and remainder"
+    ]
+  }
+}

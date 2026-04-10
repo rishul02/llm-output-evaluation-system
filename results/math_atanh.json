@@ -1,9 +1,216 @@
 {
   "function": "math.atanh",
-  "groq": {
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be in the range (-1, 1)\"\n  ],\n  \"postconditions\": [\n    \"the result is the inverse hyperbolic tangent of x\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x is -1\",\n    \"x is 1\",\n    \"x is NaN\",\n    \"x is infinity\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"return value is the inverse hyperbolic tangent of x\"],\n  \"edge_cases\": [\"x is -1\", \"x is 1\", \"x is infinity\", \"x is negative infinity\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must not be equal to 1 or -1\"\n  ],\n  \"postconditions\": [\n    \"The result is the inverse hyperbolic tangent of x\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = 0: returns 0\",\n    \"x = 1: raises ValueError\",\n    \"x = -1: raises ValueError\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be in the range (-1, 1)"
+      ],
+      "postconditions": [
+        "the result is the inverse hyperbolic tangent of x",
+        "the result is a real number"
+      ],
+      "edge_cases": [
+        "x is -1",
+        "x is 1",
+        "x is NaN",
+        "x is infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "return value is the inverse hyperbolic tangent of x"
+      ],
+      "edge_cases": [
+        "x is -1",
+        "x is 1",
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must not be equal to 1 or -1"
+      ],
+      "postconditions": [
+        "The result is the inverse hyperbolic tangent of x",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x = 0: returns 0",
+        "x = 1: raises ValueError",
+        "x = -1: raises ValueError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be in the range (-1, 1)"
+        ],
+        "hf_only": [
+          "x must not be equal to 1 or -1"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the inverse hyperbolic tangent of x",
+            "hf": "The result is the inverse hyperbolic tangent of x",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the result is a real number",
+            "hf": "The result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is -1",
+          "x is 1",
+          "x is NaN",
+          "x is infinity"
+        ],
+        "hf_only": [
+          "x = 0: returns 0",
+          "x = 1: raises ValueError",
+          "x = -1: raises ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.44
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be in the range (-1, 1)"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the inverse hyperbolic tangent of x",
+            "hf": "return value is the inverse hyperbolic tangent of x",
+            "similarity": 0.897
+          }
+        ],
+        "groq_only": [
+          "the result is a real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is -1",
+            "hf": "x is -1",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is 1",
+            "hf": "x is 1",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is NaN"
+        ],
+        "hf_only": [
+          "x is negative infinity"
+        ],
+        "agreement_score": 0.6
+      },
+      "overall_agreement": 0.53
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must not be equal to 1 or -1"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is the inverse hyperbolic tangent of x",
+            "hf": "return value is the inverse hyperbolic tangent of x",
+            "similarity": 0.897
+          }
+        ],
+        "groq_only": [
+          "The result is a real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x = 0: returns 0",
+          "x = 1: raises ValueError",
+          "x = -1: raises ValueError"
+        ],
+        "hf_only": [
+          "x is -1",
+          "x is 1",
+          "x is infinity",
+          "x is negative infinity"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
     "preconditions": [
-      "x must be a real number",
-      "x must be in the range (-1, 1)"
+      "x must be a real number"
     ],
     "postconditions": [
       "the result is the inverse hyperbolic tangent of x",
@@ -12,75 +219,7 @@
     "edge_cases": [
       "x is -1",
       "x is 1",
-      "x is NaN",
       "x is infinity"
     ]
-  },
-  "hf": {
-    "preconditions": [
-      "x must be a real number",
-      "x must be in the interval (-1, 1)"
-    ],
-    "postconditions": [
-      "the result is the inverse hyperbolic tangent of x",
-      "the result is a real number"
-    ],
-    "edge_cases": [
-      "x = -1: the result is -inf",
-      "x = 1: the result is inf",
-      "x = 0: the result is 0"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a real number",
-          "hf": "x must be a real number",
-          "similarity": 1.0
-        },
-        {
-          "groq": "x must be in the range (-1, 1)",
-          "hf": "x must be in the interval (-1, 1)",
-          "similarity": 0.913
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "the result is the inverse hyperbolic tangent of x",
-          "hf": "the result is the inverse hyperbolic tangent of x",
-          "similarity": 1.0
-        },
-        {
-          "groq": "the result is a real number",
-          "hf": "the result is a real number",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "x is -1",
-        "x is 1",
-        "x is NaN",
-        "x is infinity"
-      ],
-      "hf_only": [
-        "x = -1: the result is -inf",
-        "x = 1: the result is inf",
-        "x = 0: the result is 0"
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.67
   }
 }

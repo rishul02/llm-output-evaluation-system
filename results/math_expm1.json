@@ -1,0 +1,224 @@
+{
+  "function": "math.expm1",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"result equals exp(x)-1\",\n    \"result is a float\"\n  ],\n  \"edge_cases\": [\n    \"x approaches infinity\",\n    \"x approaches negative infinity\",\n    \"x equals 0\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"exp(x) - 1 is returned\",\n    \"result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x is 0: result is 0\",\n    \"x is infinity: raises ValueError\",\n    \"x is NaN: raises ValueError\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"The result is exp(x)-1\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x is 0\",\n    \"x is infinity\",\n    \"x is negative infinity\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "result equals exp(x)-1",
+        "result is a float"
+      ],
+      "edge_cases": [
+        "x approaches infinity",
+        "x approaches negative infinity",
+        "x equals 0"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "exp(x) - 1 is returned",
+        "result is a real number"
+      ],
+      "edge_cases": [
+        "x is 0: result is 0",
+        "x is infinity: raises ValueError",
+        "x is NaN: raises ValueError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "The result is exp(x)-1",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x is 0",
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result equals exp(x)-1",
+            "hf": "The result is exp(x)-1",
+            "similarity": 0.938
+          }
+        ],
+        "groq_only": [
+          "result is a float"
+        ],
+        "hf_only": [
+          "The result is a real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x approaches infinity",
+            "hf": "x is infinity",
+            "similarity": 0.909
+          },
+          {
+            "groq": "x approaches negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 0.933
+          },
+          {
+            "groq": "x equals 0",
+            "hf": "x is 0",
+            "similarity": 0.918
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.61
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result equals exp(x)-1",
+            "hf": "exp(x) - 1 is returned",
+            "similarity": 0.834
+          }
+        ],
+        "groq_only": [
+          "result is a float"
+        ],
+        "hf_only": [
+          "result is a real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x equals 0",
+            "hf": "x is 0: result is 0",
+            "similarity": 0.841
+          }
+        ],
+        "groq_only": [
+          "x approaches infinity",
+          "x approaches negative infinity"
+        ],
+        "hf_only": [
+          "x is infinity: raises ValueError",
+          "x is NaN: raises ValueError"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.34
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be finite",
+            "hf": "x must be finite",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is a real number",
+            "hf": "result is a real number",
+            "similarity": 0.962
+          }
+        ],
+        "groq_only": [
+          "The result is exp(x)-1"
+        ],
+        "hf_only": [
+          "exp(x) - 1 is returned"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is 0",
+            "hf": "x is 0: result is 0",
+            "similarity": 0.879
+          }
+        ],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity"
+        ],
+        "hf_only": [
+          "x is infinity: raises ValueError",
+          "x is NaN: raises ValueError"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.51
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

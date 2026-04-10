@@ -1,0 +1,219 @@
+{
+  "function": "operator.iand",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a mutable integer object\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"a is modified to be the bitwise AND of its original value and b\",\n    \"the result of the bitwise AND operation is returned\"\n  ],\n  \"edge_cases\": [\n    \"a is not an integer and does not support bitwise AND operation\",\n    \"b is not an integer\",\n    \"a is an integer and b is a very large integer\",\n    \"a is an integer and b is a very small integer\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"a is an integer\",\n    \"a is the result of the bitwise AND operation between a and b\"\n  ],\n  \"edge_cases\": [\n    \"if a or b is not an integer, the function raises a TypeError\",\n    \"if a or b is not a number, the function raises a TypeError\",\n    \"if a or b is NaN, the function raises a ValueError\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"a is equal to the bitwise AND of a and b\"\n  ],\n  \"edge_cases\": [\n    \"if a or b is not an integer, a TypeError is raised\",\n    \"if a or b is not a number, a TypeError is raised\",\n    \"if a or b is NaN, a TypeError is raised\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a mutable integer object",
+        "b must be an integer"
+      ],
+      "postconditions": [
+        "a is modified to be the bitwise AND of its original value and b",
+        "the result of the bitwise AND operation is returned"
+      ],
+      "edge_cases": [
+        "a is not an integer and does not support bitwise AND operation",
+        "b is not an integer",
+        "a is an integer and b is a very large integer",
+        "a is an integer and b is a very small integer"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer"
+      ],
+      "postconditions": [
+        "a is an integer",
+        "a is the result of the bitwise AND operation between a and b"
+      ],
+      "edge_cases": [
+        "if a or b is not an integer, the function raises a TypeError",
+        "if a or b is not a number, the function raises a TypeError",
+        "if a or b is NaN, the function raises a ValueError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer"
+      ],
+      "postconditions": [
+        "a is equal to the bitwise AND of a and b"
+      ],
+      "edge_cases": [
+        "if a or b is not an integer, a TypeError is raised",
+        "if a or b is not a number, a TypeError is raised",
+        "if a or b is NaN, a TypeError is raised"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a mutable integer object"
+        ],
+        "hf_only": [
+          "a must be an integer"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is modified to be the bitwise AND of its original value and b",
+            "hf": "a is equal to the bitwise AND of a and b",
+            "similarity": 0.833
+          }
+        ],
+        "groq_only": [
+          "the result of the bitwise AND operation is returned"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is not an integer and does not support bitwise AND operation",
+          "b is not an integer",
+          "a is an integer and b is a very large integer",
+          "a is an integer and b is a very small integer"
+        ],
+        "hf_only": [
+          "if a or b is not an integer, a TypeError is raised",
+          "if a or b is not a number, a TypeError is raised",
+          "if a or b is NaN, a TypeError is raised"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a mutable integer object"
+        ],
+        "hf_only": [
+          "a must be an integer"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is modified to be the bitwise AND of its original value and b",
+            "hf": "a is the result of the bitwise AND operation between a and b",
+            "similarity": 0.836
+          }
+        ],
+        "groq_only": [
+          "the result of the bitwise AND operation is returned"
+        ],
+        "hf_only": [
+          "a is an integer"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is not an integer and does not support bitwise AND operation",
+          "b is not an integer",
+          "a is an integer and b is a very large integer",
+          "a is an integer and b is a very small integer"
+        ],
+        "hf_only": [
+          "if a or b is not an integer, the function raises a TypeError",
+          "if a or b is not a number, the function raises a TypeError",
+          "if a or b is NaN, the function raises a ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.22
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be an integer",
+            "hf": "a must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is equal to the bitwise AND of a and b",
+            "hf": "a is the result of the bitwise AND operation between a and b",
+            "similarity": 0.906
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "a is an integer"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if a or b is not an integer, a TypeError is raised",
+            "hf": "if a or b is not an integer, the function raises a TypeError",
+            "similarity": 0.917
+          },
+          {
+            "groq": "if a or b is not a number, a TypeError is raised",
+            "hf": "if a or b is not a number, the function raises a TypeError",
+            "similarity": 0.898
+          },
+          {
+            "groq": "if a or b is NaN, a TypeError is raised",
+            "hf": "if a or b is NaN, the function raises a ValueError",
+            "similarity": 0.848
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.83
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "b must be an integer",
+      "a must be an integer"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

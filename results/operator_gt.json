@@ -1,0 +1,195 @@
+{
+  "function": "operator.gt",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a and b must be comparable\",\n    \"a and b must support the greater than operator\"\n  ],\n  \"postconditions\": [\n    \"returns True if a is greater than b\",\n    \"returns False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"a and b are of different types\",\n    \"a and b are NaN or infinity\",\n    \"a and b are equal\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be comparable to b\",\n    \"a and b must be of the same type\"\n  ],\n  \"postconditions\": [\n    \"a > b\",\n    \"a and b are of the same type\"\n  ],\n  \"edge_cases\": [\n    \"a and b are equal\",\n    \"a and b are of different types\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\"\n  ],\n  \"postconditions\": [\n    \"gt(a, b) is True if a is greater than b\",\n    \"gt(a, b) is False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"gt(a, b) raises TypeError if a or b is not a number\",\n    \"gt(a, b) raises TypeError if a or b is NaN (Not a Number)\",\n    \"gt(a, b) raises TypeError if a or b is infinity\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a and b must be comparable",
+        "a and b must support the greater than operator"
+      ],
+      "postconditions": [
+        "returns True if a is greater than b",
+        "returns False otherwise"
+      ],
+      "edge_cases": [
+        "a and b are of different types",
+        "a and b are NaN or infinity",
+        "a and b are equal"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be comparable to b",
+        "a and b must be of the same type"
+      ],
+      "postconditions": [
+        "a > b",
+        "a and b are of the same type"
+      ],
+      "edge_cases": [
+        "a and b are equal",
+        "a and b are of different types"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number"
+      ],
+      "postconditions": [
+        "gt(a, b) is True if a is greater than b",
+        "gt(a, b) is False otherwise"
+      ],
+      "edge_cases": [
+        "gt(a, b) raises TypeError if a or b is not a number",
+        "gt(a, b) raises TypeError if a or b is NaN (Not a Number)",
+        "gt(a, b) raises TypeError if a or b is infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a and b must be comparable",
+          "a and b must support the greater than operator"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns True if a is greater than b",
+          "returns False otherwise"
+        ],
+        "hf_only": [
+          "gt(a, b) is True if a is greater than b",
+          "gt(a, b) is False otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a and b are of different types",
+          "a and b are NaN or infinity",
+          "a and b are equal"
+        ],
+        "hf_only": [
+          "gt(a, b) raises TypeError if a or b is not a number",
+          "gt(a, b) raises TypeError if a or b is NaN (Not a Number)",
+          "gt(a, b) raises TypeError if a or b is infinity"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a and b must be comparable",
+            "hf": "a must be comparable to b",
+            "similarity": 0.916
+          }
+        ],
+        "groq_only": [
+          "a and b must support the greater than operator"
+        ],
+        "hf_only": [
+          "a and b must be of the same type"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns True if a is greater than b",
+          "returns False otherwise"
+        ],
+        "hf_only": [
+          "a > b",
+          "a and b are of the same type"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "a and b are of different types",
+            "hf": "a and b are of different types",
+            "similarity": 1.0
+          },
+          {
+            "groq": "a and b are equal",
+            "hf": "a and b are equal",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a and b are NaN or infinity"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.33
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "hf_only": [
+          "a must be comparable to b",
+          "a and b must be of the same type"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "gt(a, b) is True if a is greater than b",
+          "gt(a, b) is False otherwise"
+        ],
+        "hf_only": [
+          "a > b",
+          "a and b are of the same type"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "gt(a, b) raises TypeError if a or b is not a number",
+          "gt(a, b) raises TypeError if a or b is NaN (Not a Number)",
+          "gt(a, b) raises TypeError if a or b is infinity"
+        ],
+        "hf_only": [
+          "a and b are equal",
+          "a and b are of different types"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [],
+    "edge_cases": [
+      "a and b are of different types",
+      "a and b are equal"
+    ]
+  }
+}

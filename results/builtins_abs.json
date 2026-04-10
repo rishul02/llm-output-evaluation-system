@@ -1,88 +1,224 @@
 {
   "function": "builtins.abs",
-  "groq": {
-    "preconditions": [
-      "x must be a number"
-    ],
-    "postconditions": [
-      "result is non-negative",
-      "result is the absolute value of x"
-    ],
-    "edge_cases": [
-      "x is zero",
-      "x is negative",
-      "x is positive",
-      "x is a complex number",
-      "x is infinity",
-      "x is NaN"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\"x must be a number\"],\n  \"postconditions\": [\"result is non-negative\", \"result is the absolute value of x\"],\n  \"edge_cases\": [\"x is zero\", \"x is negative\", \"x is positive\", \"x is NaN\", \"x is infinity\"]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a number\"],\n  \"postconditions\": [\"the result is the absolute value of x\"],\n  \"edge_cases\": [\"x is 0\", \"x is a negative number\", \"x is a positive number\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be a number or a complex number\"\n  ],\n  \"postconditions\": [\n    \"The result is a non-negative real number\",\n    \"The result is the absolute value of x\"\n  ],\n  \"edge_cases\": [\n    \"If x is 0, the result is 0\",\n    \"If x is a negative number, the result is the positive equivalent\",\n    \"If x is a complex number, the result is the magnitude of the complex number\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "result is non-negative",
+        "result is the absolute value of x"
+      ],
+      "edge_cases": [
+        "x is zero",
+        "x is negative",
+        "x is positive",
+        "x is NaN",
+        "x is infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "the result is the absolute value of x"
+      ],
+      "edge_cases": [
+        "x is 0",
+        "x is a negative number",
+        "x is a positive number"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be a number or a complex number"
+      ],
+      "postconditions": [
+        "The result is a non-negative real number",
+        "The result is the absolute value of x"
+      ],
+      "edge_cases": [
+        "If x is 0, the result is 0",
+        "If x is a negative number, the result is the positive equivalent",
+        "If x is a complex number, the result is the magnitude of the complex number"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be a number or a complex number"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the absolute value of x",
+            "hf": "The result is the absolute value of x",
+            "similarity": 0.986
+          }
+        ],
+        "groq_only": [
+          "result is non-negative"
+        ],
+        "hf_only": [
+          "The result is a non-negative real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "If x is 0, the result is 0",
+            "similarity": 0.868
+          }
+        ],
+        "groq_only": [
+          "x is negative",
+          "x is positive",
+          "x is NaN",
+          "x is infinity"
+        ],
+        "hf_only": [
+          "If x is a negative number, the result is the positive equivalent",
+          "If x is a complex number, the result is the magnitude of the complex number"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.32
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the absolute value of x",
+            "hf": "the result is the absolute value of x",
+            "similarity": 0.986
+          }
+        ],
+        "groq_only": [
+          "result is non-negative"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "x is 0",
+            "similarity": 0.959
+          },
+          {
+            "groq": "x is negative",
+            "hf": "x is a negative number",
+            "similarity": 0.929
+          },
+          {
+            "groq": "x is positive",
+            "hf": "x is a positive number",
+            "similarity": 0.908
+          }
+        ],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.6
+      },
+      "overall_agreement": 0.7
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [
+          "x must be a number or a complex number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is the absolute value of x",
+            "hf": "the result is the absolute value of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "The result is a non-negative real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If x is 0, the result is 0",
+            "hf": "x is 0",
+            "similarity": 0.873
+          },
+          {
+            "groq": "If x is a negative number, the result is the positive equivalent",
+            "hf": "x is a negative number",
+            "similarity": 0.821
+          }
+        ],
+        "groq_only": [
+          "If x is a complex number, the result is the magnitude of the complex number"
+        ],
+        "hf_only": [
+          "x is a positive number"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.5
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "x must be a number"
     ],
     "postconditions": [
       "the result is the absolute value of x"
     ],
-    "edge_cases": [
-      "x is 0",
-      "x is a negative number",
-      "x is a positive number"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a number",
-          "hf": "x must be a number",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is the absolute value of x",
-          "hf": "the result is the absolute value of x",
-          "similarity": 0.986
-        }
-      ],
-      "groq_only": [
-        "result is non-negative"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is zero",
-          "hf": "x is 0",
-          "similarity": 0.959
-        },
-        {
-          "groq": "x is negative",
-          "hf": "x is a negative number",
-          "similarity": 0.929
-        },
-        {
-          "groq": "x is positive",
-          "hf": "x is a positive number",
-          "similarity": 0.908
-        }
-      ],
-      "groq_only": [
-        "x is a complex number",
-        "x is infinity",
-        "x is NaN"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "overall_agreement": 0.67
+    "edge_cases": []
   }
 }

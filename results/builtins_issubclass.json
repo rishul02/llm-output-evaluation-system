@@ -1,0 +1,232 @@
+{
+  "function": "builtins.issubclass",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"cls must be a class\",\n    \"class_or_tuple must be a class or a tuple of classes\"\n  ],\n  \"postconditions\": [\n    \"returns True if cls is a subclass of class_or_tuple\",\n    \"returns True if cls is the same class as class_or_tuple\",\n    \"returns False otherwise\",\n    \"return value is a boolean\"\n  ],\n  \"edge_cases\": [\n    \"class_or_tuple is an empty tuple\",\n    \"class_or_tuple is a tuple containing only cls\",\n    \"cls is the same class as a class in class_or_tuple\",\n    \"cls is a built-in type\",\n    \"class_or_tuple contains a non-class object\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"cls must be a class\",\n    \"class_or_tuple must be a class or a tuple of classes\"\n  ],\n  \"postconditions\": [\n    \"returns True if cls is a subclass of class_or_tuple, False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"if class_or_tuple is a tuple, returns True if any class in the tuple is a subclass of cls\",\n    \"if cls is the same class as class_or_tuple, returns True\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"cls must be a class\",\n    \"class_or_tuple must be a class or a tuple of classes\"\n  ],\n  \"postconditions\": [\n    \"Return True if cls is derived from class_or_tuple or is the same class\",\n    \"Return False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"If class_or_tuple is a tuple of classes, return True if cls is derived from any of them\",\n    \"If class_or_tuple is a tuple of classes and cls is one of them, return True\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "cls must be a class",
+        "class_or_tuple must be a class or a tuple of classes"
+      ],
+      "postconditions": [
+        "returns True if cls is a subclass of class_or_tuple",
+        "returns True if cls is the same class as class_or_tuple",
+        "returns False otherwise",
+        "return value is a boolean"
+      ],
+      "edge_cases": [
+        "class_or_tuple is an empty tuple",
+        "class_or_tuple is a tuple containing only cls",
+        "cls is the same class as a class in class_or_tuple",
+        "cls is a built-in type",
+        "class_or_tuple contains a non-class object"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "cls must be a class",
+        "class_or_tuple must be a class or a tuple of classes"
+      ],
+      "postconditions": [
+        "returns True if cls is a subclass of class_or_tuple, False otherwise"
+      ],
+      "edge_cases": [
+        "if class_or_tuple is a tuple, returns True if any class in the tuple is a subclass of cls",
+        "if cls is the same class as class_or_tuple, returns True"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "cls must be a class",
+        "class_or_tuple must be a class or a tuple of classes"
+      ],
+      "postconditions": [
+        "Return True if cls is derived from class_or_tuple or is the same class",
+        "Return False otherwise"
+      ],
+      "edge_cases": [
+        "If class_or_tuple is a tuple of classes, return True if cls is derived from any of them",
+        "If class_or_tuple is a tuple of classes and cls is one of them, return True"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "cls must be a class",
+            "hf": "cls must be a class",
+            "similarity": 1.0
+          },
+          {
+            "groq": "class_or_tuple must be a class or a tuple of classes",
+            "hf": "class_or_tuple must be a class or a tuple of classes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if cls is a subclass of class_or_tuple",
+            "hf": "Return True if cls is derived from class_or_tuple or is the same class",
+            "similarity": 0.912
+          },
+          {
+            "groq": "returns False otherwise",
+            "hf": "Return False otherwise",
+            "similarity": 0.924
+          }
+        ],
+        "groq_only": [
+          "returns True if cls is the same class as class_or_tuple",
+          "return value is a boolean"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "class_or_tuple is a tuple containing only cls",
+            "hf": "If class_or_tuple is a tuple of classes and cls is one of them, return True",
+            "similarity": 0.87
+          }
+        ],
+        "groq_only": [
+          "class_or_tuple is an empty tuple",
+          "cls is the same class as a class in class_or_tuple",
+          "cls is a built-in type",
+          "class_or_tuple contains a non-class object"
+        ],
+        "hf_only": [
+          "If class_or_tuple is a tuple of classes, return True if cls is derived from any of them"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.56
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "cls must be a class",
+            "hf": "cls must be a class",
+            "similarity": 1.0
+          },
+          {
+            "groq": "class_or_tuple must be a class or a tuple of classes",
+            "hf": "class_or_tuple must be a class or a tuple of classes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if cls is a subclass of class_or_tuple",
+            "hf": "returns True if cls is a subclass of class_or_tuple, False otherwise",
+            "similarity": 0.99
+          }
+        ],
+        "groq_only": [
+          "returns True if cls is the same class as class_or_tuple",
+          "returns False otherwise",
+          "return value is a boolean"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "class_or_tuple is a tuple containing only cls",
+            "hf": "if class_or_tuple is a tuple, returns True if any class in the tuple is a subclass of cls",
+            "similarity": 0.878
+          },
+          {
+            "groq": "cls is the same class as a class in class_or_tuple",
+            "hf": "if cls is the same class as class_or_tuple, returns True",
+            "similarity": 0.896
+          }
+        ],
+        "groq_only": [
+          "class_or_tuple is an empty tuple",
+          "cls is a built-in type",
+          "class_or_tuple contains a non-class object"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.55
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "cls must be a class",
+            "hf": "cls must be a class",
+            "similarity": 1.0
+          },
+          {
+            "groq": "class_or_tuple must be a class or a tuple of classes",
+            "hf": "class_or_tuple must be a class or a tuple of classes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "Return True if cls is derived from class_or_tuple or is the same class",
+            "hf": "returns True if cls is a subclass of class_or_tuple, False otherwise",
+            "similarity": 0.912
+          }
+        ],
+        "groq_only": [
+          "Return False otherwise"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If class_or_tuple is a tuple of classes, return True if cls is derived from any of them",
+            "hf": "if class_or_tuple is a tuple, returns True if any class in the tuple is a subclass of cls",
+            "similarity": 0.941
+          }
+        ],
+        "groq_only": [
+          "If class_or_tuple is a tuple of classes and cls is one of them, return True"
+        ],
+        "hf_only": [
+          "if cls is the same class as class_or_tuple, returns True"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.61
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "cls must be a class",
+      "class_or_tuple must be a class or a tuple of classes"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

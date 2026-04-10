@@ -1,80 +1,163 @@
 {
   "function": "builtins.dir",
-  "groq": {
-    "preconditions": [
-      "object must be a valid Python object or None"
-    ],
-    "postconditions": [
-      "returns a list of strings",
-      "list contains valid attribute names of the object",
-      "list may not be exhaustive if object uses __dir__ method"
-    ],
-    "edge_cases": [
-      "object is None",
-      "object is a built-in type",
-      "object is a custom class instance",
-      "object uses __dir__ method to customize attribute list"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"object must be a valid Python object or None\"\n  ],\n  \"postconditions\": [\n    \"returns a list of strings\",\n    \"list contains valid attribute names of the object\"\n  ],\n  \"edge_cases\": [\n    \"if object is None, returns a list of strings containing valid names in the current scope\",\n    \"if object does not have a __dir__ method, returns a list of strings containing valid attribute names\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\"object must be None or an instance of a class\"],\n  \"postconditions\": [\"returns a list of strings representing the object's attributes\"],\n  \"edge_cases\": [\"if object is None, returns a list of built-in module attributes\"]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\"object must be None or an instance of type\"],\n  \"postconditions\": [\"returns a list of strings representing the object's attributes\"],\n  \"edge_cases\": [\"if object is None, returns a list of built-in attribute names\"]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "object must be None or an instance of object",
-      "object must be an instance of type"
-    ],
-    "postconditions": [
-      "returns a list of strings",
-      "each string in the list is a valid attribute name of the object"
-    ],
-    "edge_cases": [
-      "if object is None, returns a list of built-in attribute names",
-      "if object is an instance of type, returns a list of all attribute names"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
         "object must be a valid Python object or None"
       ],
-      "hf_only": [
-        "object must be None or an instance of object",
-        "object must be an instance of type"
+      "postconditions": [
+        "returns a list of strings",
+        "list contains valid attribute names of the object"
       ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "if object is None, returns a list of strings containing valid names in the current scope",
+        "if object does not have a __dir__ method, returns a list of strings containing valid attribute names"
+      ]
     },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "returns a list of strings",
-          "hf": "returns a list of strings",
-          "similarity": 1.0
-        },
-        {
-          "groq": "list contains valid attribute names of the object",
-          "hf": "each string in the list is a valid attribute name of the object",
-          "similarity": 0.887
-        }
+    "groq2": {
+      "preconditions": [
+        "object must be None or an instance of a class"
       ],
-      "groq_only": [
-        "list may not be exhaustive if object uses __dir__ method"
+      "postconditions": [
+        "returns a list of strings representing the object's attributes"
       ],
-      "hf_only": [],
-      "agreement_score": 0.67
+      "edge_cases": [
+        "if object is None, returns a list of built-in module attributes"
+      ]
     },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "object is None",
-        "object is a built-in type",
-        "object is a custom class instance",
-        "object uses __dir__ method to customize attribute list"
+    "hf": {
+      "preconditions": [
+        "object must be None or an instance of type"
       ],
-      "hf_only": [
-        "if object is None, returns a list of built-in attribute names",
-        "if object is an instance of type, returns a list of all attribute names"
+      "postconditions": [
+        "returns a list of strings representing the object's attributes"
       ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "if object is None, returns a list of built-in attribute names"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "object must be a valid Python object or None"
+        ],
+        "hf_only": [
+          "object must be None or an instance of type"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a list of strings",
+          "list contains valid attribute names of the object"
+        ],
+        "hf_only": [
+          "returns a list of strings representing the object's attributes"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if object is None, returns a list of strings containing valid names in the current scope",
+          "if object does not have a __dir__ method, returns a list of strings containing valid attribute names"
+        ],
+        "hf_only": [
+          "if object is None, returns a list of built-in attribute names"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
     },
-    "overall_agreement": 0.22
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "object must be a valid Python object or None"
+        ],
+        "hf_only": [
+          "object must be None or an instance of a class"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a list of strings",
+          "list contains valid attribute names of the object"
+        ],
+        "hf_only": [
+          "returns a list of strings representing the object's attributes"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if object is None, returns a list of strings containing valid names in the current scope",
+          "if object does not have a __dir__ method, returns a list of strings containing valid attribute names"
+        ],
+        "hf_only": [
+          "if object is None, returns a list of built-in module attributes"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "object must be None or an instance of type",
+            "hf": "object must be None or an instance of a class",
+            "similarity": 0.922
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a list of strings representing the object's attributes",
+            "hf": "returns a list of strings representing the object's attributes",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if object is None, returns a list of built-in attribute names",
+            "hf": "if object is None, returns a list of built-in module attributes",
+            "similarity": 0.821
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [
+      "returns a list of strings representing the object's attributes"
+    ],
+    "edge_cases": []
   }
 }

@@ -1,103 +1,316 @@
 {
   "function": "statistics.bisect_right",
-  "groq": {
-    "preconditions": [
-      "a must be a sorted list",
-      "x must be a comparable item",
-      "lo must be an integer",
-      "hi must be an integer or None",
-      "key must be a callable or None"
-    ],
-    "postconditions": [
-      "the returned index is the insertion point for x in a to maintain sorted order",
-      "the returned index is within the range [lo, hi) if hi is not None",
-      "the returned index is within the range [lo, len(a)) if hi is None"
-    ],
-    "edge_cases": [
-      "a is an empty list",
-      "lo is greater than hi",
-      "hi is greater than len(a)",
-      "x is already present in a",
-      "key is not None and returns non-comparable values"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a list\",\n    \"all elements in a must be comparable\",\n    \"x must be comparable with elements in a\",\n    \"lo must be an integer\",\n    \"hi must be an integer or None\",\n    \"lo must be less than or equal to hi if hi is not None\",\n    \"lo must be less than or equal to the length of a\",\n    \"key must be a callable or None\"\n  ],\n  \"postconditions\": [\n    \"the returned index is the insertion point for x in a to maintain sorted order\",\n    \"if x is already present in a, the returned index is to the right of the rightmost x\",\n    \"the returned index is within the range [lo, hi) if hi is not None, otherwise within the range [lo, len(a))\",\n    \"the returned index is an integer\"\n  ],\n  \"edge_cases\": [\n    \"a is an empty list\",\n    \"lo is equal to the length of a\",\n    \"hi is equal to lo\",\n    \"x is less than the smallest element in a\",\n    \"x is greater than the largest element in a\",\n    \"key is not None and returns different values for equal elements\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be a list of strings\",\n    \"x must be a string\",\n    \"lo must be an integer\",\n    \"hi must be an integer or None\",\n    \"key must be a function or None\"\n  ],\n  \"postconditions\": [\n    \"the index is an integer\",\n    \"the index is within the bounds of the list a\",\n    \"the index is the position where x would be inserted to maintain the sorted order of a\"\n  ],\n  \"edge_cases\": [\n    \"if a is empty, the index is 0\",\n    \"if x is less than all elements in a, the index is 0\",\n    \"if x is greater than all elements in a, the index is the length of a\",\n    \"if key is provided, the comparison is done using the key function\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"a must be a list of strings\",\n    \"x must be a string\",\n    \"lo must be an integer\",\n    \"hi must be an integer or None\",\n    \"key must be a function or None\"\n  ],\n  \"postconditions\": [\n    \"the index is an integer\",\n    \"the index is within the bounds of the list a\",\n    \"the index is the correct insertion point for x in a, assuming a is sorted\"\n  ],\n  \"edge_cases\": [\n    \"if a is empty, the index is 0\",\n    \"if x is less than all elements in a, the index is 0\",\n    \"if x is greater than all elements in a, the index is len(a)\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "a must be a list of strings",
-      "x must be a string",
-      "lo must be an integer",
-      "hi must be an integer or None",
-      "key must be a function or None"
-    ],
-    "postconditions": [
-      "The index where to insert item x in list a is returned",
-      "The index is an integer",
-      "The index is within the bounds of list a"
-    ],
-    "edge_cases": [
-      "If a is empty, the index where to insert x is 0",
-      "If a is sorted in ascending order, the index where to insert x is the position of x in a",
-      "If a is sorted in descending order, the index where to insert x is the position of x in a plus 1",
-      "If x is not found in a, the index where to insert x is the length of a"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "lo must be an integer",
-          "hf": "lo must be an integer",
-          "similarity": 1.0
-        },
-        {
-          "groq": "hi must be an integer or None",
-          "hf": "hi must be an integer or None",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "a must be a sorted list",
-        "x must be a comparable item",
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a list",
+        "all elements in a must be comparable",
+        "x must be comparable with elements in a",
+        "lo must be an integer",
+        "hi must be an integer or None",
+        "lo must be less than or equal to hi if hi is not None",
+        "lo must be less than or equal to the length of a",
         "key must be a callable or None"
       ],
-      "hf_only": [
+      "postconditions": [
+        "the returned index is the insertion point for x in a to maintain sorted order",
+        "if x is already present in a, the returned index is to the right of the rightmost x",
+        "the returned index is within the range [lo, hi) if hi is not None, otherwise within the range [lo, len(a))",
+        "the returned index is an integer"
+      ],
+      "edge_cases": [
+        "a is an empty list",
+        "lo is equal to the length of a",
+        "hi is equal to lo",
+        "x is less than the smallest element in a",
+        "x is greater than the largest element in a",
+        "key is not None and returns different values for equal elements"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
         "a must be a list of strings",
         "x must be a string",
+        "lo must be an integer",
+        "hi must be an integer or None",
         "key must be a function or None"
       ],
-      "agreement_score": 0.25
+      "postconditions": [
+        "the index is an integer",
+        "the index is within the bounds of the list a",
+        "the index is the position where x would be inserted to maintain the sorted order of a"
+      ],
+      "edge_cases": [
+        "if a is empty, the index is 0",
+        "if x is less than all elements in a, the index is 0",
+        "if x is greater than all elements in a, the index is the length of a",
+        "if key is provided, the comparison is done using the key function"
+      ]
     },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "the returned index is the insertion point for x in a to maintain sorted order",
-        "the returned index is within the range [lo, hi) if hi is not None",
-        "the returned index is within the range [lo, len(a)) if hi is None"
+    "hf": {
+      "preconditions": [
+        "a must be a list of strings",
+        "x must be a string",
+        "lo must be an integer",
+        "hi must be an integer or None",
+        "key must be a function or None"
       ],
-      "hf_only": [
-        "The index where to insert item x in list a is returned",
-        "The index is an integer",
-        "The index is within the bounds of list a"
+      "postconditions": [
+        "the index is an integer",
+        "the index is within the bounds of the list a",
+        "the index is the correct insertion point for x in a, assuming a is sorted"
       ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "if a is empty, the index is 0",
+        "if x is less than all elements in a, the index is 0",
+        "if x is greater than all elements in a, the index is len(a)"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "lo must be an integer",
+            "hf": "lo must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "hi must be an integer or None",
+            "hf": "hi must be an integer or None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a list",
+          "all elements in a must be comparable",
+          "x must be comparable with elements in a",
+          "lo must be less than or equal to hi if hi is not None",
+          "lo must be less than or equal to the length of a",
+          "key must be a callable or None"
+        ],
+        "hf_only": [
+          "a must be a list of strings",
+          "x must be a string",
+          "key must be a function or None"
+        ],
+        "agreement_score": 0.18
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the returned index is the insertion point for x in a to maintain sorted order",
+            "hf": "the index is the correct insertion point for x in a, assuming a is sorted",
+            "similarity": 0.844
+          },
+          {
+            "groq": "the returned index is an integer",
+            "hf": "the index is an integer",
+            "similarity": 0.887
+          }
+        ],
+        "groq_only": [
+          "if x is already present in a, the returned index is to the right of the rightmost x",
+          "the returned index is within the range [lo, hi) if hi is not None, otherwise within the range [lo, len(a))"
+        ],
+        "hf_only": [
+          "the index is within the bounds of the list a"
+        ],
+        "agreement_score": 0.4
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty list",
+          "lo is equal to the length of a",
+          "hi is equal to lo",
+          "x is less than the smallest element in a",
+          "x is greater than the largest element in a",
+          "key is not None and returns different values for equal elements"
+        ],
+        "hf_only": [
+          "if a is empty, the index is 0",
+          "if x is less than all elements in a, the index is 0",
+          "if x is greater than all elements in a, the index is len(a)"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.19
     },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "a is an empty list",
-        "lo is greater than hi",
-        "hi is greater than len(a)",
-        "x is already present in a",
-        "key is not None and returns non-comparable values"
-      ],
-      "hf_only": [
-        "If a is empty, the index where to insert x is 0",
-        "If a is sorted in ascending order, the index where to insert x is the position of x in a",
-        "If a is sorted in descending order, the index where to insert x is the position of x in a plus 1",
-        "If x is not found in a, the index where to insert x is the length of a"
-      ],
-      "agreement_score": 0.0
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "lo must be an integer",
+            "hf": "lo must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "hi must be an integer or None",
+            "hf": "hi must be an integer or None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a list",
+          "all elements in a must be comparable",
+          "x must be comparable with elements in a",
+          "lo must be less than or equal to hi if hi is not None",
+          "lo must be less than or equal to the length of a",
+          "key must be a callable or None"
+        ],
+        "hf_only": [
+          "a must be a list of strings",
+          "x must be a string",
+          "key must be a function or None"
+        ],
+        "agreement_score": 0.18
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the returned index is the insertion point for x in a to maintain sorted order",
+            "hf": "the index is the position where x would be inserted to maintain the sorted order of a",
+            "similarity": 0.895
+          },
+          {
+            "groq": "the returned index is an integer",
+            "hf": "the index is an integer",
+            "similarity": 0.887
+          }
+        ],
+        "groq_only": [
+          "if x is already present in a, the returned index is to the right of the rightmost x",
+          "the returned index is within the range [lo, hi) if hi is not None, otherwise within the range [lo, len(a))"
+        ],
+        "hf_only": [
+          "the index is within the bounds of the list a"
+        ],
+        "agreement_score": 0.4
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty list",
+          "lo is equal to the length of a",
+          "hi is equal to lo",
+          "x is less than the smallest element in a",
+          "x is greater than the largest element in a",
+          "key is not None and returns different values for equal elements"
+        ],
+        "hf_only": [
+          "if a is empty, the index is 0",
+          "if x is less than all elements in a, the index is 0",
+          "if x is greater than all elements in a, the index is the length of a",
+          "if key is provided, the comparison is done using the key function"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.19
     },
-    "overall_agreement": 0.08
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a list of strings",
+            "hf": "a must be a list of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be a string",
+            "hf": "x must be a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "lo must be an integer",
+            "hf": "lo must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "hi must be an integer or None",
+            "hf": "hi must be an integer or None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "key must be a function or None",
+            "hf": "key must be a function or None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the index is an integer",
+            "hf": "the index is an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the index is within the bounds of the list a",
+            "hf": "the index is within the bounds of the list a",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the index is the correct insertion point for x in a, assuming a is sorted",
+            "hf": "the index is the position where x would be inserted to maintain the sorted order of a",
+            "similarity": 0.824
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if a is empty, the index is 0",
+            "hf": "if a is empty, the index is 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if x is less than all elements in a, the index is 0",
+            "hf": "if x is less than all elements in a, the index is 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if x is greater than all elements in a, the index is len(a)",
+            "hf": "if x is greater than all elements in a, the index is the length of a",
+            "similarity": 0.925
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "if key is provided, the comparison is done using the key function"
+        ],
+        "agreement_score": 0.75
+      },
+      "overall_agreement": 0.92
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "lo must be an integer",
+      "hi must be an integer or none",
+      "a must be a list of strings",
+      "x must be a string",
+      "key must be a function or none"
+    ],
+    "postconditions": [
+      "the index is an integer",
+      "the index is within the bounds of the list a"
+    ],
+    "edge_cases": [
+      "if a is empty, the index is 0",
+      "if x is less than all elements in a, the index is 0"
+    ]
   }
 }

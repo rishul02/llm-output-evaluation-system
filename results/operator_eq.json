@@ -1,79 +1,198 @@
 {
   "function": "operator.eq",
-  "groq": {
-    "preconditions": [
-      "a and b must be comparable",
-      "a and b must support equality operation"
-    ],
-    "postconditions": [
-      "returns True if a is equal to b",
-      "returns False if a is not equal to b"
-    ],
-    "edge_cases": [
-      "a and b are of different types",
-      "a and b are NaN (Not a Number) values",
-      "a and b are infinity values"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a and b must be comparable\",\n    \"a and b must support equality operation\"\n  ],\n  \"postconditions\": [\n    \"returns True if a is equal to b\",\n    \"returns False if a is not equal to b\"\n  ],\n  \"edge_cases\": [\n    \"a and b are of different types\",\n    \"a and b are NaN (Not a Number) values\",\n    \"a and b are infinity values\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be a hashable type\",\n    \"b must be a hashable type\"\n  ],\n  \"postconditions\": [\n    \"a == b if and only if eq(a, b) returns True\",\n    \"not a == b if and only if eq(a, b) returns False\"\n  ],\n  \"edge_cases\": [\n    \"eq(a, a) returns True for any a\",\n    \"eq(a, b) returns False if a and b are of different types\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be comparable to b\",\n    \"a and b must be of the same type\"\n  ],\n  \"postconditions\": [\n    \"eq(a, b) returns True if a is equal to b, False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"eq(a, a) returns True\",\n    \"eq(a, b) returns False if a is not equal to b\",\n    \"eq(a, None) returns False if a is not None\",\n    \"eq(None, b) returns False if b is not None\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "a must be comparable to b",
-      "a and b must be of the same type"
-    ],
-    "postconditions": [
-      "eq(a, b) returns True if a is equal to b, False otherwise"
-    ],
-    "edge_cases": [
-      "eq(a, a) returns True",
-      "eq(a, b) returns False if a is not equal to b",
-      "eq(a, None) raises TypeError if a is not comparable to None"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "a and b must be comparable",
-          "hf": "a must be comparable to b",
-          "similarity": 0.916
-        }
-      ],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a and b must be comparable",
         "a and b must support equality operation"
       ],
-      "hf_only": [
-        "a and b must be of the same type"
-      ],
-      "agreement_score": 0.33
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "returns True if a is equal to b",
-          "hf": "eq(a, b) returns True if a is equal to b, False otherwise",
-          "similarity": 0.825
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
+        "returns True if a is equal to b",
         "returns False if a is not equal to b"
       ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "a and b are of different types",
         "a and b are NaN (Not a Number) values",
         "a and b are infinity values"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a hashable type",
+        "b must be a hashable type"
       ],
-      "hf_only": [
+      "postconditions": [
+        "a == b if and only if eq(a, b) returns True",
+        "not a == b if and only if eq(a, b) returns False"
+      ],
+      "edge_cases": [
+        "eq(a, a) returns True for any a",
+        "eq(a, b) returns False if a and b are of different types"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be comparable to b",
+        "a and b must be of the same type"
+      ],
+      "postconditions": [
+        "eq(a, b) returns True if a is equal to b, False otherwise"
+      ],
+      "edge_cases": [
         "eq(a, a) returns True",
         "eq(a, b) returns False if a is not equal to b",
-        "eq(a, None) raises TypeError if a is not comparable to None"
-      ],
-      "agreement_score": 0.0
+        "eq(a, None) returns False if a is not None",
+        "eq(None, b) returns False if b is not None"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a and b must be comparable",
+            "hf": "a must be comparable to b",
+            "similarity": 0.916
+          }
+        ],
+        "groq_only": [
+          "a and b must support equality operation"
+        ],
+        "hf_only": [
+          "a and b must be of the same type"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if a is equal to b",
+            "hf": "eq(a, b) returns True if a is equal to b, False otherwise",
+            "similarity": 0.825
+          }
+        ],
+        "groq_only": [
+          "returns False if a is not equal to b"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a and b are of different types",
+          "a and b are NaN (Not a Number) values",
+          "a and b are infinity values"
+        ],
+        "hf_only": [
+          "eq(a, a) returns True",
+          "eq(a, b) returns False if a is not equal to b",
+          "eq(a, None) returns False if a is not None",
+          "eq(None, b) returns False if b is not None"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
     },
-    "overall_agreement": 0.28
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a and b must be comparable",
+          "a and b must support equality operation"
+        ],
+        "hf_only": [
+          "a must be a hashable type",
+          "b must be a hashable type"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns True if a is equal to b",
+          "returns False if a is not equal to b"
+        ],
+        "hf_only": [
+          "a == b if and only if eq(a, b) returns True",
+          "not a == b if and only if eq(a, b) returns False"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a and b are of different types",
+          "a and b are NaN (Not a Number) values",
+          "a and b are infinity values"
+        ],
+        "hf_only": [
+          "eq(a, a) returns True for any a",
+          "eq(a, b) returns False if a and b are of different types"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be comparable to b",
+          "a and b must be of the same type"
+        ],
+        "hf_only": [
+          "a must be a hashable type",
+          "b must be a hashable type"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "eq(a, b) returns True if a is equal to b, False otherwise",
+            "hf": "a == b if and only if eq(a, b) returns True",
+            "similarity": 0.94
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "not a == b if and only if eq(a, b) returns False"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "eq(a, a) returns True",
+            "hf": "eq(a, a) returns True for any a",
+            "similarity": 0.981
+          },
+          {
+            "groq": "eq(a, b) returns False if a is not equal to b",
+            "hf": "eq(a, b) returns False if a and b are of different types",
+            "similarity": 0.876
+          }
+        ],
+        "groq_only": [
+          "eq(a, None) returns False if a is not None",
+          "eq(None, b) returns False if b is not None"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

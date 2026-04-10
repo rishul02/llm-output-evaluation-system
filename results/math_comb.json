@@ -1,91 +1,256 @@
 {
   "function": "math.comb",
-  "groq": {
-    "preconditions": [
-      "n must be a non-negative integer",
-      "k must be an integer",
-      "k must be less than or equal to n"
-    ],
-    "postconditions": [
-      "result is a non-negative integer",
-      "result is the number of ways to choose k items from n items without repetition and without order"
-    ],
-    "edge_cases": [
-      "k is 0",
-      "k is equal to n",
-      "n is 0",
-      "k is greater than n"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"n must be a non-negative integer\",\n    \"k must be an integer\",\n    \"k must be less than or equal to n\"\n  ],\n  \"postconditions\": [\n    \"result is a non-negative integer\",\n    \"result is the number of ways to choose k items from n items without repetition and without order\"\n  ],\n  \"edge_cases\": [\n    \"n is 0 and k is 0\",\n    \"n is 0 and k is greater than 0\",\n    \"k is 0\",\n    \"k is equal to n\",\n    \"k is greater than n\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"n must be a non-negative integer\",\n    \"k must be a non-negative integer\",\n    \"k must not be greater than n\"\n  ],\n  \"postconditions\": [\n    \"The function returns a non-negative integer\",\n    \"The function returns the number of ways to choose k items from n items without repetition and without order\"\n  ],\n  \"edge_cases\": [\n    \"When n or k is 0, the function returns 1\",\n    \"When k is greater than n, the function returns 0\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"n must be a non-negative integer\",\n    \"k must be a non-negative integer\",\n    \"k must not be greater than n\"\n  ],\n  \"postconditions\": [\n    \"The function returns a non-negative integer\",\n    \"The function returns the number of ways to choose k items from n items without repetition and without order\"\n  ],\n  \"edge_cases\": [\n    \"When n or k is 0, the function returns 1\",\n    \"When k is greater than n, the function returns 0\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "n must be a non-negative integer",
+        "k must be an integer",
+        "k must be less than or equal to n"
+      ],
+      "postconditions": [
+        "result is a non-negative integer",
+        "result is the number of ways to choose k items from n items without repetition and without order"
+      ],
+      "edge_cases": [
+        "n is 0 and k is 0",
+        "n is 0 and k is greater than 0",
+        "k is 0",
+        "k is equal to n",
+        "k is greater than n"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "n must be a non-negative integer",
+        "k must be a non-negative integer",
+        "k must not be greater than n"
+      ],
+      "postconditions": [
+        "The function returns a non-negative integer",
+        "The function returns the number of ways to choose k items from n items without repetition and without order"
+      ],
+      "edge_cases": [
+        "When n or k is 0, the function returns 1",
+        "When k is greater than n, the function returns 0"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "n must be a non-negative integer",
+        "k must be a non-negative integer",
+        "k must not be greater than n"
+      ],
+      "postconditions": [
+        "The function returns a non-negative integer",
+        "The function returns the number of ways to choose k items from n items without repetition and without order"
+      ],
+      "edge_cases": [
+        "When n or k is 0, the function returns 1",
+        "When k is greater than n, the function returns 0"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "n must be a non-negative integer",
+            "hf": "n must be a non-negative integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "k must be an integer",
+            "hf": "k must be a non-negative integer",
+            "similarity": 0.948
+          },
+          {
+            "groq": "k must be less than or equal to n",
+            "hf": "k must not be greater than n",
+            "similarity": 0.956
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is a non-negative integer",
+            "hf": "The function returns a non-negative integer",
+            "similarity": 0.822
+          },
+          {
+            "groq": "result is the number of ways to choose k items from n items without repetition and without order",
+            "hf": "The function returns the number of ways to choose k items from n items without repetition and without order",
+            "similarity": 0.905
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "n is 0 and k is greater than 0",
+            "hf": "When k is greater than n, the function returns 0",
+            "similarity": 0.826
+          }
+        ],
+        "groq_only": [
+          "n is 0 and k is 0",
+          "k is 0",
+          "k is equal to n",
+          "k is greater than n"
+        ],
+        "hf_only": [
+          "When n or k is 0, the function returns 1"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.72
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "n must be a non-negative integer",
+            "hf": "n must be a non-negative integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "k must be an integer",
+            "hf": "k must be a non-negative integer",
+            "similarity": 0.948
+          },
+          {
+            "groq": "k must be less than or equal to n",
+            "hf": "k must not be greater than n",
+            "similarity": 0.956
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is a non-negative integer",
+            "hf": "The function returns a non-negative integer",
+            "similarity": 0.822
+          },
+          {
+            "groq": "result is the number of ways to choose k items from n items without repetition and without order",
+            "hf": "The function returns the number of ways to choose k items from n items without repetition and without order",
+            "similarity": 0.905
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "n is 0 and k is greater than 0",
+            "hf": "When k is greater than n, the function returns 0",
+            "similarity": 0.826
+          }
+        ],
+        "groq_only": [
+          "n is 0 and k is 0",
+          "k is 0",
+          "k is equal to n",
+          "k is greater than n"
+        ],
+        "hf_only": [
+          "When n or k is 0, the function returns 1"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.72
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "n must be a non-negative integer",
+            "hf": "n must be a non-negative integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "k must be a non-negative integer",
+            "hf": "k must be a non-negative integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "k must not be greater than n",
+            "hf": "k must not be greater than n",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a non-negative integer",
+            "hf": "The function returns a non-negative integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The function returns the number of ways to choose k items from n items without repetition and without order",
+            "hf": "The function returns the number of ways to choose k items from n items without repetition and without order",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "When n or k is 0, the function returns 1",
+            "hf": "When n or k is 0, the function returns 1",
+            "similarity": 1.0
+          },
+          {
+            "groq": "When k is greater than n, the function returns 0",
+            "hf": "When k is greater than n, the function returns 0",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "n must be a non-negative integer",
       "k must be a non-negative integer",
       "k must not be greater than n"
     ],
     "postconditions": [
-      "The function returns the number of ways to choose k items from n items without repetition and without order",
-      "The result is a non-negative integer"
+      "the function returns a non-negative integer",
+      "the function returns the number of ways to choose k items from n items without repetition and without order"
     ],
     "edge_cases": [
-      "When n or k is 0, the function returns 1",
-      "When k is greater than n, the function returns 0"
+      "when n or k is 0, the function returns 1",
+      "when k is greater than n, the function returns 0"
     ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "n must be a non-negative integer",
-          "hf": "n must be a non-negative integer",
-          "similarity": 1.0
-        },
-        {
-          "groq": "k must be an integer",
-          "hf": "k must be a non-negative integer",
-          "similarity": 0.948
-        },
-        {
-          "groq": "k must be less than or equal to n",
-          "hf": "k must not be greater than n",
-          "similarity": 0.956
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is a non-negative integer",
-          "hf": "The result is a non-negative integer",
-          "similarity": 0.965
-        },
-        {
-          "groq": "result is the number of ways to choose k items from n items without repetition and without order",
-          "hf": "The function returns the number of ways to choose k items from n items without repetition and without order",
-          "similarity": 0.905
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "k is 0",
-        "k is equal to n",
-        "n is 0",
-        "k is greater than n"
-      ],
-      "hf_only": [
-        "When n or k is 0, the function returns 1",
-        "When k is greater than n, the function returns 0"
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.67
   }
 }

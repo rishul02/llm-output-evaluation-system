@@ -63,15 +63,6 @@
     "full_name": "builtins.chr"
   },
   {
-    "name": "compile",
-    "module": "builtins",
-    "signature": "(source, filename, mode, flags=0, dont_inherit=False, optimize=-1, *, _feature_version=-1)",
-    "doc": "Compile source into a code object that can be executed by exec() or eval().",
-    "source": null,
-    "input_text": "Compile source into a code object that can be executed by exec() or eval().",
-    "full_name": "builtins.compile"
-  },
-  {
     "name": "delattr",
     "module": "builtins",
     "signature": "(obj, name, /)",
@@ -88,6 +79,105 @@
     "source": null,
     "input_text": "dir([object]) -> list of strings",
     "full_name": "builtins.dir"
+  },
+  {
+    "name": "divmod",
+    "module": "builtins",
+    "signature": "(x, y, /)",
+    "doc": "Return the tuple (x//y, x%y).  Invariant: div*y + mod == x.",
+    "source": null,
+    "input_text": "Return the tuple (x//y, x%y).  Invariant: div*y + mod == x.",
+    "full_name": "builtins.divmod"
+  },
+  {
+    "name": "format",
+    "module": "builtins",
+    "signature": "(value, format_spec='', /)",
+    "doc": "Return type(value).__format__(value, format_spec)",
+    "source": null,
+    "input_text": "Return type(value).__format__(value, format_spec)",
+    "full_name": "builtins.format"
+  },
+  {
+    "name": "getattr",
+    "module": "builtins",
+    "signature": "()",
+    "doc": "getattr(object, name[, default]) -> value",
+    "source": null,
+    "input_text": "getattr(object, name[, default]) -> value",
+    "full_name": "builtins.getattr"
+  },
+  {
+    "name": "globals",
+    "module": "builtins",
+    "signature": "()",
+    "doc": "Return the dictionary containing the current scope's global variables.",
+    "source": null,
+    "input_text": "Return the dictionary containing the current scope's global variables.",
+    "full_name": "builtins.globals"
+  },
+  {
+    "name": "hasattr",
+    "module": "builtins",
+    "signature": "(obj, name, /)",
+    "doc": "Return whether the object has an attribute with the given name.",
+    "source": null,
+    "input_text": "Return whether the object has an attribute with the given name.",
+    "full_name": "builtins.hasattr"
+  },
+  {
+    "name": "hash",
+    "module": "builtins",
+    "signature": "(obj, /)",
+    "doc": "Return the hash value for the given object.",
+    "source": null,
+    "input_text": "Return the hash value for the given object.",
+    "full_name": "builtins.hash"
+  },
+  {
+    "name": "hex",
+    "module": "builtins",
+    "signature": "(number, /)",
+    "doc": "Return the hexadecimal representation of an integer.",
+    "source": null,
+    "input_text": "Return the hexadecimal representation of an integer.",
+    "full_name": "builtins.hex"
+  },
+  {
+    "name": "id",
+    "module": "builtins",
+    "signature": "(obj, /)",
+    "doc": "Return the identity of an object.",
+    "source": null,
+    "input_text": "Return the identity of an object.",
+    "full_name": "builtins.id"
+  },
+  {
+    "name": "input",
+    "module": "builtins",
+    "signature": "(prompt='', /)",
+    "doc": "Read a string from standard input.  The trailing newline is stripped.",
+    "source": null,
+    "input_text": "Read a string from standard input.  The trailing newline is stripped.",
+    "full_name": "builtins.input"
+  },
+  {
+    "name": "isinstance",
+    "module": "builtins",
+    "signature": "(obj, class_or_tuple, /)",
+    "doc": "Return whether an object is an instance of a class or of a subclass thereof.",
+    "source": null,
+    "input_text": "Return whether an object is an instance of a class or of a subclass thereof.",
+    "full_name": "builtins.isinstance"
+  },
+  {
+    "name": "issubclass",
+    "module": "builtins",
+    "signature": "(cls, class_or_tuple, /)",
+    "doc": "Return whether 'cls' is derived from another class or is the same class.",
+    "source": null,
+    "input_text": "Return whether 'cls' is derived from another class or is the same class.",
+    "full_name": "builtins.issubclass"
   },
   {
     "name": "acos",
@@ -180,6 +270,96 @@
     "full_name": "math.comb"
   },
   {
+    "name": "copysign",
+    "module": "math",
+    "signature": "(x, y, /)",
+    "doc": "Return a float with the magnitude (absolute value) of x but the sign of y.",
+    "source": null,
+    "input_text": "Return a float with the magnitude (absolute value) of x but the sign of y.",
+    "full_name": "math.copysign"
+  },
+  {
+    "name": "cos",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the cosine of x (measured in radians).",
+    "source": null,
+    "input_text": "Return the cosine of x (measured in radians).",
+    "full_name": "math.cos"
+  },
+  {
+    "name": "cosh",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return the hyperbolic cosine of x.",
+    "source": null,
+    "input_text": "Return the hyperbolic cosine of x.",
+    "full_name": "math.cosh"
+  },
+  {
+    "name": "degrees",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Convert angle x from radians to degrees.",
+    "source": null,
+    "input_text": "Convert angle x from radians to degrees.",
+    "full_name": "math.degrees"
+  },
+  {
+    "name": "dist",
+    "module": "math",
+    "signature": "(p, q, /)",
+    "doc": "Return the Euclidean distance between two points p and q.",
+    "source": null,
+    "input_text": "Return the Euclidean distance between two points p and q.",
+    "full_name": "math.dist"
+  },
+  {
+    "name": "erf",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Error function at x.",
+    "source": null,
+    "input_text": "Error function at x.",
+    "full_name": "math.erf"
+  },
+  {
+    "name": "erfc",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Complementary error function at x.",
+    "source": null,
+    "input_text": "Complementary error function at x.",
+    "full_name": "math.erfc"
+  },
+  {
+    "name": "exp",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return e raised to the power of x.",
+    "source": null,
+    "input_text": "Return e raised to the power of x.",
+    "full_name": "math.exp"
+  },
+  {
+    "name": "exp2",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return 2 raised to the power of x.",
+    "source": null,
+    "input_text": "Return 2 raised to the power of x.",
+    "full_name": "math.exp2"
+  },
+  {
+    "name": "expm1",
+    "module": "math",
+    "signature": "(x, /)",
+    "doc": "Return exp(x)-1.",
+    "source": null,
+    "input_text": "Return exp(x)-1.",
+    "full_name": "math.expm1"
+  },
+  {
     "name": "acos",
     "module": "statistics",
     "signature": "(x, /)",
@@ -268,6 +448,96 @@
     "source": null,
     "input_text": "Error function at x.",
     "full_name": "statistics.erf"
+  },
+  {
+    "name": "exp",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return e raised to the power of x.",
+    "source": null,
+    "input_text": "Return e raised to the power of x.",
+    "full_name": "statistics.exp"
+  },
+  {
+    "name": "fabs",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return the absolute value of the float x.",
+    "source": null,
+    "input_text": "Return the absolute value of the float x.",
+    "full_name": "statistics.fabs"
+  },
+  {
+    "name": "fmean",
+    "module": "statistics",
+    "signature": "(data, weights=None)",
+    "doc": "Convert data to floats and compute the arithmetic mean.",
+    "source": "def fmean(data, weights=None):\n    \"\"\"Convert data to floats and compute the arithmetic mean.\n\n    This runs faster than the mean() function and it always returns a float.\n    If the input dataset is empty, it raises a StatisticsError.\n\n    >>> fmean([3.5, 4.0, 5.25])\n    4.25\n    \"\"\"\n    if weights is None:\n        try:\n            n = len(data)\n        except TypeError:\n            # Handle iterators that do not define __len__().\n            n = 0\n            def count(iterable):\n                nonlocal n\n                for n, x in enumerate(iterable, start=1):\n                    yield x\n            data = count(data)\n        total = fsum(data)\n        if not n:\n            raise StatisticsError('fmean requires at least one data point')\n        return total / n\n    if not isinstance(weights, (list, tuple)):\n        weights = list(weights)\n    try:\n        num = sumprod(data, weights)\n    except ValueError:\n        raise StatisticsError('data and weights must be the same length')\n    den = fsum(weights)\n    if not den:\n        raise StatisticsError('sum of weights must be non-zero')\n    return num / den\n",
+    "input_text": "def fmean(data, weights=None):\n    \"\"\"Convert data to floats and compute the arithmetic mean.\n\n    This runs faster than the mean() function and it always returns a float.\n    If the input dataset is empty, it raises a StatisticsError.\n\n    >>> fmean([3.5, 4.0, 5.25])\n    4.25\n    \"\"\"\n    if weights is None:\n        try:\n            n = len(data)\n        except TypeError:\n            # Handle iterators that do not define __len__().\n            n = 0\n            def count(iterable):\n                nonlocal n\n                for n, x in enumerate(iterable, start=1):\n                    yield x\n            data = count(data)\n        total = fsum(data)\n        if not n:\n            raise StatisticsError('fmean requires at least one data point')\n        return total / n\n    if not isinstance(weights, (list, tuple)):\n        weights = list(weights)\n    try:\n        num = sumprod(data, weights)\n    except ValueError:\n        raise StatisticsError('data and weights must be the same length')\n    den = fsum(weights)\n    if not den:\n        raise StatisticsError('sum of weights must be non-zero')\n    return num / den\n",
+    "full_name": "statistics.fmean"
+  },
+  {
+    "name": "fsum",
+    "module": "statistics",
+    "signature": "(seq, /)",
+    "doc": "Return an accurate floating-point sum of values in the iterable seq.",
+    "source": null,
+    "input_text": "Return an accurate floating-point sum of values in the iterable seq.",
+    "full_name": "statistics.fsum"
+  },
+  {
+    "name": "geometric_mean",
+    "module": "statistics",
+    "signature": "(data)",
+    "doc": "Convert data to floats and compute the geometric mean.",
+    "source": "def geometric_mean(data):\n    \"\"\"Convert data to floats and compute the geometric mean.\n\n    Raises a StatisticsError if the input dataset is empty\n    or if it contains a negative value.\n\n    Returns zero if the product of inputs is zero.\n\n    No special efforts are made to achieve exact results.\n    (However, this may change in the future.)\n\n    >>> round(geometric_mean([54, 24, 36]), 9)\n    36.0\n    \"\"\"\n    n = 0\n    found_zero = False\n    def count_positive(iterable):\n        nonlocal n, found_zero\n        for n, x in enumerate(iterable, start=1):\n            if x > 0.0 or math.isnan(x):\n                yield x\n            elif x == 0.0:\n                found_zero = True\n            else:\n                raise StatisticsError('No negative inputs allowed', x)\n    total = fsum(map(log, count_positive(data)))\n    if not n:\n        raise StatisticsError('Must have a non-empty dataset')\n    if math.isnan(total):\n        return math.nan\n    if found_zero:\n        return math.nan if total == math.inf else 0.0\n    return exp(total / n)\n",
+    "input_text": "def geometric_mean(data):\n    \"\"\"Convert data to floats and compute the geometric mean.\n\n    Raises a StatisticsError if the input dataset is empty\n    or if it contains a negative value.\n\n    Returns zero if the product of inputs is zero.\n\n    No special efforts are made to achieve exact results.\n    (However, this may change in the future.)\n\n    >>> round(geometric_mean([54, 24, 36]), 9)\n    36.0\n    \"\"\"\n    n = 0\n    found_zero = False\n    def count_positive(iterable):\n        nonlocal n, found_zero\n        for n, x in enumerate(iterable, start=1):\n            if x > 0.0 or math.isnan(x):\n                yield x\n            elif x == 0.0:\n                found_zero = True\n            else:\n                raise StatisticsError('No negative inputs allowed', x)\n    total = fsum(map(log, count_positive(data)))\n    if not n:\n        raise StatisticsError('Must have a non-empty dataset')\n    if math.isnan(total):\n        return math.nan\n    if found_zero:\n        return math.nan if total == math.inf else 0.0\n    return exp(total / n)\n",
+    "full_name": "statistics.geometric_mean"
+  },
+  {
+    "name": "harmonic_mean",
+    "module": "statistics",
+    "signature": "(data, weights=None)",
+    "doc": "Return the harmonic mean of data.",
+    "source": "def harmonic_mean(data, weights=None):\n    \"\"\"Return the harmonic mean of data.\n\n    The harmonic mean is the reciprocal of the arithmetic mean of the\n    reciprocals of the data.  It can be used for averaging ratios or\n    rates, for example speeds.\n\n    Suppose a car travels 40 km/hr for 5 km and then speeds-up to\n    60 km/hr for another 5 km. What is the average speed?\n\n        >>> harmonic_mean([40, 60])\n        48.0\n\n    Suppose a car travels 40 km/hr for 5 km, and when traffic clears,\n    speeds-up to 60 km/hr for the remaining 30 km of the journey. What\n    is the average speed?\n\n        >>> harmonic_mean([40, 60], weights=[5, 30])\n        56.0\n\n    If ``data`` is empty, or any element is less than zero,\n    ``harmonic_mean`` will raise ``StatisticsError``.\n    \"\"\"\n    if iter(data) is data:\n        data = list(data)\n    errmsg = 'harmonic mean does not support negative values'\n    n = len(data)\n    if n < 1:\n        raise StatisticsError('harmonic_mean requires at least one data point')\n    elif n == 1 and weights is None:\n        x = data[0]\n        if isinstance(x, (numbers.Real, Decimal)):\n            if x < 0:\n                raise StatisticsError(errmsg)\n            return x\n        else:\n            raise TypeError('unsupported type')\n    if weights is None:\n        weights = repeat(1, n)\n        sum_weights = n\n    else:\n        if iter(weights) is weights:\n            weights = list(weights)\n        if len(weights) != n:\n            raise StatisticsError('Number of weights does not match data size')\n        _, sum_weights, _ = _sum(w for w in _fail_neg(weights, errmsg))\n    try:\n        data = _fail_neg(data, errmsg)\n        T, total, count = _sum(w / x if w else 0 for w, x in zip(weights, data))\n    except ZeroDivisionError:\n        return 0\n    if total <= 0:\n        raise StatisticsError('Weighted sum must be positive')\n    return _convert(sum_weights / total, T)\n",
+    "input_text": "def harmonic_mean(data, weights=None):\n    \"\"\"Return the harmonic mean of data.\n\n    The harmonic mean is the reciprocal of the arithmetic mean of the\n    reciprocals of the data.  It can be used for averaging ratios or\n    rates, for example speeds.\n\n    Suppose a car travels 40 km/hr for 5 km and then speeds-up to\n    60 km/hr for another 5 km. What is the average speed?\n\n        >>> harmonic_mean([40, 60])\n        48.0\n\n    Suppose a car travels 40 km/hr for 5 km, and when traffic clears,\n    speeds-up to 60 km/hr for the remaining 30 km of the journey. What\n    is the average speed?\n\n        >>> harmonic_mean([40, 60], weights=[5, 30])\n        56.0\n\n    If ``data`` is empty, or any element is less than zero,\n    ``harmonic_mean`` will raise ``StatisticsError``.\n    \"\"\"\n    if iter(data) is data:\n        data = list(data)\n    errmsg = 'harmonic mean does not support negative values'\n    n = len(data)\n    if n < 1:\n        raise StatisticsError('harmonic_mean requires at least one data point')\n    elif n == 1 and weights is None:\n        x = data[0]\n        if isinstance(x, (numbers.Real, Decimal)):\n            if x < 0:\n                raise StatisticsError(errmsg)\n            return x\n        else:\n            raise TypeError('unsupported type')\n    if weights is None:\n        weights = repeat(1, n)\n        sum_weights = n\n    else:\n        if iter(weights) is weights:\n            weights = list(weights)\n        if len(weights) != n:\n            raise StatisticsError('Number of weights does not match data size')\n        _, sum_weights, _ = _sum(w for w in _fail_neg(weights, errmsg))\n    try:\n        data = _fail_neg(data, errmsg)\n        T, total, count = _sum(w / x if w else 0 for w, x in zip(weights, data))\n    except ZeroDivisionError:\n        return 0\n    if total <= 0:\n        raise StatisticsError('Weighted sum must be positive')\n    return _convert(sum_weights / total, T)\n",
+    "full_name": "statistics.harmonic_mean"
+  },
+  {
+    "name": "hypot",
+    "module": "statistics",
+    "signature": "()",
+    "doc": "hypot(*coordinates) -> value",
+    "source": null,
+    "input_text": "hypot(*coordinates) -> value",
+    "full_name": "statistics.hypot"
+  },
+  {
+    "name": "isfinite",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return True if x is neither an infinity nor a NaN, and False otherwise.",
+    "source": null,
+    "input_text": "Return True if x is neither an infinity nor a NaN, and False otherwise.",
+    "full_name": "statistics.isfinite"
+  },
+  {
+    "name": "isinf",
+    "module": "statistics",
+    "signature": "(x, /)",
+    "doc": "Return True if x is a positive or negative infinity, and False otherwise.",
+    "source": null,
+    "input_text": "Return True if x is a positive or negative infinity, and False otherwise.",
+    "full_name": "statistics.isinf"
+  },
+  {
+    "name": "kde",
+    "module": "statistics",
+    "signature": "(data, h, kernel='normal', *, cumulative=False)",
+    "doc": "Kernel Density Estimation:  Create a continuous probability density",
+    "source": "def kde(data, h, kernel='normal', *, cumulative=False):\n    \"\"\"Kernel Density Estimation:  Create a continuous probability density\n    function or cumulative distribution function from discrete samples.\n\n    The basic idea is to smooth the data using a kernel function\n    to help draw inferences about a population from a sample.\n\n    The degree of smoothing is controlled by the scaling parameter h\n    which is called the bandwidth.  Smaller values emphasize local\n    features while larger values give smoother results.\n\n    The kernel determines the relative weights of the sample data\n    points.  Generally, the choice of kernel shape does not matter\n    as much as the more influential bandwidth smoothing parameter.\n\n    Kernels that give some weight to every sample point:\n\n       normal (gauss)\n       logistic\n       sigmoid\n\n    Kernels that only give weight to sample points within\n    the bandwidth:\n\n       rectangular (uniform)\n       triangular\n       parabolic (epanechnikov)\n       quartic (biweight)\n       triweight\n       cosine\n\n    If *cumulative* is true, will return a cumulative distribution function.\n\n    A StatisticsError will be raised if the data sequence is empty.\n\n    Example\n    -------\n\n    Given a sample of six data points, construct a continuous\n    function that estimates the underlying probability density:\n\n        >>> sample = [-2.1, -1.3, -0.4, 1.9, 5.1, 6.2]\n        >>> f_hat = kde(sample, h=1.5)\n\n    Compute the area under the curve:\n\n        >>> area = sum(f_hat(x) for x in range(-20, 20))\n        >>> round(area, 4)\n        1.0\n\n    Plot the estimated probability density function at\n    evenly spaced points from -6 to 10:\n\n        >>> for x in range(-6, 11):\n        ...     density = f_hat(x)\n        ...     plot = ' ' * int(density * 400) + 'x'\n        ...     print(f'{x:2}: {density:.3f} {plot}')\n        ...\n        -6: 0.002 x\n        -5: 0.009    x\n        -4: 0.031             x\n        -3: 0.070                             x\n        -2: 0.111                                             x\n        -1: 0.125                                                   x\n         0: 0.110                                            x\n         1: 0.086                                   x\n         2: 0.068                            x\n         3: 0.059                        x\n         4: 0.066                           x\n         5: 0.082                                 x\n         6: 0.082                                 x\n         7: 0.058                        x\n         8: 0.028            x\n         9: 0.009    x\n        10: 0.002 x\n\n    Estimate P(4.5 < X <= 7.5), the probability that a new sample value\n    will be between 4.5 and 7.5:\n\n        >>> cdf = kde(sample, h=1.5, cumulative=True)\n        >>> round(cdf(7.5) - cdf(4.5), 2)\n        0.22\n\n    References\n    ----------\n\n    Kernel density estimation and its application:\n    https://www.itm-conferences.org/articles/itmconf/pdf/2018/08/itmconf_sam2018_00037.pdf\n\n    Kernel functions in common use:\n    https://en.wikipedia.org/wiki/Kernel_(statistics)#kernel_functions_in_common_use\n\n    Interactive graphical demonstration and exploration:\n    https://demonstrations.wolfram.com/KernelDensityEstimation/\n\n    Kernel estimation of cumulative distribution function of a random variable with bounded support\n    https://www.econstor.eu/bitstream/10419/207829/1/10.21307_stattrans-2016-037.pdf\n\n    \"\"\"\n\n    n = len(data)\n    if not n:\n        raise StatisticsError('Empty data sequence')\n\n    if not isinstance(data[0], (int, float)):\n        raise TypeError('Data sequence must contain ints or floats')\n\n    if h <= 0.0:\n        raise StatisticsError(f'Bandwidth h must be positive, not {h=!r}')\n\n    match kernel:\n\n        case 'normal' | 'gauss':\n            sqrt2pi = sqrt(2 * pi)\n            sqrt2 = sqrt(2)\n            K = lambda t: exp(-1/2 * t * t) / sqrt2pi\n            W = lambda t: 1/2 * (1.0 + erf(t / sqrt2))\n            support = None\n\n        case 'logistic':\n            # 1.0 / (exp(t) + 2.0 + exp(-t))\n            K = lambda t: 1/2 / (1.0 + cosh(t))\n            W = lambda t: 1.0 - 1.0 / (exp(t) + 1.0)\n            support = None\n\n        case 'sigmoid':\n            # (2/pi) / (exp(t) + exp(-t))\n            c1 = 1 / pi\n            c2 = 2 / pi\n            K = lambda t: c1 / cosh(t)\n            W = lambda t: c2 * atan(exp(t))\n            support = None\n\n        case 'rectangular' | 'uniform':\n            K = lambda t: 1/2\n            W = lambda t: 1/2 * t + 1/2\n            support = 1.0\n\n        case 'triangular':\n            K = lambda t: 1.0 - abs(t)\n            W = lambda t: t*t * (1/2 if t < 0.0 else -1/2) + t + 1/2\n            support = 1.0\n\n        case 'parabolic' | 'epanechnikov':\n            K = lambda t: 3/4 * (1.0 - t * t)\n            W = lambda t: -1/4 * t**3 + 3/4 * t + 1/2\n            support = 1.0\n\n        case 'quartic' | 'biweight':\n            K = lambda t: 15/16 * (1.0 - t * t) ** 2\n            W = lambda t: 3/16 * t**5 - 5/8 * t**3 + 15/16 * t + 1/2\n            support = 1.0\n\n        case 'triweight':\n            K = lambda t: 35/32 * (1.0 - t * t) ** 3\n            W = lambda t: 35/32 * (-1/7*t**7 + 3/5*t**5 - t**3 + t) + 1/2\n            support = 1.0\n\n        case 'cosine':\n            c1 = pi / 4\n            c2 = pi / 2\n            K = lambda t: c1 * cos(c2 * t)\n            W = lambda t: 1/2 * sin(c2 * t) + 1/2\n            support = 1.0\n\n        case _:\n            raise StatisticsError(f'Unknown kernel name: {kernel!r}')\n\n    if support is None:\n\n        def pdf(x):\n            n = len(data)\n            return sum(K((x - x_i) / h) for x_i in data) / (n * h)\n\n        def cdf(x):\n            n = len(data)\n            return sum(W((x - x_i) / h) for x_i in data) / n\n\n    else:\n\n        sample = sorted(data)\n        bandwidth = h * support\n\n        def pdf(x):\n            nonlocal n, sample\n            if len(data) != n:\n                sample = sorted(data)\n                n = len(data)\n            i = bisect_left(sample, x - bandwidth)\n            j = bisect_right(sample, x + bandwidth)\n            supported = sample[i : j]\n            return sum(K((x - x_i) / h) for x_i in supported) / (n * h)\n\n        def cdf(x):\n            nonlocal n, sample\n            if len(data) != n:\n                sample = sorted(data)\n                n = len(data)\n            i = bisect_left(sample, x - bandwidth)\n            j = bisect_right(sample, x + bandwidth)\n            supported = sample[i : j]\n            return sum((W((x - x_i) / h) for x_i in supported), i) / n\n\n    if cumulative:\n        cdf.__doc__ = f'CDF estimate with {h=!r} and {kernel=!r}'\n        return cdf\n\n    else:\n        pdf.__doc__ = f'PDF estimate with {h=!r} and {kernel=!r}'\n        return pdf\n",
+    "input_text": "def kde(data, h, kernel='normal', *, cumulative=False):\n    \"\"\"Kernel Density Estimation:  Create a continuous probability density\n    function or cumulative distribution function from discrete samples.\n\n    The basic idea is to smooth the data using a kernel function\n    to help draw inferences about a population from a sample.\n\n    The degree of smoothing is controlled by the scaling parameter h\n    which is called the bandwidth.  Smaller values emphasize local\n    features while larger values give smoother results.\n\n    The kernel determines the relative weights of the sample data\n    points.  Generally, the choice of kernel shape does not matter\n    as much as the more influential bandwidth smoothing parameter.\n\n    Kernels that give some weight to every sample point:\n\n       normal (gauss)\n       logistic\n       sigmoid\n\n    Kernels that only give weight to sample points within\n    the bandwidth:\n\n       rectangular (uniform)\n       triangular\n       parabolic (epanechnikov)\n       quartic (biweight)\n       triweight\n       cosine\n\n    If *cumulative* is true, will return a cumulative distribution function.\n\n    A StatisticsError will be raised if the data sequence is empty.\n\n    Example\n    -------\n\n    Given a sample of six data points, construct a continuous\n    function that estimates the underlying probability density:\n\n        >>> sample = [-2.1, -1.3, -0.4, 1.9, 5.1, 6.2]\n        >>> f_hat = kde(sample, h=1.5)\n\n    Compute the area under the curve:\n\n        >>> area = sum(f_hat(x) for x in range(-20, 20))\n        >>> round(area, 4)\n        1.0\n\n    Plot the estimated probability density function at\n    evenly spaced points from -6 to 10:\n\n        >>> for x in range(-6, 11):\n        ...     density = f_hat(x)\n        ...     plot = ' ' * int(density * 400) + 'x'\n        ...     print(f'{x:2}: {density:.3f} {plot}')\n        ...\n        -6: 0.002 x\n        -5: 0.009    x\n        -4: 0.031             x\n        -3: 0.070                             x\n        -2: 0.111                                             x\n        -1: 0.125                                                   x\n         0: 0.110                                            x\n         1: 0.086                                   x\n         2: 0.068                            x\n         3: 0.059                        x\n         4: 0.066                           x\n         5: 0.082                                 x\n         6: 0.082                                 x\n         7: 0.058                        x\n         8: 0.028            x\n         9: 0.009    x\n        10: 0.002 x\n\n    Estimate P(4.5 < X <= 7.5), the probability that a new sample value\n    will be between 4.5 and 7.5:\n\n        >>> cdf = kde(sample, h=1.5, cumulative=True)\n        >>> round(cdf(7.5) - cdf(4.5), 2)\n        0.22\n\n    References\n    ----------\n\n    Kernel density estimation and its application:\n    https://www.itm-conferences.org/articles/itmconf/pdf/2018/08/itmconf_sam2018_00037.pdf\n\n    Kernel functions in common use:\n    https://en.wikipedia.org/wiki/Kernel_(statistics)#kernel_functions_in_common_use\n\n    Interactive graphical demonstration and exploration:\n    https://demonstrations.wolfram.com/KernelDensityEstimation/\n\n    Kernel estimation of cumulative distribution function of a random variable with bounded support\n    https://www.econstor.eu/bitstream/10419/207829/1/10.21307_stattrans-2016-037.pdf\n\n    \"\"\"\n\n    n = len(data)\n    if not n:\n        raise StatisticsError('Empty data sequence')\n\n    if not isinstance(data[0], (int, float)):\n        raise TypeError('Data sequence must contain ints or floats')\n\n    if h <= 0.0:\n        raise StatisticsError(f'Bandwidth h must be positive, not {h=!r}')\n\n    match kernel:\n\n        case 'normal' | 'gauss':\n            sqrt2pi = sqrt(2 * pi)\n            sqrt2 = sqrt(2)\n            K = lambda t: exp(-1/2 * t * t) / sqrt2pi\n            W = lambda t: 1/2 * (1.0 + erf(t / sqrt2))\n            support = None\n\n        case 'logistic':\n            # 1.0 / (exp(t) + 2.0 + exp(-t))\n            K = lambda t: 1/2 / (1.0 + cosh(t))\n            W = lambda t: 1.0 - 1.0 / (exp(t) + 1.0)\n            support = None\n\n        case 'sigmoid':\n            # (2/pi) / (exp(t) + exp(-t))\n            c1 = 1 / pi\n            c2 = 2 / pi\n            K = lambda t: c1 / cosh(t)\n            W = lambda t: c2 * atan(exp(t))\n            support = None\n\n        case 'rectangular' | 'uniform':\n            K = lambda t: 1/2\n            W = lambda t: 1/2 * t + 1/2\n            support = 1.0\n\n        case 'triangular':\n            K = lambda t: 1.0 - abs(t)\n            W = lambda t: t*t * (1/2 if t < 0.0 else -1/2) + t + 1/2\n            support = 1.0\n\n        case 'parabolic' | 'epanechnikov':\n            K = lambda t: 3/4 * (1.0 - t * t)\n            W = lambda t: -1/4 * t**3 + 3/4 * t + 1/2\n            support = 1.0\n\n        case 'quartic' | 'biweight':\n            K = lambda t: 15/16 * (1.0 - t * t) ** 2\n            W = lambda t: 3/16 * t**5 - 5/8 * t**3 + 15/16 * t + 1/2\n            support = 1.0\n\n        case 'triweight':\n            K = lambda t: 35/32 * (1.0 - t * t) ** 3\n            W = lambda t: 35/32 * (-1/7*t**7 + 3/5*t**5 - t**3 + t) + 1/2\n            support = 1.0\n\n        case 'cosine':\n            c1 = pi / 4\n            c2 = pi / 2\n            K = lambda t: c1 * cos(c2 * t)\n            W = lambda t: 1/2 * sin(c2 * t) + 1/2\n            support = 1.0\n\n        case _:\n            raise StatisticsError(f'Unknown kernel name: {kernel!r}')\n\n    if support is None:\n\n        def pdf(x):\n            n = len(data)\n            return sum(K((x - x_i) / h) for x_i in data) / (n * h)\n\n        def cdf(x):\n            n = len(data)\n            return sum(W((x - x_i) / h) for x_i in data) / n\n\n    else:\n\n        sample = sorted(data)\n        bandwidth = h * support\n\n        def pdf(x):\n            nonlocal n, sample\n            if len(data) != n:\n                sample = sorted(data)\n                n = len(data)\n            i = bisect_left(sample, x - bandwidth)\n            j = bisect_right(sample, x + bandwidth)\n            supported = sample[i : j]\n            return sum(K((x - x_i) / h) for x_i in supported) / (n * h)\n\n        def cdf(x):\n            nonlocal n, sample\n            if len(data) != n:\n                sample = sorted(data)\n                n = len(data)\n            i = bisect_left(sample, x - bandwidth)\n            j = bisect_right(sample, x + bandwidth)\n            supported = sample[i : j]\n            return sum((W((x - x_i) / h) for x_i in supported), i) / n\n\n    if cumulative:\n        cdf.__doc__ = f'CDF estimate with {h=!r} and {kernel=!r}'\n        return cdf\n\n    else:\n        pdf.__doc__ = f'PDF estimate with {h=!r} and {kernel=!r}'\n        return pdf\n",
+    "full_name": "statistics.kde"
   },
   {
     "name": "cache",
@@ -360,6 +630,15 @@
     "full_name": "functools.update_wrapper"
   },
   {
+    "name": "wraps",
+    "module": "functools",
+    "signature": "(wrapped, assigned=('__module__', '__name__', '__qualname__', '__doc__', '__annotations__', '__type_params__'), updated=('__dict__',))",
+    "doc": "Decorator factory to apply update_wrapper() to a wrapper function",
+    "source": "def wraps(wrapped,\n          assigned = WRAPPER_ASSIGNMENTS,\n          updated = WRAPPER_UPDATES):\n    \"\"\"Decorator factory to apply update_wrapper() to a wrapper function\n\n       Returns a decorator that invokes update_wrapper() with the decorated\n       function as the wrapper argument and the arguments to wraps() as the\n       remaining arguments. Default arguments are as for update_wrapper().\n       This is a convenience function to simplify applying partial() to\n       update_wrapper().\n    \"\"\"\n    return partial(update_wrapper, wrapped=wrapped,\n                   assigned=assigned, updated=updated)\n",
+    "input_text": "def wraps(wrapped,\n          assigned = WRAPPER_ASSIGNMENTS,\n          updated = WRAPPER_UPDATES):\n    \"\"\"Decorator factory to apply update_wrapper() to a wrapper function\n\n       Returns a decorator that invokes update_wrapper() with the decorated\n       function as the wrapper argument and the arguments to wraps() as the\n       remaining arguments. Default arguments are as for update_wrapper().\n       This is a convenience function to simplify applying partial() to\n       update_wrapper().\n    \"\"\"\n    return partial(update_wrapper, wrapped=wrapped,\n                   assigned=assigned, updated=updated)\n",
+    "full_name": "functools.wraps"
+  },
+  {
     "name": "abs",
     "module": "operator",
     "signature": "(a, /)",
@@ -448,6 +727,96 @@
     "source": null,
     "input_text": "Same as a // b.",
     "full_name": "operator.floordiv"
+  },
+  {
+    "name": "ge",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a >= b.",
+    "source": null,
+    "input_text": "Same as a >= b.",
+    "full_name": "operator.ge"
+  },
+  {
+    "name": "getitem",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a[b].",
+    "source": null,
+    "input_text": "Same as a[b].",
+    "full_name": "operator.getitem"
+  },
+  {
+    "name": "gt",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a > b.",
+    "source": null,
+    "input_text": "Same as a > b.",
+    "full_name": "operator.gt"
+  },
+  {
+    "name": "iadd",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a += b.",
+    "source": null,
+    "input_text": "Same as a += b.",
+    "full_name": "operator.iadd"
+  },
+  {
+    "name": "iand",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a &= b.",
+    "source": null,
+    "input_text": "Same as a &= b.",
+    "full_name": "operator.iand"
+  },
+  {
+    "name": "iconcat",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a += b, for a and b sequences.",
+    "source": null,
+    "input_text": "Same as a += b, for a and b sequences.",
+    "full_name": "operator.iconcat"
+  },
+  {
+    "name": "ifloordiv",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a //= b.",
+    "source": null,
+    "input_text": "Same as a //= b.",
+    "full_name": "operator.ifloordiv"
+  },
+  {
+    "name": "ilshift",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a <<= b.",
+    "source": null,
+    "input_text": "Same as a <<= b.",
+    "full_name": "operator.ilshift"
+  },
+  {
+    "name": "imatmul",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a @= b.",
+    "source": null,
+    "input_text": "Same as a @= b.",
+    "full_name": "operator.imatmul"
+  },
+  {
+    "name": "imod",
+    "module": "operator",
+    "signature": "(a, b, /)",
+    "doc": "Same as a %= b.",
+    "source": null,
+    "input_text": "Same as a %= b.",
+    "full_name": "operator.imod"
   },
   {
     "name": "getrandbits",

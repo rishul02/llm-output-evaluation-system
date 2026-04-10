@@ -1,0 +1,203 @@
+{
+  "function": "operator.ifloordiv",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a mutable object supporting floor division\",\n    \"b must be a number\"\n  ],\n  \"postconditions\": [\n    \"a is modified to be the largest possible integer less than or equal to a / b\",\n    \"the result of a //= b is returned\"\n  ],\n  \"edge_cases\": [\n    \"division by zero\",\n    \"a is not mutable\",\n    \"b is not a number\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be a non-zero integer\",\n    \"b must not be zero\"\n  ],\n  \"postconditions\": [\n    \"a is an integer\",\n    \"a is equal to the integer division of a by b\"\n  ],\n  \"edge_cases\": [\n    \"if b is zero, a is unchanged\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be a non-zero integer\",\n    \"b must not be zero\"\n  ],\n  \"postconditions\": [\n    \"a is an integer\",\n    \"a is equal to the integer division of a by b\"\n  ],\n  \"edge_cases\": [\n    \"if b is zero, a is unchanged\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a mutable object supporting floor division",
+        "b must be a number"
+      ],
+      "postconditions": [
+        "a is modified to be the largest possible integer less than or equal to a / b",
+        "the result of a //= b is returned"
+      ],
+      "edge_cases": [
+        "division by zero",
+        "a is not mutable",
+        "b is not a number"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be a non-zero integer",
+        "b must not be zero"
+      ],
+      "postconditions": [
+        "a is an integer",
+        "a is equal to the integer division of a by b"
+      ],
+      "edge_cases": [
+        "if b is zero, a is unchanged"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be a non-zero integer",
+        "b must not be zero"
+      ],
+      "postconditions": [
+        "a is an integer",
+        "a is equal to the integer division of a by b"
+      ],
+      "edge_cases": [
+        "if b is zero, a is unchanged"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object supporting floor division",
+          "b must be a number"
+        ],
+        "hf_only": [
+          "a must be an integer",
+          "b must be a non-zero integer",
+          "b must not be zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is modified to be the largest possible integer less than or equal to a / b",
+          "the result of a //= b is returned"
+        ],
+        "hf_only": [
+          "a is an integer",
+          "a is equal to the integer division of a by b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "division by zero",
+          "a is not mutable",
+          "b is not a number"
+        ],
+        "hf_only": [
+          "if b is zero, a is unchanged"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object supporting floor division",
+          "b must be a number"
+        ],
+        "hf_only": [
+          "a must be an integer",
+          "b must be a non-zero integer",
+          "b must not be zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is modified to be the largest possible integer less than or equal to a / b",
+          "the result of a //= b is returned"
+        ],
+        "hf_only": [
+          "a is an integer",
+          "a is equal to the integer division of a by b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "division by zero",
+          "a is not mutable",
+          "b is not a number"
+        ],
+        "hf_only": [
+          "if b is zero, a is unchanged"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be an integer",
+            "hf": "a must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a non-zero integer",
+            "hf": "b must be a non-zero integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must not be zero",
+            "hf": "b must not be zero",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is an integer",
+            "hf": "a is an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "a is equal to the integer division of a by b",
+            "hf": "a is equal to the integer division of a by b",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if b is zero, a is unchanged",
+            "hf": "if b is zero, a is unchanged",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be an integer",
+      "b must be a non-zero integer",
+      "b must not be zero"
+    ],
+    "postconditions": [
+      "a is an integer",
+      "a is equal to the integer division of a by b"
+    ],
+    "edge_cases": [
+      "if b is zero, a is unchanged"
+    ]
+  }
+}

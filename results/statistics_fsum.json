@@ -1,0 +1,226 @@
+{
+  "function": "statistics.fsum",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"seq must be an iterable\",\n    \"all elements in seq must be numeric\"\n  ],\n  \"postconditions\": [\n    \"return value is the sum of all elements in seq as a float\",\n    \"return value is accurate and minimizes rounding errors\"\n  ],\n  \"edge_cases\": [\n    \"seq is an empty iterable\",\n    \"seq contains a single element\",\n    \"seq contains very large or very small numbers\",\n    \"seq contains a mix of integers and floats\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"seq must be an iterable\",\n    \"all items in seq must be plain strings\",\n    \"seq must not be empty\"\n  ],\n  \"postconditions\": [\n    \"the result is a valid floating-point number\",\n    \"the result is the accurate sum of values in seq\"\n  ],\n  \"edge_cases\": [\n    \"if seq is an empty string, return 0.0\",\n    \"if seq contains only NaN values, return NaN\",\n    \"if seq contains only infinity values, return infinity\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"seq must be an iterable\",\n    \"all items in seq must be plain strings\",\n    \"seq must not be empty\"\n  ],\n  \"postconditions\": [\n    \"the result is a valid floating-point number\",\n    \"the result is an accurate sum of values in seq\"\n  ],\n  \"edge_cases\": [\n    \"if seq is an empty string, return 0.0\",\n    \"if seq contains only NaN or infinity values, return NaN or infinity respectively\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "seq must be an iterable",
+        "all elements in seq must be numeric"
+      ],
+      "postconditions": [
+        "return value is the sum of all elements in seq as a float",
+        "return value is accurate and minimizes rounding errors"
+      ],
+      "edge_cases": [
+        "seq is an empty iterable",
+        "seq contains a single element",
+        "seq contains very large or very small numbers",
+        "seq contains a mix of integers and floats"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "seq must be an iterable",
+        "all items in seq must be plain strings",
+        "seq must not be empty"
+      ],
+      "postconditions": [
+        "the result is a valid floating-point number",
+        "the result is the accurate sum of values in seq"
+      ],
+      "edge_cases": [
+        "if seq is an empty string, return 0.0",
+        "if seq contains only NaN values, return NaN",
+        "if seq contains only infinity values, return infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "seq must be an iterable",
+        "all items in seq must be plain strings",
+        "seq must not be empty"
+      ],
+      "postconditions": [
+        "the result is a valid floating-point number",
+        "the result is an accurate sum of values in seq"
+      ],
+      "edge_cases": [
+        "if seq is an empty string, return 0.0",
+        "if seq contains only NaN or infinity values, return NaN or infinity respectively"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "seq must be an iterable",
+            "hf": "seq must be an iterable",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "all elements in seq must be numeric"
+        ],
+        "hf_only": [
+          "all items in seq must be plain strings",
+          "seq must not be empty"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the sum of all elements in seq as a float",
+          "return value is accurate and minimizes rounding errors"
+        ],
+        "hf_only": [
+          "the result is a valid floating-point number",
+          "the result is an accurate sum of values in seq"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "seq is an empty iterable",
+          "seq contains a single element",
+          "seq contains very large or very small numbers",
+          "seq contains a mix of integers and floats"
+        ],
+        "hf_only": [
+          "if seq is an empty string, return 0.0",
+          "if seq contains only NaN or infinity values, return NaN or infinity respectively"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.08
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "seq must be an iterable",
+            "hf": "seq must be an iterable",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "all elements in seq must be numeric"
+        ],
+        "hf_only": [
+          "all items in seq must be plain strings",
+          "seq must not be empty"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the sum of all elements in seq as a float",
+          "return value is accurate and minimizes rounding errors"
+        ],
+        "hf_only": [
+          "the result is a valid floating-point number",
+          "the result is the accurate sum of values in seq"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "seq is an empty iterable",
+          "seq contains a single element",
+          "seq contains very large or very small numbers",
+          "seq contains a mix of integers and floats"
+        ],
+        "hf_only": [
+          "if seq is an empty string, return 0.0",
+          "if seq contains only NaN values, return NaN",
+          "if seq contains only infinity values, return infinity"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.08
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "seq must be an iterable",
+            "hf": "seq must be an iterable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "all items in seq must be plain strings",
+            "hf": "all items in seq must be plain strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "seq must not be empty",
+            "hf": "seq must not be empty",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is a valid floating-point number",
+            "hf": "the result is a valid floating-point number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the result is an accurate sum of values in seq",
+            "hf": "the result is the accurate sum of values in seq",
+            "similarity": 0.994
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if seq is an empty string, return 0.0",
+            "hf": "if seq is an empty string, return 0.0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if seq contains only NaN or infinity values, return NaN or infinity respectively",
+            "hf": "if seq contains only NaN values, return NaN",
+            "similarity": 0.895
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "if seq contains only infinity values, return infinity"
+        ],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.89
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "seq must be an iterable",
+      "all items in seq must be plain strings",
+      "seq must not be empty"
+    ],
+    "postconditions": [
+      "the result is a valid floating-point number"
+    ],
+    "edge_cases": [
+      "if seq is an empty string, return 0.0"
+    ]
+  }
+}

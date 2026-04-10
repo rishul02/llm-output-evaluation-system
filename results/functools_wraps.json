@@ -1,0 +1,229 @@
+{
+  "function": "functools.wraps",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"wrapped must be a callable\",\n    \"assigned must be a tuple of strings\",\n    \"updated must be a tuple of strings\"\n  ],\n  \"postconditions\": [\n    \"the wrapper function has the same metadata as the wrapped function\",\n    \"the wrapper function has the same dictionary as the wrapped function\",\n    \"the wrapper function calls the wrapped function\"\n  ],\n  \"edge_cases\": [\n    \"wrapped is None\",\n    \"assigned or updated contains non-string values\",\n    \"wrapped is not callable\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"wrapped must be a callable\",\n    \"assigned must be a tuple of strings\",\n    \"updated must be a tuple of strings\"\n  ],\n  \"postconditions\": [\n    \"returns a decorator factory\",\n    \"the returned decorator factory applies update_wrapper() to a wrapper function\"\n  ],\n  \"edge_cases\": [\n    \"if assigned is empty, returns a decorator factory that does not update any attributes\",\n    \"if updated is empty, returns a decorator factory that does not update any attributes\",\n    \"if both assigned and updated are empty, returns a decorator factory that does not update any attributes\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"wrapped must be a callable\",\n    \"assigned must be a tuple of strings\",\n    \"updated must be a tuple of strings\"\n  ],\n  \"postconditions\": [\n    \"returns a decorator factory\",\n    \"the returned decorator factory applies update_wrapper() to the wrapper function\"\n  ],\n  \"edge_cases\": [\n    \"if assigned is empty, it defaults to ('__module__', '__name__', '__qualname__', '__doc__', '__annotations__', '__type_params__')\",\n    \"if updated is empty, it defaults to ('__dict__',)\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "wrapped must be a callable",
+        "assigned must be a tuple of strings",
+        "updated must be a tuple of strings"
+      ],
+      "postconditions": [
+        "the wrapper function has the same metadata as the wrapped function",
+        "the wrapper function has the same dictionary as the wrapped function",
+        "the wrapper function calls the wrapped function"
+      ],
+      "edge_cases": [
+        "wrapped is None",
+        "assigned or updated contains non-string values",
+        "wrapped is not callable"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "wrapped must be a callable",
+        "assigned must be a tuple of strings",
+        "updated must be a tuple of strings"
+      ],
+      "postconditions": [
+        "returns a decorator factory",
+        "the returned decorator factory applies update_wrapper() to a wrapper function"
+      ],
+      "edge_cases": [
+        "if assigned is empty, returns a decorator factory that does not update any attributes",
+        "if updated is empty, returns a decorator factory that does not update any attributes",
+        "if both assigned and updated are empty, returns a decorator factory that does not update any attributes"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "wrapped must be a callable",
+        "assigned must be a tuple of strings",
+        "updated must be a tuple of strings"
+      ],
+      "postconditions": [
+        "returns a decorator factory",
+        "the returned decorator factory applies update_wrapper() to the wrapper function"
+      ],
+      "edge_cases": [
+        "if assigned is empty, it defaults to ('__module__', '__name__', '__qualname__', '__doc__', '__annotations__', '__type_params__')",
+        "if updated is empty, it defaults to ('__dict__',)"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "wrapped must be a callable",
+            "hf": "wrapped must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "assigned must be a tuple of strings",
+            "hf": "assigned must be a tuple of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "updated must be a tuple of strings",
+            "hf": "updated must be a tuple of strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the wrapper function has the same metadata as the wrapped function",
+          "the wrapper function has the same dictionary as the wrapped function",
+          "the wrapper function calls the wrapped function"
+        ],
+        "hf_only": [
+          "returns a decorator factory",
+          "the returned decorator factory applies update_wrapper() to the wrapper function"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "wrapped is None",
+          "assigned or updated contains non-string values",
+          "wrapped is not callable"
+        ],
+        "hf_only": [
+          "if assigned is empty, it defaults to ('__module__', '__name__', '__qualname__', '__doc__', '__annotations__', '__type_params__')",
+          "if updated is empty, it defaults to ('__dict__',)"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "wrapped must be a callable",
+            "hf": "wrapped must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "assigned must be a tuple of strings",
+            "hf": "assigned must be a tuple of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "updated must be a tuple of strings",
+            "hf": "updated must be a tuple of strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the wrapper function has the same metadata as the wrapped function",
+          "the wrapper function has the same dictionary as the wrapped function",
+          "the wrapper function calls the wrapped function"
+        ],
+        "hf_only": [
+          "returns a decorator factory",
+          "the returned decorator factory applies update_wrapper() to a wrapper function"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "wrapped is None",
+          "assigned or updated contains non-string values",
+          "wrapped is not callable"
+        ],
+        "hf_only": [
+          "if assigned is empty, returns a decorator factory that does not update any attributes",
+          "if updated is empty, returns a decorator factory that does not update any attributes",
+          "if both assigned and updated are empty, returns a decorator factory that does not update any attributes"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "wrapped must be a callable",
+            "hf": "wrapped must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "assigned must be a tuple of strings",
+            "hf": "assigned must be a tuple of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "updated must be a tuple of strings",
+            "hf": "updated must be a tuple of strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a decorator factory",
+            "hf": "returns a decorator factory",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the returned decorator factory applies update_wrapper() to the wrapper function",
+            "hf": "the returned decorator factory applies update_wrapper() to a wrapper function",
+            "similarity": 0.998
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if assigned is empty, it defaults to ('__module__', '__name__', '__qualname__', '__doc__', '__annotations__', '__type_params__')",
+          "if updated is empty, it defaults to ('__dict__',)"
+        ],
+        "hf_only": [
+          "if assigned is empty, returns a decorator factory that does not update any attributes",
+          "if updated is empty, returns a decorator factory that does not update any attributes",
+          "if both assigned and updated are empty, returns a decorator factory that does not update any attributes"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "wrapped must be a callable",
+      "assigned must be a tuple of strings",
+      "updated must be a tuple of strings"
+    ],
+    "postconditions": [
+      "returns a decorator factory"
+    ],
+    "edge_cases": []
+  }
+}

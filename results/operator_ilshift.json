@@ -1,0 +1,218 @@
+{
+  "function": "operator.ilshift",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a mutable object supporting left shift assignment\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"a is modified in-place with the result of the left shift operation\",\n    \"the result of the left shift operation is returned\"\n  ],\n  \"edge_cases\": [\n    \"a is not a mutable object\",\n    \"b is not an integer\",\n    \"a is an object that does not support left shift assignment\",\n    \"b is a negative integer\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\",\n    \"a must be a number\",\n    \"b must be a number\"\n  ],\n  \"postconditions\": [\n    \"a is left-shifted by b bits\",\n    \"a is equal to a << b\"\n  ],\n  \"edge_cases\": [\n    \"if b is 0, a remains unchanged\",\n    \"if b is negative, the result is undefined\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\",\n    \"a must be a mutable sequence\",\n    \"b must be an integer or a number\"\n  ],\n  \"postconditions\": [\n    \"a will be left-shifted by b places\",\n    \"a will be modified in-place\"\n  ],\n  \"edge_cases\": [\n    \"if b is 0, a remains unchanged\",\n    \"if b is negative, a will be shifted to the right\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a mutable object supporting left shift assignment",
+        "b must be an integer"
+      ],
+      "postconditions": [
+        "a is modified in-place with the result of the left shift operation",
+        "the result of the left shift operation is returned"
+      ],
+      "edge_cases": [
+        "a is not a mutable object",
+        "b is not an integer",
+        "a is an object that does not support left shift assignment",
+        "b is a negative integer"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer",
+        "a must be a number",
+        "b must be a number"
+      ],
+      "postconditions": [
+        "a is left-shifted by b bits",
+        "a is equal to a << b"
+      ],
+      "edge_cases": [
+        "if b is 0, a remains unchanged",
+        "if b is negative, the result is undefined"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer",
+        "a must be a mutable sequence",
+        "b must be an integer or a number"
+      ],
+      "postconditions": [
+        "a will be left-shifted by b places",
+        "a will be modified in-place"
+      ],
+      "edge_cases": [
+        "if b is 0, a remains unchanged",
+        "if b is negative, a will be shifted to the right"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a mutable object supporting left shift assignment"
+        ],
+        "hf_only": [
+          "a must be an integer",
+          "a must be a mutable sequence",
+          "b must be an integer or a number"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is modified in-place with the result of the left shift operation",
+          "the result of the left shift operation is returned"
+        ],
+        "hf_only": [
+          "a will be left-shifted by b places",
+          "a will be modified in-place"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is not a mutable object",
+          "b is not an integer",
+          "a is an object that does not support left shift assignment",
+          "b is a negative integer"
+        ],
+        "hf_only": [
+          "if b is 0, a remains unchanged",
+          "if b is negative, a will be shifted to the right"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.07
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a mutable object supporting left shift assignment"
+        ],
+        "hf_only": [
+          "a must be an integer",
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is modified in-place with the result of the left shift operation",
+          "the result of the left shift operation is returned"
+        ],
+        "hf_only": [
+          "a is left-shifted by b bits",
+          "a is equal to a << b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is not a mutable object",
+          "b is not an integer",
+          "a is an object that does not support left shift assignment",
+          "b is a negative integer"
+        ],
+        "hf_only": [
+          "if b is 0, a remains unchanged",
+          "if b is negative, the result is undefined"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.07
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be an integer",
+            "hf": "a must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be a mutable sequence",
+          "b must be an integer or a number"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a will be left-shifted by b places",
+          "a will be modified in-place"
+        ],
+        "hf_only": [
+          "a is left-shifted by b bits",
+          "a is equal to a << b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if b is 0, a remains unchanged",
+            "hf": "if b is 0, a remains unchanged",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "if b is negative, a will be shifted to the right"
+        ],
+        "hf_only": [
+          "if b is negative, the result is undefined"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.22
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "b must be an integer",
+      "a must be an integer"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "if b is 0, a remains unchanged"
+    ]
+  }
+}

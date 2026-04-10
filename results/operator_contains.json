@@ -1,86 +1,188 @@
 {
   "function": "operator.contains",
-  "groq": {
-    "preconditions": [
-      "a must be a container",
-      "b must be a value that can be contained in a"
-    ],
-    "postconditions": [
-      "returns True if b is in a",
-      "returns False if b is not in a"
-    ],
-    "edge_cases": [
-      "a is an empty container",
-      "b is None",
-      "a and b are of different types",
-      "a contains duplicate values"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a container\",\n    \"b must be a value that can be checked for membership in a\"\n  ],\n  \"postconditions\": [\n    \"returns True if b is in a\",\n    \"returns False if b is not in a\"\n  ],\n  \"edge_cases\": [\n    \"a is an empty container\",\n    \"b is None\",\n    \"a is not a container\",\n    \"b is not hashable\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a and b must be lists of strings\",\n    \"a and b must not be empty\"\n  ],\n  \"postconditions\": [\n    \"returns True if b is a sublist of a\",\n    \"returns False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"if a is an empty list, returns False\",\n    \"if b is an empty list, returns True\",\n    \"if a is a list of a single string, returns False if b is not equal to a[0]\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a sequence\",\n    \"all elements in a must be strings\",\n    \"all elements in b must be strings\"\n  ],\n  \"postconditions\": [\n    \"the result is a boolean value indicating whether b is a substring of a\"\n  ],\n  \"edge_cases\": [\n    \"if a is an empty string, the result is True if b is an empty string, False otherwise\",\n    \"if b is an empty string, the result is True if a is an empty string, False otherwise\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "a must be a sequence",
-      "b must be a sequence",
-      "all items in a must be plain strings",
-      "all items in b must be plain strings"
-    ],
-    "postconditions": [
-      "returns True if b is a subset of a",
-      "returns False otherwise"
-    ],
-    "edge_cases": [
-      "a is an empty sequence",
-      "b is an empty sequence",
-      "a is a single-element sequence",
-      "b is a single-element sequence"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
         "a must be a container",
-        "b must be a value that can be contained in a"
+        "b must be a value that can be checked for membership in a"
       ],
-      "hf_only": [
-        "a must be a sequence",
-        "b must be a sequence",
-        "all items in a must be plain strings",
-        "all items in b must be plain strings"
-      ],
-      "agreement_score": 0.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "returns True if b is in a",
-          "hf": "returns True if b is a subset of a",
-          "similarity": 0.841
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
+        "returns True if b is in a",
         "returns False if b is not in a"
       ],
-      "hf_only": [
-        "returns False otherwise"
-      ],
-      "agreement_score": 0.33
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "a is an empty container",
         "b is None",
-        "a and b are of different types",
-        "a contains duplicate values"
-      ],
-      "hf_only": [
-        "a is an empty sequence",
-        "b is an empty sequence",
-        "a is a single-element sequence",
-        "b is a single-element sequence"
-      ],
-      "agreement_score": 0.0
+        "a is not a container",
+        "b is not hashable"
+      ]
     },
-    "overall_agreement": 0.11
+    "groq2": {
+      "preconditions": [
+        "a and b must be lists of strings",
+        "a and b must not be empty"
+      ],
+      "postconditions": [
+        "returns True if b is a sublist of a",
+        "returns False otherwise"
+      ],
+      "edge_cases": [
+        "if a is an empty list, returns False",
+        "if b is an empty list, returns True",
+        "if a is a list of a single string, returns False if b is not equal to a[0]"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a sequence",
+        "all elements in a must be strings",
+        "all elements in b must be strings"
+      ],
+      "postconditions": [
+        "the result is a boolean value indicating whether b is a substring of a"
+      ],
+      "edge_cases": [
+        "if a is an empty string, the result is True if b is an empty string, False otherwise",
+        "if b is an empty string, the result is True if a is an empty string, False otherwise"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a container",
+          "b must be a value that can be checked for membership in a"
+        ],
+        "hf_only": [
+          "a must be a sequence",
+          "b must be a sequence",
+          "all elements in a must be strings",
+          "all elements in b must be strings"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns True if b is in a",
+          "returns False if b is not in a"
+        ],
+        "hf_only": [
+          "the result is a boolean value indicating whether b is a substring of a"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty container",
+          "b is None",
+          "a is not a container",
+          "b is not hashable"
+        ],
+        "hf_only": [
+          "if a is an empty string, the result is True if b is an empty string, False otherwise",
+          "if b is an empty string, the result is True if a is an empty string, False otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a container",
+          "b must be a value that can be checked for membership in a"
+        ],
+        "hf_only": [
+          "a and b must be lists of strings",
+          "a and b must not be empty"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns True if b is in a",
+          "returns False if b is not in a"
+        ],
+        "hf_only": [
+          "returns True if b is a sublist of a",
+          "returns False otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty container",
+          "b is None",
+          "a is not a container",
+          "b is not hashable"
+        ],
+        "hf_only": [
+          "if a is an empty list, returns False",
+          "if b is an empty list, returns True",
+          "if a is a list of a single string, returns False if b is not equal to a[0]"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a sequence",
+          "b must be a sequence",
+          "all elements in a must be strings",
+          "all elements in b must be strings"
+        ],
+        "hf_only": [
+          "a and b must be lists of strings",
+          "a and b must not be empty"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is a boolean value indicating whether b is a substring of a"
+        ],
+        "hf_only": [
+          "returns True if b is a sublist of a",
+          "returns False otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if a is an empty string, the result is True if b is an empty string, False otherwise",
+          "if b is an empty string, the result is True if a is an empty string, False otherwise"
+        ],
+        "hf_only": [
+          "if a is an empty list, returns False",
+          "if b is an empty list, returns True",
+          "if a is a list of a single string, returns False if b is not equal to a[0]"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

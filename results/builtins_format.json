@@ -1,0 +1,225 @@
+{
+  "function": "builtins.format",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"value must be a type that implements the __format__ method\",\n    \"format_spec must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns a string representation of the value formatted according to the format_spec\",\n    \"the return type is a string\"\n  ],\n  \"edge_cases\": [\n    \"format_spec is an empty string\",\n    \"value is None\",\n    \"value is a complex number\",\n    \"format_spec contains invalid format specifiers\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"value must be a type or an instance of a type\",\n    \"format_spec must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"returns a string that is a valid JSON representation of the value\"\n  ],\n  \"edge_cases\": [\n    \"if value is None, returns 'None'\",\n    \"if format_spec is empty, returns a string representation of value\",\n    \"if value is a type, returns a string representation of the type\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"value must be a type or an instance of a type\",\n    \"format_spec must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"returns a string that is a valid JSON representation of the value\"\n  ],\n  \"edge_cases\": [\n    \"if value is None, returns 'None'\",\n    \"if format_spec is empty, returns the default format of the value's type\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "value must be a type that implements the __format__ method",
+        "format_spec must be a string"
+      ],
+      "postconditions": [
+        "returns a string representation of the value formatted according to the format_spec",
+        "the return type is a string"
+      ],
+      "edge_cases": [
+        "format_spec is an empty string",
+        "value is None",
+        "value is a complex number",
+        "format_spec contains invalid format specifiers"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "value must be a type or an instance of a type",
+        "format_spec must be a string"
+      ],
+      "postconditions": [
+        "returns a string",
+        "returns a string that is a valid JSON representation of the value"
+      ],
+      "edge_cases": [
+        "if value is None, returns 'None'",
+        "if format_spec is empty, returns a string representation of value",
+        "if value is a type, returns a string representation of the type"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "value must be a type or an instance of a type",
+        "format_spec must be a string"
+      ],
+      "postconditions": [
+        "returns a string",
+        "returns a string that is a valid JSON representation of the value"
+      ],
+      "edge_cases": [
+        "if value is None, returns 'None'",
+        "if format_spec is empty, returns the default format of the value's type"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "format_spec must be a string",
+            "hf": "format_spec must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "value must be a type that implements the __format__ method"
+        ],
+        "hf_only": [
+          "value must be a type or an instance of a type"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a string representation of the value formatted according to the format_spec",
+          "the return type is a string"
+        ],
+        "hf_only": [
+          "returns a string",
+          "returns a string that is a valid JSON representation of the value"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "format_spec is an empty string",
+            "hf": "if format_spec is empty, returns the default format of the value's type",
+            "similarity": 0.83
+          }
+        ],
+        "groq_only": [
+          "value is None",
+          "value is a complex number",
+          "format_spec contains invalid format specifiers"
+        ],
+        "hf_only": [
+          "if value is None, returns 'None'"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.18
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "format_spec must be a string",
+            "hf": "format_spec must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "value must be a type that implements the __format__ method"
+        ],
+        "hf_only": [
+          "value must be a type or an instance of a type"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a string representation of the value formatted according to the format_spec",
+          "the return type is a string"
+        ],
+        "hf_only": [
+          "returns a string",
+          "returns a string that is a valid JSON representation of the value"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "format_spec is an empty string",
+            "hf": "if format_spec is empty, returns a string representation of value",
+            "similarity": 0.862
+          }
+        ],
+        "groq_only": [
+          "value is None",
+          "value is a complex number",
+          "format_spec contains invalid format specifiers"
+        ],
+        "hf_only": [
+          "if value is None, returns 'None'",
+          "if value is a type, returns a string representation of the type"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.17
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "value must be a type or an instance of a type",
+            "hf": "value must be a type or an instance of a type",
+            "similarity": 1.0
+          },
+          {
+            "groq": "format_spec must be a string",
+            "hf": "format_spec must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a string",
+            "hf": "returns a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "returns a string that is a valid JSON representation of the value",
+            "hf": "returns a string that is a valid JSON representation of the value",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if value is None, returns 'None'",
+            "hf": "if value is None, returns 'None'",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if format_spec is empty, returns the default format of the value's type",
+            "hf": "if format_spec is empty, returns a string representation of value",
+            "similarity": 0.89
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "if value is a type, returns a string representation of the type"
+        ],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.89
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "format_spec must be a string",
+      "value must be a type or an instance of a type"
+    ],
+    "postconditions": [
+      "returns a string",
+      "returns a string that is a valid json representation of the value"
+    ],
+    "edge_cases": [
+      "if value is none, returns 'none'"
+    ]
+  }
+}

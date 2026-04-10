@@ -1,0 +1,220 @@
+{
+  "function": "math.dist",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"p must be a point with numeric coordinates\",\n    \"q must be a point with numeric coordinates\",\n    \"p and q must have the same number of coordinates\"\n  ],\n  \"postconditions\": [\n    \"the result is a non-negative number\",\n    \"the result is the Euclidean distance between p and q\"\n  ],\n  \"edge_cases\": [\n    \"p and q are the same point\",\n    \"p or q has zero coordinates\",\n    \"p or q has a very large number of coordinates\",\n    \"p or q has non-numeric coordinates\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"p must be a list of two numbers\",\n    \"q must be a list of two numbers\"\n  ],\n  \"postconditions\": [\n    \"The function returns a non-negative number\",\n    \"The function returns the Euclidean distance between points p and q\"\n  ],\n  \"edge_cases\": [\n    \"If p or q is not a list, the function raises a TypeError\",\n    \"If p or q has less than two elements, the function raises a ValueError\",\n    \"If p or q contains non-numeric values, the function raises a TypeError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"p must be a list of two numbers\",\n    \"q must be a list of two numbers\"\n  ],\n  \"postconditions\": [\n    \"The function returns a non-negative number\",\n    \"The function returns the Euclidean distance between p and q\"\n  ],\n  \"edge_cases\": [\n    \"If p or q is empty, the function raises a ValueError\",\n    \"If p or q has less than two elements, the function raises a ValueError\",\n    \"If p or q contains non-numeric values, the function raises a TypeError\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "p must be a point with numeric coordinates",
+        "q must be a point with numeric coordinates",
+        "p and q must have the same number of coordinates"
+      ],
+      "postconditions": [
+        "the result is a non-negative number",
+        "the result is the Euclidean distance between p and q"
+      ],
+      "edge_cases": [
+        "p and q are the same point",
+        "p or q has zero coordinates",
+        "p or q has a very large number of coordinates",
+        "p or q has non-numeric coordinates"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "p must be a list of two numbers",
+        "q must be a list of two numbers"
+      ],
+      "postconditions": [
+        "The function returns a non-negative number",
+        "The function returns the Euclidean distance between points p and q"
+      ],
+      "edge_cases": [
+        "If p or q is not a list, the function raises a TypeError",
+        "If p or q has less than two elements, the function raises a ValueError",
+        "If p or q contains non-numeric values, the function raises a TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "p must be a list of two numbers",
+        "q must be a list of two numbers"
+      ],
+      "postconditions": [
+        "The function returns a non-negative number",
+        "The function returns the Euclidean distance between p and q"
+      ],
+      "edge_cases": [
+        "If p or q is empty, the function raises a ValueError",
+        "If p or q has less than two elements, the function raises a ValueError",
+        "If p or q contains non-numeric values, the function raises a TypeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "p must be a point with numeric coordinates",
+          "q must be a point with numeric coordinates",
+          "p and q must have the same number of coordinates"
+        ],
+        "hf_only": [
+          "p must be a list of two numbers",
+          "q must be a list of two numbers"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the Euclidean distance between p and q",
+            "hf": "The function returns the Euclidean distance between p and q",
+            "similarity": 0.842
+          }
+        ],
+        "groq_only": [
+          "the result is a non-negative number"
+        ],
+        "hf_only": [
+          "The function returns a non-negative number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "p and q are the same point",
+          "p or q has zero coordinates",
+          "p or q has a very large number of coordinates",
+          "p or q has non-numeric coordinates"
+        ],
+        "hf_only": [
+          "If p or q is empty, the function raises a ValueError",
+          "If p or q has less than two elements, the function raises a ValueError",
+          "If p or q contains non-numeric values, the function raises a TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "p must be a point with numeric coordinates",
+          "q must be a point with numeric coordinates",
+          "p and q must have the same number of coordinates"
+        ],
+        "hf_only": [
+          "p must be a list of two numbers",
+          "q must be a list of two numbers"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is a non-negative number",
+          "the result is the Euclidean distance between p and q"
+        ],
+        "hf_only": [
+          "The function returns a non-negative number",
+          "The function returns the Euclidean distance between points p and q"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "p and q are the same point",
+          "p or q has zero coordinates",
+          "p or q has a very large number of coordinates",
+          "p or q has non-numeric coordinates"
+        ],
+        "hf_only": [
+          "If p or q is not a list, the function raises a TypeError",
+          "If p or q has less than two elements, the function raises a ValueError",
+          "If p or q contains non-numeric values, the function raises a TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "p must be a list of two numbers",
+            "hf": "p must be a list of two numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "q must be a list of two numbers",
+            "hf": "q must be a list of two numbers",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a non-negative number",
+            "hf": "The function returns a non-negative number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The function returns the Euclidean distance between p and q",
+            "hf": "The function returns the Euclidean distance between points p and q",
+            "similarity": 0.969
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If p or q is empty, the function raises a ValueError",
+            "hf": "If p or q has less than two elements, the function raises a ValueError",
+            "similarity": 0.865
+          },
+          {
+            "groq": "If p or q contains non-numeric values, the function raises a TypeError",
+            "hf": "If p or q contains non-numeric values, the function raises a TypeError",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "If p or q has less than two elements, the function raises a ValueError"
+        ],
+        "hf_only": [
+          "If p or q is not a list, the function raises a TypeError"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.83
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "p must be a list of two numbers",
+      "q must be a list of two numbers"
+    ],
+    "postconditions": [
+      "the function returns a non-negative number"
+    ],
+    "edge_cases": [
+      "if p or q has less than two elements, the function raises a valueerror",
+      "if p or q contains non-numeric values, the function raises a typeerror"
+    ]
+  }
+}

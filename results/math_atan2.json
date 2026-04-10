@@ -1,84 +1,196 @@
 {
   "function": "math.atan2",
-  "groq": {
-    "preconditions": [
-      "y and x must be numbers",
-      "x cannot be zero when y is zero"
-    ],
-    "postconditions": [
-      "result is the arc tangent of y/x in radians",
-      "result is in the range (-pi, pi]",
-      "result has the correct sign based on the signs of y and x"
-    ],
-    "edge_cases": [
-      "y is zero and x is positive",
-      "y is zero and x is negative",
-      "y is positive and x is zero",
-      "y is negative and x is zero",
-      "y and x are both zero"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"y and x must be numbers\",\n    \"x cannot be zero when y is zero\"\n  ],\n  \"postconditions\": [\n    \"result is the arc tangent of y/x in radians\",\n    \"result is in the range (-pi, pi]\"\n  ],\n  \"edge_cases\": [\n    \"y is zero and x is positive\",\n    \"y is zero and x is negative\",\n    \"y is positive and x is zero\",\n    \"y is negative and x is zero\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"y must be a real number\",\n    \"x must not be zero\"\n  ],\n  \"postconditions\": [\n    \"atan2(y, x) returns the arc tangent (measured in radians) of y/x\",\n    \"atan2(y, x) returns a real number in the range -π/2 to π/2\"\n  ],\n  \"edge_cases\": [\n    \"if x is zero, atan2(y, x) returns NaN (Not a Number)\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"y must be a number\",\n    \"x must be a number\",\n    \"x must not be zero\"\n  ],\n  \"postconditions\": [\n    \"the result is the arc tangent of y/x in radians\",\n    \"the result is a number\"\n  ],\n  \"edge_cases\": [\n    \"if x is zero, a ValueError is raised\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "y must be a number",
-      "x must be a number",
-      "x must not be zero"
-    ],
-    "postconditions": [
-      "the result is the arc tangent of y/x in radians",
-      "the result is a number"
-    ],
-    "edge_cases": [
-      "if x is zero, the function raises a ValueError",
-      "if y is zero, the function returns pi/2 if x is positive, and -pi/2 if x is negative"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
         "y and x must be numbers",
         "x cannot be zero when y is zero"
       ],
-      "hf_only": [
+      "postconditions": [
+        "result is the arc tangent of y/x in radians",
+        "result is in the range (-pi, pi]"
+      ],
+      "edge_cases": [
+        "y is zero and x is positive",
+        "y is zero and x is negative",
+        "y is positive and x is zero",
+        "y is negative and x is zero"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "y must be a real number",
+        "x must not be zero"
+      ],
+      "postconditions": [
+        "atan2(y, x) returns the arc tangent (measured in radians) of y/x",
+        "atan2(y, x) returns a real number in the range -π/2 to π/2"
+      ],
+      "edge_cases": [
+        "if x is zero, atan2(y, x) returns NaN (Not a Number)"
+      ]
+    },
+    "hf": {
+      "preconditions": [
         "y must be a number",
         "x must be a number",
         "x must not be zero"
       ],
-      "agreement_score": 0.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is the arc tangent of y/x in radians",
-          "hf": "the result is the arc tangent of y/x in radians",
-          "similarity": 0.984
-        }
-      ],
-      "groq_only": [
-        "result is in the range (-pi, pi]",
-        "result has the correct sign based on the signs of y and x"
-      ],
-      "hf_only": [
+      "postconditions": [
+        "the result is the arc tangent of y/x in radians",
         "the result is a number"
       ],
-      "agreement_score": 0.25
+      "edge_cases": [
+        "if x is zero, a ValueError is raised"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "y and x must be numbers",
+          "x cannot be zero when y is zero"
+        ],
+        "hf_only": [
+          "y must be a number",
+          "x must be a number",
+          "x must not be zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the arc tangent of y/x in radians",
+            "hf": "the result is the arc tangent of y/x in radians",
+            "similarity": 0.984
+          }
+        ],
+        "groq_only": [
+          "result is in the range (-pi, pi]"
+        ],
+        "hf_only": [
+          "the result is a number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "y is zero and x is positive",
+          "y is zero and x is negative",
+          "y is positive and x is zero",
+          "y is negative and x is zero"
+        ],
+        "hf_only": [
+          "if x is zero, a ValueError is raised"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
     },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "y is zero and x is positive",
-        "y is zero and x is negative",
-        "y is positive and x is zero",
-        "y is negative and x is zero",
-        "y and x are both zero"
-      ],
-      "hf_only": [
-        "if x is zero, the function raises a ValueError",
-        "if y is zero, the function returns pi/2 if x is positive, and -pi/2 if x is negative"
-      ],
-      "agreement_score": 0.0
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "y and x must be numbers",
+          "x cannot be zero when y is zero"
+        ],
+        "hf_only": [
+          "x must be a real number",
+          "y must be a real number",
+          "x must not be zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "result is the arc tangent of y/x in radians",
+          "result is in the range (-pi, pi]"
+        ],
+        "hf_only": [
+          "atan2(y, x) returns the arc tangent (measured in radians) of y/x",
+          "atan2(y, x) returns a real number in the range -π/2 to π/2"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "y is zero and x is positive",
+          "y is zero and x is negative",
+          "y is positive and x is zero",
+          "y is negative and x is zero"
+        ],
+        "hf_only": [
+          "if x is zero, atan2(y, x) returns NaN (Not a Number)"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
     },
-    "overall_agreement": 0.08
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "y must be a number",
+            "hf": "y must be a real number",
+            "similarity": 0.83
+          },
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          },
+          {
+            "groq": "x must not be zero",
+            "hf": "x must not be zero",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is the arc tangent of y/x in radians",
+          "the result is a number"
+        ],
+        "hf_only": [
+          "atan2(y, x) returns the arc tangent (measured in radians) of y/x",
+          "atan2(y, x) returns a real number in the range -π/2 to π/2"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if x is zero, a ValueError is raised"
+        ],
+        "hf_only": [
+          "if x is zero, atan2(y, x) returns NaN (Not a Number)"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must not be zero"
+    ],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

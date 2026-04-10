@@ -1,0 +1,250 @@
+{
+  "function": "builtins.getattr",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"object must be an object\",\n    \"name must be a string\",\n    \"default must be an object or None\"\n  ],\n  \"postconditions\": [\n    \"returns the value of a named attribute of an object\",\n    \"returns the default value if the attribute does not exist and default is provided\",\n    \"raises an AttributeError if the attribute does not exist and default is not provided\"\n  ],\n  \"edge_cases\": [\n    \"name is not a string\",\n    \"object is None\",\n    \"default is not an object or None\",\n    \"attribute does not exist\",\n    \"attribute exists but is not accessible\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"object must be an instance of a class\",\n    \"name must be a string\",\n    \"default must be a value or None\"\n  ],\n  \"postconditions\": [\n    \"returns the value of the named attribute of the object\",\n    \"returns the default value if the attribute does not exist\"\n  ],\n  \"edge_cases\": [\n    \"returns None if default is None and the attribute does not exist\",\n    \"raises AttributeError if the attribute does not exist and default is not provided\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"object must be an instance of a class\",\n    \"name must be a string\",\n    \"default must be a value or None\"\n  ],\n  \"postconditions\": [\n    \"returns the value of the named attribute of the object\",\n    \"returns the default value if the attribute does not exist\"\n  ],\n  \"edge_cases\": [\n    \"if object is None, raises AttributeError\",\n    \"if name is None, raises TypeError\",\n    \"if default is None and attribute does not exist, raises AttributeError\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "object must be an object",
+        "name must be a string",
+        "default must be an object or None"
+      ],
+      "postconditions": [
+        "returns the value of a named attribute of an object",
+        "returns the default value if the attribute does not exist and default is provided",
+        "raises an AttributeError if the attribute does not exist and default is not provided"
+      ],
+      "edge_cases": [
+        "name is not a string",
+        "object is None",
+        "default is not an object or None",
+        "attribute does not exist",
+        "attribute exists but is not accessible"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "object must be an instance of a class",
+        "name must be a string",
+        "default must be a value or None"
+      ],
+      "postconditions": [
+        "returns the value of the named attribute of the object",
+        "returns the default value if the attribute does not exist"
+      ],
+      "edge_cases": [
+        "returns None if default is None and the attribute does not exist",
+        "raises AttributeError if the attribute does not exist and default is not provided"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "object must be an instance of a class",
+        "name must be a string",
+        "default must be a value or None"
+      ],
+      "postconditions": [
+        "returns the value of the named attribute of the object",
+        "returns the default value if the attribute does not exist"
+      ],
+      "edge_cases": [
+        "if object is None, raises AttributeError",
+        "if name is None, raises TypeError",
+        "if default is None and attribute does not exist, raises AttributeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "name must be a string",
+            "hf": "name must be a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "default must be an object or None",
+            "hf": "default must be a value or None",
+            "similarity": 0.92
+          }
+        ],
+        "groq_only": [
+          "object must be an object"
+        ],
+        "hf_only": [
+          "object must be an instance of a class"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns the value of a named attribute of an object",
+            "hf": "returns the value of the named attribute of the object",
+            "similarity": 0.99
+          },
+          {
+            "groq": "returns the default value if the attribute does not exist and default is provided",
+            "hf": "returns the default value if the attribute does not exist",
+            "similarity": 0.98
+          }
+        ],
+        "groq_only": [
+          "raises an AttributeError if the attribute does not exist and default is not provided"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "name is not a string",
+          "object is None",
+          "default is not an object or None",
+          "attribute does not exist",
+          "attribute exists but is not accessible"
+        ],
+        "hf_only": [
+          "if object is None, raises AttributeError",
+          "if name is None, raises TypeError",
+          "if default is None and attribute does not exist, raises AttributeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.39
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "name must be a string",
+            "hf": "name must be a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "default must be an object or None",
+            "hf": "default must be a value or None",
+            "similarity": 0.92
+          }
+        ],
+        "groq_only": [
+          "object must be an object"
+        ],
+        "hf_only": [
+          "object must be an instance of a class"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns the value of a named attribute of an object",
+            "hf": "returns the value of the named attribute of the object",
+            "similarity": 0.99
+          },
+          {
+            "groq": "returns the default value if the attribute does not exist and default is provided",
+            "hf": "returns the default value if the attribute does not exist",
+            "similarity": 0.98
+          }
+        ],
+        "groq_only": [
+          "raises an AttributeError if the attribute does not exist and default is not provided"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "name is not a string",
+          "object is None",
+          "default is not an object or None",
+          "attribute does not exist",
+          "attribute exists but is not accessible"
+        ],
+        "hf_only": [
+          "returns None if default is None and the attribute does not exist",
+          "raises AttributeError if the attribute does not exist and default is not provided"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.39
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "object must be an instance of a class",
+            "hf": "object must be an instance of a class",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name must be a string",
+            "hf": "name must be a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "default must be a value or None",
+            "hf": "default must be a value or None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns the value of the named attribute of the object",
+            "hf": "returns the value of the named attribute of the object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "returns the default value if the attribute does not exist",
+            "hf": "returns the default value if the attribute does not exist",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if default is None and attribute does not exist, raises AttributeError",
+            "hf": "raises AttributeError if the attribute does not exist and default is not provided",
+            "similarity": 0.953
+          }
+        ],
+        "groq_only": [
+          "if object is None, raises AttributeError",
+          "if name is None, raises TypeError"
+        ],
+        "hf_only": [
+          "returns None if default is None and the attribute does not exist"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.75
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "name must be a string",
+      "object must be an instance of a class",
+      "default must be a value or none"
+    ],
+    "postconditions": [
+      "returns the value of the named attribute of the object",
+      "returns the default value if the attribute does not exist"
+    ],
+    "edge_cases": []
+  }
+}

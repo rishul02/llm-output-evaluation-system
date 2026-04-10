@@ -1,90 +1,234 @@
 {
   "function": "math.cbrt",
-  "groq": {
-    "preconditions": [
-      "x must be a real number"
-    ],
-    "postconditions": [
-      "the result is the cube root of x",
-      "the result is a real number"
-    ],
-    "edge_cases": [
-      "x is zero",
-      "x is negative",
-      "x is positive infinity",
-      "x is negative infinity",
-      "x is NaN"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\"\n  ],\n  \"postconditions\": [\n    \"the result is the cube root of x\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x is zero\",\n    \"x is negative\",\n    \"x is positive infinity\",\n    \"x is negative infinity\",\n    \"x is NaN\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must not be NaN (Not a Number)\",\n    \"x must not be infinity\"\n  ],\n  \"postconditions\": [\n    \"the result must be a real number\",\n    \"the result must be the cube root of x\"\n  ],\n  \"edge_cases\": [\n    \"if x is 0, the result must be 0\",\n    \"if x is 1, the result must be 1\",\n    \"if x is -1, the result must be -1\",\n    \"if x is a negative number, the result must be a negative number\",\n    \"if x is a positive number, the result must be a positive number\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be non-negative\"\n  ],\n  \"postconditions\": [\n    \"The function returns the cube root of x\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"If x is 0, the function returns 0\",\n    \"If x is a negative number, the function raises a ValueError\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be a real number",
-      "x must not be NaN (Not a Number)",
-      "x must not be infinity"
-    ],
-    "postconditions": [
-      "the result is the cube root of x",
-      "the result is a real number"
-    ],
-    "edge_cases": [
-      "if x is 0, the result is 0",
-      "if x is 1, the result is 1",
-      "if x is -1, the result is -1"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a real number",
-          "hf": "x must be a real number",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number"
       ],
-      "groq_only": [],
-      "hf_only": [
-        "x must not be NaN (Not a Number)",
-        "x must not be infinity"
+      "postconditions": [
+        "the result is the cube root of x",
+        "the result is a real number"
       ],
-      "agreement_score": 0.33
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "the result is the cube root of x",
-          "hf": "the result is the cube root of x",
-          "similarity": 1.0
-        },
-        {
-          "groq": "the result is a real number",
-          "hf": "the result is a real number",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is zero",
-          "hf": "if x is 0, the result is 0",
-          "similarity": 0.868
-        }
-      ],
-      "groq_only": [
+      "edge_cases": [
+        "x is zero",
         "x is negative",
         "x is positive infinity",
         "x is negative infinity",
         "x is NaN"
-      ],
-      "hf_only": [
-        "if x is 1, the result is 1",
-        "if x is -1, the result is -1"
-      ],
-      "agreement_score": 0.14
+      ]
     },
-    "overall_agreement": 0.49
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must not be NaN (Not a Number)",
+        "x must not be infinity"
+      ],
+      "postconditions": [
+        "the result must be a real number",
+        "the result must be the cube root of x"
+      ],
+      "edge_cases": [
+        "if x is 0, the result must be 0",
+        "if x is 1, the result must be 1",
+        "if x is -1, the result must be -1",
+        "if x is a negative number, the result must be a negative number",
+        "if x is a positive number, the result must be a positive number"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be non-negative"
+      ],
+      "postconditions": [
+        "The function returns the cube root of x",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "If x is 0, the function returns 0",
+        "If x is a negative number, the function raises a ValueError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be non-negative"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the cube root of x",
+            "hf": "The function returns the cube root of x",
+            "similarity": 0.856
+          },
+          {
+            "groq": "the result is a real number",
+            "hf": "The result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is zero",
+          "x is negative",
+          "x is positive infinity",
+          "x is negative infinity",
+          "x is NaN"
+        ],
+        "hf_only": [
+          "If x is 0, the function returns 0",
+          "If x is a negative number, the function raises a ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.5
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must not be NaN (Not a Number)",
+          "x must not be infinity"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the cube root of x",
+            "hf": "the result must be the cube root of x",
+            "similarity": 0.964
+          },
+          {
+            "groq": "the result is a real number",
+            "hf": "the result must be a real number",
+            "similarity": 0.951
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "if x is 0, the result must be 0",
+            "similarity": 0.868
+          },
+          {
+            "groq": "x is negative",
+            "hf": "if x is a negative number, the result must be a negative number",
+            "similarity": 0.845
+          }
+        ],
+        "groq_only": [
+          "x is positive infinity",
+          "x is negative infinity",
+          "x is NaN"
+        ],
+        "hf_only": [
+          "if x is 1, the result must be 1",
+          "if x is -1, the result must be -1",
+          "if x is a positive number, the result must be a positive number"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.53
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be non-negative"
+        ],
+        "hf_only": [
+          "x must not be NaN (Not a Number)",
+          "x must not be infinity"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns the cube root of x",
+            "hf": "the result must be the cube root of x",
+            "similarity": 0.838
+          },
+          {
+            "groq": "The result is a real number",
+            "hf": "the result must be a real number",
+            "similarity": 0.951
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If x is 0, the function returns 0",
+            "hf": "if x is 0, the result must be 0",
+            "similarity": 0.886
+          }
+        ],
+        "groq_only": [
+          "If x is a negative number, the function raises a ValueError"
+        ],
+        "hf_only": [
+          "if x is 1, the result must be 1",
+          "if x is -1, the result must be -1",
+          "if x is a negative number, the result must be a negative number",
+          "if x is a positive number, the result must be a positive number"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.47
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "the result is a real number"
+    ],
+    "edge_cases": []
   }
 }

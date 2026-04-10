@@ -1,78 +1,202 @@
 {
   "function": "math.acosh",
-  "groq": {
-    "preconditions": [
-      "x must be a real number",
-      "x must be greater than or equal to 1"
-    ],
-    "postconditions": [
-      "result is a real number",
-      "result is the inverse hyperbolic cosine of x"
-    ],
-    "edge_cases": [
-      "x equals 1",
-      "x approaches infinity"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be greater than or equal to 1\"\n  ],\n  \"postconditions\": [\n    \"result is a real number\",\n    \"result is the inverse hyperbolic cosine of x\"\n  ],\n  \"edge_cases\": [\n    \"x equals 1\",\n    \"x approaches infinity\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"the result is the inverse hyperbolic cosine of x\"],\n  \"edge_cases\": [\"x is 1\", \"x is -1\", \"x is 0\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x > 1\"\n  ],\n  \"postconditions\": [\n    \"The result is the inverse hyperbolic cosine of x\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = 1: returns positive infinity\",\n    \"x < 1: raises ValueError\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be greater than or equal to 1"
+      ],
+      "postconditions": [
+        "result is a real number",
+        "result is the inverse hyperbolic cosine of x"
+      ],
+      "edge_cases": [
+        "x equals 1",
+        "x approaches infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "the result is the inverse hyperbolic cosine of x"
+      ],
+      "edge_cases": [
+        "x is 1",
+        "x is -1",
+        "x is 0"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x > 1"
+      ],
+      "postconditions": [
+        "The result is the inverse hyperbolic cosine of x",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x = 1: returns positive infinity",
+        "x < 1: raises ValueError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be greater than or equal to 1"
+        ],
+        "hf_only": [
+          "x > 1"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is a real number",
+            "hf": "The result is a real number",
+            "similarity": 0.962
+          },
+          {
+            "groq": "result is the inverse hyperbolic cosine of x",
+            "hf": "The result is the inverse hyperbolic cosine of x",
+            "similarity": 0.993
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x equals 1",
+          "x approaches infinity"
+        ],
+        "hf_only": [
+          "x = 1: returns positive infinity",
+          "x < 1: raises ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.44
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be greater than or equal to 1"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the inverse hyperbolic cosine of x",
+            "hf": "the result is the inverse hyperbolic cosine of x",
+            "similarity": 0.993
+          }
+        ],
+        "groq_only": [
+          "result is a real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x equals 1",
+            "hf": "x is 1",
+            "similarity": 0.901
+          }
+        ],
+        "groq_only": [
+          "x approaches infinity"
+        ],
+        "hf_only": [
+          "x is -1",
+          "x is 0"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.42
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x > 1"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is the inverse hyperbolic cosine of x",
+            "hf": "the result is the inverse hyperbolic cosine of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "The result is a real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x = 1: returns positive infinity",
+          "x < 1: raises ValueError"
+        ],
+        "hf_only": [
+          "x is 1",
+          "x is -1",
+          "x is 0"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "x must be a real number"
     ],
     "postconditions": [
-      "The result is the inverse hyperbolic cosine of x"
+      "the result is the inverse hyperbolic cosine of x"
     ],
-    "edge_cases": [
-      "x is 1",
-      "x is -1",
-      "x is 0"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a real number",
-          "hf": "x must be a real number",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "x must be greater than or equal to 1"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is the inverse hyperbolic cosine of x",
-          "hf": "The result is the inverse hyperbolic cosine of x",
-          "similarity": 0.993
-        }
-      ],
-      "groq_only": [
-        "result is a real number"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x equals 1",
-          "hf": "x is 1",
-          "similarity": 0.901
-        }
-      ],
-      "groq_only": [
-        "x approaches infinity"
-      ],
-      "hf_only": [
-        "x is -1",
-        "x is 0"
-      ],
-      "agreement_score": 0.25
-    },
-    "overall_agreement": 0.42
+    "edge_cases": []
   }
 }

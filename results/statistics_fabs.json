@@ -1,0 +1,196 @@
+{
+  "function": "statistics.fabs",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"return value is the absolute value of x\",\n    \"return value is a float\"\n  ],\n  \"edge_cases\": [\n    \"x is zero\",\n    \"x is negative\",\n    \"x is positive\",\n    \"x is NaN\",\n    \"x is infinity\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a float\"],\n  \"postconditions\": [\"the function returns the absolute value of x\"],\n  \"edge_cases\": [\"x is NaN (Not a Number)\", \"x is infinity\"]\n}",
+    "hf": "{\n  \"preconditions\": [\"x must be a float\"],\n  \"postconditions\": [\"the function returns the absolute value of x\"],\n  \"edge_cases\": [\"x is 0\", \"x is a very large positive or negative number\"]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "return value is the absolute value of x",
+        "return value is a float"
+      ],
+      "edge_cases": [
+        "x is zero",
+        "x is negative",
+        "x is positive",
+        "x is NaN",
+        "x is infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a float"
+      ],
+      "postconditions": [
+        "the function returns the absolute value of x"
+      ],
+      "edge_cases": [
+        "x is NaN (Not a Number)",
+        "x is infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a float"
+      ],
+      "postconditions": [
+        "the function returns the absolute value of x"
+      ],
+      "edge_cases": [
+        "x is 0",
+        "x is a very large positive or negative number"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "x must be a number"
+        ],
+        "hf_only": [
+          "x must be a float"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is the absolute value of x",
+            "hf": "the function returns the absolute value of x",
+            "similarity": 0.886
+          }
+        ],
+        "groq_only": [
+          "return value is a float"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "x is 0",
+            "similarity": 0.959
+          }
+        ],
+        "groq_only": [
+          "x is negative",
+          "x is positive",
+          "x is NaN",
+          "x is infinity"
+        ],
+        "hf_only": [
+          "x is a very large positive or negative number"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.22
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "x must be a number"
+        ],
+        "hf_only": [
+          "x must be a float"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is the absolute value of x",
+            "hf": "the function returns the absolute value of x",
+            "similarity": 0.886
+          }
+        ],
+        "groq_only": [
+          "return value is a float"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN (Not a Number)",
+            "similarity": 0.931
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is zero",
+          "x is negative",
+          "x is positive"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.3
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a float",
+            "hf": "x must be a float",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the function returns the absolute value of x",
+            "hf": "the function returns the absolute value of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is 0",
+          "x is a very large positive or negative number"
+        ],
+        "hf_only": [
+          "x is NaN (Not a Number)",
+          "x is infinity"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a float"
+    ],
+    "postconditions": [
+      "the function returns the absolute value of x"
+    ],
+    "edge_cases": [
+      "x is infinity"
+    ]
+  }
+}

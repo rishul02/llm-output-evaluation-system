@@ -1,81 +1,204 @@
 {
   "function": "builtins.callable",
-  "groq": {
-    "preconditions": [
-      "obj must be an object"
-    ],
-    "postconditions": [
-      "returns True if obj is callable",
-      "returns False if obj is not callable"
-    ],
-    "edge_cases": [
-      "obj is None",
-      "obj is a built-in function",
-      "obj is a lambda function",
-      "obj is a class",
-      "obj is an instance of a class with a __call__ method"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\"\n  ],\n  \"postconditions\": [\n    \"returns True if obj is callable\",\n    \"returns False if obj is not callable\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"obj is a built-in function\",\n    \"obj is a lambda function\",\n    \"obj is a class\",\n    \"obj is an instance of a class with a __call__ method\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"obj must be an object\"],\n  \"postconditions\": [\"callable(obj) returns a boolean value\"],\n  \"edge_cases\": [\"obj is None\", \"obj is not an object\"]\n}",
+    "hf": "{\n  \"preconditions\": [\"obj must be an object\"],\n  \"postconditions\": [\"callable(obj) returns a boolean value\"],\n  \"edge_cases\": [\"obj is None\", \"obj is not an object\"]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "obj must be an object",
-      "obj must not be None"
-    ],
-    "postconditions": [
-      "returns a boolean value indicating whether obj is callable",
-      "returns False if obj is not callable"
-    ],
-    "edge_cases": [
-      "returns False for None",
-      "returns False for non-callable objects"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "obj must be an object",
-          "hf": "obj must be an object",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be an object"
       ],
-      "groq_only": [],
-      "hf_only": [
-        "obj must not be None"
-      ],
-      "agreement_score": 0.5
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "returns True if obj is callable",
-          "hf": "returns False if obj is not callable",
-          "similarity": 0.961
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
+        "returns True if obj is callable",
         "returns False if obj is not callable"
       ],
-      "hf_only": [
-        "returns a boolean value indicating whether obj is callable"
-      ],
-      "agreement_score": 0.33
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "obj is None",
         "obj is a built-in function",
         "obj is a lambda function",
         "obj is a class",
         "obj is an instance of a class with a __call__ method"
-      ],
-      "hf_only": [
-        "returns False for None",
-        "returns False for non-callable objects"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.28
+    "groq2": {
+      "preconditions": [
+        "obj must be an object"
+      ],
+      "postconditions": [
+        "callable(obj) returns a boolean value"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "obj is not an object"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "obj must be an object"
+      ],
+      "postconditions": [
+        "callable(obj) returns a boolean value"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "obj is not an object"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if obj is callable",
+            "hf": "callable(obj) returns a boolean value",
+            "similarity": 0.82
+          }
+        ],
+        "groq_only": [
+          "returns False if obj is not callable"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "obj is a built-in function",
+          "obj is a lambda function",
+          "obj is a class",
+          "obj is an instance of a class with a __call__ method"
+        ],
+        "hf_only": [
+          "obj is not an object"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.56
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if obj is callable",
+            "hf": "callable(obj) returns a boolean value",
+            "similarity": 0.82
+          }
+        ],
+        "groq_only": [
+          "returns False if obj is not callable"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "obj is a built-in function",
+          "obj is a lambda function",
+          "obj is a class",
+          "obj is an instance of a class with a __call__ method"
+        ],
+        "hf_only": [
+          "obj is not an object"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.56
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "callable(obj) returns a boolean value",
+            "hf": "callable(obj) returns a boolean value",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "obj is not an object",
+            "hf": "obj is not an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "obj must be an object"
+    ],
+    "postconditions": [
+      "callable(obj) returns a boolean value"
+    ],
+    "edge_cases": [
+      "obj is none",
+      "obj is not an object"
+    ]
   }
 }

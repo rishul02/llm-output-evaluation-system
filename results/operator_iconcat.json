@@ -1,0 +1,257 @@
+{
+  "function": "operator.iconcat",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a sequence\"\n  ],\n  \"postconditions\": [\n    \"returns a new sequence containing all elements from a and b\",\n    \"the type of the returned sequence is the same as the type of a\"\n  ],\n  \"edge_cases\": [\n    \"a is an empty sequence\",\n    \"b is an empty sequence\",\n    \"a and b are of different sequence types\",\n    \"a or b contains non-hashable elements\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a sequence\",\n    \"all items in a must be plain strings\",\n    \"all items in b must be plain strings\"\n  ],\n  \"postconditions\": [\n    \"a is a sequence of plain strings\",\n    \"a contains all items from the original sequence plus the items from b\"\n  ],\n  \"edge_cases\": [\n    \"if a is not a sequence, raises TypeError\",\n    \"if b is not a sequence, raises TypeError\",\n    \"if a is None, raises TypeError\",\n    \"if b is None, raises TypeError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a sequence\",\n    \"all items in a must be plain strings\",\n    \"all items in b must be plain strings\"\n  ],\n  \"postconditions\": [\n    \"a is a sequence\",\n    \"all items in a are plain strings\",\n    \"a contains all items from the original a sequence\",\n    \"a contains all items from the b sequence\"\n  ],\n  \"edge_cases\": [\n    \"if a is not a sequence, raises TypeError\",\n    \"if b is not a sequence, raises TypeError\",\n    \"if a is a string, raises TypeError\",\n    \"if b is a string, raises TypeError\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a sequence"
+      ],
+      "postconditions": [
+        "returns a new sequence containing all elements from a and b",
+        "the type of the returned sequence is the same as the type of a"
+      ],
+      "edge_cases": [
+        "a is an empty sequence",
+        "b is an empty sequence",
+        "a and b are of different sequence types",
+        "a or b contains non-hashable elements"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a sequence",
+        "all items in a must be plain strings",
+        "all items in b must be plain strings"
+      ],
+      "postconditions": [
+        "a is a sequence of plain strings",
+        "a contains all items from the original sequence plus the items from b"
+      ],
+      "edge_cases": [
+        "if a is not a sequence, raises TypeError",
+        "if b is not a sequence, raises TypeError",
+        "if a is None, raises TypeError",
+        "if b is None, raises TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a sequence",
+        "all items in a must be plain strings",
+        "all items in b must be plain strings"
+      ],
+      "postconditions": [
+        "a is a sequence",
+        "all items in a are plain strings",
+        "a contains all items from the original a sequence",
+        "a contains all items from the b sequence"
+      ],
+      "edge_cases": [
+        "if a is not a sequence, raises TypeError",
+        "if b is not a sequence, raises TypeError",
+        "if a is a string, raises TypeError",
+        "if b is a string, raises TypeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a sequence",
+            "hf": "a must be a sequence",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a sequence",
+            "hf": "b must be a sequence",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "all items in a must be plain strings",
+          "all items in b must be plain strings"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a new sequence containing all elements from a and b",
+          "the type of the returned sequence is the same as the type of a"
+        ],
+        "hf_only": [
+          "a is a sequence",
+          "all items in a are plain strings",
+          "a contains all items from the original a sequence",
+          "a contains all items from the b sequence"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty sequence",
+          "b is an empty sequence",
+          "a and b are of different sequence types",
+          "a or b contains non-hashable elements"
+        ],
+        "hf_only": [
+          "if a is not a sequence, raises TypeError",
+          "if b is not a sequence, raises TypeError",
+          "if a is a string, raises TypeError",
+          "if b is a string, raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a sequence",
+            "hf": "a must be a sequence",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a sequence",
+            "hf": "b must be a sequence",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "all items in a must be plain strings",
+          "all items in b must be plain strings"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a new sequence containing all elements from a and b",
+          "the type of the returned sequence is the same as the type of a"
+        ],
+        "hf_only": [
+          "a is a sequence of plain strings",
+          "a contains all items from the original sequence plus the items from b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is an empty sequence",
+          "b is an empty sequence",
+          "a and b are of different sequence types",
+          "a or b contains non-hashable elements"
+        ],
+        "hf_only": [
+          "if a is not a sequence, raises TypeError",
+          "if b is not a sequence, raises TypeError",
+          "if a is None, raises TypeError",
+          "if b is None, raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a sequence",
+            "hf": "a must be a sequence",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a sequence",
+            "hf": "b must be a sequence",
+            "similarity": 1.0
+          },
+          {
+            "groq": "all items in a must be plain strings",
+            "hf": "all items in a must be plain strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "all items in b must be plain strings",
+            "hf": "all items in b must be plain strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a contains all items from the original a sequence",
+            "hf": "a contains all items from the original sequence plus the items from b",
+            "similarity": 0.879
+          }
+        ],
+        "groq_only": [
+          "a is a sequence",
+          "all items in a are plain strings",
+          "a contains all items from the b sequence"
+        ],
+        "hf_only": [
+          "a is a sequence of plain strings"
+        ],
+        "agreement_score": 0.2
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if a is not a sequence, raises TypeError",
+            "hf": "if a is not a sequence, raises TypeError",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if b is not a sequence, raises TypeError",
+            "hf": "if b is not a sequence, raises TypeError",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if b is a string, raises TypeError",
+            "hf": "if b is None, raises TypeError",
+            "similarity": 0.86
+          }
+        ],
+        "groq_only": [
+          "if a is a string, raises TypeError"
+        ],
+        "hf_only": [
+          "if a is None, raises TypeError"
+        ],
+        "agreement_score": 0.6
+      },
+      "overall_agreement": 0.6
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be a sequence",
+      "b must be a sequence",
+      "all items in a must be plain strings",
+      "all items in b must be plain strings"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "if a is not a sequence, raises typeerror",
+      "if b is not a sequence, raises typeerror"
+    ]
+  }
+}

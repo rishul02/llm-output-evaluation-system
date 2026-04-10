@@ -1,83 +1,226 @@
 {
   "function": "statistics.covariance",
-  "groq": {
-    "preconditions": [
-      "x and y must be lists of numbers",
-      "x and y must have the same length",
-      "x and y must not be empty"
-    ],
-    "postconditions": [
-      "return value is the covariance between x and y",
-      "return value is a float"
-    ],
-    "edge_cases": [
-      "x and y have only one element",
-      "x and y have identical elements",
-      "x and y have elements with extreme values"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x and y must be lists of numbers\",\n    \"x and y must have the same length\",\n    \"x and y must not be empty\"\n  ],\n  \"postconditions\": [\n    \"the result is the covariance between x and y\",\n    \"the result is a floating point number\"\n  ],\n  \"edge_cases\": [\n    \"x and y have only one element\",\n    \"x and y have identical elements\",\n    \"x and y have elements with extreme values\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x and y must be lists of strings\",\n    \"x and y must have the same length\",\n    \"x and y must not be empty\"\n  ],\n  \"postconditions\": [\n    \"returns a float representing the covariance between x and y\",\n    \"the result is a valid covariance value\"\n  ],\n  \"edge_cases\": [\n    \"if x or y is empty, returns NaN\",\n    \"if x and y have different lengths, raises a ValueError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"x and y must be lists of strings\",\n    \"x and y must have the same length\",\n    \"x and y must not be empty\"\n  ],\n  \"postconditions\": [\n    \"returns a float representing the covariance between x and y\",\n    \"the result is a valid covariance value\"\n  ],\n  \"edge_cases\": [\n    \"if x or y is empty, raises a StatisticsError\",\n    \"if x and y have different lengths, raises a StatisticsError\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "x and y must be lists of strings",
-      "x and y must have the same length",
-      "x and y must not be empty"
-    ],
-    "postconditions": [
-      "returns a float representing the covariance of x and y",
-      "the result is a valid covariance value"
-    ],
-    "edge_cases": [
-      "if x or y is empty, raises ValueError",
-      "if x and y have different lengths, raises ValueError"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x and y must have the same length",
-          "hf": "x and y must have the same length",
-          "similarity": 1.0
-        },
-        {
-          "groq": "x and y must not be empty",
-          "hf": "x and y must not be empty",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x and y must be lists of numbers",
+        "x and y must have the same length",
+        "x and y must not be empty"
       ],
-      "groq_only": [
-        "x and y must be lists of numbers"
+      "postconditions": [
+        "the result is the covariance between x and y",
+        "the result is a floating point number"
       ],
-      "hf_only": [
-        "x and y must be lists of strings"
-      ],
-      "agreement_score": 0.5
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "return value is the covariance between x and y",
-        "return value is a float"
-      ],
-      "hf_only": [
-        "returns a float representing the covariance of x and y",
-        "the result is a valid covariance value"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "x and y have only one element",
         "x and y have identical elements",
         "x and y have elements with extreme values"
-      ],
-      "hf_only": [
-        "if x or y is empty, raises ValueError",
-        "if x and y have different lengths, raises ValueError"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.17
+    "groq2": {
+      "preconditions": [
+        "x and y must be lists of strings",
+        "x and y must have the same length",
+        "x and y must not be empty"
+      ],
+      "postconditions": [
+        "returns a float representing the covariance between x and y",
+        "the result is a valid covariance value"
+      ],
+      "edge_cases": [
+        "if x or y is empty, returns NaN",
+        "if x and y have different lengths, raises a ValueError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x and y must be lists of strings",
+        "x and y must have the same length",
+        "x and y must not be empty"
+      ],
+      "postconditions": [
+        "returns a float representing the covariance between x and y",
+        "the result is a valid covariance value"
+      ],
+      "edge_cases": [
+        "if x or y is empty, raises a StatisticsError",
+        "if x and y have different lengths, raises a StatisticsError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x and y must have the same length",
+            "hf": "x and y must have the same length",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x and y must not be empty",
+            "hf": "x and y must not be empty",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x and y must be lists of numbers"
+        ],
+        "hf_only": [
+          "x and y must be lists of strings"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is the covariance between x and y",
+          "the result is a floating point number"
+        ],
+        "hf_only": [
+          "returns a float representing the covariance between x and y",
+          "the result is a valid covariance value"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x and y have only one element",
+          "x and y have identical elements",
+          "x and y have elements with extreme values"
+        ],
+        "hf_only": [
+          "if x or y is empty, raises a StatisticsError",
+          "if x and y have different lengths, raises a StatisticsError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x and y must have the same length",
+            "hf": "x and y must have the same length",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x and y must not be empty",
+            "hf": "x and y must not be empty",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x and y must be lists of numbers"
+        ],
+        "hf_only": [
+          "x and y must be lists of strings"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is the covariance between x and y",
+          "the result is a floating point number"
+        ],
+        "hf_only": [
+          "returns a float representing the covariance between x and y",
+          "the result is a valid covariance value"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x and y have only one element",
+          "x and y have identical elements",
+          "x and y have elements with extreme values"
+        ],
+        "hf_only": [
+          "if x or y is empty, returns NaN",
+          "if x and y have different lengths, raises a ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x and y must be lists of strings",
+            "hf": "x and y must be lists of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x and y must have the same length",
+            "hf": "x and y must have the same length",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x and y must not be empty",
+            "hf": "x and y must not be empty",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a float representing the covariance between x and y",
+            "hf": "returns a float representing the covariance between x and y",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the result is a valid covariance value",
+            "hf": "the result is a valid covariance value",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if x and y have different lengths, raises a StatisticsError",
+            "hf": "if x and y have different lengths, raises a ValueError",
+            "similarity": 0.908
+          }
+        ],
+        "groq_only": [
+          "if x or y is empty, raises a StatisticsError"
+        ],
+        "hf_only": [
+          "if x or y is empty, returns NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.78
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x and y must have the same length",
+      "x and y must not be empty",
+      "x and y must be lists of strings"
+    ],
+    "postconditions": [
+      "returns a float representing the covariance between x and y",
+      "the result is a valid covariance value"
+    ],
+    "edge_cases": []
   }
 }

@@ -1,0 +1,264 @@
+{
+  "function": "statistics.kde",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"h must be a positive number\",\n    \"kernel must be one of 'normal', 'uniform', 'triangle', 'epanechnikov', 'linfty', 'gaussian', 'parabolic', 'rectangular'\",\n    \"cumulative must be a boolean\"\n  ],\n  \"postconditions\": [\n    \"returns a continuous probability density\",\n    \"output is a function that takes a number and returns a probability density\"\n  ],\n  \"edge_cases\": [\n    \"data is empty\",\n    \"h is zero or negative\",\n    \"kernel is not one of the supported kernels\",\n    \"cumulative is not a boolean\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"h must be a positive number\",\n    \"kernel must be one of 'normal', 'uniform', 'epanechnikov', 'biweight', 'triweight', 'gaussian', 'cosine', 'logistic', 'sigmoid', 'exponential'\",\n    \"cumulative must be a boolean\"\n  ],\n  \"postconditions\": [\n    \"returns a KernelDensity object\",\n    \"the object's attributes 'support', 'density', 'scores' are valid\"\n  ],\n  \"edge_cases\": [\n    \"if data is empty, returns a KernelDensity object with zero density\",\n    \"if h is zero, raises a ValueError\",\n    \"if kernel is not one of the allowed values, raises a ValueError\",\n    \"if cumulative is not a boolean, raises a TypeError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"h must be a positive number\",\n    \"kernel must be one of 'normal', 'uniform', 'triangle', 'biweight', 'epanechnikov', 'gaussian', 'cosine', 'optcosine', 'lognormal', 'exponential', 'linear', 'general_gaussian', 'rectangular', 'triweight', 'triangular', 'gaussian_kde', 'silverman', 'scott', 'silverman_kde', 'scott_kde'\",\n    \"cumulative must be a boolean\"\n  ],\n  \"postconditions\": [\n    \"returns a GaussianKDE object\",\n    \"the object has a method to evaluate the density at a given point\"\n  ],\n  \"edge_cases\": [\n    \"if data is empty, raises a StatisticsError\",\n    \"if h is zero, raises a StatisticsError\",\n    \"if kernel is not a string, raises a ValueError\",\n    \"if cumulative is not a boolean, raises a ValueError\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "h must be a positive number",
+        "kernel must be one of 'normal', 'uniform', 'triangle', 'epanechnikov', 'linfty', 'gaussian', 'parabolic', 'rectangular'",
+        "cumulative must be a boolean"
+      ],
+      "postconditions": [
+        "returns a continuous probability density",
+        "output is a function that takes a number and returns a probability density"
+      ],
+      "edge_cases": [
+        "data is empty",
+        "h is zero or negative",
+        "kernel is not one of the supported kernels",
+        "cumulative is not a boolean"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "h must be a positive number",
+        "kernel must be one of 'normal', 'uniform', 'epanechnikov', 'biweight', 'triweight', 'gaussian', 'cosine', 'logistic', 'sigmoid', 'exponential'",
+        "cumulative must be a boolean"
+      ],
+      "postconditions": [
+        "returns a KernelDensity object",
+        "the object's attributes 'support', 'density', 'scores' are valid"
+      ],
+      "edge_cases": [
+        "if data is empty, returns a KernelDensity object with zero density",
+        "if h is zero, raises a ValueError",
+        "if kernel is not one of the allowed values, raises a ValueError",
+        "if cumulative is not a boolean, raises a TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "h must be a positive number",
+        "kernel must be one of 'normal', 'uniform', 'triangle', 'biweight', 'epanechnikov', 'gaussian', 'cosine', 'optcosine', 'lognormal', 'exponential', 'linear', 'general_gaussian', 'rectangular', 'triweight', 'triangular', 'gaussian_kde', 'silverman', 'scott', 'silverman_kde', 'scott_kde'",
+        "cumulative must be a boolean"
+      ],
+      "postconditions": [
+        "returns a GaussianKDE object",
+        "the object has a method to evaluate the density at a given point"
+      ],
+      "edge_cases": [
+        "if data is empty, raises a StatisticsError",
+        "if h is zero, raises a StatisticsError",
+        "if kernel is not a string, raises a ValueError",
+        "if cumulative is not a boolean, raises a ValueError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list of numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "h must be a positive number",
+            "hf": "h must be a positive number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "kernel must be one of 'normal', 'uniform', 'triangle', 'epanechnikov', 'linfty', 'gaussian', 'parabolic', 'rectangular'",
+            "hf": "kernel must be one of 'normal', 'uniform', 'triangle', 'biweight', 'epanechnikov', 'gaussian', 'cosine', 'optcosine', 'lognormal', 'exponential', 'linear', 'general_gaussian', 'rectangular', 'triweight', 'triangular', 'gaussian_kde', 'silverman', 'scott', 'silverman_kde', 'scott_kde'",
+            "similarity": 0.914
+          },
+          {
+            "groq": "cumulative must be a boolean",
+            "hf": "cumulative must be a boolean",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a continuous probability density",
+          "output is a function that takes a number and returns a probability density"
+        ],
+        "hf_only": [
+          "returns a GaussianKDE object",
+          "the object has a method to evaluate the density at a given point"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "cumulative is not a boolean",
+            "hf": "if cumulative is not a boolean, raises a ValueError",
+            "similarity": 0.857
+          }
+        ],
+        "groq_only": [
+          "data is empty",
+          "h is zero or negative",
+          "kernel is not one of the supported kernels"
+        ],
+        "hf_only": [
+          "if data is empty, raises a StatisticsError",
+          "if h is zero, raises a StatisticsError",
+          "if kernel is not a string, raises a ValueError"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.38
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list of numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "h must be a positive number",
+            "hf": "h must be a positive number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "kernel must be one of 'normal', 'uniform', 'triangle', 'epanechnikov', 'linfty', 'gaussian', 'parabolic', 'rectangular'",
+            "hf": "kernel must be one of 'normal', 'uniform', 'epanechnikov', 'biweight', 'triweight', 'gaussian', 'cosine', 'logistic', 'sigmoid', 'exponential'",
+            "similarity": 0.884
+          },
+          {
+            "groq": "cumulative must be a boolean",
+            "hf": "cumulative must be a boolean",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a continuous probability density",
+          "output is a function that takes a number and returns a probability density"
+        ],
+        "hf_only": [
+          "returns a KernelDensity object",
+          "the object's attributes 'support', 'density', 'scores' are valid"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "cumulative is not a boolean",
+            "hf": "if cumulative is not a boolean, raises a TypeError",
+            "similarity": 0.855
+          }
+        ],
+        "groq_only": [
+          "data is empty",
+          "h is zero or negative",
+          "kernel is not one of the supported kernels"
+        ],
+        "hf_only": [
+          "if data is empty, returns a KernelDensity object with zero density",
+          "if h is zero, raises a ValueError",
+          "if kernel is not one of the allowed values, raises a ValueError"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.38
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list of numbers",
+            "similarity": 1.0
+          },
+          {
+            "groq": "h must be a positive number",
+            "hf": "h must be a positive number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "kernel must be one of 'normal', 'uniform', 'triangle', 'biweight', 'epanechnikov', 'gaussian', 'cosine', 'optcosine', 'lognormal', 'exponential', 'linear', 'general_gaussian', 'rectangular', 'triweight', 'triangular', 'gaussian_kde', 'silverman', 'scott', 'silverman_kde', 'scott_kde'",
+            "hf": "kernel must be one of 'normal', 'uniform', 'epanechnikov', 'biweight', 'triweight', 'gaussian', 'cosine', 'logistic', 'sigmoid', 'exponential'",
+            "similarity": 0.925
+          },
+          {
+            "groq": "cumulative must be a boolean",
+            "hf": "cumulative must be a boolean",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a GaussianKDE object",
+          "the object has a method to evaluate the density at a given point"
+        ],
+        "hf_only": [
+          "returns a KernelDensity object",
+          "the object's attributes 'support', 'density', 'scores' are valid"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if h is zero, raises a StatisticsError",
+            "hf": "if h is zero, raises a ValueError",
+            "similarity": 0.916
+          },
+          {
+            "groq": "if cumulative is not a boolean, raises a ValueError",
+            "hf": "if cumulative is not a boolean, raises a TypeError",
+            "similarity": 0.945
+          }
+        ],
+        "groq_only": [
+          "if data is empty, raises a StatisticsError",
+          "if kernel is not a string, raises a ValueError"
+        ],
+        "hf_only": [
+          "if data is empty, returns a KernelDensity object with zero density",
+          "if kernel is not one of the allowed values, raises a ValueError"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.44
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "data must be a list of numbers",
+      "h must be a positive number",
+      "cumulative must be a boolean"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

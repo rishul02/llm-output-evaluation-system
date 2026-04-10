@@ -1,28 +1,335 @@
 {
   "function": "functools.update_wrapper",
-  "groq": {
-    "preconditions": [
-      "wrapper must be a callable",
-      "wrapped must be a callable",
-      "assigned must be a tuple of strings",
-      "updated must be a tuple of strings"
-    ],
-    "postconditions": [
-      "wrapper.__module__ is updated to wrapped.__module__",
-      "wrapper.__name__ is updated to wrapped.__name__",
-      "wrapper.__qualname__ is updated to wrapped.__qualname__",
-      "wrapper.__doc__ is updated to wrapped.__doc__",
-      "wrapper.__annotations__ is updated to wrapped.__annotations__",
-      "wrapper.__type_params__ is updated to wrapped.__type_params__",
-      "wrapper.__dict__ is updated with wrapped.__dict__"
-    ],
-    "edge_cases": [
-      "wrapper and wrapped are the same function",
-      "assigned or updated is an empty tuple",
-      "wrapper or wrapped is not a callable"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"wrapper must be a callable\",\n    \"wrapped must be a callable\",\n    \"assigned must be a tuple of strings\",\n    \"updated must be a tuple of strings\"\n  ],\n  \"postconditions\": [\n    \"wrapper.__module__ is updated to wrapped.__module__\",\n    \"wrapper.__name__ is updated to wrapped.__name__\",\n    \"wrapper.__qualname__ is updated to wrapped.__qualname__\",\n    \"wrapper.__doc__ is updated to wrapped.__doc__\",\n    \"wrapper.__annotations__ is updated to wrapped.__annotations__\",\n    \"wrapper.__type_params__ is updated to wrapped.__type_params__\",\n    \"wrapper.__dict__ is updated with wrapped.__dict__\"\n  ],\n  \"edge_cases\": [\n    \"wrapper and wrapped are the same function\",\n    \"assigned or updated is an empty tuple\",\n    \"wrapper or wrapped is not a callable\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"wrapper must be a callable\",\n    \"wrapped must be a callable\",\n    \"assigned must be a tuple of strings\",\n    \"updated must be a tuple of strings\"\n  ],\n  \"postconditions\": [\n    \"wrapper's __module__ attribute is updated to match wrapped's __module__\",\n    \"wrapper's __name__ attribute is updated to match wrapped's __name__\",\n    \"wrapper's __qualname__ attribute is updated to match wrapped's __qualname__\",\n    \"wrapper's __doc__ attribute is updated to match wrapped's __doc__\",\n    \"wrapper's __annotations__ attribute is updated to match wrapped's __annotations__\",\n    \"wrapper's __type_params__ attribute is updated to match wrapped's __type_params__\",\n    \"wrapper's __dict__ attribute is updated to match wrapped's __dict__\"\n  ],\n  \"edge_cases\": [\n    \"if assigned is empty, wrapper's attributes are not updated\",\n    \"if updated is empty, wrapper's __dict__ attribute is not updated\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"wrapper must be a callable\",\n    \"wrapped must be a callable\",\n    \"assigned must be a tuple of strings\",\n    \"updated must be a tuple of strings\"\n  ],\n  \"postconditions\": [\n    \"wrapper's __module__ attribute is updated to match wrapped's __module__\",\n    \"wrapper's __name__ attribute is updated to match wrapped's __name__\",\n    \"wrapper's __qualname__ attribute is updated to match wrapped's __qualname__\",\n    \"wrapper's __doc__ attribute is updated to match wrapped's __doc__\",\n    \"wrapper's __annotations__ attribute is updated to match wrapped's __annotations__\",\n    \"wrapper's __type_params__ attribute is updated to match wrapped's __type_params__\",\n    \"wrapper's __dict__ attribute is updated to match wrapped's __dict__\"\n  ],\n  \"edge_cases\": [\n    \"if assigned is empty, wrapper's __module__, __name__, __qualname__, __doc__, __annotations__, __type_params__ attributes are not updated\",\n    \"if updated is empty, wrapper's __dict__ attribute is not updated\"\n  ]\n}\n```"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "wrapper must be a callable",
+        "wrapped must be a callable",
+        "assigned must be a tuple of strings",
+        "updated must be a tuple of strings"
+      ],
+      "postconditions": [
+        "wrapper.__module__ is updated to wrapped.__module__",
+        "wrapper.__name__ is updated to wrapped.__name__",
+        "wrapper.__qualname__ is updated to wrapped.__qualname__",
+        "wrapper.__doc__ is updated to wrapped.__doc__",
+        "wrapper.__annotations__ is updated to wrapped.__annotations__",
+        "wrapper.__type_params__ is updated to wrapped.__type_params__",
+        "wrapper.__dict__ is updated with wrapped.__dict__"
+      ],
+      "edge_cases": [
+        "wrapper and wrapped are the same function",
+        "assigned or updated is an empty tuple",
+        "wrapper or wrapped is not a callable"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "wrapper must be a callable",
+        "wrapped must be a callable",
+        "assigned must be a tuple of strings",
+        "updated must be a tuple of strings"
+      ],
+      "postconditions": [
+        "wrapper's __module__ attribute is updated to match wrapped's __module__",
+        "wrapper's __name__ attribute is updated to match wrapped's __name__",
+        "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
+        "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
+        "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
+        "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
+        "wrapper's __dict__ attribute is updated to match wrapped's __dict__"
+      ],
+      "edge_cases": [
+        "if assigned is empty, wrapper's attributes are not updated",
+        "if updated is empty, wrapper's __dict__ attribute is not updated"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "wrapper must be a callable",
+        "wrapped must be a callable",
+        "assigned must be a tuple of strings",
+        "updated must be a tuple of strings"
+      ],
+      "postconditions": [
+        "wrapper's __module__ attribute is updated to match wrapped's __module__",
+        "wrapper's __name__ attribute is updated to match wrapped's __name__",
+        "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
+        "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
+        "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
+        "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
+        "wrapper's __dict__ attribute is updated to match wrapped's __dict__"
+      ],
+      "edge_cases": [
+        "if assigned is empty, wrapper's __module__, __name__, __qualname__, __doc__, __annotations__, __type_params__ attributes are not updated",
+        "if updated is empty, wrapper's __dict__ attribute is not updated"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "wrapper must be a callable",
+            "hf": "wrapper must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapped must be a callable",
+            "hf": "wrapped must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "assigned must be a tuple of strings",
+            "hf": "assigned must be a tuple of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "updated must be a tuple of strings",
+            "hf": "updated must be a tuple of strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "wrapper.__module__ is updated to wrapped.__module__",
+            "hf": "wrapper's __module__ attribute is updated to match wrapped's __module__",
+            "similarity": 0.835
+          },
+          {
+            "groq": "wrapper.__qualname__ is updated to wrapped.__qualname__",
+            "hf": "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
+            "similarity": 0.829
+          },
+          {
+            "groq": "wrapper.__doc__ is updated to wrapped.__doc__",
+            "hf": "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
+            "similarity": 0.824
+          },
+          {
+            "groq": "wrapper.__annotations__ is updated to wrapped.__annotations__",
+            "hf": "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
+            "similarity": 0.888
+          },
+          {
+            "groq": "wrapper.__type_params__ is updated to wrapped.__type_params__",
+            "hf": "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
+            "similarity": 0.857
+          },
+          {
+            "groq": "wrapper.__dict__ is updated with wrapped.__dict__",
+            "hf": "wrapper's __dict__ attribute is updated to match wrapped's __dict__",
+            "similarity": 0.894
+          }
+        ],
+        "groq_only": [
+          "wrapper.__name__ is updated to wrapped.__name__"
+        ],
+        "hf_only": [
+          "wrapper's __name__ attribute is updated to match wrapped's __name__"
+        ],
+        "agreement_score": 0.75
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "wrapper and wrapped are the same function",
+          "assigned or updated is an empty tuple",
+          "wrapper or wrapped is not a callable"
+        ],
+        "hf_only": [
+          "if assigned is empty, wrapper's __module__, __name__, __qualname__, __doc__, __annotations__, __type_params__ attributes are not updated",
+          "if updated is empty, wrapper's __dict__ attribute is not updated"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.58
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "wrapper must be a callable",
+            "hf": "wrapper must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapped must be a callable",
+            "hf": "wrapped must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "assigned must be a tuple of strings",
+            "hf": "assigned must be a tuple of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "updated must be a tuple of strings",
+            "hf": "updated must be a tuple of strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "wrapper.__module__ is updated to wrapped.__module__",
+            "hf": "wrapper's __module__ attribute is updated to match wrapped's __module__",
+            "similarity": 0.835
+          },
+          {
+            "groq": "wrapper.__qualname__ is updated to wrapped.__qualname__",
+            "hf": "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
+            "similarity": 0.829
+          },
+          {
+            "groq": "wrapper.__doc__ is updated to wrapped.__doc__",
+            "hf": "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
+            "similarity": 0.824
+          },
+          {
+            "groq": "wrapper.__annotations__ is updated to wrapped.__annotations__",
+            "hf": "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
+            "similarity": 0.888
+          },
+          {
+            "groq": "wrapper.__type_params__ is updated to wrapped.__type_params__",
+            "hf": "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
+            "similarity": 0.857
+          },
+          {
+            "groq": "wrapper.__dict__ is updated with wrapped.__dict__",
+            "hf": "wrapper's __dict__ attribute is updated to match wrapped's __dict__",
+            "similarity": 0.894
+          }
+        ],
+        "groq_only": [
+          "wrapper.__name__ is updated to wrapped.__name__"
+        ],
+        "hf_only": [
+          "wrapper's __name__ attribute is updated to match wrapped's __name__"
+        ],
+        "agreement_score": 0.75
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "wrapper and wrapped are the same function",
+          "assigned or updated is an empty tuple",
+          "wrapper or wrapped is not a callable"
+        ],
+        "hf_only": [
+          "if assigned is empty, wrapper's attributes are not updated",
+          "if updated is empty, wrapper's __dict__ attribute is not updated"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.58
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "wrapper must be a callable",
+            "hf": "wrapper must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapped must be a callable",
+            "hf": "wrapped must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "assigned must be a tuple of strings",
+            "hf": "assigned must be a tuple of strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "updated must be a tuple of strings",
+            "hf": "updated must be a tuple of strings",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "wrapper's __module__ attribute is updated to match wrapped's __module__",
+            "hf": "wrapper's __module__ attribute is updated to match wrapped's __module__",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapper's __name__ attribute is updated to match wrapped's __name__",
+            "hf": "wrapper's __name__ attribute is updated to match wrapped's __name__",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
+            "hf": "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
+            "hf": "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
+            "hf": "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
+            "hf": "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
+            "similarity": 1.0
+          },
+          {
+            "groq": "wrapper's __dict__ attribute is updated to match wrapped's __dict__",
+            "hf": "wrapper's __dict__ attribute is updated to match wrapped's __dict__",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if updated is empty, wrapper's __dict__ attribute is not updated",
+            "hf": "if updated is empty, wrapper's __dict__ attribute is not updated",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "if assigned is empty, wrapper's __module__, __name__, __qualname__, __doc__, __annotations__, __type_params__ attributes are not updated"
+        ],
+        "hf_only": [
+          "if assigned is empty, wrapper's attributes are not updated"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.78
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "wrapper must be a callable",
       "wrapped must be a callable",
@@ -39,92 +346,7 @@
       "wrapper's __dict__ attribute is updated to match wrapped's __dict__"
     ],
     "edge_cases": [
-      "if assigned is empty, wrapper's __module__, __name__, __qualname__, __doc__, __annotations__, __type_params__ are not updated",
-      "if updated is empty, wrapper's __dict__ is not updated"
+      "if updated is empty, wrapper's __dict__ attribute is not updated"
     ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "wrapper must be a callable",
-          "hf": "wrapper must be a callable",
-          "similarity": 1.0
-        },
-        {
-          "groq": "wrapped must be a callable",
-          "hf": "wrapped must be a callable",
-          "similarity": 1.0
-        },
-        {
-          "groq": "assigned must be a tuple of strings",
-          "hf": "assigned must be a tuple of strings",
-          "similarity": 1.0
-        },
-        {
-          "groq": "updated must be a tuple of strings",
-          "hf": "updated must be a tuple of strings",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "wrapper.__module__ is updated to wrapped.__module__",
-          "hf": "wrapper's __module__ attribute is updated to match wrapped's __module__",
-          "similarity": 0.835
-        },
-        {
-          "groq": "wrapper.__qualname__ is updated to wrapped.__qualname__",
-          "hf": "wrapper's __qualname__ attribute is updated to match wrapped's __qualname__",
-          "similarity": 0.829
-        },
-        {
-          "groq": "wrapper.__doc__ is updated to wrapped.__doc__",
-          "hf": "wrapper's __doc__ attribute is updated to match wrapped's __doc__",
-          "similarity": 0.824
-        },
-        {
-          "groq": "wrapper.__annotations__ is updated to wrapped.__annotations__",
-          "hf": "wrapper's __annotations__ attribute is updated to match wrapped's __annotations__",
-          "similarity": 0.888
-        },
-        {
-          "groq": "wrapper.__type_params__ is updated to wrapped.__type_params__",
-          "hf": "wrapper's __type_params__ attribute is updated to match wrapped's __type_params__",
-          "similarity": 0.857
-        },
-        {
-          "groq": "wrapper.__dict__ is updated with wrapped.__dict__",
-          "hf": "wrapper's __dict__ attribute is updated to match wrapped's __dict__",
-          "similarity": 0.894
-        }
-      ],
-      "groq_only": [
-        "wrapper.__name__ is updated to wrapped.__name__"
-      ],
-      "hf_only": [
-        "wrapper's __name__ attribute is updated to match wrapped's __name__"
-      ],
-      "agreement_score": 0.75
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "wrapper and wrapped are the same function",
-        "assigned or updated is an empty tuple",
-        "wrapper or wrapped is not a callable"
-      ],
-      "hf_only": [
-        "if assigned is empty, wrapper's __module__, __name__, __qualname__, __doc__, __annotations__, __type_params__ are not updated",
-        "if updated is empty, wrapper's __dict__ is not updated"
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.58
   }
 }

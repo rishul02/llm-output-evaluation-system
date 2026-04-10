@@ -1,114 +1,289 @@
 {
   "function": "functools.namedtuple",
-  "groq": {
-    "preconditions": [
-      "typename must be a string",
-      "field_names must be a string or an iterable of strings",
-      "rename must be a boolean",
-      "defaults must be None or an iterable",
-      "module must be None or a string"
-    ],
-    "postconditions": [
-      "returns a new subclass of tuple",
-      "the returned subclass has named fields",
-      "the named fields are based on the provided field_names"
-    ],
-    "edge_cases": [
-      "field_names is an empty string or an empty iterable",
-      "field_names contains duplicate field names and rename is False",
-      "defaults is provided but its length does not match the number of fields without default values",
-      "typename is an empty string"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"typename must be a string\",\n    \"field_names must be a string or an iterable of strings\",\n    \"rename must be a boolean\",\n    \"defaults must be None or an iterable\",\n    \"module must be None or a string\"\n  ],\n  \"postconditions\": [\n    \"returns a new subclass of tuple\",\n    \"the returned subclass has named fields\",\n    \"the returned subclass has the specified typename\"\n  ],\n  \"edge_cases\": [\n    \"field_names is an empty string or an empty iterable\",\n    \"field_names contains duplicate field names and rename is False\",\n    \"defaults is provided but its length does not match the number of fields without default values\",\n    \"typename is an empty string\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"typename must be a non-empty string\",\n    \"field_names must be a list of non-empty strings\",\n    \"rename must be a boolean\",\n    \"defaults must be a list of values or None\",\n    \"module must be a string or None\"\n  ],\n  \"postconditions\": [\n    \"returns a new subclass of tuple with named fields\",\n    \"new subclass has the same fields as field_names\",\n    \"new subclass has the same defaults as defaults\"\n  ],\n  \"edge_cases\": [\n    \"if rename is True, raises TypeError\",\n    \"if defaults is not None and len(defaults) != len(field_names), raises ValueError\",\n    \"if module is not None and not isinstance(module, str), raises TypeError\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"typename must be a non-empty string\",\n    \"field_names must be a non-empty list of non-empty strings\",\n    \"rename must be a boolean\",\n    \"defaults must be a list of values or None\",\n    \"module must be a string or None\"\n  ],\n  \"postconditions\": [\n    \"returns a new subclass of tuple with named fields\",\n    \"the subclass has the same fields as the field_names list\",\n    \"the subclass has the same default values as the defaults list\"\n  ],\n  \"edge_cases\": [\n    \"if field_names is empty, returns a tuple subclass with no fields\",\n    \"if rename is True, renames the fields to lowercase\",\n    \"if defaults is None, uses default values of None for all fields\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "typename must be a non-empty string",
-      "field_names must be a non-empty list of non-empty strings",
-      "rename must be a boolean",
-      "defaults must be a list of values or None",
-      "module must be a module or None"
-    ],
-    "postconditions": [
-      "returns a new subclass of tuple with named fields",
-      "the subclass has the same fields as the input field_names",
-      "the subclass has the same default values as the input defaults"
-    ],
-    "edge_cases": [
-      "if typename is an empty string, raises ValueError",
-      "if field_names is an empty list, raises ValueError",
-      "if rename is not a boolean, raises TypeError",
-      "if defaults is not a list of values or None, raises TypeError",
-      "if module is not a module or None, raises TypeError"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "typename must be a string",
-          "hf": "typename must be a non-empty string",
-          "similarity": 0.88
-        },
-        {
-          "groq": "field_names must be a string or an iterable of strings",
-          "hf": "field_names must be a non-empty list of non-empty strings",
-          "similarity": 0.852
-        },
-        {
-          "groq": "rename must be a boolean",
-          "hf": "rename must be a boolean",
-          "similarity": 1.0
-        },
-        {
-          "groq": "defaults must be None or an iterable",
-          "hf": "defaults must be a list of values or None",
-          "similarity": 0.826
-        },
-        {
-          "groq": "module must be None or a string",
-          "hf": "module must be a module or None",
-          "similarity": 0.867
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "typename must be a string",
+        "field_names must be a string or an iterable of strings",
+        "rename must be a boolean",
+        "defaults must be None or an iterable",
+        "module must be None or a string"
       ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "returns a new subclass of tuple",
-          "hf": "returns a new subclass of tuple with named fields",
-          "similarity": 0.865
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
+        "returns a new subclass of tuple",
         "the returned subclass has named fields",
-        "the named fields are based on the provided field_names"
+        "the returned subclass has the specified typename"
       ],
-      "hf_only": [
-        "the subclass has the same fields as the input field_names",
-        "the subclass has the same default values as the input defaults"
-      ],
-      "agreement_score": 0.2
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "field_names is an empty string or an empty iterable",
         "field_names contains duplicate field names and rename is False",
         "defaults is provided but its length does not match the number of fields without default values",
         "typename is an empty string"
-      ],
-      "hf_only": [
-        "if typename is an empty string, raises ValueError",
-        "if field_names is an empty list, raises ValueError",
-        "if rename is not a boolean, raises TypeError",
-        "if defaults is not a list of values or None, raises TypeError",
-        "if module is not a module or None, raises TypeError"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.4
+    "groq2": {
+      "preconditions": [
+        "typename must be a non-empty string",
+        "field_names must be a list of non-empty strings",
+        "rename must be a boolean",
+        "defaults must be a list of values or None",
+        "module must be a string or None"
+      ],
+      "postconditions": [
+        "returns a new subclass of tuple with named fields",
+        "new subclass has the same fields as field_names",
+        "new subclass has the same defaults as defaults"
+      ],
+      "edge_cases": [
+        "if rename is True, raises TypeError",
+        "if defaults is not None and len(defaults) != len(field_names), raises ValueError",
+        "if module is not None and not isinstance(module, str), raises TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "typename must be a non-empty string",
+        "field_names must be a non-empty list of non-empty strings",
+        "rename must be a boolean",
+        "defaults must be a list of values or None",
+        "module must be a string or None"
+      ],
+      "postconditions": [
+        "returns a new subclass of tuple with named fields",
+        "the subclass has the same fields as the field_names list",
+        "the subclass has the same default values as the defaults list"
+      ],
+      "edge_cases": [
+        "if field_names is empty, returns a tuple subclass with no fields",
+        "if rename is True, renames the fields to lowercase",
+        "if defaults is None, uses default values of None for all fields"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "typename must be a string",
+            "hf": "typename must be a non-empty string",
+            "similarity": 0.88
+          },
+          {
+            "groq": "field_names must be a string or an iterable of strings",
+            "hf": "field_names must be a non-empty list of non-empty strings",
+            "similarity": 0.852
+          },
+          {
+            "groq": "rename must be a boolean",
+            "hf": "rename must be a boolean",
+            "similarity": 1.0
+          },
+          {
+            "groq": "defaults must be None or an iterable",
+            "hf": "defaults must be a list of values or None",
+            "similarity": 0.826
+          },
+          {
+            "groq": "module must be None or a string",
+            "hf": "module must be a string or None",
+            "similarity": 0.975
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a new subclass of tuple",
+            "hf": "returns a new subclass of tuple with named fields",
+            "similarity": 0.865
+          }
+        ],
+        "groq_only": [
+          "the returned subclass has named fields",
+          "the returned subclass has the specified typename"
+        ],
+        "hf_only": [
+          "the subclass has the same fields as the field_names list",
+          "the subclass has the same default values as the defaults list"
+        ],
+        "agreement_score": 0.2
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "field_names is an empty string or an empty iterable",
+          "field_names contains duplicate field names and rename is False",
+          "defaults is provided but its length does not match the number of fields without default values",
+          "typename is an empty string"
+        ],
+        "hf_only": [
+          "if field_names is empty, returns a tuple subclass with no fields",
+          "if rename is True, renames the fields to lowercase",
+          "if defaults is None, uses default values of None for all fields"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.4
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "typename must be a string",
+            "hf": "typename must be a non-empty string",
+            "similarity": 0.88
+          },
+          {
+            "groq": "field_names must be a string or an iterable of strings",
+            "hf": "field_names must be a list of non-empty strings",
+            "similarity": 0.887
+          },
+          {
+            "groq": "rename must be a boolean",
+            "hf": "rename must be a boolean",
+            "similarity": 1.0
+          },
+          {
+            "groq": "defaults must be None or an iterable",
+            "hf": "defaults must be a list of values or None",
+            "similarity": 0.826
+          },
+          {
+            "groq": "module must be None or a string",
+            "hf": "module must be a string or None",
+            "similarity": 0.975
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a new subclass of tuple",
+            "hf": "returns a new subclass of tuple with named fields",
+            "similarity": 0.865
+          }
+        ],
+        "groq_only": [
+          "the returned subclass has named fields",
+          "the returned subclass has the specified typename"
+        ],
+        "hf_only": [
+          "new subclass has the same fields as field_names",
+          "new subclass has the same defaults as defaults"
+        ],
+        "agreement_score": 0.2
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "field_names is an empty string or an empty iterable",
+          "field_names contains duplicate field names and rename is False",
+          "defaults is provided but its length does not match the number of fields without default values",
+          "typename is an empty string"
+        ],
+        "hf_only": [
+          "if rename is True, raises TypeError",
+          "if defaults is not None and len(defaults) != len(field_names), raises ValueError",
+          "if module is not None and not isinstance(module, str), raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.4
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "typename must be a non-empty string",
+            "hf": "typename must be a non-empty string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "field_names must be a non-empty list of non-empty strings",
+            "hf": "field_names must be a list of non-empty strings",
+            "similarity": 0.993
+          },
+          {
+            "groq": "rename must be a boolean",
+            "hf": "rename must be a boolean",
+            "similarity": 1.0
+          },
+          {
+            "groq": "defaults must be a list of values or None",
+            "hf": "defaults must be a list of values or None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "module must be a string or None",
+            "hf": "module must be a string or None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a new subclass of tuple with named fields",
+            "hf": "returns a new subclass of tuple with named fields",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the subclass has the same fields as the field_names list",
+            "hf": "new subclass has the same fields as field_names",
+            "similarity": 0.922
+          },
+          {
+            "groq": "the subclass has the same default values as the defaults list",
+            "hf": "new subclass has the same defaults as defaults",
+            "similarity": 0.877
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if field_names is empty, returns a tuple subclass with no fields",
+          "if rename is True, renames the fields to lowercase",
+          "if defaults is None, uses default values of None for all fields"
+        ],
+        "hf_only": [
+          "if rename is True, raises TypeError",
+          "if defaults is not None and len(defaults) != len(field_names), raises ValueError",
+          "if module is not None and not isinstance(module, str), raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "rename must be a boolean",
+      "typename must be a non-empty string",
+      "defaults must be a list of values or none",
+      "module must be a string or none"
+    ],
+    "postconditions": [
+      "returns a new subclass of tuple with named fields"
+    ],
+    "edge_cases": []
   }
 }

@@ -1,81 +1,208 @@
 {
   "function": "operator.and_",
-  "groq": {
-    "preconditions": [
-      "a must be an integer",
-      "b must be an integer"
-    ],
-    "postconditions": [
-      "return value is the bitwise AND of a and b"
-    ],
-    "edge_cases": [
-      "a or b is zero",
-      "a or b is negative",
-      "a and b are equal",
-      "a and b are unequal"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"return value is the bitwise AND of a and b\"\n  ],\n  \"edge_cases\": [\n    \"a or b is zero\",\n    \"a or b is negative\",\n    \"a and b are equal\",\n    \"a and b are unequal\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"The result is an integer\",\n    \"The result is 1 if both a and b are 1, 0 otherwise\"\n  ],\n  \"edge_cases\": [\n    \"a = 0, b = 0: result = 0\",\n    \"a = 0, b = 1: result = 0\",\n    \"a = 1, b = 0: result = 0\",\n    \"a = 1, b = 1: result = 1\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be an integer\"\n  ],\n  \"postconditions\": [\n    \"The result is an integer\",\n    \"The result is 1 if both a and b are 1, 0 otherwise\"\n  ],\n  \"edge_cases\": [\n    \"If a or b is not an integer, a ValueError is raised\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "a must be an integer",
-      "b must be an integer"
-    ],
-    "postconditions": [
-      "The result is an integer",
-      "The result is 1 if both a and b are 1, 0 otherwise"
-    ],
-    "edge_cases": [
-      "a = 0, b = 0: result = 0",
-      "a = 0, b = 1: result = 0",
-      "a = 1, b = 0: result = 0",
-      "a = 1, b = 1: result = 1"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "a must be an integer",
-          "hf": "a must be an integer",
-          "similarity": 1.0
-        },
-        {
-          "groq": "b must be an integer",
-          "hf": "b must be an integer",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer"
       ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
+      "postconditions": [
         "return value is the bitwise AND of a and b"
       ],
-      "hf_only": [
-        "The result is an integer",
-        "The result is 1 if both a and b are 1, 0 otherwise"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "a or b is zero",
         "a or b is negative",
         "a and b are equal",
         "a and b are unequal"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer"
       ],
-      "hf_only": [
+      "postconditions": [
+        "The result is an integer",
+        "The result is 1 if both a and b are 1, 0 otherwise"
+      ],
+      "edge_cases": [
         "a = 0, b = 0: result = 0",
         "a = 0, b = 1: result = 0",
         "a = 1, b = 0: result = 0",
         "a = 1, b = 1: result = 1"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.33
+    "hf": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be an integer"
+      ],
+      "postconditions": [
+        "The result is an integer",
+        "The result is 1 if both a and b are 1, 0 otherwise"
+      ],
+      "edge_cases": [
+        "If a or b is not an integer, a ValueError is raised"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be an integer",
+            "hf": "a must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the bitwise AND of a and b"
+        ],
+        "hf_only": [
+          "The result is an integer",
+          "The result is 1 if both a and b are 1, 0 otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a or b is zero",
+          "a or b is negative",
+          "a and b are equal",
+          "a and b are unequal"
+        ],
+        "hf_only": [
+          "If a or b is not an integer, a ValueError is raised"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be an integer",
+            "hf": "a must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the bitwise AND of a and b"
+        ],
+        "hf_only": [
+          "The result is an integer",
+          "The result is 1 if both a and b are 1, 0 otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a or b is zero",
+          "a or b is negative",
+          "a and b are equal",
+          "a and b are unequal"
+        ],
+        "hf_only": [
+          "a = 0, b = 0: result = 0",
+          "a = 0, b = 1: result = 0",
+          "a = 1, b = 0: result = 0",
+          "a = 1, b = 1: result = 1"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be an integer",
+            "hf": "a must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be an integer",
+            "hf": "b must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is an integer",
+            "hf": "The result is an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The result is 1 if both a and b are 1, 0 otherwise",
+            "hf": "The result is 1 if both a and b are 1, 0 otherwise",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "If a or b is not an integer, a ValueError is raised"
+        ],
+        "hf_only": [
+          "a = 0, b = 0: result = 0",
+          "a = 0, b = 1: result = 0",
+          "a = 1, b = 0: result = 0",
+          "a = 1, b = 1: result = 1"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be an integer",
+      "b must be an integer"
+    ],
+    "postconditions": [
+      "the result is an integer",
+      "the result is 1 if both a and b are 1, 0 otherwise"
+    ],
+    "edge_cases": []
   }
 }

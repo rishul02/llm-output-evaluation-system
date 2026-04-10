@@ -1,20 +1,211 @@
 {
   "function": "statistics.cosh",
-  "groq": {
-    "preconditions": [
-      "x must be a number"
-    ],
-    "postconditions": [
-      "the result is the hyperbolic cosine of x",
-      "the result is a float"
-    ],
-    "edge_cases": [
-      "x is infinity",
-      "x is negative infinity",
-      "x is NaN"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"the result is the hyperbolic cosine of x\",\n    \"the result is a float\"\n  ],\n  \"edge_cases\": [\n    \"x is infinity\",\n    \"x is negative infinity\",\n    \"x is NaN\",\n    \"x is zero\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"the result is the hyperbolic cosine of x\"],\n  \"edge_cases\": [\"x is infinity\", \"x is negative infinity\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"The result is the hyperbolic cosine of x\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = 0 returns 1\",\n    \"x = infinity returns infinity\",\n    \"x = -infinity returns infinity\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "the result is the hyperbolic cosine of x",
+        "the result is a float"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity",
+        "x is NaN",
+        "x is zero"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "the result is the hyperbolic cosine of x"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "The result is the hyperbolic cosine of x",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x = 0 returns 1",
+        "x = infinity returns infinity",
+        "x = -infinity returns infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the hyperbolic cosine of x",
+            "hf": "The result is the hyperbolic cosine of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is a float"
+        ],
+        "hf_only": [
+          "The result is a real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is infinity",
+            "hf": "x = infinity returns infinity",
+            "similarity": 0.874
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x = -infinity returns infinity",
+            "similarity": 0.884
+          }
+        ],
+        "groq_only": [
+          "x is NaN",
+          "x is zero"
+        ],
+        "hf_only": [
+          "x = 0 returns 1"
+        ],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.41
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the hyperbolic cosine of x",
+            "hf": "the result is the hyperbolic cosine of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is a float"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is NaN",
+          "x is zero"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.67
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be finite"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is the hyperbolic cosine of x",
+            "hf": "the result is the hyperbolic cosine of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "The result is a real number"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x = infinity returns infinity",
+            "hf": "x is infinity",
+            "similarity": 0.874
+          },
+          {
+            "groq": "x = -infinity returns infinity",
+            "hf": "x is negative infinity",
+            "similarity": 0.884
+          }
+        ],
+        "groq_only": [
+          "x = 0 returns 1"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.56
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "x must be a real number"
     ],
@@ -25,53 +216,5 @@
       "x is infinity",
       "x is negative infinity"
     ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a number",
-          "hf": "x must be a real number",
-          "similarity": 0.847
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "the result is the hyperbolic cosine of x",
-          "hf": "the result is the hyperbolic cosine of x",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "the result is a float"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is infinity",
-          "hf": "x is infinity",
-          "similarity": 1.0
-        },
-        {
-          "groq": "x is negative infinity",
-          "hf": "x is negative infinity",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "x is NaN"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.67
-    },
-    "overall_agreement": 0.72
   }
 }

@@ -1,77 +1,218 @@
 {
   "function": "math.atan",
-  "groq": {
-    "preconditions": [
-      "x must be a real number"
-    ],
-    "postconditions": [
-      "return value is a real number",
-      "return value is in the range (-π/2, π/2)"
-    ],
-    "edge_cases": [
-      "x is infinity",
-      "x is negative infinity",
-      "x is NaN"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"return value is a float\",\n    \"return value is in the range (-pi/2, pi/2)\"\n  ],\n  \"edge_cases\": [\n    \"x is infinity\",\n    \"x is negative infinity\",\n    \"x is NaN\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\",\n    \"x must not be NaN\"\n  ],\n  \"postconditions\": [\n    \"returns the arc tangent (measured in radians) of x\",\n    \"returns a real number in the range -π/2 to π/2\"\n  ],\n  \"edge_cases\": [\n    \"if x is 0, returns 0\",\n    \"if x is positive infinity, returns π/2\",\n    \"if x is negative infinity, returns -π/2\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\",\n    \"x must not be NaN\"\n  ],\n  \"postconditions\": [\n    \"the result is the arc tangent of x, measured in radians\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"if x is 0, the result is 0\",\n    \"if x is positive infinity, the result is pi/2\",\n    \"if x is negative infinity, the result is -pi/2\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be a real number"
-    ],
-    "postconditions": [
-      "atan(x) returns the arc tangent of x in radians"
-    ],
-    "edge_cases": [
-      "x is 0",
-      "x is infinity",
-      "x is negative infinity"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a real number",
-          "hf": "x must be a real number",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
       ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "return value is a real number",
-        "return value is in the range (-π/2, π/2)"
+      "postconditions": [
+        "return value is a float",
+        "return value is in the range (-pi/2, pi/2)"
       ],
-      "hf_only": [
-        "atan(x) returns the arc tangent of x in radians"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is infinity",
-          "hf": "x is infinity",
-          "similarity": 1.0
-        },
-        {
-          "groq": "x is negative infinity",
-          "hf": "x is negative infinity",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity",
         "x is NaN"
-      ],
-      "hf_only": [
-        "x is 0"
-      ],
-      "agreement_score": 0.5
+      ]
     },
-    "overall_agreement": 0.5
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite",
+        "x must not be NaN"
+      ],
+      "postconditions": [
+        "returns the arc tangent (measured in radians) of x",
+        "returns a real number in the range -π/2 to π/2"
+      ],
+      "edge_cases": [
+        "if x is 0, returns 0",
+        "if x is positive infinity, returns π/2",
+        "if x is negative infinity, returns -π/2"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite",
+        "x must not be NaN"
+      ],
+      "postconditions": [
+        "the result is the arc tangent of x, measured in radians",
+        "the result is a real number"
+      ],
+      "edge_cases": [
+        "if x is 0, the result is 0",
+        "if x is positive infinity, the result is pi/2",
+        "if x is negative infinity, the result is -pi/2"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite",
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a float",
+          "return value is in the range (-pi/2, pi/2)"
+        ],
+        "hf_only": [
+          "the result is the arc tangent of x, measured in radians",
+          "the result is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity",
+          "x is NaN"
+        ],
+        "hf_only": [
+          "if x is 0, the result is 0",
+          "if x is positive infinity, the result is pi/2",
+          "if x is negative infinity, the result is -pi/2"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite",
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a float",
+          "return value is in the range (-pi/2, pi/2)"
+        ],
+        "hf_only": [
+          "returns the arc tangent (measured in radians) of x",
+          "returns a real number in the range -π/2 to π/2"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity",
+          "x is NaN"
+        ],
+        "hf_only": [
+          "if x is 0, returns 0",
+          "if x is positive infinity, returns π/2",
+          "if x is negative infinity, returns -π/2"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be finite",
+            "hf": "x must be finite",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must not be NaN",
+            "hf": "x must not be NaN",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the arc tangent of x, measured in radians",
+            "hf": "returns the arc tangent (measured in radians) of x",
+            "similarity": 0.899
+          }
+        ],
+        "groq_only": [
+          "the result is a real number"
+        ],
+        "hf_only": [
+          "returns a real number in the range -π/2 to π/2"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if x is 0, the result is 0",
+            "hf": "if x is 0, returns 0",
+            "similarity": 0.946
+          },
+          {
+            "groq": "if x is positive infinity, the result is pi/2",
+            "hf": "if x is positive infinity, returns π/2",
+            "similarity": 0.946
+          },
+          {
+            "groq": "if x is negative infinity, the result is -pi/2",
+            "hf": "if x is negative infinity, returns -π/2",
+            "similarity": 0.944
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.78
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite",
+      "x must not be nan"
+    ],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

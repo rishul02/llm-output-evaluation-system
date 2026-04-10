@@ -1,0 +1,235 @@
+{
+  "function": "statistics.exp",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"result is the mathematical constant e raised to the power of x\",\n    \"result is a floating point number\"\n  ],\n  \"edge_cases\": [\n    \"x is negative infinity\",\n    \"x is positive infinity\",\n    \"x is NaN\",\n    \"x is zero\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"The result is a real number\",\n    \"The result is e raised to the power of x\"\n  ],\n  \"edge_cases\": [\n    \"x = 0: result = 1\",\n    \"x = 1: result = e\",\n    \"x = -∞: undefined\",\n    \"x = ∞: undefined\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"The result is a real number\",\n    \"The result is e raised to the power of x\"\n  ],\n  \"edge_cases\": [\n    \"x = 0: result = 1\",\n    \"x = 1: result = e\",\n    \"x = -∞: undefined behavior\",\n    \"x = ∞: undefined behavior\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "result is the mathematical constant e raised to the power of x",
+        "result is a floating point number"
+      ],
+      "edge_cases": [
+        "x is negative infinity",
+        "x is positive infinity",
+        "x is NaN",
+        "x is zero"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "The result is a real number",
+        "The result is e raised to the power of x"
+      ],
+      "edge_cases": [
+        "x = 0: result = 1",
+        "x = 1: result = e",
+        "x = -∞: undefined",
+        "x = ∞: undefined"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "The result is a real number",
+        "The result is e raised to the power of x"
+      ],
+      "edge_cases": [
+        "x = 0: result = 1",
+        "x = 1: result = e",
+        "x = -∞: undefined behavior",
+        "x = ∞: undefined behavior"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the mathematical constant e raised to the power of x",
+            "hf": "The result is e raised to the power of x",
+            "similarity": 0.928
+          }
+        ],
+        "groq_only": [
+          "result is a floating point number"
+        ],
+        "hf_only": [
+          "The result is a real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is negative infinity",
+          "x is positive infinity",
+          "x is NaN",
+          "x is zero"
+        ],
+        "hf_only": [
+          "x = 0: result = 1",
+          "x = 1: result = e",
+          "x = -∞: undefined behavior",
+          "x = ∞: undefined behavior"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the mathematical constant e raised to the power of x",
+            "hf": "The result is e raised to the power of x",
+            "similarity": 0.928
+          }
+        ],
+        "groq_only": [
+          "result is a floating point number"
+        ],
+        "hf_only": [
+          "The result is a real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is negative infinity",
+          "x is positive infinity",
+          "x is NaN",
+          "x is zero"
+        ],
+        "hf_only": [
+          "x = 0: result = 1",
+          "x = 1: result = e",
+          "x = -∞: undefined",
+          "x = ∞: undefined"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be finite",
+            "hf": "x must be finite",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is a real number",
+            "hf": "The result is a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The result is e raised to the power of x",
+            "hf": "The result is e raised to the power of x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x = 0: result = 1",
+            "hf": "x = 0: result = 1",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x = 1: result = e",
+            "hf": "x = 1: result = e",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x = -∞: undefined behavior",
+            "hf": "x = -∞: undefined",
+            "similarity": 0.96
+          },
+          {
+            "groq": "x = ∞: undefined behavior",
+            "hf": "x = ∞: undefined",
+            "similarity": 0.953
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite"
+    ],
+    "postconditions": [
+      "the result is a real number",
+      "the result is e raised to the power of x"
+    ],
+    "edge_cases": [
+      "x = 0: result = 1",
+      "x = 1: result = e"
+    ]
+  }
+}

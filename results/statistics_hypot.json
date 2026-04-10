@@ -1,0 +1,211 @@
+{
+  "function": "statistics.hypot",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"at least two coordinates must be provided\",\n    \"all coordinates must be numbers\"\n  ],\n  \"postconditions\": [\n    \"the result is the Euclidean norm, sqrt(x^2 + y^2 + ...)\",\n    \"the result is a non-negative number\"\n  ],\n  \"edge_cases\": [\n    \"zero coordinates results in a ValueError\",\n    \"one coordinate results in a ValueError\",\n    \"non-numeric coordinates result in a TypeError\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"coordinates must be a non-empty sequence\",\n    \"all items in coordinates must be plain strings\",\n    \"coordinates must contain exactly two items\"\n  ],\n  \"postconditions\": [\n    \"returns the Euclidean distance between two points\",\n    \"returns a non-negative value\"\n  ],\n  \"edge_cases\": [\n    \"coordinates with less than two items raises TypeError\",\n    \"coordinates with more than two items raises TypeError\",\n    \"coordinates with non-string items raises TypeError\"\n  ]\n}",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"coordinates must be a non-empty sequence of numbers\",\n    \"all coordinates must be numbers\"\n  ],\n  \"postconditions\": [\n    \"returns the Euclidean distance of the coordinates\",\n    \"the result is a non-negative number\"\n  ],\n  \"edge_cases\": [\n    \"when coordinates is empty, raises TypeError\",\n    \"when coordinates contains non-numeric values, raises TypeError\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "at least two coordinates must be provided",
+        "all coordinates must be numbers"
+      ],
+      "postconditions": [
+        "the result is the Euclidean norm, sqrt(x^2 + y^2 + ...)",
+        "the result is a non-negative number"
+      ],
+      "edge_cases": [
+        "zero coordinates results in a ValueError",
+        "one coordinate results in a ValueError",
+        "non-numeric coordinates result in a TypeError"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "coordinates must be a non-empty sequence",
+        "all items in coordinates must be plain strings",
+        "coordinates must contain exactly two items"
+      ],
+      "postconditions": [
+        "returns the Euclidean distance between two points",
+        "returns a non-negative value"
+      ],
+      "edge_cases": [
+        "coordinates with less than two items raises TypeError",
+        "coordinates with more than two items raises TypeError",
+        "coordinates with non-string items raises TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "coordinates must be a non-empty sequence of numbers",
+        "all coordinates must be numbers"
+      ],
+      "postconditions": [
+        "returns the Euclidean distance of the coordinates",
+        "the result is a non-negative number"
+      ],
+      "edge_cases": [
+        "when coordinates is empty, raises TypeError",
+        "when coordinates contains non-numeric values, raises TypeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "all coordinates must be numbers",
+            "hf": "all coordinates must be numbers",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "at least two coordinates must be provided"
+        ],
+        "hf_only": [
+          "coordinates must be a non-empty sequence of numbers"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is a non-negative number",
+            "hf": "the result is a non-negative number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is the Euclidean norm, sqrt(x^2 + y^2 + ...)"
+        ],
+        "hf_only": [
+          "returns the Euclidean distance of the coordinates"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "zero coordinates results in a ValueError",
+            "hf": "when coordinates is empty, raises TypeError",
+            "similarity": 0.826
+          },
+          {
+            "groq": "non-numeric coordinates result in a TypeError",
+            "hf": "when coordinates contains non-numeric values, raises TypeError",
+            "similarity": 0.938
+          }
+        ],
+        "groq_only": [
+          "one coordinate results in a ValueError"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.44
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "at least two coordinates must be provided",
+          "all coordinates must be numbers"
+        ],
+        "hf_only": [
+          "coordinates must be a non-empty sequence",
+          "all items in coordinates must be plain strings",
+          "coordinates must contain exactly two items"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the result is the Euclidean norm, sqrt(x^2 + y^2 + ...)",
+          "the result is a non-negative number"
+        ],
+        "hf_only": [
+          "returns the Euclidean distance between two points",
+          "returns a non-negative value"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "zero coordinates results in a ValueError",
+          "one coordinate results in a ValueError",
+          "non-numeric coordinates result in a TypeError"
+        ],
+        "hf_only": [
+          "coordinates with less than two items raises TypeError",
+          "coordinates with more than two items raises TypeError",
+          "coordinates with non-string items raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "coordinates must be a non-empty sequence of numbers",
+            "hf": "coordinates must be a non-empty sequence",
+            "similarity": 0.95
+          }
+        ],
+        "groq_only": [
+          "all coordinates must be numbers"
+        ],
+        "hf_only": [
+          "all items in coordinates must be plain strings",
+          "coordinates must contain exactly two items"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns the Euclidean distance of the coordinates",
+            "hf": "returns the Euclidean distance between two points",
+            "similarity": 0.871
+          }
+        ],
+        "groq_only": [
+          "the result is a non-negative number"
+        ],
+        "hf_only": [
+          "returns a non-negative value"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "when coordinates is empty, raises TypeError",
+          "when coordinates contains non-numeric values, raises TypeError"
+        ],
+        "hf_only": [
+          "coordinates with less than two items raises TypeError",
+          "coordinates with more than two items raises TypeError",
+          "coordinates with non-string items raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.19
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "all coordinates must be numbers"
+    ],
+    "postconditions": [
+      "the result is a non-negative number"
+    ],
+    "edge_cases": []
+  }
+}

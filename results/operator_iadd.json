@@ -1,0 +1,210 @@
+{
+  "function": "operator.iadd",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a mutable object\",\n    \"a must support the += operator\",\n    \"b must be a type compatible with a for the += operator\"\n  ],\n  \"postconditions\": [\n    \"a is modified in-place\",\n    \"the result of a += b is stored in a\",\n    \"the function returns the modified object a\"\n  ],\n  \"edge_cases\": [\n    \"a is a list and b is also a list\",\n    \"a is a set and b is also a set\",\n    \"a is a dictionary and b is also a dictionary\",\n    \"a is a numeric type and b is also a numeric type\",\n    \"a is None\",\n    \"b is None\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\",\n    \"a and b must be of the same type\"\n  ],\n  \"postconditions\": [\n    \"a is equal to the sum of its original value and b\"\n  ],\n  \"edge_cases\": [\n    \"if a is a complex number, its real and imaginary parts must be numbers\",\n    \"if a is a complex number, b must be of the same type as a\",\n    \"if a is a complex number, the result will be a complex number\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\"\n  ],\n  \"postconditions\": [\n    \"a is equal to the result of a + b\"\n  ],\n  \"edge_cases\": [\n    \"if a is not a number, raises TypeError\",\n    \"if b is not a number, raises TypeError\",\n    \"if a is a complex number, b must also be a complex number\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a mutable object",
+        "a must support the += operator",
+        "b must be a type compatible with a for the += operator"
+      ],
+      "postconditions": [
+        "a is modified in-place",
+        "the result of a += b is stored in a",
+        "the function returns the modified object a"
+      ],
+      "edge_cases": [
+        "a is a list and b is also a list",
+        "a is a set and b is also a set",
+        "a is a dictionary and b is also a dictionary",
+        "a is a numeric type and b is also a numeric type",
+        "a is None",
+        "b is None"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number",
+        "a and b must be of the same type"
+      ],
+      "postconditions": [
+        "a is equal to the sum of its original value and b"
+      ],
+      "edge_cases": [
+        "if a is a complex number, its real and imaginary parts must be numbers",
+        "if a is a complex number, b must be of the same type as a",
+        "if a is a complex number, the result will be a complex number"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number"
+      ],
+      "postconditions": [
+        "a is equal to the result of a + b"
+      ],
+      "edge_cases": [
+        "if a is not a number, raises TypeError",
+        "if b is not a number, raises TypeError",
+        "if a is a complex number, b must also be a complex number"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object",
+          "a must support the += operator",
+          "b must be a type compatible with a for the += operator"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is modified in-place",
+          "the result of a += b is stored in a",
+          "the function returns the modified object a"
+        ],
+        "hf_only": [
+          "a is equal to the result of a + b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is a list and b is also a list",
+          "a is a set and b is also a set",
+          "a is a dictionary and b is also a dictionary",
+          "a is a numeric type and b is also a numeric type",
+          "a is None",
+          "b is None"
+        ],
+        "hf_only": [
+          "if a is not a number, raises TypeError",
+          "if b is not a number, raises TypeError",
+          "if a is a complex number, b must also be a complex number"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object",
+          "a must support the += operator",
+          "b must be a type compatible with a for the += operator"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number",
+          "a and b must be of the same type"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is modified in-place",
+          "the result of a += b is stored in a",
+          "the function returns the modified object a"
+        ],
+        "hf_only": [
+          "a is equal to the sum of its original value and b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is a list and b is also a list",
+          "a is a set and b is also a set",
+          "a is a dictionary and b is also a dictionary",
+          "a is a numeric type and b is also a numeric type",
+          "a is None",
+          "b is None"
+        ],
+        "hf_only": [
+          "if a is a complex number, its real and imaginary parts must be numbers",
+          "if a is a complex number, b must be of the same type as a",
+          "if a is a complex number, the result will be a complex number"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a number",
+            "hf": "a must be a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a number",
+            "hf": "b must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "a and b must be of the same type"
+        ],
+        "agreement_score": 0.67
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a is equal to the result of a + b"
+        ],
+        "hf_only": [
+          "a is equal to the sum of its original value and b"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if a is a complex number, b must also be a complex number",
+            "hf": "if a is a complex number, b must be of the same type as a",
+            "similarity": 0.941
+          }
+        ],
+        "groq_only": [
+          "if a is not a number, raises TypeError",
+          "if b is not a number, raises TypeError"
+        ],
+        "hf_only": [
+          "if a is a complex number, its real and imaginary parts must be numbers",
+          "if a is a complex number, the result will be a complex number"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.29
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be a number",
+      "b must be a number"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

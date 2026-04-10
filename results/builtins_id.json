@@ -1,0 +1,191 @@
+{
+  "function": "builtins.id",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\"obj must be any object\"],\n  \"postconditions\": [\"returns the unique identifier for the object\"],\n  \"edge_cases\": [\"obj is None\", \"obj is a primitive type\", \"obj is a complex object\"]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"obj must be an object\"],\n  \"postconditions\": [\"id(obj) returns the identity of obj\"],\n  \"edge_cases\": [\"obj is None\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"obj must not be None\"\n  ],\n  \"postconditions\": [\n    \"id(obj) must return the identity of obj\",\n    \"id(obj) must be an integer\"\n  ],\n  \"edge_cases\": [\n    \"id(None) must raise TypeError\",\n    \"id(0) must return the identity of 0\",\n    \"id('') must return the identity of ''\",\n    \"id([]) must return the identity of []\",\n    \"id({}) must return the identity of {}\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be any object"
+      ],
+      "postconditions": [
+        "returns the unique identifier for the object"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "obj is a primitive type",
+        "obj is a complex object"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "obj must be an object"
+      ],
+      "postconditions": [
+        "id(obj) returns the identity of obj"
+      ],
+      "edge_cases": [
+        "obj is None"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "obj must be an object",
+        "obj must not be None"
+      ],
+      "postconditions": [
+        "id(obj) must return the identity of obj",
+        "id(obj) must be an integer"
+      ],
+      "edge_cases": [
+        "id(None) must raise TypeError",
+        "id(0) must return the identity of 0",
+        "id('') must return the identity of ''",
+        "id([]) must return the identity of []",
+        "id({}) must return the identity of {}"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be any object",
+            "hf": "obj must be an object",
+            "similarity": 0.987
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must not be None"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the unique identifier for the object"
+        ],
+        "hf_only": [
+          "id(obj) must return the identity of obj",
+          "id(obj) must be an integer"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "obj is None",
+          "obj is a primitive type",
+          "obj is a complex object"
+        ],
+        "hf_only": [
+          "id(None) must raise TypeError",
+          "id(0) must return the identity of 0",
+          "id('') must return the identity of ''",
+          "id([]) must return the identity of []",
+          "id({}) must return the identity of {}"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be any object",
+            "hf": "obj must be an object",
+            "similarity": 0.987
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the unique identifier for the object"
+        ],
+        "hf_only": [
+          "id(obj) returns the identity of obj"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "obj is a primitive type",
+          "obj is a complex object"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.44
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "obj must not be None"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "id(obj) must return the identity of obj",
+            "hf": "id(obj) returns the identity of obj",
+            "similarity": 0.966
+          }
+        ],
+        "groq_only": [
+          "id(obj) must be an integer"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "id(None) must raise TypeError",
+          "id(0) must return the identity of 0",
+          "id('') must return the identity of ''",
+          "id([]) must return the identity of []",
+          "id({}) must return the identity of {}"
+        ],
+        "hf_only": [
+          "obj is None"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "obj must be an object"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "obj is none"
+    ]
+  }
+}

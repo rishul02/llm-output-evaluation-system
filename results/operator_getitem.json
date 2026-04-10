@@ -1,0 +1,219 @@
+{
+  "function": "operator.getitem",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be an object that supports indexing\",\n    \"b must be a valid index for a\"\n  ],\n  \"postconditions\": [\n    \"returns the value at index b in object a\"\n  ],\n  \"edge_cases\": [\n    \"a is a string and b is an integer\",\n    \"a is a list and b is an integer\",\n    \"a is a tuple and b is an integer\",\n    \"a is a dictionary and b is a key\",\n    \"b is out of range for a\",\n    \"a does not support indexing\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be an integer\",\n    \"a must contain only plain strings\",\n    \"b must be a valid index for a\"\n  ],\n  \"postconditions\": [\n    \"The result of a[b] must be a plain string\",\n    \"The result of a[b] must be a substring of a\"\n  ],\n  \"edge_cases\": [\n    \"If a is an empty sequence, the function raises an IndexError\",\n    \"If b is out of range for a, the function raises an IndexError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a valid index for a\",\n    \"a and b must be plain strings\"\n  ],\n  \"postconditions\": [\n    \"The result of a[b] is returned\",\n    \"The result is a plain string\"\n  ],\n  \"edge_cases\": [\n    \"If a is an empty string, an empty string is returned\",\n    \"If a is None, a TypeError is raised\",\n    \"If b is out of range, an IndexError is raised\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be an object that supports indexing",
+        "b must be a valid index for a"
+      ],
+      "postconditions": [
+        "returns the value at index b in object a"
+      ],
+      "edge_cases": [
+        "a is a string and b is an integer",
+        "a is a list and b is an integer",
+        "a is a tuple and b is an integer",
+        "a is a dictionary and b is a key",
+        "b is out of range for a",
+        "a does not support indexing"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be an integer",
+        "a must contain only plain strings",
+        "b must be a valid index for a"
+      ],
+      "postconditions": [
+        "The result of a[b] must be a plain string",
+        "The result of a[b] must be a substring of a"
+      ],
+      "edge_cases": [
+        "If a is an empty sequence, the function raises an IndexError",
+        "If b is out of range for a, the function raises an IndexError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a valid index for a",
+        "a and b must be plain strings"
+      ],
+      "postconditions": [
+        "The result of a[b] is returned",
+        "The result is a plain string"
+      ],
+      "edge_cases": [
+        "If a is an empty string, an empty string is returned",
+        "If a is None, a TypeError is raised",
+        "If b is out of range, an IndexError is raised"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be a valid index for a",
+            "hf": "b must be a valid index for a",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be an object that supports indexing"
+        ],
+        "hf_only": [
+          "a must be a sequence",
+          "a and b must be plain strings"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the value at index b in object a"
+        ],
+        "hf_only": [
+          "The result of a[b] is returned",
+          "The result is a plain string"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is a string and b is an integer",
+          "a is a list and b is an integer",
+          "a is a tuple and b is an integer",
+          "a is a dictionary and b is a key",
+          "b is out of range for a",
+          "a does not support indexing"
+        ],
+        "hf_only": [
+          "If a is an empty string, an empty string is returned",
+          "If a is None, a TypeError is raised",
+          "If b is out of range, an IndexError is raised"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.08
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be a valid index for a",
+            "hf": "b must be a valid index for a",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be an object that supports indexing"
+        ],
+        "hf_only": [
+          "a must be a sequence",
+          "b must be an integer",
+          "a must contain only plain strings"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the value at index b in object a"
+        ],
+        "hf_only": [
+          "The result of a[b] must be a plain string",
+          "The result of a[b] must be a substring of a"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "a is a string and b is an integer",
+          "a is a list and b is an integer",
+          "a is a tuple and b is an integer",
+          "a is a dictionary and b is a key",
+          "b is out of range for a",
+          "a does not support indexing"
+        ],
+        "hf_only": [
+          "If a is an empty sequence, the function raises an IndexError",
+          "If b is out of range for a, the function raises an IndexError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.07
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a sequence",
+            "hf": "a must be a sequence",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a valid index for a",
+            "hf": "b must be a valid index for a",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a and b must be plain strings"
+        ],
+        "hf_only": [
+          "b must be an integer",
+          "a must contain only plain strings"
+        ],
+        "agreement_score": 0.4
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "The result of a[b] is returned",
+          "The result is a plain string"
+        ],
+        "hf_only": [
+          "The result of a[b] must be a plain string",
+          "The result of a[b] must be a substring of a"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If b is out of range, an IndexError is raised",
+            "hf": "If b is out of range for a, the function raises an IndexError",
+            "similarity": 0.925
+          }
+        ],
+        "groq_only": [
+          "If a is an empty string, an empty string is returned",
+          "If a is None, a TypeError is raised"
+        ],
+        "hf_only": [
+          "If a is an empty sequence, the function raises an IndexError"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.22
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "b must be a valid index for a",
+      "a must be a sequence"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

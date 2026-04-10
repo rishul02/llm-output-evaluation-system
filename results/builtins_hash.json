@@ -1,0 +1,212 @@
+{
+  "function": "builtins.hash",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"obj must be a hashable object\"\n  ],\n  \"postconditions\": [\n    \"returns an integer\",\n    \"the returned integer is the hash value of obj\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"obj is a mutable object\",\n    \"obj is a custom class instance\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"obj must be hashable\"\n  ],\n  \"postconditions\": [\n    \"returns an integer hash value\",\n    \"returns the hash value of obj\"\n  ],\n  \"edge_cases\": [\n    \"if obj is None, raises TypeError\",\n    \"if obj is not hashable, raises TypeError\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"obj must be hashable\",\n    \"obj must not be unhashable\"\n  ],\n  \"postconditions\": [\n    \"returns the hash value for the given object\",\n    \"returns an integer\"\n  ],\n  \"edge_cases\": [\n    \"if obj is None, raises TypeError\",\n    \"if obj is not hashable, raises TypeError\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be a hashable object"
+      ],
+      "postconditions": [
+        "returns an integer",
+        "the returned integer is the hash value of obj"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "obj is a mutable object",
+        "obj is a custom class instance"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "obj must be an object",
+        "obj must be hashable"
+      ],
+      "postconditions": [
+        "returns an integer hash value",
+        "returns the hash value of obj"
+      ],
+      "edge_cases": [
+        "if obj is None, raises TypeError",
+        "if obj is not hashable, raises TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "obj must be an object",
+        "obj must be hashable",
+        "obj must not be unhashable"
+      ],
+      "postconditions": [
+        "returns the hash value for the given object",
+        "returns an integer"
+      ],
+      "edge_cases": [
+        "if obj is None, raises TypeError",
+        "if obj is not hashable, raises TypeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be a hashable object",
+            "hf": "obj must be hashable",
+            "similarity": 0.937
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must be an object",
+          "obj must not be unhashable"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns an integer",
+            "hf": "returns an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the returned integer is the hash value of obj"
+        ],
+        "hf_only": [
+          "returns the hash value for the given object"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "obj is None",
+          "obj is a mutable object",
+          "obj is a custom class instance"
+        ],
+        "hf_only": [
+          "if obj is None, raises TypeError",
+          "if obj is not hashable, raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.22
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be a hashable object",
+            "hf": "obj must be hashable",
+            "similarity": 0.937
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must be an object"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the returned integer is the hash value of obj",
+            "hf": "returns the hash value of obj",
+            "similarity": 0.875
+          }
+        ],
+        "groq_only": [
+          "returns an integer"
+        ],
+        "hf_only": [
+          "returns an integer hash value"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "obj is None",
+          "obj is a mutable object",
+          "obj is a custom class instance"
+        ],
+        "hf_only": [
+          "if obj is None, raises TypeError",
+          "if obj is not hashable, raises TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "obj must be hashable",
+            "hf": "obj must be hashable",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "obj must not be unhashable"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns the hash value for the given object",
+          "returns an integer"
+        ],
+        "hf_only": [
+          "returns an integer hash value",
+          "returns the hash value of obj"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if obj is None, raises TypeError",
+            "hf": "if obj is None, raises TypeError",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if obj is not hashable, raises TypeError",
+            "hf": "if obj is not hashable, raises TypeError",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.56
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "obj must be an object",
+      "obj must be hashable"
+    ],
+    "postconditions": [
+      "returns an integer"
+    ],
+    "edge_cases": [
+      "if obj is none, raises typeerror",
+      "if obj is not hashable, raises typeerror"
+    ]
+  }
+}

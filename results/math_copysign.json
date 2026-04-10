@@ -1,0 +1,270 @@
+{
+  "function": "math.copysign",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"y must be a number\"\n  ],\n  \"postconditions\": [\n    \"result is a float\",\n    \"result has the magnitude of x\",\n    \"result has the sign of y\"\n  ],\n  \"edge_cases\": [\n    \"x is zero\",\n    \"y is zero\",\n    \"x is negative infinity\",\n    \"x is positive infinity\",\n    \"y is negative infinity\",\n    \"y is positive infinity\",\n    \"x is NaN\",\n    \"y is NaN\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a float\",\n    \"y must be a float\"\n  ],\n  \"postconditions\": [\n    \"The result is a float\",\n    \"The magnitude of the result is the absolute value of x\",\n    \"The sign of the result is the sign of y\"\n  ],\n  \"edge_cases\": [\n    \"If x is 0, the result is 0\",\n    \"If y is 0, the result is 0\",\n    \"If x is NaN, the result is NaN\",\n    \"If y is NaN, the result is NaN\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"y must be a real number\"\n  ],\n  \"postconditions\": [\n    \"The result is a real number\",\n    \"The magnitude of the result is the magnitude of x\",\n    \"The sign of the result is the sign of y\"\n  ],\n  \"edge_cases\": [\n    \"If x is zero, the result is zero\",\n    \"If y is zero, the result is zero\",\n    \"If x is negative and y is positive, the result is positive\",\n    \"If x is positive and y is negative, the result is negative\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number",
+        "y must be a number"
+      ],
+      "postconditions": [
+        "result is a float",
+        "result has the magnitude of x",
+        "result has the sign of y"
+      ],
+      "edge_cases": [
+        "x is zero",
+        "y is zero",
+        "x is negative infinity",
+        "x is positive infinity",
+        "y is negative infinity",
+        "y is positive infinity",
+        "x is NaN",
+        "y is NaN"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a float",
+        "y must be a float"
+      ],
+      "postconditions": [
+        "The result is a float",
+        "The magnitude of the result is the absolute value of x",
+        "The sign of the result is the sign of y"
+      ],
+      "edge_cases": [
+        "If x is 0, the result is 0",
+        "If y is 0, the result is 0",
+        "If x is NaN, the result is NaN",
+        "If y is NaN, the result is NaN"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "y must be a real number"
+      ],
+      "postconditions": [
+        "The result is a real number",
+        "The magnitude of the result is the magnitude of x",
+        "The sign of the result is the sign of y"
+      ],
+      "edge_cases": [
+        "If x is zero, the result is zero",
+        "If y is zero, the result is zero",
+        "If x is negative and y is positive, the result is positive",
+        "If x is positive and y is negative, the result is negative"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          },
+          {
+            "groq": "y must be a number",
+            "hf": "y must be a real number",
+            "similarity": 0.83
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result has the magnitude of x",
+            "hf": "The magnitude of the result is the magnitude of x",
+            "similarity": 0.957
+          },
+          {
+            "groq": "result has the sign of y",
+            "hf": "The sign of the result is the sign of y",
+            "similarity": 0.949
+          }
+        ],
+        "groq_only": [
+          "result is a float"
+        ],
+        "hf_only": [
+          "The result is a real number"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "If x is zero, the result is zero",
+            "similarity": 0.894
+          },
+          {
+            "groq": "y is zero",
+            "hf": "If y is zero, the result is zero",
+            "similarity": 0.906
+          }
+        ],
+        "groq_only": [
+          "x is negative infinity",
+          "x is positive infinity",
+          "y is negative infinity",
+          "y is positive infinity",
+          "x is NaN",
+          "y is NaN"
+        ],
+        "hf_only": [
+          "If x is negative and y is positive, the result is positive",
+          "If x is positive and y is negative, the result is negative"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.57
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "x must be a number",
+          "y must be a number"
+        ],
+        "hf_only": [
+          "x must be a float",
+          "y must be a float"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is a float",
+            "hf": "The result is a float",
+            "similarity": 0.948
+          },
+          {
+            "groq": "result has the magnitude of x",
+            "hf": "The magnitude of the result is the absolute value of x",
+            "similarity": 0.891
+          },
+          {
+            "groq": "result has the sign of y",
+            "hf": "The sign of the result is the sign of y",
+            "similarity": 0.949
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is zero",
+            "hf": "If x is 0, the result is 0",
+            "similarity": 0.868
+          },
+          {
+            "groq": "y is zero",
+            "hf": "If y is 0, the result is 0",
+            "similarity": 0.876
+          },
+          {
+            "groq": "x is NaN",
+            "hf": "If x is NaN, the result is NaN",
+            "similarity": 0.884
+          },
+          {
+            "groq": "y is NaN",
+            "hf": "If y is NaN, the result is NaN",
+            "similarity": 0.854
+          }
+        ],
+        "groq_only": [
+          "x is negative infinity",
+          "x is positive infinity",
+          "y is negative infinity",
+          "y is positive infinity"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.5
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "x must be a real number",
+          "y must be a real number"
+        ],
+        "hf_only": [
+          "x must be a float",
+          "y must be a float"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The magnitude of the result is the magnitude of x",
+            "hf": "The magnitude of the result is the absolute value of x",
+            "similarity": 0.914
+          },
+          {
+            "groq": "The sign of the result is the sign of y",
+            "hf": "The sign of the result is the sign of y",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "The result is a real number"
+        ],
+        "hf_only": [
+          "The result is a float"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If x is zero, the result is zero",
+            "hf": "If x is 0, the result is 0",
+            "similarity": 0.957
+          },
+          {
+            "groq": "If y is zero, the result is zero",
+            "hf": "If y is 0, the result is 0",
+            "similarity": 0.961
+          }
+        ],
+        "groq_only": [
+          "If x is negative and y is positive, the result is positive",
+          "If x is positive and y is negative, the result is negative"
+        ],
+        "hf_only": [
+          "If x is NaN, the result is NaN",
+          "If y is NaN, the result is NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.28
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [
+      "the sign of the result is the sign of y"
+    ],
+    "edge_cases": []
+  }
+}

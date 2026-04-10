@@ -1,203 +1,224 @@
-import json
 import os
+import json
+from collections import defaultdict
 import matplotlib.pyplot as plt
-import numpy as np
-import csv
+import seaborn as sns
 
 RESULTS_DIR = "results"
+FIGURES_DIR = os.path.join(RESULTS_DIR, "figures")
 
 
-def load_all_results():
-    results = []
-    for filename in os.listdir(RESULTS_DIR):
-        if filename.endswith(".json"):
-            path = os.path.join(RESULTS_DIR, filename)
+# load
+
+def load_results():
+    data = []
+    for file in os.listdir(RESULTS_DIR):
+        if file.endswith(".json"):
             try:
-                with open(path, "r", encoding="utf-8") as f:
-                    results.append(json.load(f))
+                with open(os.path.join(RESULTS_DIR, file), "r", encoding="utf-8") as f:
+                    data.append(json.load(f))
             except Exception as e:
-                print(f"⚠ Skipping {filename}: {e}")
-    return results
+                print(f" Failed to load {file}: {e}")
+    return data
 
 
-def compute_stats(results):
-    stats = {
-        "total_functions": len(results),
-        "overall_agreement": [],
-        "preconditions_agreement": [],
-        "postconditions_agreement": [],
-        "edge_cases_agreement": [],
-        "by_module": {},
-        "function_scores": []
+# extraction
+
+def extract_overall_scores(results):
+    scores = {
+        "groq_vs_hf": [],
+        "groq_vs_groq2": [],
+        "hf_vs_groq2": []
     }
 
     for r in results:
-        comp = r.get("comparison", {})
-        fn_name = r.get("function", "unknown")
+        try:
+            comp = r["pairwise_comparison"]
 
-        if not comp:
+            scores["groq_vs_hf"].append(comp["groq_vs_hf"]["overall_agreement"])
+            scores["groq_vs_groq2"].append(comp["groq_vs_groq2"]["overall_agreement"])
+            scores["hf_vs_groq2"].append(comp["hf_vs_groq2"]["overall_agreement"])
+        except Exception as e:
+            print(f" Skipping bad entry: {e}")
+
+    return scores
+
+
+def compute_average(scores):
+    return {k: round(sum(v)/len(v), 3) if v else 0 for k, v in scores.items()}
+
+
+def agreement_distribution(scores):
+    dist = defaultdict(lambda: {"high": 0, "medium": 0, "low": 0})
+
+    for k, values in scores.items():
+        for v in values:
+            if v > 0.75:
+                dist[k]["high"] += 1
+            elif v > 0.4:
+                dist[k]["medium"] += 1
+            else:
+                dist[k]["low"] += 1
+
+    return dist
+
+
+def section_wise_analysis(results):
+    sections = ["preconditions", "postconditions", "edge_cases"]
+    section_scores = defaultdict(list)
+
+    for r in results:
+        try:
+            comp = r["pairwise_comparison"]
+
+            for pair in comp:
+                for sec in sections:
+                    score = comp[pair][sec]["agreement_score"]
+                    section_scores[(pair, sec)].append(score)
+        except Exception as e:
+            print(f"Skipping section error: {e}")
+
+    avg_section = {}
+    for key, vals in section_scores.items():
+        avg_section[key] = round(sum(vals)/len(vals), 3) if vals else 0
+
+    return avg_section
+
+
+def majority_strength(results):
+    counts = []
+
+    for r in results:
+        try:
+            majority = r["majority_contract"]
+            size = sum(len(majority[k]) for k in majority)
+            counts.append(size)
+        except:
             continue
 
-        module = fn_name.split(".")[0]
-
-        overall = comp.get("overall_agreement", 0)
-        pre = comp.get("preconditions", {}).get("agreement_score", 0)
-        post = comp.get("postconditions", {}).get("agreement_score", 0)
-        edge = comp.get("edge_cases", {}).get("agreement_score", 0)
-
-        stats["overall_agreement"].append(overall)
-        stats["preconditions_agreement"].append(pre)
-        stats["postconditions_agreement"].append(post)
-        stats["edge_cases_agreement"].append(edge)
-
-        stats["function_scores"].append((fn_name, overall))
-
-        if module not in stats["by_module"]:
-            stats["by_module"][module] = []
-        stats["by_module"][module].append(overall)
-
-    return stats
+    return round(sum(counts)/len(counts), 2) if counts else 0
 
 
-def print_summary(stats):
-    print("=" * 60)
-    print("LLM CONTRACT GENERATION AGREEMENT ANALYSIS")
-    print("=" * 60)
+def find_disagreements(results, threshold=0.5):
+    bad_cases = []
 
-    print(f"\nTotal functions analyzed: {stats['total_functions']}")
+    for r in results:
+        try:
+            comp = r["pairwise_comparison"]
 
-    print("\n--- AGREEMENT RATES ---")
-    for field in ["overall", "preconditions", "postconditions", "edge_cases"]:
-        scores = stats[f"{field}_agreement"]
+            avg = (
+                comp["groq_vs_hf"]["overall_agreement"] +
+                comp["groq_vs_groq2"]["overall_agreement"] +
+                comp["hf_vs_groq2"]["overall_agreement"]
+            ) / 3
 
-        if scores:
-            avg = np.mean(scores)
-            std = np.std(scores)
-            print(f"  {field:20s}: {avg:.2f} ± {std:.2f}  |  "
-                  f"min: {min(scores):.2f}  max: {max(scores):.2f}")
-        else:
-            print(f"  {field:20s}: No data")
+            if avg < threshold:
+                fn = r.get("function") or r.get("function_name", "unknown")
+                bad_cases.append((fn, round(avg, 2)))
 
-    print("\n--- AGREEMENT BY MODULE ---")
-    for module, scores in stats["by_module"].items():
-        if scores:
-            avg = np.mean(scores)
-            print(f"  {module:15s}: {avg:.2f} avg ({len(scores)} functions)")
+        except:
+            continue
 
-    # distribution
-    all_scores = stats["overall_agreement"]
-    high = sum(1 for s in all_scores if s >= 0.7)
-    medium = sum(1 for s in all_scores if 0.3 <= s < 0.7)
-    low = sum(1 for s in all_scores if s < 0.3)
-
-    print(f"\n--- AGREEMENT DISTRIBUTION ---")
-    print(f"  High agreement (≥0.7):     {high} functions")
-    print(f"  Medium agreement (0.3-0.7): {medium} functions")
-    print(f"  Low agreement (<0.3):      {low} functions")
-
-    # best & worst functions
-    sorted_scores = sorted(stats["function_scores"], key=lambda x: x[1])
-
-    print("\n--- WORST AGREEMENT FUNCTIONS ---")
-    for fn, score in sorted_scores[:5]:
-        print(f"  {fn}: {score:.2f}")
-
-    print("\n--- BEST AGREEMENT FUNCTIONS ---")
-    for fn, score in sorted_scores[-5:]:
-        print(f"  {fn}: {score:.2f}")
+    return sorted(bad_cases, key=lambda x: x[1])
 
 
-def plot_results(stats):
-    os.makedirs("results/figures", exist_ok=True)
+# visualization
 
-    # plot 1: agreement by field
-    fields = ["preconditions", "postconditions", "edge_cases"]
-    avgs = [np.mean(stats[f"{f}_agreement"]) for f in fields]
+def plot_heatmap(section_scores):
+    pairs = ["groq_vs_hf", "groq_vs_groq2", "hf_vs_groq2"]
+    sections = ["preconditions", "postconditions", "edge_cases"]
+
+    matrix = []
+
+    for pair in pairs:
+        row = []
+        for sec in sections:
+            val = section_scores.get((pair, sec), 0)
+            row.append(val)
+        matrix.append(row)
 
     plt.figure(figsize=(8, 5))
-    bars = plt.bar(fields, avgs)
-    plt.ylim(0, 1.0)
-    plt.title("LLM Agreement Rate by Contract Field")
-    plt.ylabel("Average Agreement Score")
-    plt.xlabel("Contract Field")
+    sns.heatmap(
+        matrix,
+        annot=True,
+        xticklabels=sections,
+        yticklabels=pairs,
+        cmap="YlGnBu",
+        vmin=0,
+        vmax=1
+    )
 
-    for bar, val in zip(bars, avgs):
-        plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
-                 f"{val:.2f}", ha="center")
-
-    plt.tight_layout()
-    plt.savefig("results/figures/agreement_by_field.png", dpi=150)
+    plt.title("Section-wise Agreement Heatmap")
+    plt.savefig(os.path.join(FIGURES_DIR, "heatmap.png"))
     plt.close()
-    print("\n📊 Saved: agreement_by_field.png")
 
-    # plot 2: agreement by module
-    modules = list(stats["by_module"].keys())
-    module_avgs = [np.mean(stats["by_module"][m]) for m in modules]
 
-    plt.figure(figsize=(10, 5))
-    bars = plt.bar(modules, module_avgs)
-    plt.ylim(0, 1.0)
-    plt.title("LLM Agreement Rate by Python Module")
-    plt.ylabel("Average Agreement Score")
-    plt.xlabel("Module")
+def plot_boxplot(scores):
+    data = []
+    labels = []
 
-    for bar, val in zip(bars, module_avgs):
-        plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
-                 f"{val:.2f}", ha="center")
+    for k, vals in scores.items():
+        data.extend(vals)
+        labels.extend([k] * len(vals))
 
-    plt.tight_layout()
-    plt.savefig("results/figures/agreement_by_module.png", dpi=150)
-    plt.close()
-    print("📊 Saved: agreement_by_module.png")
-
-    # plot 3: distribution
     plt.figure(figsize=(8, 5))
-    plt.hist(stats["overall_agreement"], bins=10, range=(0, 1))
-    plt.title("Distribution of Overall Agreement Scores")
-    plt.xlabel("Agreement Score")
-    plt.ylabel("Number of Functions")
+    sns.boxplot(x=labels, y=data)
 
-    plt.tight_layout()
-    plt.savefig("results/figures/agreement_distribution.png", dpi=150)
+    plt.title("Agreement Score Distribution")
+    plt.xlabel("Model Pairs")
+    plt.ylabel("Agreement Score")
+
+    plt.savefig(os.path.join(FIGURES_DIR, "boxplot.png"))
     plt.close()
-    print("📊 Saved: agreement_distribution.png")
 
 
-def save_outputs(stats):
-    # json summary
-    summary = {
-        "total_functions": stats["total_functions"],
-        "overall_avg": float(np.mean(stats["overall_agreement"])),
-        "preconditions_avg": float(np.mean(stats["preconditions_agreement"])),
-        "postconditions_avg": float(np.mean(stats["postconditions_agreement"])),
-        "edge_cases_avg": float(np.mean(stats["edge_cases_agreement"])),
-        "by_module": {
-            m: float(np.mean(v))
-            for m, v in stats["by_module"].items()
-        }
-    }
+# main
 
-    with open("results/summary.json", "w") as f:
-        json.dump(summary, f, indent=2)
+def main():
+    os.makedirs(FIGURES_DIR, exist_ok=True)
 
-    print("\n💾 Saved: results/summary.json")
+    results = load_results()
+    print(f"Loaded {len(results)} results")
 
-    # csv export
-    with open("results/results.csv", "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["function", "overall_agreement"])
+    # 1. overall
+    scores = extract_overall_scores(results)
+    avg_scores = compute_average(scores)
 
-        for fn, score in stats["function_scores"]:
-            writer.writerow([fn, score])
+    print("\n=== Average Agreement ===")
+    for k, v in avg_scores.items():
+        print(f"{k}: {v}")
 
-    print("💾 Saved: results/results.csv")
+    # 2. distribution
+    dist = agreement_distribution(scores)
+
+    print("\n=== Distribution ===")
+    for pair, d in dist.items():
+        print(f"{pair}: {d}")
+
+    # 3. section-wise
+    section_scores = section_wise_analysis(results)
+
+    print("\n=== Section-wise ===")
+    for k, v in section_scores.items():
+        print(f"{k}: {v}")
+
+    # 4. majority
+    majority_avg = majority_strength(results)
+    print(f"\n=== Avg Majority Size: {majority_avg} ===")
+
+    # 5. disagreements
+    bad = find_disagreements(results, threshold=0.5)
+
+    print("\n=== Low Agreement Cases ===")
+    for fn, score in bad[:10]:
+        print(fn, score)
+
+    # plots
+    plot_heatmap(section_scores)
+    plot_boxplot(scores)
+
+    print("\nPlots saved in results/figures/")
 
 
 if __name__ == "__main__":
-    print("Loading results...")
-    results = load_all_results()
-
-    stats = compute_stats(results)
-    print_summary(stats)
-    plot_results(stats)
-    save_outputs(stats)
+    main()

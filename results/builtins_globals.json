@@ -1,0 +1,160 @@
+{
+  "function": "builtins.globals",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [],\n  \"postconditions\": [\n    \"returns a dictionary\",\n    \"contains the current scope's global variables\"\n  ],\n  \"edge_cases\": [\n    \"no arguments are accepted\",\n    \"execution in an empty scope is allowed\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\"The function globals() must be called within a valid Python scope\"],\n  \"postconditions\": [\"The function returns a dictionary containing the current scope's global variables\"],\n  \"edge_cases\": [\"Calling globals() outside a valid Python scope\"]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"The function globals() must be called within a valid Python scope.\"\n  ],\n  \"postconditions\": [\n    \"The function returns a dictionary containing the current scope's global variables.\",\n    \"The returned dictionary is a valid JSON object.\"\n  ],\n  \"edge_cases\": [\n    \"If called in a non-global scope, the function returns an empty dictionary.\",\n    \"If called in a scope with no global variables, the function returns an empty dictionary.\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [],
+      "postconditions": [
+        "returns a dictionary",
+        "contains the current scope's global variables"
+      ],
+      "edge_cases": [
+        "no arguments are accepted",
+        "execution in an empty scope is allowed"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "The function globals() must be called within a valid Python scope"
+      ],
+      "postconditions": [
+        "The function returns a dictionary containing the current scope's global variables"
+      ],
+      "edge_cases": [
+        "Calling globals() outside a valid Python scope"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "The function globals() must be called within a valid Python scope."
+      ],
+      "postconditions": [
+        "The function returns a dictionary containing the current scope's global variables.",
+        "The returned dictionary is a valid JSON object."
+      ],
+      "edge_cases": [
+        "If called in a non-global scope, the function returns an empty dictionary.",
+        "If called in a scope with no global variables, the function returns an empty dictionary."
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [],
+        "hf_only": [
+          "The function globals() must be called within a valid Python scope."
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a dictionary",
+          "contains the current scope's global variables"
+        ],
+        "hf_only": [
+          "The function returns a dictionary containing the current scope's global variables.",
+          "The returned dictionary is a valid JSON object."
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "no arguments are accepted",
+          "execution in an empty scope is allowed"
+        ],
+        "hf_only": [
+          "If called in a non-global scope, the function returns an empty dictionary.",
+          "If called in a scope with no global variables, the function returns an empty dictionary."
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [],
+        "hf_only": [
+          "The function globals() must be called within a valid Python scope"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a dictionary",
+          "contains the current scope's global variables"
+        ],
+        "hf_only": [
+          "The function returns a dictionary containing the current scope's global variables"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "no arguments are accepted",
+          "execution in an empty scope is allowed"
+        ],
+        "hf_only": [
+          "Calling globals() outside a valid Python scope"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "The function globals() must be called within a valid Python scope.",
+            "hf": "The function globals() must be called within a valid Python scope",
+            "similarity": 0.984
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a dictionary containing the current scope's global variables.",
+            "hf": "The function returns a dictionary containing the current scope's global variables",
+            "similarity": 0.964
+          }
+        ],
+        "groq_only": [
+          "The returned dictionary is a valid JSON object."
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "If called in a non-global scope, the function returns an empty dictionary.",
+          "If called in a scope with no global variables, the function returns an empty dictionary."
+        ],
+        "hf_only": [
+          "Calling globals() outside a valid Python scope"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.5
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

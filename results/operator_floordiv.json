@@ -1,79 +1,209 @@
 {
   "function": "operator.floordiv",
-  "groq": {
-    "preconditions": [
-      "a must be a number",
-      "b must be a non-zero number"
-    ],
-    "postconditions": [
-      "result is the largest whole number less than or equal to a divided by b",
-      "result is an integer"
-    ],
-    "edge_cases": [
-      "division by zero",
-      "negative numbers",
-      "non-integer inputs",
-      "very large inputs"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a non-zero number\"\n  ],\n  \"postconditions\": [\n    \"result is the largest whole number less than or equal to a divided by b\",\n    \"result is an integer\"\n  ],\n  \"edge_cases\": [\n    \"division by zero\",\n    \"negative numbers\",\n    \"non-integer inputs\",\n    \"very large inputs\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\",\n    \"b must not be zero\"\n  ],\n  \"postconditions\": [\n    \"the result is the largest integer less than or equal to the result of a / b\"\n  ],\n  \"edge_cases\": [\n    \"if b is zero, a ValueError is raised\",\n    \"if a is zero, the result is zero\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be an integer\",\n    \"b must be a non-zero integer\",\n    \"b must not be zero\"\n  ],\n  \"postconditions\": [\n    \"the result is the largest integer less than or equal to a / b\"\n  ],\n  \"edge_cases\": [\n    \"if b is zero, a ValueError is raised\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "a must be an integer",
-      "b must be a non-zero integer",
-      "b must not be zero"
-    ],
-    "postconditions": [
-      "the result is the largest integer less than or equal to a / b"
-    ],
-    "edge_cases": [
-      "if b is zero, a ValueError is raised"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "b must be a non-zero number",
-          "hf": "b must be a non-zero integer",
-          "similarity": 0.942
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a non-zero number"
       ],
-      "groq_only": [
-        "a must be a number"
-      ],
-      "hf_only": [
-        "a must be an integer",
-        "b must not be zero"
-      ],
-      "agreement_score": 0.25
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is the largest whole number less than or equal to a divided by b",
-          "hf": "the result is the largest integer less than or equal to a / b",
-          "similarity": 0.886
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
+        "result is the largest whole number less than or equal to a divided by b",
         "result is an integer"
       ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "division by zero",
         "negative numbers",
         "non-integer inputs",
         "very large inputs"
-      ],
-      "hf_only": [
-        "if b is zero, a ValueError is raised"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.25
+    "groq2": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number",
+        "b must not be zero"
+      ],
+      "postconditions": [
+        "the result is the largest integer less than or equal to the result of a / b"
+      ],
+      "edge_cases": [
+        "if b is zero, a ValueError is raised",
+        "if a is zero, the result is zero"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be an integer",
+        "b must be a non-zero integer",
+        "b must not be zero"
+      ],
+      "postconditions": [
+        "the result is the largest integer less than or equal to a / b"
+      ],
+      "edge_cases": [
+        "if b is zero, a ValueError is raised"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be a non-zero number",
+            "hf": "b must be a non-zero integer",
+            "similarity": 0.942
+          }
+        ],
+        "groq_only": [
+          "a must be a number"
+        ],
+        "hf_only": [
+          "a must be an integer",
+          "b must not be zero"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the largest whole number less than or equal to a divided by b",
+            "hf": "the result is the largest integer less than or equal to a / b",
+            "similarity": 0.886
+          }
+        ],
+        "groq_only": [
+          "result is an integer"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "division by zero",
+          "negative numbers",
+          "non-integer inputs",
+          "very large inputs"
+        ],
+        "hf_only": [
+          "if b is zero, a ValueError is raised"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.25
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a number",
+            "hf": "a must be a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a non-zero number",
+            "hf": "b must not be zero",
+            "similarity": 0.896
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "b must be a number"
+        ],
+        "agreement_score": 0.67
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the largest whole number less than or equal to a divided by b",
+            "hf": "the result is the largest integer less than or equal to the result of a / b",
+            "similarity": 0.891
+          }
+        ],
+        "groq_only": [
+          "result is an integer"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "division by zero",
+          "negative numbers",
+          "non-integer inputs",
+          "very large inputs"
+        ],
+        "hf_only": [
+          "if b is zero, a ValueError is raised",
+          "if a is zero, the result is zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.39
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must not be zero",
+            "hf": "b must not be zero",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "a must be an integer",
+          "b must be a non-zero integer"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the largest integer less than or equal to a / b",
+            "hf": "the result is the largest integer less than or equal to the result of a / b",
+            "similarity": 0.973
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if b is zero, a ValueError is raised",
+            "hf": "if b is zero, a ValueError is raised",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "if a is zero, the result is zero"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.57
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be a number",
+      "b must not be zero"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "if b is zero, a valueerror is raised"
+    ]
   }
 }

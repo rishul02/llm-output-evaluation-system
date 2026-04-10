@@ -1,0 +1,227 @@
+{
+  "function": "operator.imod",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a mutable object supporting the %= operator\",\n    \"b must be a valid operand for the %= operator with a\"\n  ],\n  \"postconditions\": [\n    \"a is modified in-place to be the remainder of a divided by b\",\n    \"the result of a %= b is returned\"\n  ],\n  \"edge_cases\": [\n    \"b is zero\",\n    \"a is zero\",\n    \"a and b are very large numbers\",\n    \"a is a complex number\",\n    \"a is a non-integer\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\",\n    \"b must not be zero\"\n  ],\n  \"postconditions\": [\n    \"a is unchanged if b is zero\",\n    \"a is the remainder of a divided by b\",\n    \"a is the result of a %= b\"\n  ],\n  \"edge_cases\": [\n    \"if b is zero, a remains unchanged\",\n    \"if a is zero, a is zero\",\n    \"if b is negative, a is the remainder of a divided by the absolute value of b\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"a must be a number\",\n    \"b must be a number\",\n    \"b must not be zero\"\n  ],\n  \"postconditions\": [\n    \"a is equal to the remainder of a divided by b\",\n    \"a is equal to a modulo b\"\n  ],\n  \"edge_cases\": [\n    \"if b is zero, a is not modified\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a mutable object supporting the %= operator",
+        "b must be a valid operand for the %= operator with a"
+      ],
+      "postconditions": [
+        "a is modified in-place to be the remainder of a divided by b",
+        "the result of a %= b is returned"
+      ],
+      "edge_cases": [
+        "b is zero",
+        "a is zero",
+        "a and b are very large numbers",
+        "a is a complex number",
+        "a is a non-integer"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number",
+        "b must not be zero"
+      ],
+      "postconditions": [
+        "a is unchanged if b is zero",
+        "a is the remainder of a divided by b",
+        "a is the result of a %= b"
+      ],
+      "edge_cases": [
+        "if b is zero, a remains unchanged",
+        "if a is zero, a is zero",
+        "if b is negative, a is the remainder of a divided by the absolute value of b"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a must be a number",
+        "b must be a number",
+        "b must not be zero"
+      ],
+      "postconditions": [
+        "a is equal to the remainder of a divided by b",
+        "a is equal to a modulo b"
+      ],
+      "edge_cases": [
+        "if b is zero, a is not modified"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object supporting the %= operator",
+          "b must be a valid operand for the %= operator with a"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number",
+          "b must not be zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is modified in-place to be the remainder of a divided by b",
+            "hf": "a is equal to the remainder of a divided by b",
+            "similarity": 0.845
+          }
+        ],
+        "groq_only": [
+          "the result of a %= b is returned"
+        ],
+        "hf_only": [
+          "a is equal to a modulo b"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "b is zero",
+          "a is zero",
+          "a and b are very large numbers",
+          "a is a complex number",
+          "a is a non-integer"
+        ],
+        "hf_only": [
+          "if b is zero, a is not modified"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "a must be a mutable object supporting the %= operator",
+          "b must be a valid operand for the %= operator with a"
+        ],
+        "hf_only": [
+          "a must be a number",
+          "b must be a number",
+          "b must not be zero"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is modified in-place to be the remainder of a divided by b",
+            "hf": "a is the remainder of a divided by b",
+            "similarity": 0.876
+          },
+          {
+            "groq": "the result of a %= b is returned",
+            "hf": "a is the result of a %= b",
+            "similarity": 0.904
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "a is unchanged if b is zero"
+        ],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "a is zero",
+            "hf": "if a is zero, a is zero",
+            "similarity": 0.913
+          }
+        ],
+        "groq_only": [
+          "b is zero",
+          "a and b are very large numbers",
+          "a is a complex number",
+          "a is a non-integer"
+        ],
+        "hf_only": [
+          "if b is zero, a remains unchanged",
+          "if b is negative, a is the remainder of a divided by the absolute value of b"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.27
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a must be a number",
+            "hf": "a must be a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must be a number",
+            "hf": "b must be a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "b must not be zero",
+            "hf": "b must not be zero",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "a is equal to the remainder of a divided by b",
+            "hf": "a is the remainder of a divided by b",
+            "similarity": 0.969
+          }
+        ],
+        "groq_only": [
+          "a is equal to a modulo b"
+        ],
+        "hf_only": [
+          "a is unchanged if b is zero",
+          "a is the result of a %= b"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if b is zero, a is not modified",
+            "hf": "if b is zero, a remains unchanged",
+            "similarity": 0.877
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "if a is zero, a is zero",
+          "if b is negative, a is the remainder of a divided by the absolute value of b"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.53
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a must be a number",
+      "b must be a number",
+      "b must not be zero"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

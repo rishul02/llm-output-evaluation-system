@@ -1,0 +1,212 @@
+{
+  "function": "math.cos",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"x must be measured in radians\"\n  ],\n  \"postconditions\": [\n    \"return value is the cosine of x\",\n    \"return value is a float\"\n  ],\n  \"edge_cases\": [\n    \"x is NaN\",\n    \"x is infinity\",\n    \"x is very large\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"cos(x) is the cosine of x (measured in radians)\"],\n  \"edge_cases\": [\"x is NaN\", \"x is infinity\"]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\",\n    \"x must be in radians\"\n  ],\n  \"postconditions\": [\n    \"The result is a real number between -1 and 1\",\n    \"The result is a cosine of x\"\n  ],\n  \"edge_cases\": [\n    \"x = 0: result = 1\",\n    \"x = pi/2: result = 0\",\n    \"x = -pi/2: result = 0\",\n    \"x = pi: result = -1\",\n    \"x = -pi: result = -1\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number",
+        "x must be measured in radians"
+      ],
+      "postconditions": [
+        "return value is the cosine of x",
+        "return value is a float"
+      ],
+      "edge_cases": [
+        "x is NaN",
+        "x is infinity",
+        "x is very large"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "cos(x) is the cosine of x (measured in radians)"
+      ],
+      "edge_cases": [
+        "x is NaN",
+        "x is infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite",
+        "x must be in radians"
+      ],
+      "postconditions": [
+        "The result is a real number between -1 and 1",
+        "The result is a cosine of x"
+      ],
+      "edge_cases": [
+        "x = 0: result = 1",
+        "x = pi/2: result = 0",
+        "x = -pi/2: result = 0",
+        "x = pi: result = -1",
+        "x = -pi: result = -1"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          },
+          {
+            "groq": "x must be measured in radians",
+            "hf": "x must be in radians",
+            "similarity": 0.938
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.67
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is the cosine of x",
+            "hf": "The result is a cosine of x",
+            "similarity": 0.822
+          }
+        ],
+        "groq_only": [
+          "return value is a float"
+        ],
+        "hf_only": [
+          "The result is a real number between -1 and 1"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity",
+          "x is very large"
+        ],
+        "hf_only": [
+          "x = 0: result = 1",
+          "x = pi/2: result = 0",
+          "x = -pi/2: result = 0",
+          "x = pi: result = -1",
+          "x = -pi: result = -1"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [
+          "x must be measured in radians"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the cosine of x",
+          "return value is a float"
+        ],
+        "hf_only": [
+          "cos(x) is the cosine of x (measured in radians)"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN",
+            "hf": "x is NaN",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is very large"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.39
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x must be finite",
+          "x must be in radians"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "The result is a real number between -1 and 1",
+          "The result is a cosine of x"
+        ],
+        "hf_only": [
+          "cos(x) is the cosine of x (measured in radians)"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x = 0: result = 1",
+          "x = pi/2: result = 0",
+          "x = -pi/2: result = 0",
+          "x = pi: result = -1",
+          "x = -pi: result = -1"
+        ],
+        "hf_only": [
+          "x is NaN",
+          "x is infinity"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "x is nan",
+      "x is infinity"
+    ]
+  }
+}

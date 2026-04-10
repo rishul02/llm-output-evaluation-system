@@ -1,0 +1,226 @@
+{
+  "function": "statistics.geometric_mean",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of numbers\",\n    \"data must not be empty\",\n    \"all elements in data must be non-negative\"\n  ],\n  \"postconditions\": [\n    \"the result is the geometric mean of the input data\",\n    \"the result is a float\"\n  ],\n  \"edge_cases\": [\n    \"data contains a single element\",\n    \"data contains duplicate elements\",\n    \"data contains zero\",\n    \"data contains very large numbers\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"data must be a list\",\n    \"each item in the list must be a plain string\",\n    \"the list must not be empty\"\n  ],\n  \"postconditions\": [\n    \"the function returns a float\",\n    \"the returned value is the geometric mean of the input data\"\n  ],\n  \"edge_cases\": [\n    \"if the list contains a single element, the function returns that element\",\n    \"if the list contains zero elements, the function raises a ValueError\",\n    \"if the list contains non-numeric strings, the function raises a ValueError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"data must be a list of strings\",\n    \"data must not be empty\",\n    \"all items in data must be non-empty strings\"\n  ],\n  \"postconditions\": [\n    \"the geometric mean of data is computed and returned\",\n    \"the result is a float\"\n  ],\n  \"edge_cases\": [\n    \"if data contains a single element, return that element as the geometric mean\",\n    \"if data contains zero elements, raise a ValueError\",\n    \"if data contains negative numbers, raise a ValueError\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "data must be a list of numbers",
+        "data must not be empty",
+        "all elements in data must be non-negative"
+      ],
+      "postconditions": [
+        "the result is the geometric mean of the input data",
+        "the result is a float"
+      ],
+      "edge_cases": [
+        "data contains a single element",
+        "data contains duplicate elements",
+        "data contains zero",
+        "data contains very large numbers"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "data must be a list",
+        "each item in the list must be a plain string",
+        "the list must not be empty"
+      ],
+      "postconditions": [
+        "the function returns a float",
+        "the returned value is the geometric mean of the input data"
+      ],
+      "edge_cases": [
+        "if the list contains a single element, the function returns that element",
+        "if the list contains zero elements, the function raises a ValueError",
+        "if the list contains non-numeric strings, the function raises a ValueError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "data must be a list of strings",
+        "data must not be empty",
+        "all items in data must be non-empty strings"
+      ],
+      "postconditions": [
+        "the geometric mean of data is computed and returned",
+        "the result is a float"
+      ],
+      "edge_cases": [
+        "if data contains a single element, return that element as the geometric mean",
+        "if data contains zero elements, raise a ValueError",
+        "if data contains negative numbers, raise a ValueError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must not be empty",
+            "hf": "data must not be empty",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "data must be a list of numbers",
+          "all elements in data must be non-negative"
+        ],
+        "hf_only": [
+          "data must be a list of strings",
+          "all items in data must be non-empty strings"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the geometric mean of the input data",
+            "hf": "the geometric mean of data is computed and returned",
+            "similarity": 0.844
+          },
+          {
+            "groq": "the result is a float",
+            "hf": "the result is a float",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "data contains a single element",
+          "data contains duplicate elements",
+          "data contains zero",
+          "data contains very large numbers"
+        ],
+        "hf_only": [
+          "if data contains a single element, return that element as the geometric mean",
+          "if data contains zero elements, raise a ValueError",
+          "if data contains negative numbers, raise a ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.4
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of numbers",
+            "hf": "data must be a list",
+            "similarity": 0.853
+          }
+        ],
+        "groq_only": [
+          "data must not be empty",
+          "all elements in data must be non-negative"
+        ],
+        "hf_only": [
+          "each item in the list must be a plain string",
+          "the list must not be empty"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the geometric mean of the input data",
+            "hf": "the returned value is the geometric mean of the input data",
+            "similarity": 0.885
+          }
+        ],
+        "groq_only": [
+          "the result is a float"
+        ],
+        "hf_only": [
+          "the function returns a float"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "data contains a single element",
+          "data contains duplicate elements",
+          "data contains zero",
+          "data contains very large numbers"
+        ],
+        "hf_only": [
+          "if the list contains a single element, the function returns that element",
+          "if the list contains zero elements, the function raises a ValueError",
+          "if the list contains non-numeric strings, the function raises a ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.18
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list of strings",
+            "hf": "data must be a list",
+            "similarity": 0.833
+          }
+        ],
+        "groq_only": [
+          "data must not be empty",
+          "all items in data must be non-empty strings"
+        ],
+        "hf_only": [
+          "each item in the list must be a plain string",
+          "the list must not be empty"
+        ],
+        "agreement_score": 0.2
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the geometric mean of data is computed and returned",
+            "hf": "the returned value is the geometric mean of the input data",
+            "similarity": 0.829
+          }
+        ],
+        "groq_only": [
+          "the result is a float"
+        ],
+        "hf_only": [
+          "the function returns a float"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "if data contains a single element, return that element as the geometric mean",
+          "if data contains zero elements, raise a ValueError",
+          "if data contains negative numbers, raise a ValueError"
+        ],
+        "hf_only": [
+          "if the list contains a single element, the function returns that element",
+          "if the list contains zero elements, the function raises a ValueError",
+          "if the list contains non-numeric strings, the function raises a ValueError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.18
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "data must not be empty"
+    ],
+    "postconditions": [
+      "the result is a float"
+    ],
+    "edge_cases": []
+  }
+}

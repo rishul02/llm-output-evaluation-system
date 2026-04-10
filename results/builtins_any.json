@@ -1,78 +1,216 @@
 {
   "function": "builtins.any",
-  "groq": {
-    "preconditions": [
-      "input must be an iterable"
-    ],
-    "postconditions": [
-      "returns True if at least one element in the iterable is truthy",
-      "returns False if all elements in the iterable are falsy",
-      "returns a boolean value"
-    ],
-    "edge_cases": [
-      "input is an empty iterable",
-      "input contains only falsy values",
-      "input contains at least one truthy value"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"input must be an iterable\"\n  ],\n  \"postconditions\": [\n    \"returns True if at least one element in the iterable is truthy\",\n    \"returns False if all elements in the iterable are falsy\",\n    \"returns a boolean value\"\n  ],\n  \"edge_cases\": [\n    \"input is an empty iterable\",\n    \"input contains only falsy values\",\n    \"input contains at least one truthy value\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"iterable must be an iterable\",\n    \"iterable must not be None\"\n  ],\n  \"postconditions\": [\n    \"returns True if bool(x) is True for any x in the iterable\",\n    \"returns False if bool(x) is False for all x in the iterable\"\n  ],\n  \"edge_cases\": [\n    \"iterable with no elements returns False\",\n    \"iterable with all falsy elements returns False\",\n    \"iterable with at least one truthy element returns True\"\n  ]\n}",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"iterable must be an iterable\",\n    \"iterable must not be empty\"\n  ],\n  \"postconditions\": [\n    \"returns True if bool(x) is True for any x in the iterable\",\n    \"returns False if bool(x) is False for all x in the iterable\"\n  ],\n  \"edge_cases\": [\n    \"iterable with no elements: returns False\",\n    \"iterable with all falsy elements: returns False\",\n    \"iterable with at least one truthy element: returns True\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "iterable must be an iterable",
-      "iterable must not be empty"
-    ],
-    "postconditions": [
-      "returns True if bool(x) is True for any x in the iterable",
-      "returns False if bool(x) is False for all x in the iterable"
-    ],
-    "edge_cases": [
-      "iterable with no elements: returns False",
-      "iterable with all falsy elements: returns False",
-      "iterable with at least one truthy element: returns True"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
         "input must be an iterable"
       ],
-      "hf_only": [
-        "iterable must be an iterable",
-        "iterable must not be empty"
-      ],
-      "agreement_score": 0.0
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "returns True if at least one element in the iterable is truthy",
-          "hf": "returns True if bool(x) is True for any x in the iterable",
-          "similarity": 0.838
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
+        "returns True if at least one element in the iterable is truthy",
         "returns False if all elements in the iterable are falsy",
         "returns a boolean value"
       ],
-      "hf_only": [
-        "returns False if bool(x) is False for all x in the iterable"
-      ],
-      "agreement_score": 0.25
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "input is an empty iterable",
         "input contains only falsy values",
         "input contains at least one truthy value"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "iterable must be an iterable",
+        "iterable must not be None"
       ],
-      "hf_only": [
+      "postconditions": [
+        "returns True if bool(x) is True for any x in the iterable",
+        "returns False if bool(x) is False for all x in the iterable"
+      ],
+      "edge_cases": [
+        "iterable with no elements returns False",
+        "iterable with all falsy elements returns False",
+        "iterable with at least one truthy element returns True"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "iterable must be an iterable",
+        "iterable must not be empty"
+      ],
+      "postconditions": [
+        "returns True if bool(x) is True for any x in the iterable",
+        "returns False if bool(x) is False for all x in the iterable"
+      ],
+      "edge_cases": [
         "iterable with no elements: returns False",
         "iterable with all falsy elements: returns False",
         "iterable with at least one truthy element: returns True"
-      ],
-      "agreement_score": 0.0
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "input must be an iterable"
+        ],
+        "hf_only": [
+          "iterable must be an iterable",
+          "iterable must not be empty"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if at least one element in the iterable is truthy",
+            "hf": "returns True if bool(x) is True for any x in the iterable",
+            "similarity": 0.838
+          }
+        ],
+        "groq_only": [
+          "returns False if all elements in the iterable are falsy",
+          "returns a boolean value"
+        ],
+        "hf_only": [
+          "returns False if bool(x) is False for all x in the iterable"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "input is an empty iterable",
+          "input contains only falsy values",
+          "input contains at least one truthy value"
+        ],
+        "hf_only": [
+          "iterable with no elements: returns False",
+          "iterable with all falsy elements: returns False",
+          "iterable with at least one truthy element: returns True"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.08
     },
-    "overall_agreement": 0.08
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "input must be an iterable"
+        ],
+        "hf_only": [
+          "iterable must be an iterable",
+          "iterable must not be None"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if at least one element in the iterable is truthy",
+            "hf": "returns True if bool(x) is True for any x in the iterable",
+            "similarity": 0.838
+          }
+        ],
+        "groq_only": [
+          "returns False if all elements in the iterable are falsy",
+          "returns a boolean value"
+        ],
+        "hf_only": [
+          "returns False if bool(x) is False for all x in the iterable"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "input is an empty iterable",
+          "input contains only falsy values",
+          "input contains at least one truthy value"
+        ],
+        "hf_only": [
+          "iterable with no elements returns False",
+          "iterable with all falsy elements returns False",
+          "iterable with at least one truthy element returns True"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.08
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "iterable must be an iterable",
+            "hf": "iterable must be an iterable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "iterable must not be empty",
+            "hf": "iterable must not be None",
+            "similarity": 0.899
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if bool(x) is True for any x in the iterable",
+            "hf": "returns True if bool(x) is True for any x in the iterable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "returns False if bool(x) is False for all x in the iterable",
+            "hf": "returns False if bool(x) is False for all x in the iterable",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "iterable with no elements: returns False",
+            "hf": "iterable with no elements returns False",
+            "similarity": 0.987
+          },
+          {
+            "groq": "iterable with all falsy elements: returns False",
+            "hf": "iterable with all falsy elements returns False",
+            "similarity": 0.987
+          },
+          {
+            "groq": "iterable with at least one truthy element: returns True",
+            "hf": "iterable with at least one truthy element returns True",
+            "similarity": 0.991
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "iterable must be an iterable"
+    ],
+    "postconditions": [
+      "returns true if bool(x) is true for any x in the iterable",
+      "returns false if bool(x) is false for all x in the iterable"
+    ],
+    "edge_cases": []
   }
 }

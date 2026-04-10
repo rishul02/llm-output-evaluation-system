@@ -1,91 +1,291 @@
 {
   "function": "operator.call",
-  "groq": {
-    "preconditions": [
-      "obj must be callable",
-      "args must be a tuple of arguments",
-      "kwargs must be a dictionary of keyword arguments"
-    ],
-    "postconditions": [
-      "result of obj(*args, **kwargs) is returned",
-      "any exception raised by obj(*args, **kwargs) is propagated"
-    ],
-    "edge_cases": [
-      "obj is None",
-      "obj is not callable",
-      "args contains non-hashable types",
-      "kwargs contains non-string keys"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"obj must be callable\",\n    \"args must be a tuple of arguments\",\n    \"kwargs must be a dictionary of keyword arguments\"\n  ],\n  \"postconditions\": [\n    \"result of obj(*args, **kwargs) is returned\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"args is not a tuple\",\n    \"kwargs is not a dictionary\",\n    \"obj raises an exception\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"obj must be callable\",\n    \"obj must be an instance of type\",\n    \"obj must be an instance of function\",\n    \"args must be a sequence of positional arguments\",\n    \"kwargs must be a mapping of keyword arguments\"\n  ],\n  \"postconditions\": [\n    \"result must be the result of obj(*args, **kwargs)\",\n    \"result must be valid\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"obj is not callable\",\n    \"obj is not an instance of type\",\n    \"obj is not an instance of function\",\n    \"args is not a sequence\",\n    \"kwargs is not a mapping\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"obj must be callable\",\n    \"obj must be an instance of type\",\n    \"obj must be an instance of function\",\n    \"args must be a sequence of positional arguments\",\n    \"kwargs must be a mapping of keyword arguments\"\n  ],\n  \"postconditions\": [\n    \"returns the result of obj(*args, **kwargs)\",\n    \"returns a value of type determined by obj\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"obj is not callable\",\n    \"args is not a sequence\",\n    \"kwargs is not a mapping\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "obj must be callable",
-      "args must be a sequence of positional arguments",
-      "kwargs must be a dictionary of keyword arguments"
-    ],
-    "postconditions": [
-      "returns the result of obj(*args, **kwargs)"
-    ],
-    "edge_cases": [
-      "if obj is None, raises TypeError",
-      "if obj is not callable, raises TypeError",
-      "if args is not a sequence, raises TypeError",
-      "if kwargs is not a dictionary, raises TypeError"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "obj must be callable",
-          "hf": "obj must be callable",
-          "similarity": 1.0
-        },
-        {
-          "groq": "args must be a tuple of arguments",
-          "hf": "args must be a sequence of positional arguments",
-          "similarity": 0.879
-        },
-        {
-          "groq": "kwargs must be a dictionary of keyword arguments",
-          "hf": "kwargs must be a dictionary of keyword arguments",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be callable",
+        "args must be a tuple of arguments",
+        "kwargs must be a dictionary of keyword arguments"
       ],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
+      "postconditions": [
+        "result of obj(*args, **kwargs) is returned"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "args is not a tuple",
+        "kwargs is not a dictionary",
+        "obj raises an exception"
+      ]
     },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result of obj(*args, **kwargs) is returned",
-          "hf": "returns the result of obj(*args, **kwargs)",
-          "similarity": 0.959
-        }
+    "groq2": {
+      "preconditions": [
+        "obj must be callable",
+        "obj must be an instance of type",
+        "obj must be an instance of function",
+        "args must be a sequence of positional arguments",
+        "kwargs must be a mapping of keyword arguments"
       ],
-      "groq_only": [
-        "any exception raised by obj(*args, **kwargs) is propagated"
+      "postconditions": [
+        "result must be the result of obj(*args, **kwargs)",
+        "result must be valid"
       ],
-      "hf_only": [],
-      "agreement_score": 0.5
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "obj is None",
         "obj is not callable",
-        "args contains non-hashable types",
-        "kwargs contains non-string keys"
-      ],
-      "hf_only": [
-        "if obj is None, raises TypeError",
-        "if obj is not callable, raises TypeError",
-        "if args is not a sequence, raises TypeError",
-        "if kwargs is not a dictionary, raises TypeError"
-      ],
-      "agreement_score": 0.0
+        "obj is not an instance of type",
+        "obj is not an instance of function",
+        "args is not a sequence",
+        "kwargs is not a mapping"
+      ]
     },
-    "overall_agreement": 0.5
+    "hf": {
+      "preconditions": [
+        "obj must be callable",
+        "obj must be an instance of type",
+        "obj must be an instance of function",
+        "args must be a sequence of positional arguments",
+        "kwargs must be a mapping of keyword arguments"
+      ],
+      "postconditions": [
+        "returns the result of obj(*args, **kwargs)",
+        "returns a value of type determined by obj"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "obj is not callable",
+        "args is not a sequence",
+        "kwargs is not a mapping"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be callable",
+            "hf": "obj must be callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "args must be a tuple of arguments",
+            "hf": "args must be a sequence of positional arguments",
+            "similarity": 0.879
+          },
+          {
+            "groq": "kwargs must be a dictionary of keyword arguments",
+            "hf": "kwargs must be a mapping of keyword arguments",
+            "similarity": 0.933
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must be an instance of type",
+          "obj must be an instance of function"
+        ],
+        "agreement_score": 0.6
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result of obj(*args, **kwargs) is returned",
+            "hf": "returns the result of obj(*args, **kwargs)",
+            "similarity": 0.959
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "returns a value of type determined by obj"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "args is not a tuple",
+          "kwargs is not a dictionary",
+          "obj raises an exception"
+        ],
+        "hf_only": [
+          "obj is not callable",
+          "args is not a sequence",
+          "kwargs is not a mapping"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.41
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be callable",
+            "hf": "obj must be callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "args must be a tuple of arguments",
+            "hf": "args must be a sequence of positional arguments",
+            "similarity": 0.879
+          },
+          {
+            "groq": "kwargs must be a dictionary of keyword arguments",
+            "hf": "kwargs must be a mapping of keyword arguments",
+            "similarity": 0.933
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must be an instance of type",
+          "obj must be an instance of function"
+        ],
+        "agreement_score": 0.6
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result of obj(*args, **kwargs) is returned",
+            "hf": "result must be the result of obj(*args, **kwargs)",
+            "similarity": 0.937
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "result must be valid"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "args is not a tuple",
+          "kwargs is not a dictionary",
+          "obj raises an exception"
+        ],
+        "hf_only": [
+          "obj is not callable",
+          "obj is not an instance of type",
+          "obj is not an instance of function",
+          "args is not a sequence",
+          "kwargs is not a mapping"
+        ],
+        "agreement_score": 0.11
+      },
+      "overall_agreement": 0.4
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be callable",
+            "hf": "obj must be callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "obj must be an instance of type",
+            "hf": "obj must be an instance of type",
+            "similarity": 1.0
+          },
+          {
+            "groq": "obj must be an instance of function",
+            "hf": "obj must be an instance of function",
+            "similarity": 1.0
+          },
+          {
+            "groq": "args must be a sequence of positional arguments",
+            "hf": "args must be a sequence of positional arguments",
+            "similarity": 1.0
+          },
+          {
+            "groq": "kwargs must be a mapping of keyword arguments",
+            "hf": "kwargs must be a mapping of keyword arguments",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns the result of obj(*args, **kwargs)",
+            "hf": "result must be the result of obj(*args, **kwargs)",
+            "similarity": 0.908
+          }
+        ],
+        "groq_only": [
+          "returns a value of type determined by obj"
+        ],
+        "hf_only": [
+          "result must be valid"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "obj is not callable",
+            "hf": "obj is not callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "args is not a sequence",
+            "hf": "args is not a sequence",
+            "similarity": 1.0
+          },
+          {
+            "groq": "kwargs is not a mapping",
+            "hf": "kwargs is not a mapping",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj is not an instance of type",
+          "obj is not an instance of function"
+        ],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.67
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "obj must be callable",
+      "obj must be an instance of type",
+      "obj must be an instance of function",
+      "args must be a sequence of positional arguments",
+      "kwargs must be a mapping of keyword arguments"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "obj is none",
+      "obj is not callable",
+      "args is not a sequence",
+      "kwargs is not a mapping"
+    ]
   }
 }

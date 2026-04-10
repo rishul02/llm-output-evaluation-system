@@ -1,74 +1,190 @@
 {
   "function": "builtins.bin",
-  "groq": {
-    "preconditions": [
-      "number must be an integer"
-    ],
-    "postconditions": [
-      "output is a string",
-      "output starts with '0b'",
-      "output represents the binary value of the input integer"
-    ],
-    "edge_cases": [
-      "input is zero",
-      "input is a negative integer",
-      "input is a non-integer"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"number must be an integer\"\n  ],\n  \"postconditions\": [\n    \"output is a string\",\n    \"output starts with '0b'\",\n    \"output represents the binary value of the input integer\"\n  ],\n  \"edge_cases\": [\n    \"input is zero\",\n    \"input is a negative integer\",\n    \"input is a non-integer\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be an integer\",\n    \"x must be a real number (integer or float)\"\n  ],\n  \"postconditions\": [\n    \"the result is a string\",\n    \"the result is a binary representation of x\"\n  ],\n  \"edge_cases\": [\n    \"x = 0: returns '0b0'\",\n    \"x = 1: returns '0b1'\",\n    \"x = -1: returns '-0b1'\",\n    \"x = 2**n: returns '0b1' followed by n zeros\",\n    \"x = -2**n: returns '-0b1' followed by n zeros\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\"x must be an integer\"],\n  \"postconditions\": [\"bin(x) returns the binary representation of x as a string\"],\n  \"edge_cases\": [\"bin(0) returns '0'\", \"bin(1) returns '1'\", \"bin(-1) returns '-1b'\"]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be an integer",
-      "x must be an integer or a long integer"
-    ],
-    "postconditions": [
-      "The result is a string representing the binary representation of x",
-      "The result is a string of length at least 1 and at most 64"
-    ],
-    "edge_cases": [
-      "If x is 0, the result is '0'",
-      "If x is 1, the result is '1'",
-      "If x is -1, the result is '-1'"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
         "number must be an integer"
       ],
-      "hf_only": [
-        "x must be an integer",
-        "x must be an integer or a long integer"
-      ],
-      "agreement_score": 0.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
+      "postconditions": [
         "output is a string",
         "output starts with '0b'",
         "output represents the binary value of the input integer"
       ],
-      "hf_only": [
-        "The result is a string representing the binary representation of x",
-        "The result is a string of length at least 1 and at most 64"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "input is zero",
         "input is a negative integer",
         "input is a non-integer"
-      ],
-      "hf_only": [
-        "If x is 0, the result is '0'",
-        "If x is 1, the result is '1'",
-        "If x is -1, the result is '-1'"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.0
+    "groq2": {
+      "preconditions": [
+        "x must be an integer",
+        "x must be a real number (integer or float)"
+      ],
+      "postconditions": [
+        "the result is a string",
+        "the result is a binary representation of x"
+      ],
+      "edge_cases": [
+        "x = 0: returns '0b0'",
+        "x = 1: returns '0b1'",
+        "x = -1: returns '-0b1'",
+        "x = 2**n: returns '0b1' followed by n zeros",
+        "x = -2**n: returns '-0b1' followed by n zeros"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be an integer"
+      ],
+      "postconditions": [
+        "bin(x) returns the binary representation of x as a string"
+      ],
+      "edge_cases": [
+        "bin(0) returns '0'",
+        "bin(1) returns '1'",
+        "bin(-1) returns '-1b'"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "number must be an integer"
+        ],
+        "hf_only": [
+          "x must be an integer"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "output is a string",
+          "output starts with '0b'",
+          "output represents the binary value of the input integer"
+        ],
+        "hf_only": [
+          "bin(x) returns the binary representation of x as a string"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "input is zero",
+          "input is a negative integer",
+          "input is a non-integer"
+        ],
+        "hf_only": [
+          "bin(0) returns '0'",
+          "bin(1) returns '1'",
+          "bin(-1) returns '-1b'"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [
+          "number must be an integer"
+        ],
+        "hf_only": [
+          "x must be an integer",
+          "x must be a real number (integer or float)"
+        ],
+        "agreement_score": 0.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "output is a string",
+          "output starts with '0b'",
+          "output represents the binary value of the input integer"
+        ],
+        "hf_only": [
+          "the result is a string",
+          "the result is a binary representation of x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "input is zero",
+          "input is a negative integer",
+          "input is a non-integer"
+        ],
+        "hf_only": [
+          "x = 0: returns '0b0'",
+          "x = 1: returns '0b1'",
+          "x = -1: returns '-0b1'",
+          "x = 2**n: returns '0b1' followed by n zeros",
+          "x = -2**n: returns '-0b1' followed by n zeros"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.0
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be an integer",
+            "hf": "x must be an integer",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be a real number (integer or float)"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "bin(x) returns the binary representation of x as a string"
+        ],
+        "hf_only": [
+          "the result is a string",
+          "the result is a binary representation of x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "bin(0) returns '0'",
+          "bin(1) returns '1'",
+          "bin(-1) returns '-1b'"
+        ],
+        "hf_only": [
+          "x = 0: returns '0b0'",
+          "x = 1: returns '0b1'",
+          "x = -1: returns '-0b1'",
+          "x = 2**n: returns '0b1' followed by n zeros",
+          "x = -2**n: returns '-0b1' followed by n zeros"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be an integer"
+    ],
+    "postconditions": [],
+    "edge_cases": []
   }
 }

@@ -1,86 +1,229 @@
 {
   "function": "statistics.asin",
-  "groq": {
-    "preconditions": [
-      "x must be a number",
-      "-1 <= x <= 1"
-    ],
-    "postconditions": [
-      "result is a float",
-      "-pi/2 <= result <= pi/2"
-    ],
-    "edge_cases": [
-      "x is NaN",
-      "x is infinity",
-      "x is -1",
-      "x is 1",
-      "x is 0"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"-1 <= x <= 1\"\n  ],\n  \"postconditions\": [\n    \"result is a float\",\n    \"-pi/2 <= result <= pi/2\"\n  ],\n  \"edge_cases\": [\n    \"x is NaN\",\n    \"x is infinity\",\n    \"x is -1\",\n    \"x is 1\",\n    \"x is 0\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be in the interval [-1, 1]\"\n  ],\n  \"postconditions\": [\n    \"The result is the arc sine of x, measured in radians\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = -1: result = -π/2\",\n    \"x = 1: result = π/2\",\n    \"x = 0: result = 0\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be in the range [-1, 1]\"\n  ],\n  \"postconditions\": [\n    \"The function returns the arc sine (measured in radians) of x\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = -1: returns -π/2\",\n    \"x = 1: returns π/2\",\n    \"x = 0: returns 0\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be a real number",
-      "x must be in the interval [-1, 1]"
-    ],
-    "postconditions": [
-      "The result is the arc sine of x, measured in radians",
-      "The result is a real number"
-    ],
-    "edge_cases": [
-      "x = -1: result = -π/2",
-      "x = 1: result = π/2",
-      "x = 0: result = 0"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a number",
-          "hf": "x must be a real number",
-          "similarity": 0.847
-        }
-      ],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number",
         "-1 <= x <= 1"
       ],
-      "hf_only": [
-        "x must be in the interval [-1, 1]"
-      ],
-      "agreement_score": 0.33
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
+      "postconditions": [
         "result is a float",
         "-pi/2 <= result <= pi/2"
       ],
-      "hf_only": [
-        "The result is the arc sine of x, measured in radians",
-        "The result is a real number"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "x is 0",
-          "hf": "x = 0: result = 0",
-          "similarity": 0.842
-        }
-      ],
-      "groq_only": [
+      "edge_cases": [
         "x is NaN",
         "x is infinity",
         "x is -1",
-        "x is 1"
-      ],
-      "hf_only": [
-        "x = -1: result = -π/2",
-        "x = 1: result = π/2"
-      ],
-      "agreement_score": 0.14
+        "x is 1",
+        "x is 0"
+      ]
     },
-    "overall_agreement": 0.16
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be in the interval [-1, 1]"
+      ],
+      "postconditions": [
+        "The result is the arc sine of x, measured in radians",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x = -1: result = -π/2",
+        "x = 1: result = π/2",
+        "x = 0: result = 0"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be in the range [-1, 1]"
+      ],
+      "postconditions": [
+        "The function returns the arc sine (measured in radians) of x",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x = -1: returns -π/2",
+        "x = 1: returns π/2",
+        "x = 0: returns 0"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [
+          "-1 <= x <= 1"
+        ],
+        "hf_only": [
+          "x must be in the range [-1, 1]"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "result is a float",
+          "-pi/2 <= result <= pi/2"
+        ],
+        "hf_only": [
+          "The function returns the arc sine (measured in radians) of x",
+          "The result is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is 0",
+            "hf": "x = 0: returns 0",
+            "similarity": 0.849
+          }
+        ],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity",
+          "x is -1",
+          "x is 1"
+        ],
+        "hf_only": [
+          "x = -1: returns -π/2",
+          "x = 1: returns π/2"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.16
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [
+          "-1 <= x <= 1"
+        ],
+        "hf_only": [
+          "x must be in the interval [-1, 1]"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "result is a float",
+          "-pi/2 <= result <= pi/2"
+        ],
+        "hf_only": [
+          "The result is the arc sine of x, measured in radians",
+          "The result is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is 0",
+            "hf": "x = 0: result = 0",
+            "similarity": 0.842
+          }
+        ],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity",
+          "x is -1",
+          "x is 1"
+        ],
+        "hf_only": [
+          "x = -1: result = -π/2",
+          "x = 1: result = π/2"
+        ],
+        "agreement_score": 0.14
+      },
+      "overall_agreement": 0.16
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be in the range [-1, 1]",
+            "hf": "x must be in the interval [-1, 1]",
+            "similarity": 0.921
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns the arc sine (measured in radians) of x",
+            "hf": "The result is the arc sine of x, measured in radians",
+            "similarity": 0.873
+          },
+          {
+            "groq": "The result is a real number",
+            "hf": "The result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x = -1: returns -π/2",
+            "hf": "x = -1: result = -π/2",
+            "similarity": 0.972
+          },
+          {
+            "groq": "x = 1: returns π/2",
+            "hf": "x = 1: result = π/2",
+            "similarity": 0.961
+          },
+          {
+            "groq": "x = 0: returns 0",
+            "hf": "x = 0: result = 0",
+            "similarity": 0.921
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "the result is a real number"
+    ],
+    "edge_cases": []
   }
 }

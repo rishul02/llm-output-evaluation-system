@@ -1,0 +1,237 @@
+{
+  "function": "builtins.input",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"prompt must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"the trailing newline is stripped from the input\"\n  ],\n  \"edge_cases\": [\n    \"empty input\",\n    \"input containing only whitespace\",\n    \"input containing newline characters\",\n    \"EOF (end of file) encountered\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"prompt must be a string\",\n    \"prompt must not be empty\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"returns a string from standard input\",\n    \"trailing newline is stripped\"\n  ],\n  \"edge_cases\": [\n    \"empty input returns an empty string\",\n    \"input with trailing newline returns a string without trailing newline\",\n    \"input with multiple newlines returns a string with only one newline\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"prompt must be a string\",\n    \"prompt must be empty or non-empty\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"returns a string without trailing newline\"\n  ],\n  \"edge_cases\": [\n    \"empty input\",\n    \"input with trailing newline\",\n    \"input with non-ASCII characters\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "prompt must be a string"
+      ],
+      "postconditions": [
+        "returns a string",
+        "the trailing newline is stripped from the input"
+      ],
+      "edge_cases": [
+        "empty input",
+        "input containing only whitespace",
+        "input containing newline characters",
+        "EOF (end of file) encountered"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "prompt must be a string",
+        "prompt must not be empty"
+      ],
+      "postconditions": [
+        "returns a string",
+        "returns a string from standard input",
+        "trailing newline is stripped"
+      ],
+      "edge_cases": [
+        "empty input returns an empty string",
+        "input with trailing newline returns a string without trailing newline",
+        "input with multiple newlines returns a string with only one newline"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "prompt must be a string",
+        "prompt must be empty or non-empty"
+      ],
+      "postconditions": [
+        "returns a string",
+        "returns a string without trailing newline"
+      ],
+      "edge_cases": [
+        "empty input",
+        "input with trailing newline",
+        "input with non-ASCII characters"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "prompt must be a string",
+            "hf": "prompt must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "prompt must be empty or non-empty"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a string",
+            "hf": "returns a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the trailing newline is stripped from the input"
+        ],
+        "hf_only": [
+          "returns a string without trailing newline"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "empty input",
+            "hf": "empty input",
+            "similarity": 1.0
+          },
+          {
+            "groq": "input containing newline characters",
+            "hf": "input with trailing newline",
+            "similarity": 0.846
+          }
+        ],
+        "groq_only": [
+          "input containing only whitespace",
+          "EOF (end of file) encountered"
+        ],
+        "hf_only": [
+          "input with non-ASCII characters"
+        ],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.41
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "prompt must be a string",
+            "hf": "prompt must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "prompt must not be empty"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a string",
+            "hf": "returns a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the trailing newline is stripped from the input",
+            "hf": "trailing newline is stripped",
+            "similarity": 0.914
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "returns a string from standard input"
+        ],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "empty input",
+            "hf": "empty input returns an empty string",
+            "similarity": 0.884
+          }
+        ],
+        "groq_only": [
+          "input containing only whitespace",
+          "input containing newline characters",
+          "EOF (end of file) encountered"
+        ],
+        "hf_only": [
+          "input with trailing newline returns a string without trailing newline",
+          "input with multiple newlines returns a string with only one newline"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.45
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "prompt must be a string",
+            "hf": "prompt must be a string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "prompt must be empty or non-empty",
+            "hf": "prompt must not be empty",
+            "similarity": 0.981
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a string",
+            "hf": "returns a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "returns a string without trailing newline"
+        ],
+        "hf_only": [
+          "returns a string from standard input",
+          "trailing newline is stripped"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "empty input",
+            "hf": "empty input returns an empty string",
+            "similarity": 0.884
+          },
+          {
+            "groq": "input with trailing newline",
+            "hf": "input with trailing newline returns a string without trailing newline",
+            "similarity": 0.91
+          }
+        ],
+        "groq_only": [
+          "input with non-ASCII characters"
+        ],
+        "hf_only": [
+          "input with multiple newlines returns a string with only one newline"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.58
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "prompt must be a string"
+    ],
+    "postconditions": [
+      "returns a string"
+    ],
+    "edge_cases": [
+      "empty input"
+    ]
+  }
+}

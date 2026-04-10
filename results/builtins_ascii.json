@@ -1,81 +1,211 @@
 {
   "function": "builtins.ascii",
-  "groq": {
-    "preconditions": [
-      "obj must be an object"
-    ],
-    "postconditions": [
-      "return value is a string",
-      "return value contains only ASCII characters"
-    ],
-    "edge_cases": [
-      "obj is None",
-      "obj is an empty string",
-      "obj contains non-ASCII characters"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\"\n  ],\n  \"postconditions\": [\n    \"return value is a string\",\n    \"return value contains only ASCII characters\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"obj is an empty string\",\n    \"obj contains non-ASCII characters\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"obj must be hashable\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"the returned string is ASCII-only\"\n  ],\n  \"edge_cases\": [\n    \"if obj is None, returns ''\",\n    \"if obj is a string, returns the string if it's ASCII-only, otherwise raises a TypeError\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"obj must be hashable\"\n  ],\n  \"postconditions\": [\n    \"returns a string\",\n    \"the returned string is an ASCII-only representation of obj\"\n  ],\n  \"edge_cases\": [\n    \"if obj is a string, returns the string itself\",\n    \"if obj is a bytes object, returns the ASCII-encoded bytes as a string\",\n    \"if obj is a non-ASCII object, raises a TypeError\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be an object"
+      ],
+      "postconditions": [
+        "return value is a string",
+        "return value contains only ASCII characters"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "obj is an empty string",
+        "obj contains non-ASCII characters"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "obj must be an object",
+        "obj must be hashable"
+      ],
+      "postconditions": [
+        "returns a string",
+        "the returned string is ASCII-only"
+      ],
+      "edge_cases": [
+        "if obj is None, returns ''",
+        "if obj is a string, returns the string if it's ASCII-only, otherwise raises a TypeError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "obj must be an object",
+        "obj must be hashable"
+      ],
+      "postconditions": [
+        "returns a string",
+        "the returned string is an ASCII-only representation of obj"
+      ],
+      "edge_cases": [
+        "if obj is a string, returns the string itself",
+        "if obj is a bytes object, returns the ASCII-encoded bytes as a string",
+        "if obj is a non-ASCII object, raises a TypeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must be hashable"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is a string",
+            "hf": "returns a string",
+            "similarity": 0.889
+          }
+        ],
+        "groq_only": [
+          "return value contains only ASCII characters"
+        ],
+        "hf_only": [
+          "the returned string is an ASCII-only representation of obj"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "obj is None",
+          "obj is an empty string",
+          "obj contains non-ASCII characters"
+        ],
+        "hf_only": [
+          "if obj is a string, returns the string itself",
+          "if obj is a bytes object, returns the ASCII-encoded bytes as a string",
+          "if obj is a non-ASCII object, raises a TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "obj must be hashable"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "return value is a string",
+            "hf": "returns a string",
+            "similarity": 0.889
+          }
+        ],
+        "groq_only": [
+          "return value contains only ASCII characters"
+        ],
+        "hf_only": [
+          "the returned string is ASCII-only"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "obj is None",
+          "obj is an empty string",
+          "obj contains non-ASCII characters"
+        ],
+        "hf_only": [
+          "if obj is None, returns ''",
+          "if obj is a string, returns the string if it's ASCII-only, otherwise raises a TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.28
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "obj must be hashable",
+            "hf": "obj must be hashable",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a string",
+            "hf": "returns a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the returned string is an ASCII-only representation of obj"
+        ],
+        "hf_only": [
+          "the returned string is ASCII-only"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if obj is a non-ASCII object, raises a TypeError",
+            "hf": "if obj is a string, returns the string if it's ASCII-only, otherwise raises a TypeError",
+            "similarity": 0.893
+          }
+        ],
+        "groq_only": [
+          "if obj is a string, returns the string itself",
+          "if obj is a bytes object, returns the ASCII-encoded bytes as a string"
+        ],
+        "hf_only": [
+          "if obj is None, returns ''"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.53
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "obj must be an object",
       "obj must be hashable"
     ],
     "postconditions": [
-      "returns a string",
-      "the returned string is an ASCII-only representation of obj"
+      "returns a string"
     ],
-    "edge_cases": [
-      "if obj is a string, returns the string itself",
-      "if obj is a bytes object, returns the ASCII-encoded bytes as a string",
-      "if obj is a Unicode string, returns the ASCII-encoded Unicode string as a string",
-      "if obj is a non-string, non-bytes object, returns a string representation of the object"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "obj must be an object",
-          "hf": "obj must be an object",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [],
-      "hf_only": [
-        "obj must be hashable"
-      ],
-      "agreement_score": 0.5
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "return value is a string",
-          "hf": "returns a string",
-          "similarity": 0.889
-        }
-      ],
-      "groq_only": [
-        "return value contains only ASCII characters"
-      ],
-      "hf_only": [
-        "the returned string is an ASCII-only representation of obj"
-      ],
-      "agreement_score": 0.33
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "obj is None",
-        "obj is an empty string",
-        "obj contains non-ASCII characters"
-      ],
-      "hf_only": [
-        "if obj is a string, returns the string itself",
-        "if obj is a bytes object, returns the ASCII-encoded bytes as a string",
-        "if obj is a Unicode string, returns the ASCII-encoded Unicode string as a string",
-        "if obj is a non-string, non-bytes object, returns a string representation of the object"
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.28
+    "edge_cases": []
   }
 }

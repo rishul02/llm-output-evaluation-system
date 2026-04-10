@@ -1,95 +1,252 @@
 {
   "function": "functools.lru_cache",
-  "groq": {
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"maxsize must be an integer\",\n    \"maxsize must be greater than or equal to 0\",\n    \"typed must be a boolean\"\n  ],\n  \"postconditions\": [\n    \"the decorated function will cache its results\",\n    \"the cache will store at most maxsize results\",\n    \"the cache will store results based on the order of function calls\"\n  ],\n  \"edge_cases\": [\n    \"maxsize is 0\",\n    \"maxsize is None\",\n    \"typed is True and the function has multiple return types\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"maxsize must be an integer\",\n    \"maxsize must be greater than or equal to 0\",\n    \"typed must be a boolean\"\n  ],\n  \"postconditions\": [\n    \"The function returns a decorator that caches the results of the input function\",\n    \"The cache is ordered by the order of function calls\",\n    \"The cache is limited to maxsize items\",\n    \"The cache is ordered by the order of function calls, with the most recently called function at the end\"\n  ],\n  \"edge_cases\": [\n    \"If maxsize is 0, the cache is disabled\",\n    \"If maxsize is negative, the function raises a ValueError\",\n    \"If typed is True, the cache keys are tuples of arguments, otherwise they are just the arguments\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"maxsize must be an integer\",\n    \"maxsize must be greater than or equal to 0\",\n    \"typed must be a boolean\"\n  ],\n  \"postconditions\": [\n    \"The function returns a decorator that caches the results of a function\",\n    \"The decorator uses a least-recently-used (LRU) cache with a maximum size of maxsize\",\n    \"The decorator is typed if typed is True, otherwise it is untyped\"\n  ],\n  \"edge_cases\": [\n    \"If maxsize is 0, the cache is disabled\",\n    \"If maxsize is negative, the function raises a ValueError\",\n    \"If typed is not a boolean, the function raises a TypeError\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "maxsize must be an integer",
+        "maxsize must be greater than or equal to 0",
+        "typed must be a boolean"
+      ],
+      "postconditions": [
+        "the decorated function will cache its results",
+        "the cache will store at most maxsize results",
+        "the cache will store results based on the order of function calls"
+      ],
+      "edge_cases": [
+        "maxsize is 0",
+        "maxsize is None",
+        "typed is True and the function has multiple return types"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "maxsize must be an integer",
+        "maxsize must be greater than or equal to 0",
+        "typed must be a boolean"
+      ],
+      "postconditions": [
+        "The function returns a decorator that caches the results of the input function",
+        "The cache is ordered by the order of function calls",
+        "The cache is limited to maxsize items",
+        "The cache is ordered by the order of function calls, with the most recently called function at the end"
+      ],
+      "edge_cases": [
+        "If maxsize is 0, the cache is disabled",
+        "If maxsize is negative, the function raises a ValueError",
+        "If typed is True, the cache keys are tuples of arguments, otherwise they are just the arguments"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "maxsize must be an integer",
+        "maxsize must be greater than or equal to 0",
+        "typed must be a boolean"
+      ],
+      "postconditions": [
+        "The function returns a decorator that caches the results of a function",
+        "The decorator uses a least-recently-used (LRU) cache with a maximum size of maxsize",
+        "The decorator is typed if typed is True, otherwise it is untyped"
+      ],
+      "edge_cases": [
+        "If maxsize is 0, the cache is disabled",
+        "If maxsize is negative, the function raises a ValueError",
+        "If typed is not a boolean, the function raises a TypeError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "maxsize must be an integer",
+            "hf": "maxsize must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "maxsize must be greater than or equal to 0",
+            "hf": "maxsize must be greater than or equal to 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "typed must be a boolean",
+            "hf": "typed must be a boolean",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "the decorated function will cache its results",
+          "the cache will store at most maxsize results",
+          "the cache will store results based on the order of function calls"
+        ],
+        "hf_only": [
+          "The function returns a decorator that caches the results of a function",
+          "The decorator uses a least-recently-used (LRU) cache with a maximum size of maxsize",
+          "The decorator is typed if typed is True, otherwise it is untyped"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "maxsize is 0",
+          "maxsize is None",
+          "typed is True and the function has multiple return types"
+        ],
+        "hf_only": [
+          "If maxsize is 0, the cache is disabled",
+          "If maxsize is negative, the function raises a ValueError",
+          "If typed is not a boolean, the function raises a TypeError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "maxsize must be an integer",
+            "hf": "maxsize must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "maxsize must be greater than or equal to 0",
+            "hf": "maxsize must be greater than or equal to 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "typed must be a boolean",
+            "hf": "typed must be a boolean",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the cache will store results based on the order of function calls",
+            "hf": "The cache is ordered by the order of function calls",
+            "similarity": 0.883
+          }
+        ],
+        "groq_only": [
+          "the decorated function will cache its results",
+          "the cache will store at most maxsize results"
+        ],
+        "hf_only": [
+          "The function returns a decorator that caches the results of the input function",
+          "The cache is limited to maxsize items",
+          "The cache is ordered by the order of function calls, with the most recently called function at the end"
+        ],
+        "agreement_score": 0.17
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "maxsize is 0",
+          "maxsize is None",
+          "typed is True and the function has multiple return types"
+        ],
+        "hf_only": [
+          "If maxsize is 0, the cache is disabled",
+          "If maxsize is negative, the function raises a ValueError",
+          "If typed is True, the cache keys are tuples of arguments, otherwise they are just the arguments"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.39
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "maxsize must be an integer",
+            "hf": "maxsize must be an integer",
+            "similarity": 1.0
+          },
+          {
+            "groq": "maxsize must be greater than or equal to 0",
+            "hf": "maxsize must be greater than or equal to 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "typed must be a boolean",
+            "hf": "typed must be a boolean",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a decorator that caches the results of a function",
+            "hf": "The function returns a decorator that caches the results of the input function",
+            "similarity": 0.918
+          }
+        ],
+        "groq_only": [
+          "The decorator uses a least-recently-used (LRU) cache with a maximum size of maxsize",
+          "The decorator is typed if typed is True, otherwise it is untyped"
+        ],
+        "hf_only": [
+          "The cache is ordered by the order of function calls",
+          "The cache is limited to maxsize items",
+          "The cache is ordered by the order of function calls, with the most recently called function at the end"
+        ],
+        "agreement_score": 0.17
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "If maxsize is 0, the cache is disabled",
+            "hf": "If maxsize is 0, the cache is disabled",
+            "similarity": 1.0
+          },
+          {
+            "groq": "If maxsize is negative, the function raises a ValueError",
+            "hf": "If maxsize is negative, the function raises a ValueError",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "If typed is not a boolean, the function raises a TypeError"
+        ],
+        "hf_only": [
+          "If typed is True, the cache keys are tuples of arguments, otherwise they are just the arguments"
+        ],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.56
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "maxsize must be an integer",
       "maxsize must be greater than or equal to 0",
       "typed must be a boolean"
     ],
-    "postconditions": [
-      "the decorated function will cache its results",
-      "the cache will store at most maxsize results",
-      "the cache will store results based on the order of function calls"
-    ],
+    "postconditions": [],
     "edge_cases": [
-      "maxsize is 0",
-      "maxsize is None",
-      "typed is True and the function has multiple return types",
-      "the decorated function has a large number of arguments",
-      "the decorated function has mutable default arguments"
+      "if maxsize is 0, the cache is disabled",
+      "if maxsize is negative, the function raises a valueerror"
     ]
-  },
-  "hf": {
-    "preconditions": [
-      "maxsize must be a non-negative integer",
-      "maxsize must be an integer or None",
-      "typed must be a boolean"
-    ],
-    "postconditions": [
-      "The function returns a decorator that caches the results of the input function.",
-      "The decorator uses a least-recently-used cache with a maximum size of maxsize.",
-      "The decorator caches the results of the input function based on the input arguments.",
-      "The decorator does not cache the results if typed is True and the input arguments are of different types."
-    ],
-    "edge_cases": [
-      "If maxsize is None, the cache has no maximum size.",
-      "If maxsize is 0, the cache has a maximum size of 1.",
-      "If typed is True, the cache does not store results with different types."
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "maxsize must be an integer",
-          "hf": "maxsize must be an integer or None",
-          "similarity": 0.988
-        },
-        {
-          "groq": "typed must be a boolean",
-          "hf": "typed must be a boolean",
-          "similarity": 1.0
-        }
-      ],
-      "groq_only": [
-        "maxsize must be greater than or equal to 0"
-      ],
-      "hf_only": [
-        "maxsize must be a non-negative integer"
-      ],
-      "agreement_score": 0.5
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "the decorated function will cache its results",
-        "the cache will store at most maxsize results",
-        "the cache will store results based on the order of function calls"
-      ],
-      "hf_only": [
-        "The function returns a decorator that caches the results of the input function.",
-        "The decorator uses a least-recently-used cache with a maximum size of maxsize.",
-        "The decorator caches the results of the input function based on the input arguments.",
-        "The decorator does not cache the results if typed is True and the input arguments are of different types."
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "maxsize is 0",
-        "maxsize is None",
-        "typed is True and the function has multiple return types",
-        "the decorated function has a large number of arguments",
-        "the decorated function has mutable default arguments"
-      ],
-      "hf_only": [
-        "If maxsize is None, the cache has no maximum size.",
-        "If maxsize is 0, the cache has a maximum size of 1.",
-        "If typed is True, the cache does not store results with different types."
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.17
   }
 }

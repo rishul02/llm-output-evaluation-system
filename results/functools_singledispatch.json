@@ -1,78 +1,215 @@
 {
   "function": "functools.singledispatch",
-  "groq": {
-    "preconditions": [
-      "func must be a callable",
-      "func must not already be a singledispatch function"
-    ],
-    "postconditions": [
-      "returns a singledispatch function",
-      "the returned function has the same name and docstring as the input function"
-    ],
-    "edge_cases": [
-      "input function has no arguments",
-      "input function has a variable number of arguments",
-      "input function has keyword-only arguments",
-      "input function is already decorated with singledispatch"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"func must be a callable\",\n    \"func must not already be a singledispatch function\"\n  ],\n  \"postconditions\": [\n    \"returns a singledispatch function\",\n    \"the returned function has the same name and docstring as the input function\"\n  ],\n  \"edge_cases\": [\n    \"if func is None\",\n    \"if func is not callable\",\n    \"if func has already been decorated with singledispatch\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"func must be a function\",\n    \"func must be callable\"\n  ],\n  \"postconditions\": [\n    \"func will be decorated with singledispatch\",\n    \"func will be a single-dispatch generic function\"\n  ],\n  \"edge_cases\": [\n    \"func is None\",\n    \"func is not callable\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"func must be a callable\",\n    \"func must be a function\"\n  ],\n  \"postconditions\": [\n    \"returns a singledispatch object\",\n    \"the returned object has a register method\"\n  ],\n  \"edge_cases\": [\n    \"func is None\",\n    \"func is not a function\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "func must be a function",
-      "func must be callable"
-    ],
-    "postconditions": [
-      "func will be decorated with singledispatch",
-      "func will be a singledispatch generic function"
-    ],
-    "edge_cases": [
-      "func is None",
-      "func is not callable"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "func must be a callable",
-          "hf": "func must be callable",
-          "similarity": 0.991
-        }
-      ],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "func must be a callable",
         "func must not already be a singledispatch function"
       ],
-      "hf_only": [
-        "func must be a function"
-      ],
-      "agreement_score": 0.33
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
+      "postconditions": [
         "returns a singledispatch function",
         "the returned function has the same name and docstring as the input function"
       ],
-      "hf_only": [
-        "func will be decorated with singledispatch",
-        "func will be a singledispatch generic function"
-      ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "if func is None",
+        "if func is not callable",
+        "if func has already been decorated with singledispatch"
+      ]
     },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "input function has no arguments",
-        "input function has a variable number of arguments",
-        "input function has keyword-only arguments",
-        "input function is already decorated with singledispatch"
+    "groq2": {
+      "preconditions": [
+        "func must be a function",
+        "func must be callable"
       ],
-      "hf_only": [
+      "postconditions": [
+        "func will be decorated with singledispatch",
+        "func will be a single-dispatch generic function"
+      ],
+      "edge_cases": [
         "func is None",
         "func is not callable"
-      ],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.11
+    "hf": {
+      "preconditions": [
+        "func must be a callable",
+        "func must be a function"
+      ],
+      "postconditions": [
+        "returns a singledispatch object",
+        "the returned object has a register method"
+      ],
+      "edge_cases": [
+        "func is None",
+        "func is not a function"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "func must be a callable",
+            "hf": "func must be a callable",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "func must not already be a singledispatch function"
+        ],
+        "hf_only": [
+          "func must be a function"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a singledispatch function",
+            "hf": "returns a singledispatch object",
+            "similarity": 0.843
+          }
+        ],
+        "groq_only": [
+          "the returned function has the same name and docstring as the input function"
+        ],
+        "hf_only": [
+          "the returned object has a register method"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if func is None",
+            "hf": "func is None",
+            "similarity": 0.948
+          }
+        ],
+        "groq_only": [
+          "if func is not callable",
+          "if func has already been decorated with singledispatch"
+        ],
+        "hf_only": [
+          "func is not a function"
+        ],
+        "agreement_score": 0.25
+      },
+      "overall_agreement": 0.3
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "func must be a callable",
+            "hf": "func must be callable",
+            "similarity": 0.991
+          }
+        ],
+        "groq_only": [
+          "func must not already be a singledispatch function"
+        ],
+        "hf_only": [
+          "func must be a function"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a singledispatch function",
+          "the returned function has the same name and docstring as the input function"
+        ],
+        "hf_only": [
+          "func will be decorated with singledispatch",
+          "func will be a single-dispatch generic function"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if func is None",
+            "hf": "func is None",
+            "similarity": 0.948
+          },
+          {
+            "groq": "if func is not callable",
+            "hf": "func is not callable",
+            "similarity": 0.886
+          }
+        ],
+        "groq_only": [
+          "if func has already been decorated with singledispatch"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.33
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "func must be a callable",
+            "hf": "func must be callable",
+            "similarity": 0.991
+          },
+          {
+            "groq": "func must be a function",
+            "hf": "func must be a function",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a singledispatch object",
+          "the returned object has a register method"
+        ],
+        "hf_only": [
+          "func will be decorated with singledispatch",
+          "func will be a single-dispatch generic function"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "func is None",
+            "hf": "func is None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "func is not a function"
+        ],
+        "hf_only": [
+          "func is not callable"
+        ],
+        "agreement_score": 0.33
+      },
+      "overall_agreement": 0.44
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "func must be a callable",
+      "func must be a function"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "func is none"
+    ]
   }
 }

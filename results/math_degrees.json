@@ -1,0 +1,214 @@
+{
+  "function": "math.degrees",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"return value is the angle in degrees\",\n    \"return value is a float\"\n  ],\n  \"edge_cases\": [\n    \"x is NaN\",\n    \"x is infinity\",\n    \"x is negative infinity\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"the result is a real number\",\n    \"the result is in the range (-180, 180]\"\n  ],\n  \"edge_cases\": [\n    \"x = -inf\",\n    \"x = inf\",\n    \"x = nan\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a number\",\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"the result is an integer\",\n    \"the result is between -180 and 180\"\n  ],\n  \"edge_cases\": [\n    \"x = 0: returns 0\",\n    \"x = pi: returns 180\",\n    \"x = -pi: returns -180\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "return value is the angle in degrees",
+        "return value is a float"
+      ],
+      "edge_cases": [
+        "x is NaN",
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a number",
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "the result is a real number",
+        "the result is in the range (-180, 180]"
+      ],
+      "edge_cases": [
+        "x = -inf",
+        "x = inf",
+        "x = nan"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a number",
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "the result is an integer",
+        "the result is between -180 and 180"
+      ],
+      "edge_cases": [
+        "x = 0: returns 0",
+        "x = pi: returns 180",
+        "x = -pi: returns -180"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be a real number",
+          "x must be finite"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the angle in degrees",
+          "return value is a float"
+        ],
+        "hf_only": [
+          "the result is an integer",
+          "the result is between -180 and 180"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity",
+          "x is negative infinity"
+        ],
+        "hf_only": [
+          "x = 0: returns 0",
+          "x = pi: returns 180",
+          "x = -pi: returns -180"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be a real number",
+          "x must be finite"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is the angle in degrees",
+          "return value is a float"
+        ],
+        "hf_only": [
+          "the result is a real number",
+          "the result is in the range (-180, 180]"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is NaN",
+            "hf": "x = nan",
+            "similarity": 0.944
+          }
+        ],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity"
+        ],
+        "hf_only": [
+          "x = -inf",
+          "x = inf"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.18
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be finite",
+            "hf": "x must be finite",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is between -180 and 180",
+            "hf": "the result is in the range (-180, 180]",
+            "similarity": 0.898
+          }
+        ],
+        "groq_only": [
+          "the result is an integer"
+        ],
+        "hf_only": [
+          "the result is a real number"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x = 0: returns 0",
+          "x = pi: returns 180",
+          "x = -pi: returns -180"
+        ],
+        "hf_only": [
+          "x = -inf",
+          "x = inf",
+          "x = nan"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.44
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a number",
+      "x must be a real number",
+      "x must be finite"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

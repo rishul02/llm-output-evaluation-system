@@ -1,0 +1,200 @@
+{
+  "function": "math.erf",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\"\n  ],\n  \"postconditions\": [\n    \"return value is between -1 and 1\",\n    \"return value is the error function of x\"\n  ],\n  \"edge_cases\": [\n    \"x is NaN\",\n    \"x is infinity\",\n    \"x is zero\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"erf(x) must be a real number between -1 and 1\",\n    \"erf(x) must be NaN if x is NaN\"\n  ],\n  \"edge_cases\": [\n    \"erf(0) must be 0\",\n    \"erf(infinity) must be 1\",\n    \"erf(-infinity) must be -1\",\n    \"erf(NaN) must be NaN\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\"\n  ],\n  \"postconditions\": [\n    \"erf(x) is the error function value at x\",\n    \"erf(x) is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = -inf\",\n    \"x = inf\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "return value is between -1 and 1",
+        "return value is the error function of x"
+      ],
+      "edge_cases": [
+        "x is NaN",
+        "x is infinity",
+        "x is zero"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "erf(x) must be a real number between -1 and 1",
+        "erf(x) must be NaN if x is NaN"
+      ],
+      "edge_cases": [
+        "erf(0) must be 0",
+        "erf(infinity) must be 1",
+        "erf(-infinity) must be -1",
+        "erf(NaN) must be NaN"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite"
+      ],
+      "postconditions": [
+        "erf(x) is the error function value at x",
+        "erf(x) is a real number"
+      ],
+      "edge_cases": [
+        "x = -inf",
+        "x = inf"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is between -1 and 1",
+          "return value is the error function of x"
+        ],
+        "hf_only": [
+          "erf(x) is the error function value at x",
+          "erf(x) is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity",
+          "x is zero"
+        ],
+        "hf_only": [
+          "x = -inf",
+          "x = inf"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is between -1 and 1",
+          "return value is the error function of x"
+        ],
+        "hf_only": [
+          "erf(x) must be a real number between -1 and 1",
+          "erf(x) must be NaN if x is NaN"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is NaN",
+          "x is infinity",
+          "x is zero"
+        ],
+        "hf_only": [
+          "erf(0) must be 0",
+          "erf(infinity) must be 1",
+          "erf(-infinity) must be -1",
+          "erf(NaN) must be NaN"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.17
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be finite",
+            "hf": "x must be finite",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "erf(x) is a real number",
+            "hf": "erf(x) must be a real number between -1 and 1",
+            "similarity": 0.853
+          }
+        ],
+        "groq_only": [
+          "erf(x) is the error function value at x"
+        ],
+        "hf_only": [
+          "erf(x) must be NaN if x is NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x = -inf",
+          "x = inf"
+        ],
+        "hf_only": [
+          "erf(0) must be 0",
+          "erf(infinity) must be 1",
+          "erf(-infinity) must be -1",
+          "erf(NaN) must be NaN"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.44
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite"
+    ],
+    "postconditions": [],
+    "edge_cases": []
+  }
+}

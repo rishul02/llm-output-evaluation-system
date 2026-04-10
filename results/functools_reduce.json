@@ -1,97 +1,249 @@
 {
   "function": "functools.reduce",
-  "groq": {
-    "preconditions": [
-      "function must be callable",
-      "iterable must be iterable",
-      "initial must be a value that can be passed to function"
-    ],
-    "postconditions": [
-      "returns a single value",
-      "result is the accumulated value of function applied to iterable",
-      "if initial is provided, it is used as the initial accumulated value"
-    ],
-    "edge_cases": [
-      "iterable is empty and initial is not provided",
-      "iterable is empty and initial is provided",
-      "function is not associative",
-      "function does not accept the type of values in iterable"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"function must be callable\",\n    \"iterable must be iterable\",\n    \"initial must be a value that can be passed to function\"\n  ],\n  \"postconditions\": [\n    \"returns a single value\",\n    \"result is the accumulated value of applying function to iterable\",\n    \"if initial is provided, it is used as the starting value for accumulation\"\n  ],\n  \"edge_cases\": [\n    \"iterable is empty and initial is not provided\",\n    \"iterable is empty and initial is provided\",\n    \"function is not associative\",\n    \"function does not accept two arguments\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"function must be a callable\",\n    \"iterable must be an iterable\",\n    \"initial must be an optional value\"\n  ],\n  \"postconditions\": [\n    \"returns the accumulated result of applying function to the iterable\",\n    \"returns the initial value if the iterable is empty\"\n  ],\n  \"edge_cases\": [\n    \"if the iterable is empty and no initial value is provided, raises TypeError\",\n    \"if the iterable is empty and an initial value is provided, returns the initial value\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"function must be a callable\",\n    \"iterable must be an iterable\",\n    \"initial must be a single value or None\"\n  ],\n  \"postconditions\": [\n    \"returns a single value\",\n    \"the returned value is the result of applying function to the iterable\",\n    \"if initial is provided, it is used as the first argument to function\"\n  ],\n  \"edge_cases\": [\n    \"if iterable is empty and initial is None, raises TypeError\",\n    \"if iterable is empty and initial is provided, returns initial\",\n    \"if iterable has only one element, returns that element\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "function must be a callable",
-      "iterable must be an iterable",
-      "initial must be an optional value"
-    ],
-    "postconditions": [
-      "returns the accumulated result of applying function to the iterable",
-      "if initial is provided, returns the accumulated result of applying function to the iterable starting from initial"
-    ],
-    "edge_cases": [
-      "if iterable is empty and initial is not provided, raises TypeError",
-      "if iterable is empty and initial is provided, returns initial",
-      "if function is None, raises TypeError"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "function must be callable",
-          "hf": "function must be a callable",
-          "similarity": 0.988
-        },
-        {
-          "groq": "iterable must be iterable",
-          "hf": "iterable must be an iterable",
-          "similarity": 0.985
-        }
-      ],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "function must be callable",
+        "iterable must be iterable",
         "initial must be a value that can be passed to function"
       ],
-      "hf_only": [
-        "initial must be an optional value"
-      ],
-      "agreement_score": 0.5
-    },
-    "postconditions": {
-      "agreed": [
-        {
-          "groq": "result is the accumulated value of function applied to iterable",
-          "hf": "returns the accumulated result of applying function to the iterable",
-          "similarity": 0.914
-        }
-      ],
-      "groq_only": [
+      "postconditions": [
         "returns a single value",
-        "if initial is provided, it is used as the initial accumulated value"
+        "result is the accumulated value of applying function to iterable",
+        "if initial is provided, it is used as the starting value for accumulation"
       ],
-      "hf_only": [
-        "if initial is provided, returns the accumulated result of applying function to the iterable starting from initial"
-      ],
-      "agreement_score": 0.25
-    },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "iterable is empty and initial is not provided",
-          "hf": "if iterable is empty and initial is provided, returns initial",
-          "similarity": 0.868
-        }
-      ],
-      "groq_only": [
+      "edge_cases": [
+        "iterable is empty and initial is not provided",
         "iterable is empty and initial is provided",
         "function is not associative",
-        "function does not accept the type of values in iterable"
-      ],
-      "hf_only": [
-        "if iterable is empty and initial is not provided, raises TypeError",
-        "if function is None, raises TypeError"
-      ],
-      "agreement_score": 0.17
+        "function does not accept two arguments"
+      ]
     },
-    "overall_agreement": 0.31
+    "groq2": {
+      "preconditions": [
+        "function must be a callable",
+        "iterable must be an iterable",
+        "initial must be an optional value"
+      ],
+      "postconditions": [
+        "returns the accumulated result of applying function to the iterable",
+        "returns the initial value if the iterable is empty"
+      ],
+      "edge_cases": [
+        "if the iterable is empty and no initial value is provided, raises TypeError",
+        "if the iterable is empty and an initial value is provided, returns the initial value"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "function must be a callable",
+        "iterable must be an iterable",
+        "initial must be a single value or None"
+      ],
+      "postconditions": [
+        "returns a single value",
+        "the returned value is the result of applying function to the iterable",
+        "if initial is provided, it is used as the first argument to function"
+      ],
+      "edge_cases": [
+        "if iterable is empty and initial is None, raises TypeError",
+        "if iterable is empty and initial is provided, returns initial",
+        "if iterable has only one element, returns that element"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "function must be callable",
+            "hf": "function must be a callable",
+            "similarity": 0.988
+          },
+          {
+            "groq": "iterable must be iterable",
+            "hf": "iterable must be an iterable",
+            "similarity": 0.985
+          }
+        ],
+        "groq_only": [
+          "initial must be a value that can be passed to function"
+        ],
+        "hf_only": [
+          "initial must be a single value or None"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns a single value",
+            "hf": "returns a single value",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "result is the accumulated value of applying function to iterable",
+          "if initial is provided, it is used as the starting value for accumulation"
+        ],
+        "hf_only": [
+          "the returned value is the result of applying function to the iterable",
+          "if initial is provided, it is used as the first argument to function"
+        ],
+        "agreement_score": 0.2
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "iterable is empty and initial is not provided",
+            "hf": "if iterable is empty and initial is provided, returns initial",
+            "similarity": 0.868
+          }
+        ],
+        "groq_only": [
+          "iterable is empty and initial is provided",
+          "function is not associative",
+          "function does not accept two arguments"
+        ],
+        "hf_only": [
+          "if iterable is empty and initial is None, raises TypeError",
+          "if iterable has only one element, returns that element"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.29
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "function must be callable",
+            "hf": "function must be a callable",
+            "similarity": 0.988
+          },
+          {
+            "groq": "iterable must be iterable",
+            "hf": "iterable must be an iterable",
+            "similarity": 0.985
+          }
+        ],
+        "groq_only": [
+          "initial must be a value that can be passed to function"
+        ],
+        "hf_only": [
+          "initial must be an optional value"
+        ],
+        "agreement_score": 0.5
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is the accumulated value of applying function to iterable",
+            "hf": "returns the accumulated result of applying function to the iterable",
+            "similarity": 0.935
+          }
+        ],
+        "groq_only": [
+          "returns a single value",
+          "if initial is provided, it is used as the starting value for accumulation"
+        ],
+        "hf_only": [
+          "returns the initial value if the iterable is empty"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "iterable is empty and initial is provided",
+            "hf": "if the iterable is empty and an initial value is provided, returns the initial value",
+            "similarity": 0.858
+          }
+        ],
+        "groq_only": [
+          "iterable is empty and initial is not provided",
+          "function is not associative",
+          "function does not accept two arguments"
+        ],
+        "hf_only": [
+          "if the iterable is empty and no initial value is provided, raises TypeError"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.32
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "function must be a callable",
+            "hf": "function must be a callable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "iterable must be an iterable",
+            "hf": "iterable must be an iterable",
+            "similarity": 1.0
+          },
+          {
+            "groq": "initial must be a single value or None",
+            "hf": "initial must be an optional value",
+            "similarity": 0.896
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a single value",
+          "the returned value is the result of applying function to the iterable",
+          "if initial is provided, it is used as the first argument to function"
+        ],
+        "hf_only": [
+          "returns the accumulated result of applying function to the iterable",
+          "returns the initial value if the iterable is empty"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if iterable is empty and initial is None, raises TypeError",
+            "hf": "if the iterable is empty and no initial value is provided, raises TypeError",
+            "similarity": 0.968
+          },
+          {
+            "groq": "if iterable is empty and initial is provided, returns initial",
+            "hf": "if the iterable is empty and an initial value is provided, returns the initial value",
+            "similarity": 0.954
+          }
+        ],
+        "groq_only": [
+          "if iterable has only one element, returns that element"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.56
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "function must be a callable",
+      "iterable must be an iterable"
+    ],
+    "postconditions": [
+      "returns a single value"
+    ],
+    "edge_cases": []
   }
 }

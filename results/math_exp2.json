@@ -1,0 +1,195 @@
+{
+  "function": "math.exp2",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a number\"\n  ],\n  \"postconditions\": [\n    \"result is 2 raised to the power of x\",\n    \"result is a float\"\n  ],\n  \"edge_cases\": [\n    \"x is negative infinity\",\n    \"x is positive infinity\",\n    \"x is NaN\",\n    \"x is very large\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"exp2(x) == 2^x\"],\n  \"edge_cases\": [\"x is infinity\", \"x is negative infinity\"]\n}",
+    "hf": "{\n  \"preconditions\": [\"x must be a real number\"],\n  \"postconditions\": [\"exp2(x) == 2^x\"],\n  \"edge_cases\": [\"x is infinity\", \"x is negative infinity\"]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a number"
+      ],
+      "postconditions": [
+        "result is 2 raised to the power of x",
+        "result is a float"
+      ],
+      "edge_cases": [
+        "x is negative infinity",
+        "x is positive infinity",
+        "x is NaN",
+        "x is very large"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "exp2(x) == 2^x"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number"
+      ],
+      "postconditions": [
+        "exp2(x) == 2^x"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "result is 2 raised to the power of x",
+          "result is a float"
+        ],
+        "hf_only": [
+          "exp2(x) == 2^x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is positive infinity",
+          "x is NaN",
+          "x is very large"
+        ],
+        "hf_only": [
+          "x is infinity"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.4
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a number",
+            "hf": "x must be a real number",
+            "similarity": 0.847
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "result is 2 raised to the power of x",
+          "result is a float"
+        ],
+        "hf_only": [
+          "exp2(x) == 2^x"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "x is positive infinity",
+          "x is NaN",
+          "x is very large"
+        ],
+        "hf_only": [
+          "x is infinity"
+        ],
+        "agreement_score": 0.2
+      },
+      "overall_agreement": 0.4
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "exp2(x) == 2^x",
+            "hf": "exp2(x) == 2^x",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x is infinity",
+            "hf": "x is infinity",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x is negative infinity",
+            "hf": "x is negative infinity",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number"
+    ],
+    "postconditions": [
+      "exp2(x) == 2^x"
+    ],
+    "edge_cases": [
+      "x is negative infinity",
+      "x is infinity"
+    ]
+  }
+}

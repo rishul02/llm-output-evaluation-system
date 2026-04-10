@@ -1,86 +1,234 @@
 {
   "function": "math.acos",
-  "groq": {
-    "preconditions": [
-      "x must be a number",
-      "-1 <= x <= 1"
-    ],
-    "postconditions": [
-      "result is a float",
-      "result is in radians",
-      "0 <= result <= pi"
-    ],
-    "edge_cases": [
-      "x is NaN",
-      "x is infinity",
-      "x < -1",
-      "x > 1"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be in the range [-1, 1]\"\n  ],\n  \"postconditions\": [\n    \"the result is a real number\",\n    \"the result is in the range [0, pi]\"\n  ],\n  \"edge_cases\": [\n    \"x is -1\",\n    \"x is 1\",\n    \"x is NaN\",\n    \"x is infinity\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be in the range [-1, 1]\"\n  ],\n  \"postconditions\": [\n    \"the result is the arc cosine of x in radians\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = -1 returns pi/2\",\n    \"x = 1 returns 0\",\n    \"x = -1.0 returns pi/2\",\n    \"x = 1.0 returns 0\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be in the interval [-1, 1]\",\n    \"x must not be NaN\"\n  ],\n  \"postconditions\": [\n    \"The result is the arc cosine of x in radians\",\n    \"The result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"x = -1: result = 3.141592653589793\",\n    \"x = 1: result = 0.0\",\n    \"x = 0: result = 1.5707963267948966\"\n  ]\n}"
   },
-  "hf": {
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be in the range [-1, 1]"
+      ],
+      "postconditions": [
+        "the result is a real number",
+        "the result is in the range [0, pi]"
+      ],
+      "edge_cases": [
+        "x is -1",
+        "x is 1",
+        "x is NaN",
+        "x is infinity"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be in the range [-1, 1]"
+      ],
+      "postconditions": [
+        "the result is the arc cosine of x in radians",
+        "the result is a real number"
+      ],
+      "edge_cases": [
+        "x = -1 returns pi/2",
+        "x = 1 returns 0",
+        "x = -1.0 returns pi/2",
+        "x = 1.0 returns 0"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be in the interval [-1, 1]",
+        "x must not be NaN"
+      ],
+      "postconditions": [
+        "The result is the arc cosine of x in radians",
+        "The result is a real number"
+      ],
+      "edge_cases": [
+        "x = -1: result = 3.141592653589793",
+        "x = 1: result = 0.0",
+        "x = 0: result = 1.5707963267948966"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be in the range [-1, 1]",
+            "hf": "x must be in the interval [-1, 1]",
+            "similarity": 0.921
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.67
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is a real number",
+            "hf": "The result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is in the range [0, pi]"
+        ],
+        "hf_only": [
+          "The result is the arc cosine of x in radians"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is -1",
+          "x is 1",
+          "x is NaN",
+          "x is infinity"
+        ],
+        "hf_only": [
+          "x = -1: result = 3.141592653589793",
+          "x = 1: result = 0.0",
+          "x = 0: result = 1.5707963267948966"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be in the range [-1, 1]",
+            "hf": "x must be in the range [-1, 1]",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is a real number",
+            "hf": "the result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is in the range [0, pi]"
+        ],
+        "hf_only": [
+          "the result is the arc cosine of x in radians"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is -1",
+          "x is 1",
+          "x is NaN",
+          "x is infinity"
+        ],
+        "hf_only": [
+          "x = -1 returns pi/2",
+          "x = 1 returns 0",
+          "x = -1.0 returns pi/2",
+          "x = 1.0 returns 0"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.44
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be in the interval [-1, 1]",
+            "hf": "x must be in the range [-1, 1]",
+            "similarity": 0.921
+          }
+        ],
+        "groq_only": [
+          "x must not be NaN"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The result is the arc cosine of x in radians",
+            "hf": "the result is the arc cosine of x in radians",
+            "similarity": 1.0
+          },
+          {
+            "groq": "The result is a real number",
+            "hf": "the result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "x = 1: result = 0.0",
+            "hf": "x = 1.0 returns 0",
+            "similarity": 0.901
+          }
+        ],
+        "groq_only": [
+          "x = -1: result = 3.141592653589793",
+          "x = 0: result = 1.5707963267948966"
+        ],
+        "hf_only": [
+          "x = -1 returns pi/2",
+          "x = 1 returns 0",
+          "x = -1.0 returns pi/2"
+        ],
+        "agreement_score": 0.17
+      },
+      "overall_agreement": 0.61
+    }
+  },
+  "majority_contract": {
     "preconditions": [
       "x must be a real number",
-      "x must be in the range [-1, 1]",
-      "x must not be NaN (Not a Number)"
+      "x must be in the range [-1, 1]"
     ],
     "postconditions": [
-      "The return value is the arc cosine of x in radians",
-      "The return value is a real number in the range [0, pi]"
+      "the result is a real number",
+      "the result is the arc cosine of x in radians"
     ],
-    "edge_cases": [
-      "x = -1: returns pi",
-      "x = 0: returns 0",
-      "x = 1: returns 0",
-      "x = NaN: raises ValueError"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a number",
-          "hf": "x must be a real number",
-          "similarity": 0.847
-        }
-      ],
-      "groq_only": [
-        "-1 <= x <= 1"
-      ],
-      "hf_only": [
-        "x must be in the range [-1, 1]",
-        "x must not be NaN (Not a Number)"
-      ],
-      "agreement_score": 0.25
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "result is a float",
-        "result is in radians",
-        "0 <= result <= pi"
-      ],
-      "hf_only": [
-        "The return value is the arc cosine of x in radians",
-        "The return value is a real number in the range [0, pi]"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "x is NaN",
-        "x is infinity",
-        "x < -1",
-        "x > 1"
-      ],
-      "hf_only": [
-        "x = -1: returns pi",
-        "x = 0: returns 0",
-        "x = 1: returns 0",
-        "x = NaN: raises ValueError"
-      ],
-      "agreement_score": 0.0
-    },
-    "overall_agreement": 0.08
+    "edge_cases": []
   }
 }

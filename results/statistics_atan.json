@@ -1,79 +1,225 @@
 {
   "function": "statistics.atan",
-  "groq": {
-    "preconditions": [
-      "x must be a real number"
-    ],
-    "postconditions": [
-      "return value is the arc tangent of x in radians",
-      "return value is between -π/2 and π/2"
-    ],
-    "edge_cases": [
-      "x is infinity",
-      "x is negative infinity",
-      "x is NaN",
-      "x is zero"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"x must be a real number\"\n  ],\n  \"postconditions\": [\n    \"return value is a real number\",\n    \"return value is in the range (-π/2, π/2)\"\n  ],\n  \"edge_cases\": [\n    \"x is infinity\",\n    \"x is negative infinity\",\n    \"x is NaN (Not a Number)\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\",\n    \"x must not be NaN\"\n  ],\n  \"postconditions\": [\n    \"the result is the arc tangent of x in radians\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"if x is 0, the result is 0\",\n    \"if x is 1, the result is pi/4\",\n    \"if x is -1, the result is -pi/4\"\n  ]\n}",
+    "hf": "{\n  \"preconditions\": [\n    \"x must be a real number\",\n    \"x must be finite\",\n    \"x must not be NaN\"\n  ],\n  \"postconditions\": [\n    \"the result is the arc tangent of x, measured in radians\",\n    \"the result is a real number\"\n  ],\n  \"edge_cases\": [\n    \"if x is 0, the result is 0\",\n    \"if x is 1, the result is pi/4\",\n    \"if x is -1, the result is -pi/4\"\n  ]\n}"
   },
-  "hf": {
-    "preconditions": [
-      "x must be a real number",
-      "x must be finite",
-      "x must not be NaN"
-    ],
-    "postconditions": [
-      "atan(x) is the arc tangent of x measured in radians",
-      "atan(x) is a real number"
-    ],
-    "edge_cases": [
-      "atan(0) is 0",
-      "atan(infinity) is pi/2",
-      "atan(-infinity) is -pi/2"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "x must be a real number",
-          "hf": "x must be a real number",
-          "similarity": 1.0
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "x must be a real number"
       ],
-      "groq_only": [],
-      "hf_only": [
+      "postconditions": [
+        "return value is a real number",
+        "return value is in the range (-π/2, π/2)"
+      ],
+      "edge_cases": [
+        "x is infinity",
+        "x is negative infinity",
+        "x is NaN (Not a Number)"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "x must be a real number",
         "x must be finite",
         "x must not be NaN"
       ],
-      "agreement_score": 0.33
+      "postconditions": [
+        "the result is the arc tangent of x in radians",
+        "the result is a real number"
+      ],
+      "edge_cases": [
+        "if x is 0, the result is 0",
+        "if x is 1, the result is pi/4",
+        "if x is -1, the result is -pi/4"
+      ]
     },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "return value is the arc tangent of x in radians",
-        "return value is between -π/2 and π/2"
+    "hf": {
+      "preconditions": [
+        "x must be a real number",
+        "x must be finite",
+        "x must not be NaN"
       ],
-      "hf_only": [
-        "atan(x) is the arc tangent of x measured in radians",
-        "atan(x) is a real number"
+      "postconditions": [
+        "the result is the arc tangent of x, measured in radians",
+        "the result is a real number"
       ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "if x is 0, the result is 0",
+        "if x is 1, the result is pi/4",
+        "if x is -1, the result is -pi/4"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite",
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a real number",
+          "return value is in the range (-π/2, π/2)"
+        ],
+        "hf_only": [
+          "the result is the arc tangent of x, measured in radians",
+          "the result is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity",
+          "x is NaN (Not a Number)"
+        ],
+        "hf_only": [
+          "if x is 0, the result is 0",
+          "if x is 1, the result is pi/4",
+          "if x is -1, the result is -pi/4"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
     },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
-        "x is infinity",
-        "x is negative infinity",
-        "x is NaN",
-        "x is zero"
-      ],
-      "hf_only": [
-        "atan(0) is 0",
-        "atan(infinity) is pi/2",
-        "atan(-infinity) is -pi/2"
-      ],
-      "agreement_score": 0.0
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "x must be finite",
+          "x must not be NaN"
+        ],
+        "agreement_score": 0.33
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a real number",
+          "return value is in the range (-π/2, π/2)"
+        ],
+        "hf_only": [
+          "the result is the arc tangent of x in radians",
+          "the result is a real number"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "x is infinity",
+          "x is negative infinity",
+          "x is NaN (Not a Number)"
+        ],
+        "hf_only": [
+          "if x is 0, the result is 0",
+          "if x is 1, the result is pi/4",
+          "if x is -1, the result is -pi/4"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.11
     },
-    "overall_agreement": 0.11
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "x must be a real number",
+            "hf": "x must be a real number",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must be finite",
+            "hf": "x must be finite",
+            "similarity": 1.0
+          },
+          {
+            "groq": "x must not be NaN",
+            "hf": "x must not be NaN",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the arc tangent of x, measured in radians",
+            "hf": "the result is the arc tangent of x in radians",
+            "similarity": 0.975
+          },
+          {
+            "groq": "the result is a real number",
+            "hf": "the result is a real number",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if x is 0, the result is 0",
+            "hf": "if x is 0, the result is 0",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if x is 1, the result is pi/4",
+            "hf": "if x is 1, the result is pi/4",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if x is -1, the result is -pi/4",
+            "hf": "if x is -1, the result is -pi/4",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "x must be a real number",
+      "x must be finite",
+      "x must not be nan"
+    ],
+    "postconditions": [
+      "the result is a real number"
+    ],
+    "edge_cases": [
+      "if x is 0, the result is 0",
+      "if x is 1, the result is pi/4",
+      "if x is -1, the result is -pi/4"
+    ]
   }
 }

@@ -1,0 +1,234 @@
+{
+  "function": "builtins.hasattr",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"name must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns a boolean value\",\n    \"result is True if obj has an attribute with the given name\",\n    \"result is False if obj does not have an attribute with the given name\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"name is an empty string\",\n    \"name is not a string\",\n    \"obj does not support attribute access\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"name must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns True if obj has an attribute with the given name\",\n    \"returns False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"name is an empty string\"\n  ]\n}\n```",
+    "hf": "{\n  \"preconditions\": [\n    \"obj must be an object\",\n    \"name must be a string\"\n  ],\n  \"postconditions\": [\n    \"returns True if the object has an attribute with the given name, False otherwise\"\n  ],\n  \"edge_cases\": [\n    \"obj is None\",\n    \"name is an empty string\",\n    \"name is a non-string value\"\n  ]\n}"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "obj must be an object",
+        "name must be a string"
+      ],
+      "postconditions": [
+        "returns a boolean value",
+        "result is True if obj has an attribute with the given name",
+        "result is False if obj does not have an attribute with the given name"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "name is an empty string",
+        "name is not a string",
+        "obj does not support attribute access"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "obj must be an object",
+        "name must be a string"
+      ],
+      "postconditions": [
+        "returns True if obj has an attribute with the given name",
+        "returns False otherwise"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "name is an empty string"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "obj must be an object",
+        "name must be a string"
+      ],
+      "postconditions": [
+        "returns True if the object has an attribute with the given name, False otherwise"
+      ],
+      "edge_cases": [
+        "obj is None",
+        "name is an empty string",
+        "name is a non-string value"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name must be a string",
+            "hf": "name must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "returns a boolean value",
+          "result is True if obj has an attribute with the given name",
+          "result is False if obj does not have an attribute with the given name"
+        ],
+        "hf_only": [
+          "returns True if the object has an attribute with the given name, False otherwise"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name is an empty string",
+            "hf": "name is an empty string",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name is not a string",
+            "hf": "name is a non-string value",
+            "similarity": 0.902
+          }
+        ],
+        "groq_only": [
+          "obj does not support attribute access"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.75
+      },
+      "overall_agreement": 0.58
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name must be a string",
+            "hf": "name must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "result is True if obj has an attribute with the given name",
+            "hf": "returns True if obj has an attribute with the given name",
+            "similarity": 0.952
+          }
+        ],
+        "groq_only": [
+          "returns a boolean value",
+          "result is False if obj does not have an attribute with the given name"
+        ],
+        "hf_only": [
+          "returns False otherwise"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name is an empty string",
+            "hf": "name is an empty string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "name is not a string",
+          "obj does not support attribute access"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.5
+      },
+      "overall_agreement": 0.58
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "obj must be an object",
+            "hf": "obj must be an object",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name must be a string",
+            "hf": "name must be a string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "returns True if the object has an attribute with the given name, False otherwise",
+            "hf": "returns True if obj has an attribute with the given name",
+            "similarity": 0.831
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "returns False otherwise"
+        ],
+        "agreement_score": 0.5
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "obj is None",
+            "hf": "obj is None",
+            "similarity": 1.0
+          },
+          {
+            "groq": "name is an empty string",
+            "hf": "name is an empty string",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "name is a non-string value"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.67
+      },
+      "overall_agreement": 0.72
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "obj must be an object",
+      "name must be a string"
+    ],
+    "postconditions": [],
+    "edge_cases": [
+      "obj is none",
+      "name is an empty string"
+    ]
+  }
+}

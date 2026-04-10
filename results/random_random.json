@@ -1,50 +1,129 @@
 {
   "function": "random.random",
-  "groq": {
-    "preconditions": [],
-    "postconditions": [
-      "return value is a float",
-      "return value is in the interval [0, 1)"
-    ],
-    "edge_cases": [
-      "return value can be 0",
-      "return value cannot be 1"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [],\n  \"postconditions\": [\n    \"return value is a float\",\n    \"return value is in the interval [0, 1)\"\n  ],\n  \"edge_cases\": [\n    \"return value can be 0\",\n    \"return value cannot be 1\"\n  ]\n}\n```",
+    "groq2": "{\n  \"preconditions\": [],\n  \"postconditions\": [\"The function returns a float in the interval [0, 1)\"],\n  \"edge_cases\": []\n}",
+    "hf": "{\n  \"preconditions\": [],\n  \"postconditions\": [\"The function returns a float in the interval [0, 1)\"],\n  \"edge_cases\": []\n}"
   },
-  "hf": {
-    "preconditions": [],
-    "postconditions": [
-      "The function returns a float in the interval [0, 1)"
-    ],
-    "edge_cases": []
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [],
-      "groq_only": [],
-      "hf_only": [],
-      "agreement_score": 1.0
-    },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [],
+      "postconditions": [
         "return value is a float",
         "return value is in the interval [0, 1)"
       ],
-      "hf_only": [
-        "The function returns a float in the interval [0, 1)"
-      ],
-      "agreement_score": 0.0
-    },
-    "edge_cases": {
-      "agreed": [],
-      "groq_only": [
+      "edge_cases": [
         "return value can be 0",
         "return value cannot be 1"
-      ],
-      "hf_only": [],
-      "agreement_score": 0.0
+      ]
     },
-    "overall_agreement": 0.33
+    "groq2": {
+      "preconditions": [],
+      "postconditions": [
+        "The function returns a float in the interval [0, 1)"
+      ],
+      "edge_cases": []
+    },
+    "hf": {
+      "preconditions": [],
+      "postconditions": [
+        "The function returns a float in the interval [0, 1)"
+      ],
+      "edge_cases": []
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a float",
+          "return value is in the interval [0, 1)"
+        ],
+        "hf_only": [
+          "The function returns a float in the interval [0, 1)"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "return value can be 0",
+          "return value cannot be 1"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [],
+        "groq_only": [
+          "return value is a float",
+          "return value is in the interval [0, 1)"
+        ],
+        "hf_only": [
+          "The function returns a float in the interval [0, 1)"
+        ],
+        "agreement_score": 0.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "return value can be 0",
+          "return value cannot be 1"
+        ],
+        "hf_only": [],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.33
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "The function returns a float in the interval [0, 1)",
+            "hf": "The function returns a float in the interval [0, 1)",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 1.0
+    }
+  },
+  "majority_contract": {
+    "preconditions": [],
+    "postconditions": [
+      "the function returns a float in the interval [0, 1)"
+    ],
+    "edge_cases": []
   }
 }

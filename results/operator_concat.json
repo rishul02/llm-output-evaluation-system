@@ -1,80 +1,256 @@
 {
   "function": "operator.concat",
-  "groq": {
-    "preconditions": [
-      "a must be a sequence",
-      "b must be a sequence"
-    ],
-    "postconditions": [
-      "return value is the concatenation of a and b",
-      "return value is a sequence of the same type as a"
-    ],
-    "edge_cases": [
-      "a is an empty sequence",
-      "b is an empty sequence",
-      "a and b are of different sequence types"
-    ]
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"a must be a sequence\",\n    \"b must be a sequence\"\n  ],\n  \"postconditions\": [\n    \"output is a sequence\",\n    \"output is the concatenation of a and b\"\n  ],\n  \"edge_cases\": [\n    \"a is an empty sequence\",\n    \"b is an empty sequence\",\n    \"a and b are of different sequence types\",\n    \"a or b contains non-hashable elements\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"a and b must be sequences\",\n    \"all items in a and b must be plain strings\",\n    \"a and b must not be None\"\n  ],\n  \"postconditions\": [\n    \"the result is a sequence\",\n    \"all items in the result are plain strings\",\n    \"the result is the concatenation of a and b\"\n  ],\n  \"edge_cases\": [\n    \"if a is an empty sequence, the result is b\",\n    \"if b is an empty sequence, the result is a\",\n    \"if a and b are both empty sequences, the result is an empty sequence\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"a and b must be sequences\",\n    \"all items in a and b must be plain strings\",\n    \"a and b must not be None\"\n  ],\n  \"postconditions\": [\n    \"the result is a sequence of strings\",\n    \"the result is the concatenation of a and b\"\n  ],\n  \"edge_cases\": [\n    \"if a is an empty sequence, the result is b\",\n    \"if b is an empty sequence, the result is a\",\n    \"if both a and b are empty sequences, the result is an empty sequence\"\n  ]\n}\n```"
   },
-  "hf": {
-    "preconditions": [
-      "a and b must be sequences",
-      "all items in a and b must be plain strings"
-    ],
-    "postconditions": [
-      "the result is a sequence of strings",
-      "the result is the concatenation of a and b"
-    ],
-    "edge_cases": [
-      "if a or b is an empty sequence, the result is a copy of the non-empty sequence",
-      "if a and b are both empty sequences, the result is an empty sequence"
-    ]
-  },
-  "comparison": {
-    "preconditions": {
-      "agreed": [
-        {
-          "groq": "b must be a sequence",
-          "hf": "a and b must be sequences",
-          "similarity": 0.912
-        }
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "a must be a sequence",
+        "b must be a sequence"
       ],
-      "groq_only": [
-        "a must be a sequence"
+      "postconditions": [
+        "output is a sequence",
+        "output is the concatenation of a and b"
       ],
-      "hf_only": [
-        "all items in a and b must be plain strings"
-      ],
-      "agreement_score": 0.33
+      "edge_cases": [
+        "a is an empty sequence",
+        "b is an empty sequence",
+        "a and b are of different sequence types",
+        "a or b contains non-hashable elements"
+      ]
     },
-    "postconditions": {
-      "agreed": [],
-      "groq_only": [
-        "return value is the concatenation of a and b",
-        "return value is a sequence of the same type as a"
+    "groq2": {
+      "preconditions": [
+        "a and b must be sequences",
+        "all items in a and b must be plain strings",
+        "a and b must not be None"
       ],
-      "hf_only": [
+      "postconditions": [
+        "the result is a sequence",
+        "all items in the result are plain strings",
+        "the result is the concatenation of a and b"
+      ],
+      "edge_cases": [
+        "if a is an empty sequence, the result is b",
+        "if b is an empty sequence, the result is a",
+        "if a and b are both empty sequences, the result is an empty sequence"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "a and b must be sequences",
+        "all items in a and b must be plain strings",
+        "a and b must not be None"
+      ],
+      "postconditions": [
         "the result is a sequence of strings",
         "the result is the concatenation of a and b"
       ],
-      "agreement_score": 0.0
+      "edge_cases": [
+        "if a is an empty sequence, the result is b",
+        "if b is an empty sequence, the result is a",
+        "if both a and b are empty sequences, the result is an empty sequence"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be a sequence",
+            "hf": "a and b must be sequences",
+            "similarity": 0.912
+          }
+        ],
+        "groq_only": [
+          "a must be a sequence"
+        ],
+        "hf_only": [
+          "all items in a and b must be plain strings",
+          "a and b must not be None"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "output is the concatenation of a and b",
+            "hf": "the result is the concatenation of a and b",
+            "similarity": 0.871
+          }
+        ],
+        "groq_only": [
+          "output is a sequence"
+        ],
+        "hf_only": [
+          "the result is a sequence of strings"
+        ],
+        "agreement_score": 0.33
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "a is an empty sequence",
+            "hf": "if a is an empty sequence, the result is b",
+            "similarity": 0.843
+          },
+          {
+            "groq": "b is an empty sequence",
+            "hf": "if b is an empty sequence, the result is a",
+            "similarity": 0.923
+          }
+        ],
+        "groq_only": [
+          "a and b are of different sequence types",
+          "a or b contains non-hashable elements"
+        ],
+        "hf_only": [
+          "if both a and b are empty sequences, the result is an empty sequence"
+        ],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.33
     },
-    "edge_cases": {
-      "agreed": [
-        {
-          "groq": "b is an empty sequence",
-          "hf": "if a and b are both empty sequences, the result is an empty sequence",
-          "similarity": 0.856
-        }
-      ],
-      "groq_only": [
-        "a is an empty sequence",
-        "a and b are of different sequence types"
-      ],
-      "hf_only": [
-        "if a or b is an empty sequence, the result is a copy of the non-empty sequence"
-      ],
-      "agreement_score": 0.25
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "b must be a sequence",
+            "hf": "a and b must be sequences",
+            "similarity": 0.912
+          }
+        ],
+        "groq_only": [
+          "a must be a sequence"
+        ],
+        "hf_only": [
+          "all items in a and b must be plain strings",
+          "a and b must not be None"
+        ],
+        "agreement_score": 0.25
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "output is the concatenation of a and b",
+            "hf": "the result is the concatenation of a and b",
+            "similarity": 0.871
+          }
+        ],
+        "groq_only": [
+          "output is a sequence"
+        ],
+        "hf_only": [
+          "the result is a sequence",
+          "all items in the result are plain strings"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "a is an empty sequence",
+            "hf": "if a is an empty sequence, the result is b",
+            "similarity": 0.843
+          },
+          {
+            "groq": "b is an empty sequence",
+            "hf": "if b is an empty sequence, the result is a",
+            "similarity": 0.923
+          }
+        ],
+        "groq_only": [
+          "a and b are of different sequence types",
+          "a or b contains non-hashable elements"
+        ],
+        "hf_only": [
+          "if a and b are both empty sequences, the result is an empty sequence"
+        ],
+        "agreement_score": 0.4
+      },
+      "overall_agreement": 0.3
     },
-    "overall_agreement": 0.19
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "a and b must be sequences",
+            "hf": "a and b must be sequences",
+            "similarity": 1.0
+          },
+          {
+            "groq": "all items in a and b must be plain strings",
+            "hf": "all items in a and b must be plain strings",
+            "similarity": 1.0
+          },
+          {
+            "groq": "a and b must not be None",
+            "hf": "a and b must not be None",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the result is the concatenation of a and b",
+            "hf": "the result is the concatenation of a and b",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [
+          "the result is a sequence of strings"
+        ],
+        "hf_only": [
+          "the result is a sequence",
+          "all items in the result are plain strings"
+        ],
+        "agreement_score": 0.25
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if a is an empty sequence, the result is b",
+            "hf": "if a is an empty sequence, the result is b",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if b is an empty sequence, the result is a",
+            "hf": "if b is an empty sequence, the result is a",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if both a and b are empty sequences, the result is an empty sequence",
+            "hf": "if a and b are both empty sequences, the result is an empty sequence",
+            "similarity": 0.996
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.75
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "a and b must be sequences",
+      "all items in a and b must be plain strings",
+      "a and b must not be none"
+    ],
+    "postconditions": [
+      "the result is the concatenation of a and b"
+    ],
+    "edge_cases": [
+      "if a is an empty sequence, the result is b",
+      "if b is an empty sequence, the result is a"
+    ]
   }
 }

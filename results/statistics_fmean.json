@@ -1,0 +1,272 @@
+{
+  "function": "statistics.fmean",
+  "raw_outputs": {
+    "groq": "```json\n{\n  \"preconditions\": [\n    \"data must be an iterable\",\n    \"all elements in data must be convertible to float\",\n    \"if weights is provided, it must be an iterable\",\n    \"if weights is provided, its length must match the length of data\",\n    \"if weights is provided, all elements in weights must be convertible to float\"\n  ],\n  \"postconditions\": [\n    \"the function returns the arithmetic mean of the data\",\n    \"the function returns a float\"\n  ],\n  \"edge_cases\": [\n    \"data is an empty iterable\",\n    \"data contains non-numeric values\",\n    \"weights is provided but contains non-numeric values\",\n    \"weights is provided but its length does not match the length of data\"\n  ]\n}\n```",
+    "groq2": "```json\n{\n  \"preconditions\": [\n    \"data must be a list\",\n    \"data must not be empty\",\n    \"each item in data must be a plain string\",\n    \"weights must be a list or None\",\n    \"if weights is a list, it must have the same length as data\",\n    \"if weights is a list, each item in weights must be a plain string\"\n  ],\n  \"postconditions\": [\n    \"the function returns a float\",\n    \"the returned value is the arithmetic mean of the data\",\n    \"the returned value is the weighted arithmetic mean if weights is provided\"\n  ],\n  \"edge_cases\": [\n    \"if data is empty, the function raises a StatisticsError\",\n    \"if weights is a list and has a different length than data, the function raises a StatisticsError\"\n  ]\n}\n```",
+    "hf": "```json\n{\n  \"preconditions\": [\n    \"data must be a list\",\n    \"data must not be empty\",\n    \"all items in data must be convertible to float\",\n    \"weights must be None or a list\",\n    \"if weights is a list, it must be the same length as data\"\n  ],\n  \"postconditions\": [\n    \"the function returns a float\",\n    \"the returned value is the arithmetic mean of data\",\n    \"if weights is provided, the returned value is the weighted arithmetic mean of data\"\n  ],\n  \"edge_cases\": [\n    \"if data is empty, the function raises a StatisticsError\",\n    \"if weights is a list and has a different length than data, the function raises a StatisticsError\"\n  ]\n}\n```"
+  },
+  "parsed_contracts": {
+    "groq": {
+      "preconditions": [
+        "data must be an iterable",
+        "all elements in data must be convertible to float",
+        "if weights is provided, it must be an iterable",
+        "if weights is provided, its length must match the length of data",
+        "if weights is provided, all elements in weights must be convertible to float"
+      ],
+      "postconditions": [
+        "the function returns the arithmetic mean of the data",
+        "the function returns a float"
+      ],
+      "edge_cases": [
+        "data is an empty iterable",
+        "data contains non-numeric values",
+        "weights is provided but contains non-numeric values",
+        "weights is provided but its length does not match the length of data"
+      ]
+    },
+    "groq2": {
+      "preconditions": [
+        "data must be a list",
+        "data must not be empty",
+        "each item in data must be a plain string",
+        "weights must be a list or None",
+        "if weights is a list, it must have the same length as data",
+        "if weights is a list, each item in weights must be a plain string"
+      ],
+      "postconditions": [
+        "the function returns a float",
+        "the returned value is the arithmetic mean of the data",
+        "the returned value is the weighted arithmetic mean if weights is provided"
+      ],
+      "edge_cases": [
+        "if data is empty, the function raises a StatisticsError",
+        "if weights is a list and has a different length than data, the function raises a StatisticsError"
+      ]
+    },
+    "hf": {
+      "preconditions": [
+        "data must be a list",
+        "data must not be empty",
+        "all items in data must be convertible to float",
+        "weights must be None or a list",
+        "if weights is a list, it must be the same length as data"
+      ],
+      "postconditions": [
+        "the function returns a float",
+        "the returned value is the arithmetic mean of data",
+        "if weights is provided, the returned value is the weighted arithmetic mean of data"
+      ],
+      "edge_cases": [
+        "if data is empty, the function raises a StatisticsError",
+        "if weights is a list and has a different length than data, the function raises a StatisticsError"
+      ]
+    }
+  },
+  "pairwise_comparison": {
+    "groq_vs_hf": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "all elements in data must be convertible to float",
+            "hf": "all items in data must be convertible to float",
+            "similarity": 0.928
+          }
+        ],
+        "groq_only": [
+          "data must be an iterable",
+          "if weights is provided, it must be an iterable",
+          "if weights is provided, its length must match the length of data",
+          "if weights is provided, all elements in weights must be convertible to float"
+        ],
+        "hf_only": [
+          "data must be a list",
+          "data must not be empty",
+          "weights must be None or a list",
+          "if weights is a list, it must be the same length as data"
+        ],
+        "agreement_score": 0.11
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the function returns the arithmetic mean of the data",
+            "hf": "the returned value is the arithmetic mean of data",
+            "similarity": 0.861
+          },
+          {
+            "groq": "the function returns a float",
+            "hf": "the function returns a float",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "if weights is provided, the returned value is the weighted arithmetic mean of data"
+        ],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "data is an empty iterable",
+          "data contains non-numeric values",
+          "weights is provided but contains non-numeric values",
+          "weights is provided but its length does not match the length of data"
+        ],
+        "hf_only": [
+          "if data is empty, the function raises a StatisticsError",
+          "if weights is a list and has a different length than data, the function raises a StatisticsError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.26
+    },
+    "groq_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "if weights is provided, its length must match the length of data",
+            "hf": "if weights is a list, it must have the same length as data",
+            "similarity": 0.822
+          }
+        ],
+        "groq_only": [
+          "data must be an iterable",
+          "all elements in data must be convertible to float",
+          "if weights is provided, it must be an iterable",
+          "if weights is provided, all elements in weights must be convertible to float"
+        ],
+        "hf_only": [
+          "data must be a list",
+          "data must not be empty",
+          "each item in data must be a plain string",
+          "weights must be a list or None",
+          "if weights is a list, each item in weights must be a plain string"
+        ],
+        "agreement_score": 0.1
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the function returns the arithmetic mean of the data",
+            "hf": "the returned value is the arithmetic mean of the data",
+            "similarity": 0.856
+          },
+          {
+            "groq": "the function returns a float",
+            "hf": "the function returns a float",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [
+          "the returned value is the weighted arithmetic mean if weights is provided"
+        ],
+        "agreement_score": 0.67
+      },
+      "edge_cases": {
+        "agreed": [],
+        "groq_only": [
+          "data is an empty iterable",
+          "data contains non-numeric values",
+          "weights is provided but contains non-numeric values",
+          "weights is provided but its length does not match the length of data"
+        ],
+        "hf_only": [
+          "if data is empty, the function raises a StatisticsError",
+          "if weights is a list and has a different length than data, the function raises a StatisticsError"
+        ],
+        "agreement_score": 0.0
+      },
+      "overall_agreement": 0.26
+    },
+    "hf_vs_groq2": {
+      "preconditions": {
+        "agreed": [
+          {
+            "groq": "data must be a list",
+            "hf": "data must be a list",
+            "similarity": 1.0
+          },
+          {
+            "groq": "data must not be empty",
+            "hf": "data must not be empty",
+            "similarity": 1.0
+          },
+          {
+            "groq": "weights must be None or a list",
+            "hf": "weights must be a list or None",
+            "similarity": 0.979
+          },
+          {
+            "groq": "if weights is a list, it must be the same length as data",
+            "hf": "if weights is a list, it must have the same length as data",
+            "similarity": 0.995
+          }
+        ],
+        "groq_only": [
+          "all items in data must be convertible to float"
+        ],
+        "hf_only": [
+          "each item in data must be a plain string",
+          "if weights is a list, each item in weights must be a plain string"
+        ],
+        "agreement_score": 0.57
+      },
+      "postconditions": {
+        "agreed": [
+          {
+            "groq": "the function returns a float",
+            "hf": "the function returns a float",
+            "similarity": 1.0
+          },
+          {
+            "groq": "the returned value is the arithmetic mean of data",
+            "hf": "the returned value is the arithmetic mean of the data",
+            "similarity": 0.996
+          },
+          {
+            "groq": "if weights is provided, the returned value is the weighted arithmetic mean of data",
+            "hf": "the returned value is the weighted arithmetic mean if weights is provided",
+            "similarity": 0.956
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "edge_cases": {
+        "agreed": [
+          {
+            "groq": "if data is empty, the function raises a StatisticsError",
+            "hf": "if data is empty, the function raises a StatisticsError",
+            "similarity": 1.0
+          },
+          {
+            "groq": "if weights is a list and has a different length than data, the function raises a StatisticsError",
+            "hf": "if weights is a list and has a different length than data, the function raises a StatisticsError",
+            "similarity": 1.0
+          }
+        ],
+        "groq_only": [],
+        "hf_only": [],
+        "agreement_score": 1.0
+      },
+      "overall_agreement": 0.86
+    }
+  },
+  "majority_contract": {
+    "preconditions": [
+      "data must be a list",
+      "data must not be empty"
+    ],
+    "postconditions": [
+      "the function returns a float"
+    ],
+    "edge_cases": [
+      "if data is empty, the function raises a statisticserror",
+      "if weights is a list and has a different length than data, the function raises a statisticserror"
+    ]
+  }
+}
